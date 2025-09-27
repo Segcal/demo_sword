@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="./assets/css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>IYMF</title>
+  <style type="text/tailwindcss">
+    @theme {
+        --color-clifford: #da373d;
+        --color-primary: #030935;
+      }
+    </style>
+</head>
+
+<body>
+  <section class="relative w-full h-screen overflow-hidden flex items-center justify-center">
+    <!-- Background Slider -->
+    <div class="absolute inset-0 z-0">
+      <div class="hero-slide active absolute inset-0 bg-cover bg-center duration-1000"
+        style="background-image: url('../../images/slider 1 copy.jpg');"></div>
+      <div class="hero-slide absolute inset-0 bg-cover bg-center duration-1000"
+        style="background-image: url('../../images/slider 2.jpg');"></div>
+    </div>
+
+    <!-- Navbar -->
+    <header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 ease-in-out">
+      <div class="flex items-center justify-between lg:px-40 md:px-28 px-6 py-6">
+        <!-- Logo -->
+        <div class="logo">
+          <a href="#" class="">
+            <img src="../../images/logo.png" width="100" height="100" alt="">
+          </a>
+        </div>
+
+        <!-- Desktop Menu -->
+        <ul class="md:flex hidden gap-10 items-center">
+          <li><a href="#" class="text-gray-50 hover:text-gray-300">HOME</a></li>
+          <li><a href="#" class="text-gray-50 hover:text-gray-300">PROGRAM</a></li>
+          <li><a href="#" class="text-gray-50 hover:text-gray-300">TICKETS</a></li>
+          <li><a href="#" class="text-gray-50 hover:text-gray-300">SPONSOR</a></li>
+          <li><a href="#" class="text-gray-50 hover:text-gray-300">DONATE</a></li>
+        </ul>
+
+        <!-- Register Button -->
+        <button class="bg-white text-black px-4 py-2 rounded uppercase text-sm hidden md:block" onclick="openModal()">
+          Register
+        </button>
+
+        <!-- Mobile Hamburger -->
+        <button id="menu-btn" class="md:hidden focus:outline-none">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Dark Backdrop Blur -->
+    <div class="absolute inset-0 bg-black/40 backdrop-blur-sm z-10"></div>
+
+
+    <div id="formContainer" class="relative z-20 bg-white/20 backdrop-blur-lg border border-white/30 shadow-lg rounded-2xl p-6 w-[90%] max-w-3xl text-white 
+             mt-20 md:mt-14 max-h-[80vh] overflow-y-auto">
+
+      <!-- Step 1: Personal Info -->
+      <div id="step1">
+        <div class="flex justify-between items-center mb-6">
+          <div>
+            <h2 class="text-2xl font-bold mb-2">Personal information</h2>
+            <p class="text-sm mb-6">Please provide your details accurately. Your information will be used to
+              confirm your registration and send your ticket.</p>
+          </div>
+          <a href="../../../index.html" onclick="closeModal()"
+            class="absolute top-4 right-4 text-white hover:text-gray-300">
+            <i class="fas fa-times fa-lg"></i>
+          </a>
+        </div>
+        <form class="space-y-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label for="name" class="block text-sm font-medium mb-1">Full Name</label>
+              <input type="text" id="name" name="name"
+                class="w-full px-4 py-2 rounded-lg bg-white/30 text-white placeholder-gray-200 focus:outline-none focus:ring-2 focus:ring-white"
+                placeholder="Enter your full name" required>
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium mb-1">Email</label>
+              <input type="email" id="email" name="email"
+                class="w-full px-4 py-2 rounded-lg bg-white/30 text-white placeholder-gray-200 focus:outline-none focus:ring-2 focus:ring-white"
+                placeholder="Enter your email" required>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+            <div>
+              <label for="phone" class="block text-sm font-medium mb-1">Phone Number</label>
+              <input type="tel" id="phone" name="phone"
+                class="w-full px-4 py-2 rounded-lg bg-white/30 text-white placeholder-gray-200 focus:outline-none focus:ring-2 focus:ring-white"
+                placeholder="Enter your phone" required>
+            </div>
+            <div>
+              <label for="tickets" class="block text-sm font-medium mb-1">No of Tickets</label>
+              <input type="number" id="tickets" name="tickets"
+                class="w-full px-4 py-2 rounded-lg bg-white/30 text-white placeholder-gray-200 focus:outline-none focus:ring-2 focus:ring-white"
+                placeholder="0" required>
+            </div>
+          </div>
+          <div class="flex justify-between items-center my-6">
+            <p class="text-white text-base">Step 1 of 3</p>
+            <button type="button" onclick="goToStep2()"
+              class="px-8 py-3 bg-white text-black rounded-lg hover:bg-gray-100 transition">
+              Next
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Step 2: Payment -->
+      <div id="step2" class="hidden text-black">
+        <div class="flex justify-between items-center mb-6">
+          <div class="text-white">
+            <h2 class="text-2xl font-bold mb-2">Ticket detail</h2>
+            <p class="text-sm mb-6">Please enter your payment details below to complete your registration.</p>
+          </div>
+          <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-700 hover:text-black">
+            <i class="fas fa-times fa-lg"></i>
+          </button>
+        </div>
+        <form onsubmit="processPayment(event)" class="space-y-4">
+          <div class="max-w-4xl mx-auto mt-10">
+            <div class="flex relative justify-between border border-gray-500 rounded-lg text-white">
+              <!-- Ticket Image -->
+              <div class="w-40 p-3 flex flex-col justify-between text-sm bg-gradient-to-b from-purple-900 to-pink-700">
+                <div class="mb-4">
+                  <p class="font-semibold">General Pass</p>
+                  <p class="text-xs text-gray-200">
+                    Basic admission to the festival, access to main event activities and exhibitions.
+                  </p>
+                </div>
+                <div>
+                  <p class="font-bold pb-3">₦ 3,000</p>
+                  <button class="text-xs text-pink-200">BUY TICKET →</button>
+                </div>
+              </div>
+
+              <!-- Ticket Info -->
+              <div class="flex-1 flex flex-col justify-between">
+                <div class="flex flex-col md:flex-row p-4 justify-between md:items-center items-start">
+                  <p>Lorem ipsum dolor sit amet, consectetur <br> adipiscing elit.</p>
+                  <p class="font-bold mt-2">₦1,000,000</p>
+                </div>
+
+                <!-- Quantity -->
+                <div class="flex  items-center gap-2 p-4">
+                  <label class="font-bold">Qty:</label>
+                  <input type="number" value="1" min="1"
+                    class="w-10 px-2 py-1 text-center rounded-md text-black bg-gray-200" />
+                </div>
+              </div>
+            </div>
+            <div class="flex justify-between items-center mt-4 px-4 text-white">
+              <p class="font-bold text-xl">Total:</p>
+              <p class="text-lg">₦1,000,000</p>
+            </div>
+
+            <!-- Payment Options -->
+            <div class="max-w-3xl mx-auto mt-8">
+              <h3 class="font-semibold text-white mb-4">Method of Payment</h3>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <!-- Paystack Option -->
+                <div id="paystackOption" class="cursor-pointer p-4 rounded-xl border bg-white text-gray-800 flex flex-col gap-3 
+                         shadow-md hover:shadow-lg transition-all duration-300">
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                      <img src="../../images/ps.png" alt="Paystack" class="w-10 h-7 object-contain">
+                      <p class="font-bold text-base">Paystack</p>
+                    </div>
+                    <div class="w-5 h-5 border-2 rounded-full flex items-center justify-center">
+                      <div class="w-3 h-3 bg-black rounded-full hidden"></div>
+                    </div>
+                  </div>
+                  <p class="text-sm text-gray-600">Secure online payments with card, USSD, or bank.</p>
+                </div>
+
+                <!-- Bank Transfer Option -->
+                <div id="bankOption" class="cursor-pointer p-4 rounded-xl border bg-gray-800 text-white flex flex-col gap-3
+                         shadow-md hover:shadow-lg transition-all duration-300">
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                      <span class="text-2xl">🏦</span>
+                      <p class="font-bold text-base">Bank Transfer</p>
+                    </div>
+                    <div class="w-5 h-5 border-2 rounded-full flex items-center justify-center">
+                      <div class="w-3 h-3 bg-white rounded-full hidden"></div>
+                    </div>
+                  </div>
+                  <p class="text-sm text-gray-300">Make payment directly via bank transfer.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex md:flex-row flex-col  justify-between items-center my-6">
+            <p class="text-white text-base">Step 2 of 3</p>
+            <div class="flex gap-5">
+              <button type="button" onclick="goToStep1()"
+                class="px-8 py-3 border border-black rounded-lg hover:bg-gray-100 text-white hover:text-black transition">
+                Back
+              </button>
+              <button type="submit" id="payBtn" disabled
+                class="px-8 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition">
+                Pay Now
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Step 3: Success / Failure -->
+      <div id="step3" class="hidden text-center">
+        <div id="paymentSuccess" class="hidden">
+          <h2 class="text-3xl font-bold text-green-500 mb-4">🎉 Payment Successful!</h2>
+          <p class="text-lg text-white mb-6">Your ticket has been booked successfully. A confirmation email has been
+            sent to you.</p>
+          <button onclick="closeModal()" class="px-8 py-3 bg-white text-black rounded-lg hover:bg-gray-100 transition">
+            Done
+          </button>
+        </div>
+        <div id="paymentFailed" class="hidden">
+          <h2 class="text-3xl font-bold text-red-500 mb-4">❌ Payment Failed!</h2>
+          <p class="text-lg text-white mb-6">Something went wrong with your payment. Please try again.</p>
+          <button onclick="goToStep2()" class="px-8 py-3 bg-white text-black rounded-lg hover:bg-gray-100 transition">
+            Try Again
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function goToStep2() {
+        document.getElementById("step1").classList.add("hidden");
+        document.getElementById("step2").classList.remove("hidden");
+        document.getElementById("step3").classList.add("hidden");
+      }
+      function goToStep1() {
+        document.getElementById("step2").classList.add("hidden");
+        document.getElementById("step1").classList.remove("hidden");
+        document.getElementById("step3").classList.add("hidden");
+      }
+      function processPayment(e) {
+        e.preventDefault();
+        document.getElementById("step2").classList.add("hidden");
+        document.getElementById("step3").classList.remove("hidden");
+
+
+        const success = Math.random() > 0.5;
+        if (success) {
+          document.getElementById("paymentSuccess").classList.remove("hidden");
+          document.getElementById("paymentFailed").classList.add("hidden");
+        } else {
+          document.getElementById("paymentSuccess").classList.add("hidden");
+          document.getElementById("paymentFailed").classList.remove("hidden");
+        }
+      }
+
+      const paystackOption = document.getElementById("paystackOption");
+      const bankOption = document.getElementById("bankOption");
+      const payBtn = document.getElementById("payBtn");
+
+      const options = [paystackOption, bankOption];
+
+      function selectOption(selected) {
+
+        options.forEach(opt => {
+          const ball = opt.querySelector(".w-3.h-3");
+          ball.classList.add("hidden");
+          opt.classList.remove("border-pink-500");
+        });
+
+
+        const selectedBall = selected.querySelector(".w-3.h-3");
+        selectedBall.classList.remove("hidden");
+        selected.classList.add("border-pink-500");
+
+
+        payBtn.disabled = false;
+      }
+
+
+      options.forEach(opt => {
+        opt.addEventListener("click", () => selectOption(opt));
+      });
+
+
+      payBtn.addEventListener("click", () => {
+        alert("Proceeding to make payment... (admin will verify)");
+      });
+
+    </script>
+
+
+
+</body>
+
+</html>

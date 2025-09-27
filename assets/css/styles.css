@@ -1,0 +1,82 @@
+ @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins&display=swap');
+ 
+ body {
+  font-family: "Poppins", sans-serif;
+ }
+ 
+ .slide-in {   
+      transform: translateX(100px);
+      transition: all 0.7s ease-in-out;
+    }
+    .slide-in.show {
+      
+      transform: translateX(0);
+    }
+    header {
+      transition: top 0.4s ease, background-color 0.4s ease;
+    }
+
+   .hero-slide {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    position: absolute;
+    inset: 0;
+  }
+  .hero-slide.active {
+    opacity: 1;
+    z-index: 1;
+  }
+
+     .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    #formContainer {
+  scrollbar-width: none;         
+  -ms-overflow-style: none;      
+}
+#formContainer::-webkit-scrollbar {
+  display: none;                 
+}
+
+    
+#formContainer {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+    .hero-slide {
+  /* opacity: 0; */
+  transition: opacity 1s ease-in-out;
+}
+.hero-slide.active {
+   /* semi transparent */
+}
+.hero-slide.inactive {
+  opacity: 0.5; 
+}
+  .hero-slide img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+
+ @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+  .animate-marquee {
+    animation: marquee 25s linear infinite;
+  }
+  .paused { animation-play-state: paused; } 
+
+  .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+    .scrollbar-hide {
+      -ms-overflow-style: none; 
+      scrollbar-width: none;  
+    }
