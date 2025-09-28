@@ -127,7 +127,6 @@
         <div class="flex justify-between items-center mb-6">
           <div class="text-white">
             <h2 class="text-2xl font-bold mb-2">Ticket detail</h2>
-            <p class="text-sm mb-6">Please enter your payment details below to complete your registration.</p>
           </div>
           <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-700 hover:text-black">
             <i class="fas fa-times fa-lg"></i>
@@ -135,9 +134,9 @@
         </div>
         <form onsubmit="processPayment(event)" class="space-y-4">
           <div class="max-w-4xl mx-auto mt-10">
-            <div class="flex relative justify-between border border-gray-500 rounded-lg text-white">
+            <div class="flex relative justify-between md:flex-row flex-col border border-gray-500 rounded-lg text-white">
               <!-- Ticket Image -->
-              <div class="w-52  flex flex-col justify-between">
+              <div class="md:w-52 w-full   flex flex-col justify-between">
                 <img src="../../images/Ticket general pass.jpg" class="h-40" alt="">
               </div>
 

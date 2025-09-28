@@ -19,7 +19,9 @@
     --background-image-slider-1: url('./assets/images/slider 1 copy.jpg');
     --background-image-slider-2: url('./assets/images/slider 2.jpg');
     --background-image-slider-3: url('./assets/images/slider_1.jpg');
-    --background-image-slider-4: url('./assets/images/slider_2.jpg');
+    --background-image-slider-4: url('./assets/images/slider4.jpg');
+    --background-image-slider-5: url('./assets/images/slider5.jpg');
+    --background-image-slider-6: url('./assets/images/slider6.jpg');
   }
 </style>
 
@@ -74,7 +76,7 @@
       </div>
     </div>
   </header>
-  <section class="relative w-full md:h-screen h-[40vh] overflow-hidden ">
+  <section class="relative w-full md:h-screen h-[40vh] bg-black overflow-hidden ">
     <!-- Background Slider -->
     <div class="absolute inset-0 z-0  hidden md:block">
       <!-- First Slide (Desktop) -->
@@ -86,19 +88,48 @@
       <div class="hero-slide backdrop-blur-xl absolute inset-0 
              bg-[image:var(--background-image-slider-2)] 
              bg-no-repeat bg-center bg-cover"></div>
+             <div class="hero-slide backdrop-blur-xl absolute inset-0 
+             bg-[image:var(--background-image-slider-4)] 
+             bg-no-repeat bg-center bg-cover">
+             </div>
+             <div class="hero-slide backdrop-blur-xl absolute inset-0 
+             bg-[image:var(--background-image-slider-5)] 
+             bg-no-repeat bg-center bg-cover">
+             </div>
+             <div class="hero-slide backdrop-blur-xl absolute inset-0 
+             bg-[image:var(--background-image-slider-6)] 
+             bg-no-repeat bg-center bg-cover">
+
+             </div>
     </div>
 
     <!-- Mobile Slides -->
-    <div class="absolute inset-0 z-0 md:hidden block  mt-28">
+    <div class="absolute inset-0 z-0 md:hidden block  mt-14">
 
       <div class="hero-slide active backdrop-blur-xl 
              bg-[image:var(--background-image-slider-1)] 
-             bg-no-repeat bg-center bg-cover h-[30vh]"></div>
+             bg-no-repeat bg-center bg-contain h-[40vh]"></div>
 
 
       <div class="hero-slide backdrop-blur-xl 
              bg-[image:var(--background-image-slider-2)] 
-             bg-no-repeat bg-center bg-cover h-[30vh]"></div>
+             bg-no-repeat bg-center bg-contain h-[40vh]"></div>
+
+             <div class="hero-slide backdrop-blur-xl 
+             bg-[image:var(--background-image-slider-4)] 
+             bg-no-repeat bg-center bg-contain h-[40vh]">
+             </div>
+
+             <div class="hero-slide backdrop-blur-xl 
+             bg-[image:var(--background-image-slider-5)] 
+             bg-no-repeat bg-center bg-contain h-[40vh]">
+             </div>
+
+             <div class="hero-slide backdrop-blur-xl 
+             bg-[image:var(--background-image-slider-6)] 
+             bg-no-repeat bg-center bg-contain h-[40vh]">
+
+             </div>
     </div>
 
     <header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 hidden md:block ease-in-out">
@@ -245,7 +276,7 @@
         <div class="flex gap-6">
           <!-- Card 1 -->
           <div class="group relative w-96  h-64 flex-shrink-0 overflow-hidden rounded-2xl shadow-lg cursor-pointer">
-            <img src="./assets/images/card-img.jpg" class="absolute w-full h-full object-cover" />
+            <img src="./assets/images/IMG-20250928-WA0013.jpg" class="absolute w-full h-full object-cover" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
             <div class="relative p-6 text-white">
               <h1 class="text-2xl font-bold">Talent Showcases</h1>
@@ -259,7 +290,7 @@
 
           <!-- Card 2 -->
           <div class="group relative w-96  h-64 flex-shrink-0 overflow-hidden rounded-2xl shadow-lg cursor-pointer">
-            <img src="./assets/images/card-img.jpg" class="absolute w-full h-full object-cover" />
+            <img src="./assets/images/IMG-20250928-WA0006.jpg" class="absolute w-full h-full object-cover" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
             <div class="relative bottom-0 p-6 text-white">
               <h1 class="text-2xl font-bold">Workshops & Talks</h1>
@@ -273,7 +304,7 @@
 
           <!-- Card 3 -->
           <div class="group relative w-96  h-64 flex-shrink-0 overflow-hidden rounded-2xl shadow-lg cursor-pointer">
-            <img src="./assets/images/card-img.jpg" class="absolute w-full h-full object-cover" />
+            <img src="./assets/images/IMG-20250928-WA0009.jpg" class="absolute w-full h-full object-cover" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
             <div class="relative p-6 text-white">
               <h1 class="text-2xl font-bold">Exhibitions</h1>
@@ -287,7 +318,7 @@
 
           <!-- Card 4 -->
           <div class="group relative w-96  h-64 flex-shrink-0 overflow-hidden rounded-2xl shadow-lg cursor-pointer">
-            <img src="./assets/images/card-img.jpg" class="absolute w-full h-full object-cover" />
+            <img src="./assets/images/IMG-20250928-WA0008.jpg" class="absolute w-full h-full object-cover" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
             <div class="relative p-6 text-white">
               <h1 class="text-2xl font-bold">Special Performances</h1>
@@ -301,7 +332,7 @@
 
           <!-- Card 5 -->
           <div class="group relative w-96  h-64 flex-shrink-0 overflow-hidden rounded-2xl shadow-lg cursor-pointer">
-            <img src="./assets/images/card-img.jpg" class="absolute w-full h-full object-cover" />
+            <img src="./assets/images/IMG-20250928-WA0016.jpg" class="absolute w-full h-full object-cover" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
             <div class="relative p-6 text-white">
               <h1 class="text-2xl font-bold">Cultural Night</h1>
@@ -315,7 +346,7 @@
 
           <!-- Card 6 -->
           <div class="group relative w-96  h-64 flex-shrink-0 overflow-hidden rounded-2xl shadow-lg cursor-pointer">
-            <img src="./assets/images/card-img.jpg" class="absolute w-full h-full object-cover" />
+            <img src="./assets/images/IMG-20250928-WA0009.jpg" class="absolute w-full h-full object-cover" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
             <div class="relative p-6 text-white">
               <h1 class="text-2xl font-bold">Youth Awards</h1>
@@ -776,7 +807,7 @@
   <a href="./assets/js/form/workshop.html"
           class="option-card border-gray-100 border rounded-xl p-4 cursor-pointer hover:border-blue-600">
           <input type="radio" name="ticket" value="workshop" class="hidden">
-          <h3 class="font-semibold text-xl text-white">Empowerment Workshops</h3>
+          <h3 class="font-semibold text-xl text-white">Empower Ticket</h3>
           <p class="text-base text-gray-100">Workshops on leadership, skills, and entrepreneurship.</p>
         </a>
 
@@ -790,14 +821,14 @@
         <a href="./assets/js/form/table.html"
           class="option-card border-gray-100 border rounded-xl p-4 cursor-pointer hover:border-blue-600">
           <input type="radio" name="ticket" value="table" class="hidden">
-          <h3 class="font-semibold text-xl text-white">Table Packages</h3>
+          <h3 class="font-semibold text-xl text-white">Executive Table for 3/5/7 Tickets</h3>
           <p class="text-base text-gray-100">Reserved tables with refreshments and recognition.</p>
         </a>
 
         <a href="./assets/js/form/exhibition.html"
           class="option-card border-gray-100 border rounded-xl p-4 cursor-pointer hover:border-blue-600">
           <input type="radio" name="ticket" value="exhibition" class="hidden">
-          <h3 class="font-semibold text-xl text-white">Exhibitions Space</h3>
+          <h3 class="font-semibold text-xl text-white">Exhibitions Space Ticket </h3>
           <p class="text-base text-gray-100">Showcase your brand, products, or creativity.</p>
         </a>
 
@@ -858,14 +889,14 @@
           class="option-card border-gray-100  ease-in-out duration-300 transition-all hover:animate-none border rounded-xl p-4 cursor-pointer hover:border-blue-600">
           <input type="radio" name="ticket" value="regular" class="hidden">
           <h3 class="font-semibold text-xl text-white">DONATE</h3>
-          <p class="text-base text-gray-100">Support youth, creativity, and cultural heritage by donating to Ilorin Youth Mega Festival 2025. Your contribution directly funds programs that empower, inspire, and transform lives.</p>
+          
         </a>
 
         <a href="./assets/js/form/sponsor.html"
           class="option-card border-gray-100 border rounded-xl p-4 cursor-pointer hover:border-blue-600">
           <input type="radio" name="ticket" value="vip" class="hidden">
           <h3 class="font-semibold text-xl text-white uppercase">SPONSOR</h3>
-          <p class="text-base text-gray-100">Showcase your brand to thousands of vibrant youth and audiences across Nigeria. Sponsorship gives your brand premium visibility, product activation opportunities, and strong association with culture and creativity.</p>
+         
         </a>
       </div>
     </div>
