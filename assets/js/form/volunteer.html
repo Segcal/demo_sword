@@ -91,261 +91,86 @@
 
   <!-- Injected Registration Form -->
   <form id="registrationForm" class="space-y-4">
-        
-   
-
-    <!-- Name & Email -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div>
-        <label class="block mb-1 text-sm">Name*</label>
-        <input type="text" name="name" placeholder="Name of Institution or Individual or Group" required
-          class="w-full rounded-lg border border-gray-300 bg-transparent focus:outline-none p-2 text-sm ">
-      </div>
-      <div>
-        <label class="block mb-1 text-sm">Email*</label>
-        <input type="email" name="email" placeholder="Enter your email" required
-          class="w-full rounded-lg border border-gray-300 bg-transparent focus:outline-none p-2 text-sm ">
-      </div>
+  <!-- Name & Age -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div>
+      <label class="block mb-1 text-sm">Full Name*</label>
+      <input type="text" name="fullName" placeholder="Enter your full name" required
+        class="w-full rounded-lg border border-gray-300 bg-transparent focus:outline-none p-2 text-sm">
     </div>
-
-    <!-- Phone & Fee -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div>
-        <label class="block mb-1 text-sm">Phone Number*</label>
-        <input type="tel" name="phone" placeholder="Enter your phone number" required
-          class="w-full rounded-lg border border-gray-300 bg-transparent focus:outline-none p-2 text-sm ">
-      </div>
-       <div>
-        <label class="block mb-1 text-sm">Pre-production availability </label>
-        <select name="ethnicity"
-          class="w-full rounded-lg border border-gray-300 bg-transparent focus:outline-none p-2 text-sm ">
-          <option value="">Select option</option>
-          <option value="african" class="text-gray-900">Yes</option>
-          <option value="asian" class="text-gray-900">No</option>
-          </select>
-      </div>
+    <div>
+      <label class="block mb-1 text-sm">Age*</label>
+      <input type="number" name="age" placeholder="Enter your age" required
+        class="w-full rounded-lg border border-gray-300 bg-transparent focus:outline-none p-2 text-sm">
     </div>
+  </div>
 
-    <!-- Ethnicity & Costume -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div>
-        <label class="block mb-1 text-sm">Volunteer appreciated</label>
-        <select name="ethnicity"
-          class="w-full rounded-lg border border-gray-300 bg-transparent focus:outline-none p-2 text-sm ">
-          <option value="">Select option</option>
-          <option value="african" class="text-gray-900">Financial</option>
-          <option value="asian" class="text-gray-900">Brand Production</option>
-        </select>
-      </div>
-      <div>
-        <label class="block mb-1 text-sm">State of residence</label>
-        <select name="costume"
-          class="w-full rounded-lg border border-gray-300 bg-transparent focus:outline-none p-2 text-sm ">
-          <option value="">Choose from options</option>
-          <option value="traditional" class="text-gray-900">Ilorin</option>
-          <option value="modern" class="text-gray-900">Outside-ilorin</option>
-        </select>
-      </div> 
+  <!-- Email & Phone -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div>
+      <label class="block mb-1 text-sm">Email*</label>
+      <input type="email" name="email" placeholder="Enter your email" required
+        class="w-full rounded-lg border border-gray-300 bg-transparent focus:outline-none p-2 text-sm">
     </div>
+    <div>
+      <label class="block mb-1 text-sm">Phone Number*</label>
+      <input type="tel" name="phone" placeholder="Enter your phone number" required
+        class="w-full rounded-lg border border-gray-300 bg-transparent focus:outline-none p-2 text-sm">
+    </div>
+  </div>
 
-    <!-- Submit (goes to Step 2 Payment) -->
-    <div class="flex justify-between items-center my-6">
-      <p class="text-white text-base">Step 1 of 3</p>
-      <button type="button" onclick="goToStep2()"
-        class="px-8 py-3 bg-white text-black rounded-lg hover:bg-gray-100 transition">
-        Next
-      </button>
-    </div>
-  </form>
+  <!-- Area of Interest -->
+  <div>
+    <label class="block mb-1 text-sm">Area of Interest*</label>
+    <select name="interest" required
+      class="w-full rounded-lg border border-gray-300 bg-transparent focus:outline-none p-2 text-sm">
+      <option value="">Select option</option>
+      <option value="logistics" class="text-gray-900">Logistics</option>
+      <option value="media" class="text-gray-900">Media</option>
+      <option value="hospitality" class="text-gray-900">Hospitality</option>
+      <option value="stage-management" class="text-gray-900">Stage Management</option>
+      <option value="registration" class="text-gray-900">Registration</option>
+      <option value="others" class="text-gray-900">Others</option>
+    </select>
+  </div>
+
+  <!-- Availability -->
+  <div>
+    <label class="block mb-1 text-sm">Availability (Days/Hours)*</label>
+    <input type="text" name="availability" placeholder="e.g. Weekdays - 4hrs, Weekends - 6hrs" required
+      class="w-full rounded-lg border border-gray-300 bg-transparent focus:outline-none p-2 text-sm">
+  </div>
+
+  <!-- Submit -->
+  <div class="flex justify-between items-center my-6">
+    <p class="text-gray-200 text-sm">Please review before submitting.</p>
+    <button type="submit" id="btnSubmit"
+      class="px-8 py-3 bg-white cursor-pointer text-black rounded-lg hover:bg-gray-100 transition">
+      Submit
+    </button>
+  </div>
+</form>
+
 </div>
 
 
  <!-- Step 2: Payment -->
-      <div id="step2" class="hidden text-black">
-        <div class="flex justify-between items-center mb-6">
-          <div class="text-white">
-            <h2 class="text-2xl font-bold mb-2">Ticket detail</h2>
-            <p class="text-sm mb-6">Please enter your payment details below to complete your registration.</p>
-          </div>
-          <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-700 hover:text-black">
-            <i class="fas fa-times fa-lg"></i>
-          </button>
-        </div>
-        <form onsubmit="processPayment(event)" class="space-y-4">
-          <div class="max-w-4xl mx-auto mt-10">
-            <div class="flex relative justify-between border border-gray-500 rounded-lg text-white">
-              <!-- Ticket Image -->
-              <div class="w-40 p-3 flex flex-col justify-between text-sm bg-gradient-to-b from-purple-900 to-pink-700">
-                <div class="mb-4">
-                  <p class="font-semibold">General Pass</p>
-                  <p class="text-xs text-gray-200">
-                    Basic admission to the festival, access to main event activities and exhibitions.
-                  </p>
-                </div>
-                <div>
-                  <p class="font-bold pb-3">₦ 3,000</p>
-                  <button class="text-xs text-pink-200">BUY TICKET →</button>
-                </div>
-              </div>
 
-              <!-- Ticket Info -->
-              <div class="flex-1 flex flex-col justify-between">
-                <div class="flex flex-col md:flex-row p-4 justify-between md:items-center items-start">
-                  <p>Lorem ipsum dolor sit amet, consectetur <br> adipiscing elit.</p>
-                  <p class="font-bold mt-2">₦1,000,000</p>
-                </div>
-
-                <!-- Quantity -->
-                <div class="flex  items-center gap-2 p-4">
-                  <label class="font-bold">Qty:</label>
-                  <input type="number" value="1" min="1"
-                    class="w-10 px-2 py-1 text-center rounded-md text-black bg-gray-200" />
-                </div>
-              </div>
-            </div>
-            <div class="flex justify-between items-center mt-4 px-4 text-white">
-              <p class="font-bold text-xl">Total:</p>
-              <p class="text-lg">₦1,000,000</p>
-            </div>
-
-            <!-- Payment Options -->
-            <div class="max-w-3xl mx-auto mt-8">
-              <h3 class="font-semibold text-white mb-4">Method of Payment</h3>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <!-- Paystack Option -->
-                <div id="paystackOption"
-                  class="cursor-pointer p-4 rounded-xl border bg-white text-gray-800 flex flex-col gap-3 
-                         shadow-md hover:shadow-lg transition-all duration-300">
-                  <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                      <img src="../../images/ps.png" alt="Paystack" class="w-10 h-7 object-contain">
-                      <p class="font-bold text-base">Paystack</p>
-                    </div>
-                    <div class="w-5 h-5 border-2 rounded-full flex items-center justify-center">
-                      <div class="w-3 h-3 bg-black rounded-full hidden"></div>
-                    </div>
-                  </div>
-                  <p class="text-sm text-gray-600">Secure online payments with card, USSD, or bank.</p>
-                </div>
-
-                <!-- Bank Transfer Option -->
-                <div id="bankOption"
-                  class="cursor-pointer p-4 rounded-xl border bg-gray-800 text-white flex flex-col gap-3
-                         shadow-md hover:shadow-lg transition-all duration-300">
-                  <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                      <span class="text-2xl">🏦</span>
-                      <p class="font-bold text-base">Bank Transfer</p>
-                    </div>
-                    <div class="w-5 h-5 border-2 rounded-full flex items-center justify-center">
-                      <div class="w-3 h-3 bg-white rounded-full hidden"></div>
-                    </div>
-                  </div>
-                  <p class="text-sm text-gray-300">Make payment directly via bank transfer.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="flex md:flex-row flex-col  justify-between items-center my-6">
-            <p class="text-white text-base">Step 2 of 3</p>
-            <div class="flex gap-5">
-              <button type="button" onclick="goToStep1()"
-                class="px-8 py-3 border border-black rounded-lg hover:bg-gray-100 text-white hover:text-black transition">
-                Back
-              </button>
-              <button type="submit" id="payBtn" disabled
-                class="px-8 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition">
-                Pay Now
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
-
-      <!-- Step 3: Success / Failure -->
-      <div id="step3" class="hidden text-center">
-        <div id="paymentSuccess" class="hidden">
-          <h2 class="text-3xl font-bold text-green-500 mb-4">🎉 Payment Successful!</h2>
-          <p class="text-lg text-white mb-6">Your ticket has been booked successfully. A confirmation email has been sent to you.</p>
-          <button onclick="closeModal()" class="px-8 py-3 bg-white text-black rounded-lg hover:bg-gray-100 transition">
-            Done
-          </button>
-        </div>
-        <div id="paymentFailed" class="hidden">
-          <h2 class="text-3xl font-bold text-red-500 mb-4">❌ Payment Failed!</h2>
-          <p class="text-lg text-white mb-6">Something went wrong with your payment. Please try again.</p>
-          <button onclick="goToStep2()" class="px-8 py-3 bg-white text-black rounded-lg hover:bg-gray-100 transition">
-            Try Again
-          </button>
-        </div>
-      </div>
 </div>
 
 <script>
-  function goToStep2() {
-    document.getElementById("step1").classList.add("hidden");
-    document.getElementById("step2").classList.remove("hidden");
-    document.getElementById("step3").classList.add("hidden");
+document.getElementById('registrationForm').addEventListener('submit', function(e) {
+  const form = e.target;
+  const btn = document.getElementById('btnSubmit');
+
+  if (form.checkValidity()) {
+    btn.textContent = 'Loading...';
+    btn.disabled = true;
+  } else {
+    return;
   }
-  function goToStep1() {
-    document.getElementById("step2").classList.add("hidden");
-    document.getElementById("step1").classList.remove("hidden");
-    document.getElementById("step3").classList.add("hidden");
-  }
-  function processPayment(e) {
-    e.preventDefault();
-    document.getElementById("step2").classList.add("hidden");
-    document.getElementById("step3").classList.remove("hidden");
-
-   
-    const success = Math.random() > 0.5; 
-    if (success) {
-      document.getElementById("paymentSuccess").classList.remove("hidden");
-      document.getElementById("paymentFailed").classList.add("hidden");
-    } else {
-      document.getElementById("paymentSuccess").classList.add("hidden");
-      document.getElementById("paymentFailed").classList.remove("hidden");
-    }
-  }
-
-   const paystackOption = document.getElementById("paystackOption");
-  const bankOption = document.getElementById("bankOption");
-  const payBtn = document.getElementById("payBtn");
-
-  const options = [paystackOption, bankOption];
-
-  function selectOption(selected) {
-   
-    options.forEach(opt => {
-      const ball = opt.querySelector(".w-3.h-3");
-      ball.classList.add("hidden");
-      opt.classList.remove("border-pink-500");
-    });
-
-    
-    const selectedBall = selected.querySelector(".w-3.h-3");
-    selectedBall.classList.remove("hidden");
-    selected.classList.add("border-pink-500");
-
-    
-    payBtn.disabled = false;
-  }
-
-
-  options.forEach(opt => {
-    opt.addEventListener("click", () => selectOption(opt));
-  });
-
- 
-  payBtn.addEventListener("click", () => {
-    alert("Proceeding to make payment... (admin will verify)");
-  });
- 
+});
 </script>
-
-
 
 </body>
 

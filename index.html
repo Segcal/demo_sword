@@ -25,8 +25,8 @@
 </head>
 
 <body>
-  <header class="fixed top-0 left-0 w-full bg-black/90 z-50 transition-all duration-300 ease-in-out">
-    <div class="flex items-center justify-between lg:px-40 md:px-28 px-6 md:py-6 md:hidden">
+  <header class="fixed top-0 left-0 w-full bg-black/90  z-50 transition-all duration-300 ease-in-out">
+    <div class="flex items-center justify-between lg:px-40 md:px-28 px-6 md:hidden">
       <!-- Logo -->
       <div class="logo">
         <a href="#" class="text-white text-2xl font-bold">
@@ -43,8 +43,9 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
-      <div id="mobile-menu"
-        class="fixed top-0 left-0 h-full w-64 bg-black text-white transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden z-50">
+      <div id="mobile-menu" class="fixed top-0 left-0 h-full w-64 bg-black text-white 
+         transform -translate-x-full transition-transform 
+         duration-300 ease-in-out md:hidden z-50">
         <div class="flex justify-between items-center px-6 py-4 border-b border-gray-700">
           <span class="text-2xl font-bold">
             <img src="./assets/images/logo.png" width="100" height="150" alt="">
@@ -72,7 +73,7 @@
       </div>
     </div>
   </header>
-  <section class="relative w-full h-screen overflow-hidden ">
+  <section class="relative w-full md:h-screen h-[40vh] overflow-hidden ">
     <!-- Background Slider -->
     <div class="absolute inset-0 z-0  hidden md:block">
       <!-- First Slide (Desktop) -->
@@ -87,16 +88,16 @@
     </div>
 
     <!-- Mobile Slides -->
-    <div class="absolute inset-0 z-0 md:hidden block  mt-20">
-      <!-- First Slide (Mobile) -->
-      <div class="hero-slide active backdrop-blur-xl 
-             bg-[image:var(--background-image-slider-3)] 
-             bg-no-repeat bg-center bg-cover h-[100vh]"></div>
+    <div class="absolute inset-0 z-0 md:hidden block  mt-28">
 
-      <!-- Second Slide (Mobile) -->
+      <div class="hero-slide active backdrop-blur-xl 
+             bg-[image:var(--background-image-slider-1)] 
+             bg-no-repeat bg-center bg-cover h-[30vh]"></div>
+
+
       <div class="hero-slide backdrop-blur-xl 
-             bg-[image:var(--background-image-slider-4)] 
-             bg-no-repeat bg-center bg-cover h-[100vh]"></div>
+             bg-[image:var(--background-image-slider-2)] 
+             bg-no-repeat bg-center bg-cover h-[30vh]"></div>
     </div>
 
     <header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 hidden md:block ease-in-out">
@@ -129,8 +130,9 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
-        <div id="mobile-menu"
-          class="fixed top-0 left-0 h-full w-64 bg-black text-white transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden z-50">
+        <div id="mobile-menu" class="fixed top-0 left-0 h-[100vh] w-64 bg-black text-white 
+         transform -translate-x-full transition-transform 
+         duration-300 ease-in-out md:hidden z-50">
           <div class="flex justify-between items-center px-6 py-4 border-b border-gray-700">
             <span class="text-2xl font-bold">
               <img src="./assets/images/sword tv logo white.png" width="150" height="150" alt="">
@@ -164,7 +166,9 @@
   <main
     class="flex flex-col bg-black/90 backdrop-blur-lg lg:flex-row justify-center items-center  md:py-[6rem] py-4 lg:px-40 md:px-20 px-4 gap-10 ">
     <!-- Left Content -->
-    <div class="text-gray-900 max-w-2xl py-6 flex items-center justify-center  text-center flex-col delay-[200ms] duration-[400ms] taos:scale-[0.6] taos:opacity-0" data-taos-offset="400">
+    <div
+      class="text-gray-900 max-w-2xl py-6 flex items-center justify-center  text-center flex-col delay-[200ms] duration-[400ms] taos:scale-[0.6] taos:opacity-0"
+      data-taos-offset="400">
       <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-50 mb-3">
         Welcome to Ilorin Youth Mega Festival 2025!
       </h2>
@@ -178,7 +182,7 @@
           class="bg-gray-50 text-black font-semibold px-6 py-3 rounded-md hover:border-gray-50 hover:border-1 hover:text-white hover:bg-transparent transition w-full sm:w-auto">
           REGISTER NOW
         </button>
-        <button onclick="openModal()"
+        <button onclick="openPartnerModal()"
           class="flex items-center justify-center gap-2 border border-gray-50 text-white hover:bg-gray-50 hover:text-black font-semibold px-6 py-3 rounded-md transition w-full sm:w-auto">
           PARTNER WITH US
           <i class="fa-solid fa-arrow-right"></i>
@@ -342,7 +346,8 @@
           </h1>
           <p class="text-sm md:text-base mb-6">Select from our range of ticket options to match your festival
             preferences</p>
-          <button onclick="openModal()" class="px-6 py-2 border border-white hover:bg-white hover:text-black transition">Register</button>
+          <button onclick="openModal()"
+            class="px-6 py-2 border border-white hover:bg-white hover:text-black transition">Register</button>
         </div>
       </div>
 
@@ -595,8 +600,7 @@
         potential.
       </p>
       <div class="flex flex-col sm:flex-row gap-4">
-        <button 
-        onclick="openModal()"
+        <button onclick="openModal()"
           class=" font-semibold px-6 py-3 uppercase rounded-md ease-in-out duration-300 border border-gray-900 text-black  hover:bg-gray-950 hover:text-gray-50 transition w-full sm:w-auto">
           Donate
         </button>
@@ -632,7 +636,8 @@
           <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Stay ahead in event planning—create unique,
             immersive, and unforgettable experiences
             that leave a lasting impact!</p>
-          <a href="#" class="inline-flex uppercase items-center gap-2 px-3 py-2 text-sm font-medium text-center text-white ">
+          <a href="#"
+            class="inline-flex uppercase items-center gap-2 px-3 py-2 text-sm font-medium text-center text-white ">
             Learn more
             <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
               fill="none" viewBox="0 0 14 10">
@@ -659,7 +664,8 @@
           <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Stay ahead in event planning—create unique,
             immersive, and unforgettable experiences
             that leave a lasting impact!</p>
-          <a href="#" class="inline-flex uppercase items-center gap-2 px-3 py-2 text-sm font-medium text-center text-white ">
+          <a href="#"
+            class="inline-flex uppercase items-center gap-2 px-3 py-2 text-sm font-medium text-center text-white ">
             Learn more
             <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
               fill="none" viewBox="0 0 14 10">
@@ -686,7 +692,8 @@
           <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Stay ahead in event planning—create unique,
             immersive, and unforgettable experiences
             that leave a lasting impact!</p>
-          <a href="#" class="inline-flex uppercase items-center gap-2 px-3 py-2 text-sm font-medium text-center text-white ">
+          <a href="#"
+            class="inline-flex uppercase items-center gap-2 px-3 py-2 text-sm font-medium text-center text-white ">
             Learn more
             <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
               fill="none" viewBox="0 0 14 10">
@@ -708,9 +715,9 @@
       <!-- Left Section -->
       <div class="flex flex-col gap-3 w-full md:w-1/3">
         <a href="index.html" class="font-bold">
-          <img src="./assets/images/logo.png" width="100" height="100" alt="">
+          <img src="./assets/images/sword tv logo white.png" width="150" height="100" alt="">
         </a>
-        <p class="text-sm">A celebration of talent, and culture.</p>
+        <p class="text-sm uppercase">The king of Television</p>
         <p class="text-xs text-gray-400 mt-4">© 2025 Ilorin Youth Mega Festival. All rights reserved.</p>
       </div>
 
@@ -753,7 +760,7 @@
       <!-- Title -->
       <h2 class="text-2xl font-bold text-gray-100">Register for the IYMF 2025</h2>
       <p class="text-sm text-gray-200 mt-1">
-        Select how you’d like to participate, as an attendee, performer, exhibitor, or partner.
+        Select how you’d like to participate, as an attendee, performer, exhibitor, Volunteer or as a resource person.
       </p>
 
       <!-- Step 1: Ticket Options -->
@@ -761,8 +768,15 @@
         <a href="./assets/js/form/regular.html"
           class="option-card border-gray-100 border rounded-xl p-4 cursor-pointer hover:border-blue-600">
           <input type="radio" name="ticket" value="regular" class="hidden">
-          <h3 class="font-semibold text-xl text-blue-700">Regular Ticket</h3>
+          <h3 class="font-semibold text-xl text-white">Regular Ticket</h3>
           <p class="text-base text-gray-100">Access to main events and exhibitions.</p>
+        </a>
+         
+  <a href="./assets/js/form/workshop.html"
+          class="option-card border-gray-100 border rounded-xl p-4 cursor-pointer hover:border-blue-600">
+          <input type="radio" name="ticket" value="workshop" class="hidden">
+          <h3 class="font-semibold text-xl text-white">Empowerment Workshops</h3>
+          <p class="text-base text-gray-100">Workshops on leadership, skills, and entrepreneurship.</p>
         </a>
 
         <a href="./assets/js/form/vip.html"
@@ -786,11 +800,11 @@
           <p class="text-base text-gray-100">Showcase your brand, products, or creativity.</p>
         </a>
 
-        <a href="./assets/js/form/workshop.html"
+       <a href="./assets/js/form/volunteer.html"
           class="option-card border-gray-100 border rounded-xl p-4 cursor-pointer hover:border-blue-600">
-          <input type="radio" name="ticket" value="workshop" class="hidden">
-          <h3 class="font-semibold text-xl text-white">Empowerment Workshops</h3>
-          <p class="text-base text-gray-100">Workshops on leadership, skills, and entrepreneurship.</p>
+          <input type="radio" name="ticket" value="volunteer" class="hidden">
+          <h3 class="font-semibold text-xl text-white">Volunteer</h3>
+          <p class="text-base text-gray-100">Join the team, support logistics and coordination.</p>
         </a>
 
         <a href="./assets/js/form/cultural.html"
@@ -807,12 +821,7 @@
           <p class="text-base text-gray-100">Perform and compete in drama, art, and comedy.</p>
         </a>
 
-        <a href="./assets/js/form/volunteer.html"
-          class="option-card border-gray-100 border rounded-xl p-4 cursor-pointer hover:border-blue-600">
-          <input type="radio" name="ticket" value="volunteer" class="hidden">
-          <h3 class="font-semibold text-xl text-white">Volunteer</h3>
-          <p class="text-base text-gray-100">Join the team, support logistics and coordination.</p>
-        </a>
+       
 
         <a href="./assets/js/form/resource.html"
           class="option-card border-gray-100 border rounded-xl p-4 cursor-pointer hover:border-blue-600">
@@ -821,44 +830,48 @@
           <p class="text-base text-gray-100">Lead sessions, mentor, and share expertise.</p>
         </a>
       </div>
+    </div>
+  </div>
 
-      <!-- Step 2: Registration Form -->
-      <div id="formContainer" class="hidden mt-6">
-        <h3 class="font-semibold text-lg mb-3">Enter Your Details</h3>
-        <form id="registrationForm" class="space-y-4">
-          <input type="text" placeholder="Full Name" class="w-full border rounded-lg p-3" required>
-          <input type="email" placeholder="Email Address" class="w-full border rounded-lg p-3" required>
-          <input type="tel" placeholder="Phone Number" class="w-full border rounded-lg p-3" required>
-          <input type="text" placeholder="Organization / School (Optional)" class="w-full border rounded-lg p-3">
-          <select class="w-full border rounded-lg p-3" required>
-            <option value="">Select Your Role</option>
-            <option value="attendee">Attendee</option>
-            <option value="performer">Performer</option>
-            <option value="exhibitor">Exhibitor</option>
-            <option value="partner">Partner</option>
-            <option value="volunteer">Volunteer</option>
-          </select>
-          <textarea placeholder="Additional Notes (Optional)" class="w-full border rounded-lg p-3"></textarea>
 
-          <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700">
-            Submit Registration
-          </button>
-        </form>
-      </div>
+  <!-- Partner With Us Modal -->
+  <div id="partnerModal"
+    class="fixed inset-0 hidden bg-black/30 backdrop-blur-sm flex items-center justify-center z-50">
+    <div
+      class="bg-black/30 backdrop-blur-md rounded-2xl shadow-lg w-[90%] max-w-3xl p-6 relative max-h-[90vh] overflow-y-auto">
 
-      <!-- Footer Navigation -->
-      <div class="mt-6 flex gap-4">
-        <button id="backBtn" onclick="goBack()"
-          class="w-full bg-gray-200 text-black rounded-xl py-3 hover:bg-gray-300 transition hidden">
-          BACK
-        </button>
-        <button id="nextBtn" onclick="goNext()"
-          class="w-full bg-black text-white rounded-xl py-3 hover:bg-gray-800 transition">
-          NEXT
-        </button>
+      <!-- Close Button -->
+      <button onclick="closePartnerModal()"
+        class="absolute top-4 right-4 text-gray-100 hover:text-gray-200 text-2xl">&times;</button>
+
+      <!-- Modal Header -->
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-100 mb-4">Partner With Us</h2>
+      <p class="text-gray-200 mb-6">
+        Join us as a partner at the Ilorin Youth Mega Festival 2025.
+        Support the vision and showcase your brand to thousands of attendees.
+      </p>
+
+      <!-- Form -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+        <a href="./assets/js/form/donate.html"
+          class="option-card border-gray-100  ease-in-out duration-300 transition-all hover:animate-none border rounded-xl p-4 cursor-pointer hover:border-blue-600">
+          <input type="radio" name="ticket" value="regular" class="hidden">
+          <h3 class="font-semibold text-xl text-white">DONATE</h3>
+          <p class="text-base text-gray-100">Access to main events and exhibitions.</p>
+        </a>
+
+        <a href="./assets/js/form/vip.html"
+          class="option-card border-gray-100 border rounded-xl p-4 cursor-pointer hover:border-blue-600">
+          <input type="radio" name="ticket" value="vip" class="hidden">
+          <h3 class="font-semibold text-xl text-white uppercase">sponsor</h3>
+          <p class="text-base text-gray-100">Premium perks, exclusive seating, meet & greet.</p>
+        </a>
       </div>
     </div>
   </div>
+
+
+
 
 
   <script src="https://unpkg.com/taos@1.0.5/dist/taos.js"></script>
@@ -868,6 +881,12 @@
     const formContainer = document.getElementById("formContainer");
     const backBtn = document.getElementById("backBtn");
     const nextBtn = document.getElementById("nextBtn");
+    function openPartnerModal() {
+      document.getElementById("partnerModal").classList.remove("hidden");
+    }
+    function closePartnerModal() {
+      document.getElementById("partnerModal").classList.add("hidden");
+    }
 
     // Open modal
     function openModal() {
