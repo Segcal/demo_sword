@@ -83,70 +83,75 @@
           </a>
         </div>
         <form class="space-y-6">
-          <!-- Name / Organization -->
-          <div>
-            <label class="block text-gray-100 font-medium mb-2">Name / Organization*</label>
-            <input type="text" name="name" placeholder="Enter your name or organization"
-              class="w-full border border-gray-100 rounded-lg px-3 py-2 outline-none" required />
-          </div>
+  <!-- Organization / Brand Name -->
+  <div>
+    <label class="block text-gray-100 font-medium mb-2">Organization / Brand Name*</label>
+    <input type="text" name="organization" placeholder="Enter your organization or brand name"
+      class="w-full border border-gray-100 rounded-lg px-3 py-2 outline-none" required />
+  </div>
 
-          <!-- Email & Phone -->
-          <div>
-            <label class="block text-gray-100 font-medium mb-2">Email & Phone*</label>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <input type="email" name="email" placeholder="Enter your email"
-                class="w-full border border-gray-100 rounded-lg px-3 py-2 outline-none" required />
-              <input type="tel" name="phone" placeholder="Enter your phone number"
-                class="w-full border border-gray-100 rounded-lg px-3 py-2 outline-none" required />
-            </div>
-          </div>
+  <!-- Contact Person -->
+  <div>
+    <label class="block text-gray-100 font-medium mb-2">Contact Person*</label>
+    <input type="text" name="contactPerson" placeholder="Enter contact person name"
+      class="w-full border border-gray-100 rounded-lg px-3 py-2 outline-none" required />
+  </div>
 
-          <!-- Donation Type -->
-          <div>
-            <label class="block text-gray-100 font-medium mb-2">Donation Type*</label>
-            <div class="space-y-3">
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input type="radio" name="donationType" value="one-time" class="form-radio text-green-600" required />
-                <span class="text-gray-100">One-time</span>
-              </label>
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input type="radio" name="donationType" value="recurring" class="form-radio text-green-600" />
-                <span class="text-gray-100">Recurring</span>
-              </label>
-            </div>
-          </div>
+  <!-- Email & Phone -->
+  <div>
+    <label class="block text-gray-100 font-medium mb-2">Email & Phone*</label>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <input type="email" name="email" placeholder="Enter your email"
+        class="w-full border border-gray-100 rounded-lg px-3 py-2 outline-none" required />
+      <input type="tel" name="phone" placeholder="Enter your phone number"
+        class="w-full border border-gray-100 rounded-lg px-3 py-2 outline-none" required />
+    </div>
+  </div>
 
-          <!-- Donation Amount -->
-          <div>
-            <label class="block text-gray-100 font-medium mb-2">Donation Amount*</label>
-            <input type="number" name="amount" placeholder="Enter amount"
-              class="w-full border border-gray-100 rounded-lg px-3 py-2 outline-none" required />
-          </div>
+  <!-- Sponsorship Package -->
+  <div>
+    <label class="block text-gray-100 font-medium mb-2">Sponsorship Package*</label>
+    <select name="sponsorship" class="w-full border   border-gray-100 rounded-lg px-3 py-2 outline-none" required>
+      <option class="text-gray-900" value="">Select a package</option>
+      <option class="text-gray-900" value="platinum">Platinum</option>
+      <option class="text-gray-900" value="gold">Gold</option>
+      <option class="text-gray-900" value="silver">Silver</option>
+      <option class="text-gray-900" value="bronze">Bronze</option>
+    </select>
+  </div>
 
-          <!-- Preferred Acknowledgement -->
-          <div>
-            <label class="block text-gray-100 font-medium mb-2">Preferred Acknowledgement*</label>
-            <div class="space-y-3">
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input type="radio" name="acknowledgement" value="anonymous" class="form-radio text-green-600"
-                  required />
-                <span class="text-gray-100">Anonymous</span>
-              </label>
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input type="radio" name="acknowledgement" value="public" class="form-radio text-green-600" />
-                <span class="text-gray-100">Public Recognition</span>
-              </label>
-            </div>
-          </div>
+  <!-- Area of Interest -->
+  <div>
+    <label class="block text-gray-100 font-medium mb-2">Area of Interest*</label>
+    <div class="space-y-3">
+      <label class="flex items-center gap-2 cursor-pointer">
+        <input type="checkbox" name="interest" value="brand-visibility" class="form-checkbox text-green-600" />
+        <span class="text-gray-100">Brand Visibility</span>
+      </label>
+      <label class="flex items-center gap-2 cursor-pointer">
+        <input type="checkbox" name="interest" value="csr" class="form-checkbox text-green-600" />
+        <span class="text-gray-100">CSR</span>
+      </label>
+      <label class="flex items-center gap-2 cursor-pointer">
+        <input type="checkbox" name="interest" value="activation" class="form-checkbox text-green-600" />
+        <span class="text-gray-100">Activation</span>
+      </label>
+      <label class="flex items-center gap-2 cursor-pointer">
+        <input type="checkbox" name="interest" value="media-placement" class="form-checkbox text-green-600" />
+        <span class="text-gray-100">Media Placement</span>
+      </label>
+    </div>
+  </div>
 
-          <!-- Button -->
-          <div class="pt-4">
-            <button type="submit"
-              class="w-full bg-white hover:bg-gray-200 cursor-pointer text-black font-medium py-3 rounded-lg transition">
-              Donate Now
-            </button>
-          </div>
-        </form>
+  <!-- Button -->
+  <div class="pt-4">
+    <button type="submit"
+      class="w-full bg-white hover:bg-gray-200 cursor-pointer text-black font-medium py-3 rounded-lg transition">
+      Submit Sponsorship
+    </button>
+  </div>
+</form>
+
 
       </div>
 
