@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  <link rel="stylesheet" href="./assets/css/styles.css">
+  <link rel="stylesheet" href="../../css/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
     integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -73,9 +73,7 @@
       <div id="step1">
         <div class="flex justify-between items-center mb-6">
           <div>
-            <h2 class="text-2xl font-bold mb-2">Make a Donation</h2>
-            <p class="text-sm mb-6">Through your generosity, we can touch lives, bring comfort, and extend the work of
-              the church to those in need.</p>
+            <h2 class="text-2xl font-bold mb-1">Make a Donation</h2>
           </div>
           <a href="../../../index.html" onclick="closeModal()"
             class="absolute top-6 right-4 text-white hover:text-gray-300">
@@ -98,21 +96,6 @@
                 class="w-full border border-gray-100 rounded-lg px-3 py-2 outline-none" required />
               <input type="tel" name="phone" placeholder="Enter your phone number"
                 class="w-full border border-gray-100 rounded-lg px-3 py-2 outline-none" required />
-            </div>
-          </div>
-
-          <!-- Donation Type -->
-          <div>
-            <label class="block text-gray-100 font-medium mb-2">Donation Type*</label>
-            <div class="space-y-3">
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input type="radio" name="donationType" value="one-time" class="form-radio text-green-600" required />
-                <span class="text-gray-100">One-time</span>
-              </label>
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input type="radio" name="donationType" value="recurring" class="form-radio text-green-600" />
-                <span class="text-gray-100">Recurring</span>
-              </label>
             </div>
           </div>
 
