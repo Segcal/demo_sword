@@ -125,3 +125,4 @@ container.addEventListener("scroll", () => {
     closestCard.classList.remove("bg-white", "text-black", "border");
   }
 });
+

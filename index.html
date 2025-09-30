@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
     integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="shortcut icon" href="./assets/images/favicon.png" type="image/png">
+  <link rel="shortcut icon" href="./assets/images/favicon.png" type="image/png">
   <title>IYMF</title>
   <style type="text/tailwindcss">
     @theme {
@@ -22,6 +22,10 @@
     --background-image-slider-4: url('./assets/images/slider4.jpg');
     --background-image-slider-5: url('./assets/images/slider5.jpg');
     --background-image-slider-6: url('./assets/images/slider6.jpg');
+    --background-image-slider-7: url('./assets/images/slider7.jpg');
+    --background-image-slider-8: url('./assets/images/slider8.jpg');
+    --background-image-slider-9: url('./assets/images/slider9.jpg');
+    --background-image-slider-10: url('./assets/images/slider10.jpg');
   }
 </style>
 
@@ -62,21 +66,23 @@
           </button>
         </div>
         <ul class="flex flex-col gap-6 mt-8 px-6">
-          <li><a href="#" class="text-gray-50 hover:text-gray-300">HOME</a></li>
-          <li><a href="#" class="text-gray-50 hover:text-gray-300">PROGRAM</a></li>
-          <li><a href="#" class="text-gray-50 hover:text-gray-300">TICKETS</a></li>
-          <li><a href="#" class="text-gray-50 hover:text-gray-300">SPONSOR</a></li>
-          <li><a href="#" class="text-gray-50 hover:text-gray-300">DONATE</a></li>
+          <a href="#" class="text-gray-50   hover:bg-white hover:text-black  py-2 px-2 rounded   ">HOME</a>
+          <a href="#" class="text-gray-50   hover:bg-white hover:text-black  py-2 px-2 rounded   ">PROGRAM</a>
+          <a href="#" class="text-gray-50   hover:bg-white hover:text-black  py-2 px-2 rounded   ">TICKETS</a>
+          <a href="#" class="text-gray-50   hover:bg-white hover:text-black  py-2 px-2 rounded   ">SPONSOR</a>
+          <a href="#" class="text-gray-50   hover:bg-white hover:text-black  py-2 px-2 rounded   ">DONATE</a>
+          <a href="#" onclick="openModal()"
+            class="text-gray-50   hover:bg-white hover:text-black  py-2 px-2 rounded   ">REGISTER</a>
         </ul>
-        <div class="px-6 mt-10">
-          <button onclick="openModal()" class="bg-white text-black w-full py-2 rounded uppercase text-sm">
+        <!-- <div class="px-6 mt-10">
+          <button class=" text-white w-full hover:bg-white hover:text-black py-2 rounded uppercase text-sm">
             Register
           </button>
-        </div>
+        </div> -->
       </div>
     </div>
   </header>
-  <section class="relative w-full md:h-screen h-[40vh] bg-black overflow-hidden ">
+  <section class="relative w-full md:h-screen h-[50vh] bg-black overflow-hidden ">
     <!-- Background Slider -->
     <div class="absolute inset-0 z-0  hidden md:block">
       <!-- First Slide (Desktop) -->
@@ -88,48 +94,48 @@
       <div class="hero-slide backdrop-blur-xl absolute inset-0 
              bg-[image:var(--background-image-slider-2)] 
              bg-no-repeat bg-center bg-cover"></div>
-             <div class="hero-slide backdrop-blur-xl absolute inset-0 
-             bg-[image:var(--background-image-slider-4)] 
+      <div class="hero-slide backdrop-blur-xl absolute inset-0 
+             bg-[image:var(--background-image-slider-10)] 
              bg-no-repeat bg-center bg-cover">
-             </div>
-             <div class="hero-slide backdrop-blur-xl absolute inset-0 
+      </div>
+      <div class="hero-slide backdrop-blur-xl absolute inset-0 
              bg-[image:var(--background-image-slider-5)] 
              bg-no-repeat bg-center bg-cover">
-             </div>
-             <div class="hero-slide backdrop-blur-xl absolute inset-0 
-             bg-[image:var(--background-image-slider-6)] 
+      </div>
+      <div class="hero-slide backdrop-blur-xl absolute inset-0 
+             bg-[image:var(--background-image-slider-9)] 
              bg-no-repeat bg-center bg-cover">
 
-             </div>
+      </div>
     </div>
 
     <!-- Mobile Slides -->
     <div class="absolute inset-0 z-0 md:hidden block  mt-14">
 
       <div class="hero-slide active backdrop-blur-xl 
-             bg-[image:var(--background-image-slider-1)] 
-             bg-no-repeat bg-center bg-contain h-[40vh]"></div>
+             bg-[image:var(--background-image-slider-7)] 
+             bg-no-repeat bg-center bg-contain h-[50vh]"></div>
 
 
       <div class="hero-slide backdrop-blur-xl 
-             bg-[image:var(--background-image-slider-2)] 
-             bg-no-repeat bg-center bg-contain h-[40vh]"></div>
+             bg-[image:var(--background-image-slider-8)] 
+             bg-no-repeat bg-center bg-contain h-[50vh]"></div>
 
-             <div class="hero-slide backdrop-blur-xl 
-             bg-[image:var(--background-image-slider-4)] 
-             bg-no-repeat bg-center bg-contain h-[40vh]">
-             </div>
+      <div class="hero-slide backdrop-blur-xl 
+             bg-[image:var(--background-image-slider-10)] 
+             bg-no-repeat bg-center bg-contain h-[50vh]">
+      </div>
 
-             <div class="hero-slide backdrop-blur-xl 
+      <div class="hero-slide backdrop-blur-xl 
              bg-[image:var(--background-image-slider-5)] 
-             bg-no-repeat bg-center bg-contain h-[40vh]">
-             </div>
+             bg-no-repeat bg-center bg-contain h-[50vh]">
+      </div>
 
-             <div class="hero-slide backdrop-blur-xl 
-             bg-[image:var(--background-image-slider-6)] 
-             bg-no-repeat bg-center bg-contain h-[40vh]">
+      <div class="hero-slide backdrop-blur-xl 
+             bg-[image:var(--background-image-slider-9)] 
+             bg-no-repeat bg-center bg-contain h-[50vh]">
 
-             </div>
+      </div>
     </div>
 
     <header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 hidden md:block ease-in-out">
@@ -178,11 +184,11 @@
             </button>
           </div>
           <ul class="flex flex-col gap-6 mt-8 px-6">
-            <li><a href="#" class="text-gray-50 hover:text-gray-300">HOME</a></li>
-            <li><a href="#" class="text-gray-50 hover:text-gray-300">PROGRAM</a></li>
-            <li><a href="#" class="text-gray-50 hover:text-gray-300">TICKETS</a></li>
-            <li><a href="#" class="text-gray-50 hover:text-gray-300">SPONSOR</a></li>
-            <li><a href="#" class="text-gray-50 hover:text-gray-300">DONATE</a></li>
+            <li><a href="#" class="text-gray-50 hover:text-gray-300 border border-white rounded py-2 ">HOME</a></li>
+            <li><a href="#" class="text-gray-50 hover:text-gray-300 border border-white rounded py-2 ">PROGRAM</a></li>
+            <li><a href="#" class="text-gray-50 hover:text-gray-300 border border-white rounded py-2 ">TICKETS</a></li>
+            <li><a href="#" class="text-gray-50 hover:text-gray-300 border border-white rounded py-2 ">SPONSOR</a></li>
+            <li><a href="#" class="text-gray-50 hover:text-gray-300 border border-white rounded py-2 ">DONATE</a></li>
           </ul>
           <div class="px-6 mt-10">
             <button onclick="openModal()" class="bg-white text-black w-full py-2 rounded uppercase text-sm">
@@ -204,11 +210,19 @@
       <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-50 mb-3">
         Welcome to Ilorin Youth Mega Festival 2025!
       </h2>
+      <h3 class="text-[2rem] font-semibold text-gray-50 mt-4 mb-2">About the Festival</h3>
       <p class="text-base md:text-lg text-gray-50 leading-relaxed mb-6">
-        Experience 3 days of youthful energy, culture, and creativity through exhibitions, workshops, live performances,
-        and more. Whether you’re an attendee, exhibitor, a sponsor, or a donor, this festival is your chance to be part
-        of something extraordinary.
+        The Ilorin Youth Mega Festival 2025 is a landmark event designed to unite, empower, and celebrate the
+        creativity, talent, and potential of young people in Ilorin and beyond. It will feature talent showcases,
+        competitions, exhibitions, and entertainment, while also creating opportunities for networking,
+        entrepreneurship, and empowerment. Our goal is to inspire the next generation of leaders, innovators, and
+        changemakers.
       </p>
+      <p class=" md:text-lg text-gray-50 leading-relaxed my-[1px] text-[1.3rem]">
+        Date: 5th-7th, December 2025
+      </p>
+      <p class="text-[1.3rem] md:text-lg text-gray-50 leading-relaxed mt-[1px] mb-3">Venue: The Lion Center, Opposite
+        Ultimate Hotel/Event Hall, New Yidi Road, Ilorin, Kwara State</p>
       <div class="flex flex-col sm:flex-row gap-4">
         <button onclick="openModal()"
           class="bg-gray-50 text-black font-semibold px-6 py-3 rounded-md hover:border-gray-50 hover:border-1 hover:text-white hover:bg-transparent transition w-full sm:w-auto">
@@ -237,22 +251,25 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
 
       <div>
-        <img src="./assets/images/about empowering youth copy.jpg" alt="About IYMF" class="w-full rounded-md shadow-md object-cover">
+        <img src="./assets/images/about empowering youth copy.jpg" alt="About IYMF"
+          class="w-full rounded-md shadow-md object-cover">
       </div>
 
 
-      <div class="flex flex-col justify-center">
+      <div id="festival-section" class="flex flex-col justify-center max-w-3xl mx-auto">
         <p class="text-gray-50 text-base md:text-lg leading-relaxed mb-6">
           The Ilorin Youth Mega Festival is more than an event. It's a platform for young
           talents to showcase their creativity, connect with peers, and transform their
           community. We believe in nurturing potential and creating opportunities for growth.
         </p>
 
-        <button
-          class=" font-semibold px-6 py-3 rounded-md 
-                transition w-full sm:w-auto md:w-64 border border-gray-50 text-white hover:bg-gray-50 hover:text-black">
-          EXPLORE OUR PROGRAMS
-        </button>
+
+        <div>
+          <button id="exploreBtn" aria-expanded="false"
+            class="px-6 py-3  font-medium cursor-pointer  border border-gray-50 text-white duration-200 ease-in-out hover:bg-gray-50 hover:text-black transition">
+            Explore Our Programs →
+          </button>
+        </div>
       </div>
     </div>
   </section>
@@ -261,100 +278,125 @@
 
   <section class="bg-gray-900">
     <div class="md:py-16 py-4 flex items-center justify-center text-center flex-col">
-      <h3 class="text-sm md:text-xl font-semibold uppercase text-gray-100 mb-2">Highlights</h3>
-      <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight md:w-1/2 w-full text-gray-50">
-        Festival Experiences
+      <h3 class="text-5xl font-semibold uppercase text-gray-100 mb-2">
+        <i class="fa-solid fa-award"></i>
+      </h3>
+      <h1 class="text-2xl md:text-4xl lg:text-5xl font-bold leading-tight md:w-1/2 w-full it text-gray-50">
+        Ilorin Youth Mega Festival <br> <span class="undeline text-3xl">Award</span>
       </h1>
-      <p class="text-gray-50 py-4 md:text-xl text-lg">Discover the diverse range of activities designed to
-        inspire and engage</p>
+      <p class="text-gray-50 py-4 md:text-xl text-lg">Unvail Your Next Celebrities with your votes</p>
+      <div class="flex gap-4">
+        <button onclick="openVoteModal()"
+          class="px-6 py-3  font-medium cursor-pointer  border border-gray-50 text-white duration-200 ease-in-out hover:bg-gray-50 hover:text-black transition">
+          Vote Now
+        </button>
+        <button onclick="openNominateModal()"
+          class="px-6 py-3  font-medium cursor-pointer  border border-gray-50 text-white duration-200 ease-in-out hover:bg-gray-50 hover:text-black transition">
+          Join The Race
+        </button>
+      </div>
     </div>
     <!--  -->
     <main class="relative w-full overflow-hidden  py-12">
 
       <div id="marquee" class="flex animate-marquee whitespace-nowrap">
 
-        <div class="flex gap-6">
+        <div class="flex gap-1">
           <!-- Card 1 -->
           <div class="group relative w-96  h-64 flex-shrink-0 overflow-hidden rounded-2xl shadow-lg cursor-pointer">
-            <img src="./assets/images/IMG-20250928-WA0009.jpg" class="absolute w-full h-full object-cover" />
+            <img src="./assets/images/award.jpg" class="absolute w-full h-full object-cover" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-            <div class="relative p-6 text-white">
-              <h1 class="text-2xl font-bold">Talent Showcases</h1>
-              <p class="mt-3 text-base opacity-0 group-hover:opacity-100 transition-all duration-300">
+            <div class="relative p-6 text-white text-center">
+              <h1 class="text-2xl font-bold text-center">Face <br> of Nigeria</h1>
+              <!-- <p class="mt-3 text-base opacity-0 group-hover:opacity-100 transition-all duration-300">
                 Music, dance, spoken word, drama, comedy, and art.
               </p>
               <button
-                class="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 text-sm font-semibold underline">Register</button>
+                class="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 text-sm font-semibold underline">Register</button> -->
             </div>
           </div>
 
           <!-- Card 2 -->
           <div class="group relative w-96  h-64 flex-shrink-0 overflow-hidden rounded-2xl shadow-lg cursor-pointer">
-            <img src="./assets/images/exhibition copy.jpg" class="absolute w-full h-full object-cover" />
+            <img src="./assets/images/award1.jpg" class="absolute w-full h-full object-cover" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-            <div class="relative bottom-0 p-6 text-white">
-              <h1 class="text-2xl font-bold">Workshops & Talks</h1>
-              <p class="mt-3 text-base opacity-0 group-hover:opacity-100 transition-all duration-300">
+            <div class="relative bottom-0 p-6 text-white text-center">
+              <h1 class="text-2xl font-bold text-center">Most <br> Talented</h1>
+              <!-- <p class="mt-3 text-base opacity-0 group-hover:opacity-100 transition-all duration-300">
                 Leadership, entrepreneurship, digital skills, career development.
               </p>
               <button
-                class="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 text-sm font-semibold underline">Register</button>
+                class="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 text-sm font-semibold underline">Register</button> -->
             </div>
           </div>
 
           <!-- Card 3 -->
           <div class="group relative w-96  h-64 flex-shrink-0 overflow-hidden rounded-2xl shadow-lg cursor-pointer">
-            <img src="./assets/images/IMG-20250928-WA0013.jpg" class="absolute w-full h-full object-cover" />
+            <img src="./assets/images/award2.png" class="absolute w-full h-full object-cover" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-            <div class="relative p-6 text-white">
-              <h1 class="text-2xl font-bold">Exhibitions</h1>
-              <p class="mt-3 text-base opacity-0 group-hover:opacity-100 transition-all duration-300">
+            <div class="relative p-6 text-white text-center">
+              <h1 class="text-2xl font-bold text-center">Most <br> Indigenous <br> <span class="text-base">(Male)</span></h1>
+              <!-- <p class="mt-3 text-base opacity-0 group-hover:opacity-100 transition-all duration-300">
                 Youth-owned businesses, tech startups, fashion, crafts.
               </p>
               <button
-                class="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 text-sm font-semibold underline">Register</button>
+                class="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 text-sm font-semibold underline">Register</button> -->
             </div>
           </div>
 
           <!-- Card 4 -->
           <div class="group relative w-96  h-64 flex-shrink-0 overflow-hidden rounded-2xl shadow-lg cursor-pointer">
-            <img src="./assets/images/IMG-20250928-WA0016.jpg" class="absolute w-full h-full object-cover" />
+            <img src="./assets/images/award3.jpg" class="absolute w-full h-full object-cover" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-            <div class="relative p-6 text-white">
-              <h1 class="text-2xl font-bold">Special Performances</h1>
-              <p class="mt-3 text-base opacity-0 group-hover:opacity-100 transition-all duration-300">
+            <div class="relative p-6 text-white text-center">
+              <h1 class="text-2xl font-bold text-center">Most <br> Indigenous <br> <span class="text-base">(Female)</span></h1>
+              <!-- <p class="mt-3 text-base opacity-0 group-hover:opacity-100 transition-all duration-300">
                 Guest artists, comedians, and cultural displays.
               </p>
               <button
-                class="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 text-sm font-semibold underline">Register</button>
+                class="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 text-sm font-semibold underline">Register</button> -->
             </div>
           </div>
 
           <!-- Card 5 -->
           <div class="group relative w-96  h-64 flex-shrink-0 overflow-hidden rounded-2xl shadow-lg cursor-pointer">
-            <img src="./assets/images/cultural night copy.jpg" class="absolute w-full h-full object-cover" />
+            <img src="./assets/images/award4.jpg" class="absolute w-full h-full object-cover" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-            <div class="relative p-6 text-white">
-              <h1 class="text-2xl font-bold">Cultural Night</h1>
-              <p class="mt-3 text-base opacity-0 group-hover:opacity-100 transition-all duration-300">
+            <div class="relative p-6 text-white text-center">
+              <h1 class="text-2xl font-bold text-center">Most <br> Creative <br> <span class="text-base">(Male)</span></h1>
+              <!-- <p class="mt-3 text-base opacity-0 group-hover:opacity-100 transition-all duration-300">
                 A celebration of traditions, music, and cultural heritage.
               </p>
               <button
-                class="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 text-sm font-semibold underline">Register</button>
+                class="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 text-sm font-semibold underline">Register</button> -->
             </div>
           </div>
 
           <!-- Card 6 -->
           <div class="group relative w-96  h-64 flex-shrink-0 overflow-hidden rounded-2xl shadow-lg cursor-pointer">
-            <img src="./assets/images/IMG-20250928-WA0010.jpg" class="absolute w-full h-full object-cover" />
+            <img src="./assets/images/award5.jpg" class="absolute w-full h-full object-cover" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-            <div class="relative p-6 text-white">
-              <h1 class="text-2xl font-bold">Youth Awards</h1>
-              <p class="mt-3 text-base opacity-0 group-hover:opacity-100 transition-all duration-300">
+            <div class="relative p-6 text-white text-center">
+              <h1 class="text-2xl font-bold text-center">Most <br> Creative <br> <span class="text-base">(Female)</span></h1>
+              <!-- <p class="mt-3 text-base opacity-0 group-hover:opacity-100 transition-all duration-300">
                 Recognizing outstanding youth achievements and talents.
               </p>
               <button
-                class="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 text-sm font-semibold underline">Register</button>
+                class="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 text-sm font-semibold underline">Register</button> -->
+            </div>
+          </div>
+
+          <!-- Card 7 -->
+          <div class="group relative w-96  h-64 flex-shrink-0 overflow-hidden rounded-2xl shadow-lg cursor-pointer">
+            <img src="./assets/images/award6.jpg" class="absolute w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+            <div class="relative p-6 text-white text-center">
+              <h1 class="text-2xl font-bold text-center">Best <br> Nigeria <br> Cultural <br>Group</h1>
+              <!-- <p class="mt-3 text-base opacity-0 group-hover:opacity-100 transition-all duration-300">
+                Recognizing outstanding youth achievements and talents.
+              </p>
+              <button
+                class="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 text-sm font-semibold underline">Register</button> -->
             </div>
           </div>
         </div>
@@ -363,7 +405,7 @@
   </section>
   <!-- ticket section  -->
   <section class="w-full px-6 md:px-16 py-12 bg-black">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 md:gap-6 gap-0">
 
       <!-- LEFT CARD (STATIC) -->
       <div class="relative rounded-xl overflow-hidden h-[350px] flex items-center justify-center text-white">
@@ -382,80 +424,87 @@
 
       <!-- RIGHT SIDE SCROLLABLE CARDS -->
       <div class="relative">
-        <div id="cardContainer" class="flex gap-4 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory">
+        <div id="cardContainer"
+          class="flex gap-4 relative overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory">
 
           <!-- CARD 1 -->
           <div
-            class="min-w-[250px] md:min-w-[400px] h-[300px] bg-gradient-to-r from-fuchsia-800 to-fuchsia-950 text-white rounded-xl p-6 snap-center">
-            <h3 class="text-lg font-semibold mb-2">General Pass</h3>
-            <p class="text-sm mb-4">Basic admission to the festival, access to main event activities and
-              exhibitions.</p>
-            <p class="text-2xl font-bold mb-4">₦3,000</p>
-            <button class="text-base cursor-pointer font-semibold  flex items-center gap-2">Buy Ticket <i
+            class="min-w-[250px] md:min-w-[400px] h-[300px] relative bg-white/20 backdrop-blur-lg text-white rounded-xl py-6 snap-center">
+            <h3 class="text-[24px] px-6 font-semibold mt-8">General Pass</h3>
+            <!-- <p class="text-sm px-6 mb-4">Basic admission to the festival, access to main event activities and
+              exhibitions.</p> -->
+            <button class="text-base px-6 cursor-pointer font-semibold  flex items-center gap-2">Buy Ticket <i
                 class="fa-solid fa-chevron-right"></i></button>
+            <img src="./assets/images/Ticket general pass.jpg" class="absolute bottom-0 " alt="">
           </div>
 
           <!-- CARD 2 -->
           <div
-            class="min-w-[250px] md:min-w-[400px] bg-gradient-to-r from-lime-600 to-lime-800 text-white rounded-xl p-6 snap-center">
-            <h3 class="text-lg font-semibold mb-2">Empower Pass</h3>
-            <p class="text-sm mb-4">Access to 6-session empowerment workshop, all Premium pass benefits and
-              Certificate of participation</p>
-            <p class="text-2xl font-bold mb-4">₦ 25,000</p>
-            <button class="text-base cursor-pointer font-semibold  flex items-center gap-2">Buy Ticket <i
+            class="min-w-[250px] md:min-w-[400px] relative bg-white/20 backdrop-blur-lg text-white rounded-xl  snap-center">
+            <h3 class="text-[24px] font-semibold mt-16 px-6">Empower Pass</h3>
+            <!-- <p class="text-sm mb-4">Access to 6-session empowerment workshop, all Premium pass benefits and
+              Certificate of participation</p> -->
+
+            <button class="text-base  px-6 cursor-pointer font-semibold  flex items-center gap-2">Buy Ticket <i
                 class="fa-solid fa-chevron-right"></i></button>
+            <img src="./assets/images/Ticket EMPOWER PASS.jpg" class="absolute bottom-0 " alt="">
           </div>
 
           <!-- CARD 3 -->
           <div
-            class="min-w-[250px] md:min-w-[400px] bg-gradient-to-r from-green-800 to-green-950 text-white rounded-xl p-6 snap-center">
-            <h3 class="text-lg font-semibold mb-2">VIP Pass</h3>
-            <p class="text-sm mb-4">Exclusive VIP seating, Refreshments served, branded souvenir gift and
-              priority photo opportunities.</p>
-            <p class="text-2xl font-bold mb-4">₦ 50,000</p>
-            <button class="text-base cursor-pointer font-semibold  flex items-center gap-2">Buy Ticket <i
+            class="min-w-[250px] md:min-w-[400px] relative bg-white/20 backdrop-blur-lg text-white rounded-xl  snap-center">
+            <h3 class="text-[24px] font-semibold mt-16 px-6">Vip Pass</h3>
+            <!-- <p class="text-sm mb-4">Access to 6-session empowerment workshop, all Premium pass benefits and
+              Certificate of participation</p> -->
+
+            <button class="text-base  px-6 cursor-pointer font-semibold  flex items-center gap-2">Buy Ticket <i
                 class="fa-solid fa-chevron-right"></i></button>
+            <img src="./assets/images/Ticket VIP pass.jpg" class="absolute bottom-0 " alt="">
           </div>
 
           <!-- CARD 4 -->
           <div
-            class="min-w-[250px] md:min-w-[400px] bg-gradient-to-r from-neutral-800 to-neutral-950 text-white rounded-xl p-6 snap-center">
-            <h3 class="text-lg font-semibold mb-2">VVIP Pass </h3>
-            <p class="text-sm mb-4">Front-row seating, backstage access, meet & greet with guest speakers /
-              performers, premium refreshment and branded souvenirs</p>
-            <p class="text-2xl font-bold mb-4">₦100,000</p>
-            <button class="text-base cursor-pointer font-semibold  flex items-center gap-2">Buy Ticket <i
+            class="min-w-[250px] md:min-w-[400px] relative bg-white/20 backdrop-blur-lg text-white rounded-xl  snap-center">
+            <h3 class="text-[24px] font-semibold mt-16 px-6">Vvip Pass</h3>
+            <!-- <p class="text-sm mb-4">Front-row seating, backstage access, meet & greet with guest speakers /
+              performers, premium refreshment and branded souvenirs</p> -->
+
+            <button class="text-base  px-6 cursor-pointer font-semibold  flex items-center gap-2">Buy Ticket <i
                 class="fa-solid fa-chevron-right"></i></button>
+            <img src="./assets/images/Ticket VVIP PASS.jpg" class="absolute bottom-0 " alt="">
           </div>
           <!-- CARD 5 -->
-          <div
-            class="min-w-[250px] md:min-w-[400px] bg-gradient-to-r from-blue-800 to-blue-950 text-white rounded-xl p-6 snap-center">
-            <h3 class="text-lg font-semibold mb-2">Executive Table for 5 </h3>
-            <p class="text-sm mb-4">Reserve executive table for 5 guests, premium refreshments, branding on
-              table and Special mention during the event</p>
-            <p class="text-2xl font-bold mb-4">₦300,000</p>
-            <button class="text-base cursor-pointer font-semibold  flex items-center gap-2">Buy Ticket <i
+         <div
+            class="min-w-[250px] md:min-w-[400px] relative bg-white/20 backdrop-blur-lg text-white rounded-xl  snap-center">
+            <h3 class="text-[24px] font-semibold mt-16 px-6">Executive Table for 5</h3>
+            <!-- <p class="text-sm mb-4">Reserve executive table for 5 guests, premium refreshments, branding on
+              table and Special mention during the event</p> -->
+
+            <button class="text-base  px-6 cursor-pointer font-semibold  flex items-center gap-2">Buy Ticket <i
                 class="fa-solid fa-chevron-right"></i></button>
+            <img src="./assets/images/Ticket EXCLUSIVE TABLE FOR 5.jpg" class="absolute bottom-0 " alt="">
           </div>
           <!-- CARD 6 -->
-          <div
-            class="min-w-[250px] md:min-w-[400px] bg-gradient-to-r from-emerald-800 to-emerald-950 text-white rounded-xl p-6 snap-center">
-            <h3 class="text-lg font-semibold mb-2">Executive Table for 7 </h3>
-            <p class="text-sm mb-4">Reserved executive table for 7 guests in prime location, premium
-              refreshments, recognition in program brochure and ...</p>
-            <p class="text-2xl font-bold mb-4">₦600,000</p>
-            <button class="text-base cursor-pointer font-semibold  flex items-center gap-2">Buy Ticket <i
+        <div
+            class="min-w-[250px] md:min-w-[400px] relative bg-white/20 backdrop-blur-lg text-white rounded-xl  snap-center">
+            <h3 class="text-[24px] font-semibold mt-16 px-6">Executive Table for 7</h3>
+            <!-- <p class="text-sm mb-4">Reserved executive table for 7 guests in prime location, premium
+              refreshments, recognition in program brochure.</p> -->
+
+            <button class="text-base  px-6 cursor-pointer font-semibold  flex items-center gap-2">Buy Ticket <i
                 class="fa-solid fa-chevron-right"></i></button>
+            <img src="./assets/images/Ticket EXCLUSIVE TABLE FOR 7.jpg" class="absolute bottom-0 " alt="">
           </div>
           <!-- CARD 7 -->
-          <div
-            class="min-w-[250px] md:min-w-[400px] bg-gradient-to-r from-lime-500 to-lime-700 text-white rounded-xl p-6 snap-center">
-            <h3 class="text-lg font-semibold mb-2">Executive Table for 10 </h3>
-            <p class="text-sm mb-4">Reserved front-row executive table for 10 guests, premium refreshments,
-              branded on table, stage screen logo recognition and ....</p>
-            <p class="text-2xl font-bold mb-4">₦ 1,000,000</p>
-            <button class="text-base cursor-pointer font-semibold  flex items-center gap-2">Buy Ticket <i
+           <div
+            class="min-w-[250px] md:min-w-[400px] relative bg-white/20 backdrop-blur-lg text-white rounded-xl  snap-center">
+            <h3 class="text-[24px] font-semibold mt-16 px-6">Executive Table for 10</h3>
+            <!-- <p class="text-sm mb-4">Reserved front-row executive table for 10 guests, premium refreshments,
+              branded on table, stage screen logo recognition.</p> -->
+
+            <button class="text-base  px-6 cursor-pointer font-semibold  flex items-center gap-2">Buy Ticket <i
                 class="fa-solid fa-chevron-right"></i></button>
+            <img src="./assets/images/exclusive table for 10.jpg" class="absolute bottom-0 " alt="">
           </div>
 
         </div>
@@ -497,14 +546,15 @@
 
       <!-- Image 6 -->
       <div class="min-w-[250px] md:min-w-0 snap-center">
-        <img src="./assets/images/IMG-20250928-WA0013.jpg" alt="Event 6" class=" w-full  md:h-72 h-60 md:object-cover object-center" />
+        <img src="./assets/images/IMG-20250928-WA0013.jpg" alt="Event 6"
+          class=" w-full  md:h-72 h-60 md:object-cover object-center" />
       </div>
 
     </div>
   </section>
   <!--  -->
   <section class="w-full">
-    <div class="flex flex-col md:flex-row pl-6 md:pl-16 md:py-12 py-4 max-w-full md:gap-14 gap-4 bg-black ">
+    <div class="flex flex-col md:flex-row pl-6 md:pl-16 md:py-12 py-4 max-w-full md:gap-14 gap-0 bg-black ">
 
       <!-- Left Text -->
       <div class="flex flex-col justify-center w-full md:w-2/5">
@@ -517,12 +567,7 @@
           brand.
           Your support will not only enhance the festival experience but also empower the youth of Ilorin.
         </p>
-        <div>
-          <button
-            class="px-6 py-3  font-medium cursor-pointer  border border-gray-50 text-white duration-200 ease-in-out hover:bg-gray-50 hover:text-black transition">
-            Explore Our Programs →
-          </button>
-        </div>
+
       </div>
 
       <!-- Right Slider -->
@@ -531,7 +576,7 @@
 
         <!-- Card 1 -->
         <div
-          class="min-w-[550px] md:h-[450px] h-[250px]  bg-black text-white p-8 snap-center flex flex-col justify-between transition-all duration-300">
+          class="min-w-[550px] md:h-[450px] h-[300px] relative bg-black text-white p-8 snap-center flex flex-col justify-between transition-all duration-300">
           <div>
             <div class="flex justify-between items-center mb-4">
               <h2 class="text-3xl font-bold flex items-center gap-4">
@@ -542,75 +587,92 @@
               </h2>
               <span><img src="./assets/images/SVG.png" width="40" alt=""></span>
             </div>
-            <h3 class="font-semibold mb-4">Platinum Sponsor Packages</h3>
+            <h3 class="font-semibold mb-4 text-xl">Platinum Sponsor Packages</h3>
             <ul class="space-y-3 text-base">
-              <li>✔ Naming rights</li>
-              <li>✔ Logo on publicity materials, banners, tickets</li>
-              <li>✔ 10 complimentary VVIP/Executive passes</li>
-              <li>✔ Dedicated exhibition booth</li>
+              <li>✔ Naming rights: “Ilorin Youth Mega Festival powered by [Platinum Sponsor]”</li>
+              <li>✔ Naming rights for a key festival session (e.g., The Platinum Sponsor Masterclass).</li>
+              <li>✔ Opportunity to present prizes during select competitions</li>
+              <small class="text-white animate-pulse text-base">✔ And lots more </small>
             </ul>
           </div>
+          <small class="absolute text-base font-bold bottom-0 right-28 text-gray-300">
+            1 of 4
+          </small>
         </div>
 
         <!-- Card 2 -->
         <div
-          class="min-w-[550px]  md:h-[450px] h-[250px] bg-white text-black border  p-8 snap-center flex flex-col justify-between transition-all duration-300">
+          class="min-w-[550px] relative md:h-[450px] h-[300px] bg-white text-black border  p-8 snap-center flex flex-col justify-between transition-all duration-300">
           <div>
             <div class="flex justify-between items-center mb-4">
               <h2 class="text-3xl font-bold flex items-center gap-4">
                 ₦5M
-                <span class="bg-yellow-100 text-xs px-3 py-1 rounded-full text-yellow-600">
+                <span class="bg-black te text-xs px-6 py-1 rounded-full text-white">
                   Gold
                 </span>
               </h2>
             </div>
-            <h3 class="font-semibold mb-4">Gold Sponsor Packages</h3>
+            <h3 class="font-semibold mb-4 text-xl">Gold Sponsor Packages</h3>
             <ul class="space-y-3 text-base">
-              <li>✔ Logo on banners, tickets, and social media</li>
-              <li>✔ 6 complimentary VIP tickets</li>
-              <li>✔ On-stage mentions</li>
+              <li>✔ Recognition across TV, radio, and online media platforms.</li>
+              <li>✔ Direct brand activation opportunity during peak festival hours.</li>
+              <li>✔ Special recognition during awards presentation.</li>
+              <small class="text-gray-900 animate-pulse text-base">✔ And lots more</small>
             </ul>
           </div>
+          <small class="absolute text-base  font-bold bottom-0 right-28 text-gray-900">
+            2 of 4
+          </small>
         </div>
 
         <!-- Card 3 -->
         <div
-          class="min-w-[550px] md:h-[450px] h-[250px] bg-white text-black border  p-8 snap-center flex flex-col justify-between transition-all duration-300">
+          class="min-w-[550px] relative md:h-[450px] h-[300px] bg-black text-white   p-8 snap-center flex flex-col justify-between transition-all duration-300">
           <div>
             <div class="flex justify-between items-center mb-4">
               <h2 class="text-3xl font-bold flex items-center gap-4">
                 ₦3M
-                <span class="bg-gray-200 text-xs px-3 py-1 rounded-full text-gray-700">
+                <span class="bg-gray-200 text-xs px-6 py-1 rounded-full text-gray-700">
                   Silver
                 </span>
               </h2>
             </div>
-            <h3 class="font-semibold mb-4">Silver Sponsor Packages</h3>
+            <h3 class="font-semibold mb-4 text-xl">Silver Sponsor Packages</h3>
             <ul class="space-y-3 text-base">
-              <li>✔ Logo on select banners & social media</li>
-              <li>✔ 4 complimentary Premium/Empower tickets</li>
+              <li>✔ Recognition across TV, radio, and online media platforms</li>
+              <li>✔ Lifetime recognition in festival archives and post-event documentaries.</li>
+              <li>✔ Dedicated exhibition booth</li>
+              <small class="text-white animate-pulse text-base">✔ And lots more</small>
             </ul>
           </div>
+          <small class="absolute text-base  font-bold bottom-0 right-28 text-gray-200">
+            3 of 4
+          </small>
         </div>
 
         <!-- Card 4 -->
         <div
-          class="min-w-[550px] md:h-[450px] h-[250px] bg-white text-black border  p-8 snap-center flex flex-col justify-between transition-all duration-300">
+          class="min-w-[550px] relative md:h-[450px] h-[300px] bg-white text-black border  p-8 snap-center flex flex-col justify-between transition-all duration-300">
           <div>
             <div class="flex justify-between items-center mb-4">
               <h2 class="text-3xl font-bold flex items-center gap-4">
                 ₦1.5M
-                <span class="bg-orange-100 text-xs px-3 py-1 rounded-full text-orange-600">
+                <span class="bg-black text-xs px-6 py-1 rounded-full text-white">
                   Bronze
                 </span>
               </h2>
             </div>
-            <h3 class="font-semibold mb-4">Bronze Sponsor Packages</h3>
+            <h3 class="font-semibold mb-4 text-xl">Bronze Sponsor Packages</h3>
             <ul class="space-y-3 text-base">
-              <li>✔ Logo on flyers and online promotions</li>
-              <li>✔ 2 complimentary General Passes</li>
+              <li>✔ Recognition across TV, radio, and online media platforms</li>
+              <li>✔ Lifetime recognition in festival archives and post-event documentaries.</li>
+              <li>✔ Dedicated exhibition booth</li>
+              <small class="text-gray-900 animate-pulse text-base">✔ And lots more</small>
             </ul>
           </div>
+          <small class="absolute text-base  font-bold bottom-0 right-28 text-gray-900">
+            4 of 4
+          </small>
         </div>
       </div>
     </div>
@@ -652,7 +714,7 @@
       <!-- card 1 -->
 
 
-      <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+      <!-- <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
         <a href="#">
           <img class="rounded-t-lg " src="./assets/images/card_img.jpg" alt="" />
         </a>
@@ -675,12 +737,12 @@
             </svg>
           </a>
         </div>
-      </div>
+      </div> -->
       <!-- card 2 -->
 
 
 
-      <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+      <!-- <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
         <a href="#">
           <img class="rounded-t-lg" src="./assets/images/card_img.jpg" alt="" />
         </a>
@@ -703,35 +765,66 @@
             </svg>
           </a>
         </div>
-      </div>
+      </div> -->
 
       <!-- card 3 -->
 
 
       <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
         <a href="#">
-          <img class="rounded-t-lg" src="./assets/images/card_img.jpg" alt="" />
+          <img class="rounded-t-lg" src="./assets/images/IMG-20250928-WA0009.jpg" alt="" />
         </a>
         <div class="p-5">
-          <p class="mb-3 font-normal text-gray-50">November 25-27, 2025</p>
+          <p class="mb-3 font-normal text-gray-50">October 01, 2025</p>
           <a href="#">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">The Best Event Trends That
-              Shaping The Future</h5>
+            <h5 class="mb-2 text-[1.8rem] font-bold tracking-tight text-gray-900 dark:text-white">
+              The Joy of Festival Celebrations: A Time for Unity, Culture, and Joy
+            </h5>
           </a>
-          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Stay ahead in event planning—create unique,
-            immersive, and unforgettable experiences
-            that leave a lasting impact!</p>
-          <a href="#"
-            class="inline-flex uppercase items-center gap-2 px-3 py-2 text-sm font-medium text-center text-white ">
+          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+            <strong class="font-extrabold">Festivals have always been more than just colorful events on the calendar—they are vibrant moments that
+            bring people together, bridging generations and communities</strong>. Whether celebrated with music, dance, food, or
+            rituals, festivals carry the essence of culture, tradition, and shared joy.
+          </p>
+
+          <!-- Hidden Blog Content -->
+          <div id="extraContent" class="hidden mt-4 text-gray-700 dark:text-gray-300">
+
+
+            <p class="mb-2"><strong>The Spirit of Togetherness:</strong>At the heart of every festival is unity. It is a
+              time when families gather, neighbors connect, and communities come alive. No matter the differences in
+              background, belief, or status, festivals create a common ground where everyone is welcome.</p>
+            <p class="mb-2"><strong>Preserving Culture and Tradition:</strong> Festivals are living expressions of
+              history and heritage. They pass down stories, customs, and values from one generation to the next. By
+              participating in these celebrations, we keep our traditions alive while also giving them new meaning in
+              today’s world.</p>
+            <p class="mb-2"><strong>A Burst of Joy and Color:</strong> The atmosphere of a festival is unmatched—streets
+              filled with music, homes decorated with vibrant colors, and delicious meals shared with loved ones. They
+              remind us to pause, celebrate life, and create memories that linger long after the festivities end.</p>
+            <p class="mb-2"><strong>Economic and Social Impact:</strong> Beyond the joy, festivals also strengthen local
+              economies. Markets bustle with activity, artisans showcase their crafts, and tourism thrives. On a social
+              level, festivals encourage harmony, tolerance, and appreciation of diversity.
+            </p>
+            <p class="mb-2"><strong>Why We Celebrate:</strong> UUltimately, festivals remind us of the importance of
+              gratitude, reflection, and hope. They are milestones in the year that refresh our spirits and inspire us
+              to embrace the beauty of togetherness.</p>
+            <p class="mb-2"><strong>Conclusion:</strong> Celebrating festivals is not just about honoring
+              traditions—it’s about building bonds, spreading joy, and creating lasting memories.</p>
+          </div>
+
+          <!-- Learn More Button -->
+          <button onclick="toggleContent()"
+            class="inline-flex uppercase items-center gap-2 px-3 py-2 text-sm font-medium text-center text-white  rounded-lg mt-3">
             Learn more
             <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
               fill="none" viewBox="0 0 14 10">
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M1 5h12m0 0L9 1m4 4L9 9" />
             </svg>
-          </a>
+          </button>
         </div>
       </div>
+
 
     </div>
   </section>
@@ -800,8 +893,8 @@
           <h3 class="font-semibold text-xl text-white">Regular Ticket</h3>
           <p class="text-base text-gray-100">Access to main events and exhibitions.</p>
         </a>
-         
-  <a href="./assets/js/form/workshop.html"
+
+        <a href="./assets/js/form/workshop.html"
           class="option-card border-gray-100 border rounded-xl p-4 cursor-pointer hover:border-blue-600">
           <input type="radio" name="ticket" value="workshop" class="hidden">
           <h3 class="font-semibold text-xl text-white">Empower Ticket</h3>
@@ -829,7 +922,7 @@
           <p class="text-base text-gray-100">Showcase your brand, products, or creativity.</p>
         </a>
 
-       <a href="./assets/js/form/volunteer.html"
+        <a href="./assets/js/form/volunteer.html"
           class="option-card border-gray-100 border rounded-xl p-4 cursor-pointer hover:border-blue-600">
           <input type="radio" name="ticket" value="volunteer" class="hidden">
           <h3 class="font-semibold text-xl text-white">Volunteer</h3>
@@ -850,7 +943,7 @@
           <p class="text-base text-gray-100">Perform and compete in drama, art, and comedy.</p>
         </a>
 
-       
+
 
         <a href="./assets/js/form/resource.html"
           class="option-card border-gray-100 border rounded-xl p-4 cursor-pointer hover:border-blue-600">
@@ -876,7 +969,8 @@
       <!-- Modal Header -->
       <h2 class="text-2xl md:text-3xl font-bold text-gray-100 mb-4">Partner With Us</h2>
       <p class="text-gray-200 mb-6">
-        Join us as a Sponsor or Donor at the Ilorin Youth Mega Festival 2025. Support the vision and showcase your brand to millions of attendees
+        Join us as a Sponsor or Donor at the Ilorin Youth Mega Festival 2025. Support the vision and showcase your brand
+        to millions of attendees
       </p>
 
       <!-- Form -->
@@ -885,14 +979,14 @@
           class="option-card border-gray-100  ease-in-out duration-300 transition-all hover:animate-none border rounded-xl p-4 cursor-pointer hover:border-blue-600">
           <input type="radio" name="ticket" value="regular" class="hidden">
           <h3 class="font-semibold text-xl text-white">DONATE</h3>
-          
+
         </a>
 
         <a href="./assets/js/form/sponsor.html"
           class="option-card border-gray-100 border rounded-xl p-4 cursor-pointer hover:border-blue-600">
           <input type="radio" name="ticket" value="vip" class="hidden">
           <h3 class="font-semibold text-xl text-white uppercase">SPONSOR</h3>
-         
+
         </a>
       </div>
     </div>
@@ -962,6 +1056,80 @@
       backBtn.classList.add("hidden");
       nextBtn.classList.remove("hidden");
       document.querySelectorAll('input[name="ticket"]').forEach(radio => radio.checked = false);
+    }
+
+    // 
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('exploreBtn');
+      const container = document.getElementById('festival-section');
+
+      if (!btn || !container) {
+        console.error('Missing #exploreBtn or #festival-section. Check the IDs.');
+        return;
+      }
+
+      const extraHTML = `
+        <div id="extraContent" class="mt-6 text-gray-50 space-y-6">
+          <div>
+            <h2 class="text-xl font-bold mb-2">Theme</h2>
+            <p>Celebrating Our Rich Culture, Shared Heritage, Creativity, and the Future.
+            The festival will spotlight creativity, innovation, and resilience, showcasing the power of youths as a driving force for community and national development.</p>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-bold mb-2">Objectives</h2>
+            <ul class="list-disc pl-6 space-y-1">
+              <li>To create a platform for youths to showcase their talents and innovations.</li>
+              <li>To foster unity and community engagement among young people.</li>
+              <li>To provide empowerment through workshops, talks, and networking opportunities.</li>
+              <li>To promote entrepreneurship and youth-led businesses.</li>
+              <li>To offer sponsors and partners visibility while impacting the lives of young people.</li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-bold mb-2">Target Audience</h2>
+            <ul class="list-disc pl-6 space-y-1">
+              <li>Youths between ages 15–35 (students, entrepreneurs, creatives, professionals).</li>
+              <li>Parents, educators, mentors, and community leaders.</li>
+              <li>Government agencies, NGOs, and faith-based organizations.</li>
+              <li>Businesses and corporate sponsors seeking to connect with the youth market.</li>
+              <li>Expected Attendance: 2,500+ youths (within Ilorin and neighboring communities).</li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 class="text-xl font-bold mb-2">Festival Highlights</h2>
+            <ul class="list-disc pl-6 space-y-1">
+              <li>Talent Exhibitions – Music, dance, spoken word, drama, comedy, and art.</li>
+              <li>Competitions – Quiz, debates, sports, and creative contests.</li>
+              <li>Workshops & Talks – Leadership, entrepreneurship, digital skills, career development.</li>
+              <li>Exhibitions – Youth-owned businesses, tech startups, fashion, crafts.</li>
+              <li>Special Performances – Guest artists, comedians, and cultural displays.</li>
+              <li>Award Ceremony – Recognizing outstanding Personalities across various sectors.</li>
+            </ul>
+          </div>
+        </div>
+      `;
+
+      btn.addEventListener('click', () => {
+        const existing = document.getElementById('extraContent');
+        if (existing) {
+          existing.remove(); 
+          btn.setAttribute('aria-expanded', 'false');
+          return;
+        }
+        container.insertAdjacentHTML('beforeend', extraHTML);
+        btn.setAttribute('aria-expanded', 'true');
+
+        const added = document.getElementById('extraContent');
+        if (added) added.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+    function toggleContent() {
+      const content = document.getElementById("extraContent");
+      content.classList.toggle("hidden");
     }
   </script>
 
