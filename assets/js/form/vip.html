@@ -146,25 +146,16 @@
         </div>
         <form onsubmit="processPayment(event)" class="space-y-4">
           <div class="max-w-4xl mx-auto mt-10">
-            <div class="flex relative justify-between border border-gray-500 rounded-lg text-white">
+            <div class="flex relative justify-between md:flex-row flex-col border border-gray-500 rounded-lg text-white">
               <!-- Ticket Image -->
-              <div class="w-40 p-3 flex flex-col justify-between text-sm bg-gradient-to-b from-purple-900 to-pink-700">
-                <div class="mb-4">
-                  <p class="font-semibold">General Pass</p>
-                  <p class="text-xs text-gray-200">
-                    Basic admission to the festival, access to main event activities and exhibitions.
-                  </p>
-                </div>
-                <div>
-                  <p class="font-bold pb-3">₦ 3,000</p>
-                  <button class="text-xs text-pink-200">BUY TICKET →</button>
-                </div>
+              <div class="md:w-52 w-full   flex flex-col justify-between">
+                <img src="../../images/Ticket VIP pass.jpg" class="h-40" alt="">
               </div>
 
               <!-- Ticket Info -->
               <div class="flex-1 flex flex-col justify-between">
                 <div class="flex flex-col md:flex-row p-4 justify-between md:items-center items-start">
-                  <p>Premium perks, exclusive seating, meet & greet.</p>
+                  <p>Access to main events and exhibitions.</p>
                   <p class="font-bold mt-2">₦1,000,000</p>
                 </div>
 
