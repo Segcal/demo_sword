@@ -20,7 +20,6 @@
     --background-image-slider-2: url('./assets/images/slider 2.jpg');
     --background-image-slider-3: url('./assets/images/slider_1.jpg');
     --background-image-slider-4: url('./assets/images/slider4.jpg');
-    --background-image-slider-5: url('./assets/images/slider5.jpg');
     --background-image-slider-6: url('./assets/images/slider6.jpg');
     --background-image-slider-7: url('./assets/images/slider7.jpg');
     --background-image-slider-8: url('./assets/images/slider8.jpg');
@@ -65,15 +64,15 @@
             </svg>
           </button>
         </div>
-        <ul class="flex flex-col gap-6 mt-8 px-6">
-          <a href="#" class="text-gray-50   hover:bg-white hover:text-black  py-2 px-2 rounded   ">HOME</a>
-          <a href="#" class="text-gray-50   hover:bg-white hover:text-black  py-2 px-2 rounded   ">PROGRAM</a>
-          <a href="#" class="text-gray-50   hover:bg-white hover:text-black  py-2 px-2 rounded   ">TICKETS</a>
-          <a href="#" class="text-gray-50   hover:bg-white hover:text-black  py-2 px-2 rounded   ">SPONSOR</a>
-          <a href="#" class="text-gray-50   hover:bg-white hover:text-black  py-2 px-2 rounded   ">DONATE</a>
-          <a href="#" onclick="openModal()"
-            class="text-gray-50   hover:bg-white hover:text-black  py-2 px-2 rounded   ">REGISTER</a>
-        </ul>
+<ul id="mainNav" class="flex flex-col gap-6 mt-8 px-6">
+  <a href="#home" class="nav-link">HOME</a>
+  <a href="#program" class="nav-link">PROGRAM</a>
+  <a href="#tickets" class="nav-link">TICKETS</a>
+  <a href="#sponsor" class="nav-link">SPONSOR</a>
+  <a href="#donate" class="nav-link">DONATE</a>
+  <a href="#" onclick="openModal()" class="nav-link">REGISTER</a>
+</ul>
+
         <!-- <div class="px-6 mt-10">
           <button class=" text-white w-full hover:bg-white hover:text-black py-2 rounded uppercase text-sm">
             Register
@@ -123,11 +122,6 @@
 
       <div class="hero-slide backdrop-blur-xl 
              bg-[image:var(--background-image-slider-10)] 
-             bg-no-repeat bg-center bg-contain h-[50vh]">
-      </div>
-
-      <div class="hero-slide backdrop-blur-xl 
-             bg-[image:var(--background-image-slider-5)] 
              bg-no-repeat bg-center bg-contain h-[50vh]">
       </div>
 
@@ -282,10 +276,15 @@
         <i class="fa-solid fa-award"></i>
       </h3>
       <h1 class="text-2xl md:text-4xl lg:text-5xl font-bold leading-tight md:w-1/2 w-full it text-gray-50">
-        Ilorin Youth Mega Festival <br> <span class="undeline text-3xl">Award</span>
+        Ilorin Youth Mega Festival <br> <span class="undeline text-3xl">Awards</span>
       </h1>
-      <p class="text-gray-50 py-4 md:text-xl text-lg">Unvail Your Next Celebrities with your votes</p>
-      <div class="flex gap-4">
+      <p class="text-gray-50 text-lg py-2"> The Spotlight is Calling!
+      </p>
+      <p class="text-gray-50 py-4 md:text-xl text-lg px-5">The festival stage is set. This is your chance to shine - or to
+        power your favorite to victory with your PAID VOTES. Every vote costs a little, but the more you vote, the
+        closer they get to the crown. Don't just watch... decide the winner!
+      </p>
+      <div class="flex gap-4 mt-4">
         <button onclick="openVoteModal()"
           class="px-6 py-3  font-medium cursor-pointer  border border-gray-50 text-white duration-200 ease-in-out hover:bg-gray-50 hover:text-black transition">
           Vote Now
@@ -335,7 +334,8 @@
             <img src="./assets/images/award2.png" class="absolute w-full h-full object-cover" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
             <div class="relative p-6 text-white text-center">
-              <h1 class="text-2xl font-bold text-center">Most <br> Indigenous <br> <span class="text-base">(Male)</span></h1>
+              <h1 class="text-2xl font-bold text-center">Most <br> Indigenous <br> <span class="text-base">(Male)</span>
+              </h1>
               <!-- <p class="mt-3 text-base opacity-0 group-hover:opacity-100 transition-all duration-300">
                 Youth-owned businesses, tech startups, fashion, crafts.
               </p>
@@ -349,7 +349,8 @@
             <img src="./assets/images/award3.jpg" class="absolute w-full h-full object-cover" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
             <div class="relative p-6 text-white text-center">
-              <h1 class="text-2xl font-bold text-center">Most <br> Indigenous <br> <span class="text-base">(Female)</span></h1>
+              <h1 class="text-2xl font-bold text-center">Most <br> Indigenous <br> <span
+                  class="text-base">(Female)</span></h1>
               <!-- <p class="mt-3 text-base opacity-0 group-hover:opacity-100 transition-all duration-300">
                 Guest artists, comedians, and cultural displays.
               </p>
@@ -363,7 +364,8 @@
             <img src="./assets/images/award4.jpg" class="absolute w-full h-full object-cover" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
             <div class="relative p-6 text-white text-center">
-              <h1 class="text-2xl font-bold text-center">Most <br> Creative <br> <span class="text-base">(Male)</span></h1>
+              <h1 class="text-2xl font-bold text-center">Most <br> Creative <br> <span class="text-base">(Male)</span>
+              </h1>
               <!-- <p class="mt-3 text-base opacity-0 group-hover:opacity-100 transition-all duration-300">
                 A celebration of traditions, music, and cultural heritage.
               </p>
@@ -377,7 +379,8 @@
             <img src="./assets/images/award5.jpg" class="absolute w-full h-full object-cover" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
             <div class="relative p-6 text-white text-center">
-              <h1 class="text-2xl font-bold text-center">Most <br> Creative <br> <span class="text-base">(Female)</span></h1>
+              <h1 class="text-2xl font-bold text-center">Most <br> Creative <br> <span class="text-base">(Female)</span>
+              </h1>
               <!-- <p class="mt-3 text-base opacity-0 group-hover:opacity-100 transition-all duration-300">
                 Recognizing outstanding youth achievements and talents.
               </p>
@@ -387,11 +390,39 @@
           </div>
 
           <!-- Card 7 -->
-          <div class="group relative w-96  h-64 flex-shrink-0 overflow-hidden rounded-2xl shadow-lg cursor-pointer">
+           <div class="group relative w-96  h-64 flex-shrink-0 overflow-hidden rounded-2xl shadow-lg cursor-pointer">
             <img src="./assets/images/award6.jpg" class="absolute w-full h-full object-cover" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
             <div class="relative p-6 text-white text-center">
               <h1 class="text-2xl font-bold text-center">Best <br> Nigeria <br> Cultural <br>Group</h1>
+              <!-- <p class="mt-3 text-base opacity-0 group-hover:opacity-100 transition-all duration-300">
+                Recognizing outstanding youth achievements and talents.
+              </p>
+              <button
+                class="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 text-sm font-semibold underline">Register</button> -->
+            </div>
+          </div>
+          <!-- Card 8 -->
+            <div class="group relative w-96  h-64 flex-shrink-0 overflow-hidden rounded-2xl shadow-lg cursor-pointer">
+            <img src="./assets/images/card7bg.jpg" class="absolute w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+            <div class="relative p-6 text-white text-center">
+              <h1 class="text-2xl font-bold text-center">Best <br> Personality <br> <span class="text-base">(Male)</span>
+              </h1>
+              <!-- <p class="mt-3 text-base opacity-0 group-hover:opacity-100 transition-all duration-300">
+                Recognizing outstanding youth achievements and talents.
+              </p>
+              <button
+                class="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 text-sm font-semibold underline">Register</button> -->
+            </div>
+          </div>
+          <!-- Card 9 -->
+            <div class="group relative w-96  h-64 flex-shrink-0 overflow-hidden rounded-2xl shadow-lg cursor-pointer">
+            <img src="./assets/images/card7bg.jpg" class="absolute w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+            <div class="relative p-6 text-white text-center">
+              <h1 class="text-2xl font-bold text-center">Best <br> Personality <br> <span class="text-base">(Female)</span>
+              </h1>
               <!-- <p class="mt-3 text-base opacity-0 group-hover:opacity-100 transition-all duration-300">
                 Recognizing outstanding youth achievements and talents.
               </p>
@@ -404,7 +435,7 @@
     </main>
   </section>
   <!-- ticket section  -->
-  <section class="w-full px-6 md:px-16 py-12 bg-black">
+  <section class="w-full px-6 md:px-16 py-12 bg-black" id="tickets">
     <div class="grid grid-cols-1 lg:grid-cols-2 md:gap-6 gap-0">
 
       <!-- LEFT CARD (STATIC) -->
@@ -423,109 +454,109 @@
       </div>
 
       <!-- RIGHT SIDE SCROLLABLE CARDS -->
-    <div class="relative">
-  <div id="cardContainer"
-    class="flex gap-4 relative overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory">
+      <div class="relative">
+        <div id="cardContainer"
+          class="flex gap-4 relative overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory">
 
-    <!-- CARD 1 -->
-    <div
-      class="min-w-[250px] md:min-w-[400px] h-[300px] relative 
+          <!-- CARD 1 -->
+          <div class="min-w-[250px] md:min-w-[400px] h-[300px] relative 
              bg-white/10 backdrop-blur-xl 
              border border-white/20 shadow-xl
              text-white rounded-2xl py-6 snap-center">
-      <h3 class="text-[24px] px-6 font-semibold mt-8">General Pass</h3>
-      <button class="text-base px-6 cursor-pointer font-semibold flex items-center gap-2">
-        Buy Ticket <i class="fa-solid fa-chevron-right"></i>
-      </button>
-      <img src="./assets/images/Ticket general pass.jpg" class="absolute bottom-0" alt="">
-    </div>
+            <h3 class="text-[24px] px-6 font-semibold mt-8">General Pass</h3>
+            <button class="text-base px-6 cursor-pointer font-semibold flex items-center gap-2">
+              Buy Ticket <i class="fa-solid fa-chevron-right"></i>
+            </button>
+            <img src="./assets/images/Ticket general pass.jpg" class="absolute bottom-0" alt="">
+            <small class="text-black absolute bottom-0 right-0">1 of 7</small>
+          </div>
 
-    <!-- CARD 2 -->
-    <div
-      class="min-w-[250px] md:min-w-[400px] h-[300px] relative 
+          <!-- CARD 2 -->
+          <div class="min-w-[250px] md:min-w-[400px] h-[300px] relative 
              bg-white/10 backdrop-blur-md 
              border border-white/20 shadow-xl
              text-white rounded-2xl py-6 snap-center">
-      <h3 class="text-[24px] font-semibold mt-16 px-6">Empower Pass</h3>
-      <button class="text-base px-6 cursor-pointer font-semibold flex items-center gap-2">
-        Buy Ticket <i class="fa-solid fa-chevron-right"></i>
-      </button>
-      <img src="./assets/images/Ticket EMPOWER PASS.jpg" class="absolute bottom-0" alt="">
-    </div>
+            <h3 class="text-[24px] font-semibold mt-16 px-6">Empower Pass</h3>
+            <button class="text-base px-6 cursor-pointer font-semibold flex items-center gap-2">
+              Buy Ticket <i class="fa-solid fa-chevron-right"></i>
+            </button>
+            <img src="./assets/images/Ticket EMPOWER PASS.jpg" class="absolute bottom-0" alt="">
+             <small class="text-black absolute bottom-0 right-0">2 of 7</small>
+          </div>
 
-    <!-- CARD 3 -->
-    <div
-      class="min-w-[250px] md:min-w-[400px] h-[300px] relative 
+          <!-- CARD 3 -->
+          <div class="min-w-[250px] md:min-w-[400px] h-[300px] relative 
              bg-white/10 backdrop-blur-md 
              border border-white/20 shadow-xl
              text-white rounded-2xl py-6 snap-center">
-      <h3 class="text-[24px] font-semibold mt-16 px-6">Vip Pass</h3>
-      <button class="text-base px-6 cursor-pointer font-semibold flex items-center gap-2">
-        Buy Ticket <i class="fa-solid fa-chevron-right"></i>
-      </button>
-      <img src="./assets/images/Ticket VIP pass.jpg" class="absolute bottom-0" alt="">
-    </div>
+            <h3 class="text-[24px] font-semibold mt-16 px-6">Vip Pass</h3>
+            <button class="text-base px-6 cursor-pointer font-semibold flex items-center gap-2">
+              Buy Ticket <i class="fa-solid fa-chevron-right"></i>
+            </button>
+            <img src="./assets/images/Ticket VIP pass.jpg" class="absolute bottom-0" alt="">
+             <small class="text-black absolute bottom-0 right-0">3 of 7</small>
+          </div>
 
-    <!-- CARD 4 -->
-    <div
-      class="min-w-[250px] md:min-w-[400px] h-[300px] relative 
+          <!-- CARD 4 -->
+          <div class="min-w-[250px] md:min-w-[400px] h-[300px] relative 
              bg-white/10 backdrop-blur-md 
              border border-white/20 shadow-xl
              text-white rounded-2xl py-6 snap-center">
-      <h3 class="text-[24px] font-semibold mt-16 px-6">Vvip Pass</h3>
-      <button class="text-base px-6 cursor-pointer font-semibold flex items-center gap-2">
-        Buy Ticket <i class="fa-solid fa-chevron-right"></i>
-      </button>
-      <img src="./assets/images/Ticket VVIP PASS.jpg" class="absolute bottom-0" alt="">
-    </div>
+            <h3 class="text-[24px] font-semibold mt-16 px-6">Vvip Pass</h3>
+            <button class="text-base px-6 cursor-pointer font-semibold flex items-center gap-2">
+              Buy Ticket <i class="fa-solid fa-chevron-right"></i>
+            </button>
+            <img src="./assets/images/Ticket VVIP PASS.jpg" class="absolute bottom-0" alt="">
+             <small class="text-black absolute bottom-0 right-0">4 of 7</small>
+          </div>
 
-    <!-- CARD 5 -->
-    <div
-      class="min-w-[250px] md:min-w-[400px] h-[300px] relative 
+          <!-- CARD 5 -->
+          <div class="min-w-[250px] md:min-w-[400px] h-[300px] relative 
              bg-white/10 backdrop-blur-md 
              border border-white/20 shadow-xl
              text-white rounded-2xl py-6 snap-center">
-      <h3 class="text-[24px] font-semibold mt-16 px-6">Executive Table for 3</h3>
-      <button class="text-base px-6 cursor-pointer font-semibold flex items-center gap-2">
-        Buy Ticket <i class="fa-solid fa-chevron-right"></i>
-      </button>
-      <img src="./assets/images/Ticket EXCLUSIVE TABLE FOR 5.jpg" class="absolute bottom-0" alt="">
-    </div>
+            <h3 class="text-[24px] font-semibold mt-16 px-6">Executive Table for 3</h3>
+            <button class="text-base px-6 cursor-pointer font-semibold flex items-center gap-2">
+              Buy Ticket <i class="fa-solid fa-chevron-right"></i>
+            </button>
+            <img src="./assets/images/Ticket EXCLUSIVE TABLE FOR 5.jpg" class="absolute bottom-0" alt="">
+             <small class="text-black absolute bottom-0 right-0">5 of 7</small>
+          </div>
 
-    <!-- CARD 6 -->
-    <div
-      class="min-w-[250px] md:min-w-[400px] h-[300px] relative 
+          <!-- CARD 6 -->
+          <div class="min-w-[250px] md:min-w-[400px] h-[300px] relative 
              bg-white/10 backdrop-blur-md 
              border border-white/20 shadow-xl
              text-white rounded-2xl py-6 snap-center">
-      <h3 class="text-[24px] font-semibold mt-16 px-6">Executive Table for 5</h3>
-      <button class="text-base px-6 cursor-pointer font-semibold flex items-center gap-2">
-        Buy Ticket <i class="fa-solid fa-chevron-right"></i>
-      </button>
-      <img src="./assets/images/Ticket EXCLUSIVE TABLE FOR 7.jpg" class="absolute bottom-0" alt="">
-    </div>
+            <h3 class="text-[24px] font-semibold mt-16 px-6">Executive Table for 5</h3>
+            <button class="text-base px-6 cursor-pointer font-semibold flex items-center gap-2">
+              Buy Ticket <i class="fa-solid fa-chevron-right"></i>
+            </button>
+            <img src="./assets/images/Ticket EXCLUSIVE TABLE FOR 7.jpg" class="absolute bottom-0" alt="">
+             <small class="text-black absolute bottom-0 right-0">6 of 7</small>
+          </div>
 
-    <!-- CARD 7 -->
-    <div
-      class="min-w-[250px] md:min-w-[400px] h-[300px] relative 
+          <!-- CARD 7 -->
+          <div class="min-w-[250px] md:min-w-[400px] h-[300px] relative 
              bg-white/10 backdrop-blur-md 
              border border-white/20 shadow-xl
              text-white rounded-2xl py-6 snap-center">
-      <h3 class="text-[24px] font-semibold mt-16 px-6">Executive Table for 7</h3>
-      <button class="text-base px-6 cursor-pointer font-semibold flex items-center gap-2">
-        Buy Ticket <i class="fa-solid fa-chevron-right"></i>
-      </button>
-      <img src="./assets/images/exclusive table for 10.jpg" class="absolute bottom-0" alt="">
-    </div>
+            <h3 class="text-[24px] font-semibold mt-16 px-6">Executive Table for 7</h3>
+            <button class="text-base px-6 cursor-pointer font-semibold flex items-center gap-2">
+              Buy Ticket <i class="fa-solid fa-chevron-right"></i>
+            </button>
+            <img src="./assets/images/exclusive table for 10.jpg" class="absolute bottom-0" alt="">
+             <small class="text-black absolute bottom-0 right-0">7 of 7</small>
+          </div>
 
-  </div>
-</div>
+        </div>
+      </div>
 
     </div>
   </section>
   <!-- image gallary  -->
 
-  <section class="w-full py-10 bg-black">
+  <section class="w-full py-10 bg-black" id="program">
     <div class="
       flex  overflow-x-auto scrollbar-hide snap-x snap-mandatory 
       md:grid md:grid-cols-3 gap-2 md:gap-0 md:grid-rows-2 md:overflow-visible md:snap-none
@@ -565,7 +596,7 @@
     </div>
   </section>
   <!--  -->
-  <section class="w-full">
+  <section class="w-full" id="sponsor">
     <div class="flex flex-col md:flex-row pl-6 md:pl-16 md:py-12 py-4 max-w-full md:gap-14 gap-0 bg-black ">
 
       <!-- Left Text -->
@@ -607,7 +638,7 @@
               <small class="text-white animate-pulse text-base">✔ And lots more </small>
             </ul>
           </div>
-          <small class="absolute text-base font-bold bottom-0 right-28 text-gray-300">
+          <small class="absolute text-base font-bold bottom-0 right-60 text-gray-300">
             1 of 4
           </small>
         </div>
@@ -632,7 +663,7 @@
               <small class="text-gray-900 animate-pulse text-base">✔ And lots more</small>
             </ul>
           </div>
-          <small class="absolute text-base  font-bold bottom-0 right-28 text-gray-900">
+          <small class="absolute text-base  font-bold bottom-0 right-60 text-gray-900">
             2 of 4
           </small>
         </div>
@@ -657,7 +688,7 @@
               <small class="text-white animate-pulse text-base">✔ And lots more</small>
             </ul>
           </div>
-          <small class="absolute text-base  font-bold bottom-0 right-28 text-gray-200">
+          <small class="absolute text-base  font-bold bottom-0 right-60 text-gray-200">
             3 of 4
           </small>
         </div>
@@ -682,7 +713,7 @@
               <small class="text-gray-900 animate-pulse text-base">✔ And lots more</small>
             </ul>
           </div>
-          <small class="absolute text-base  font-bold bottom-0 right-28 text-gray-900">
+          <small class="absolute text-base  font-bold bottom-0 right-60 text-gray-900">
             4 of 4
           </small>
         </div>
@@ -690,7 +721,7 @@
     </div>
   </section>
 
-  <section
+  <section id="donate"
     class="flex flex-col bg-gray-50 relative h-[50vh] justify-center items-center   md:pt-[6rem] lg:px-40 md:px-20 px-6 gap-10">
     <!-- Left Content -->
     <div class="text-gray-900 max-w-2xl md:py-12 py-4 flex items-center justify-center  text-center flex-col">
@@ -794,8 +825,10 @@
             </h5>
           </a>
           <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            <strong class="font-extrabold">Festivals have always been more than just colorful events on the calendar—they are vibrant moments that
-            bring people together, bridging generations and communities</strong>. Whether celebrated with music, dance, food, or
+            <strong class="font-extrabold">Festivals have always been more than just colorful events on the
+              calendar—they are vibrant moments that
+              bring people together, bridging generations and communities</strong>. Whether celebrated with music,
+            dance, food, or
             rituals, festivals carry the essence of culture, tradition, and shared joy.
           </p>
 
@@ -1128,7 +1161,7 @@
       btn.addEventListener('click', () => {
         const existing = document.getElementById('extraContent');
         if (existing) {
-          existing.remove(); 
+          existing.remove();
           btn.setAttribute('aria-expanded', 'false');
           return;
         }
@@ -1143,6 +1176,43 @@
       const content = document.getElementById("extraContent");
       content.classList.toggle("hidden");
     }
+     const links = document.querySelectorAll(".nav-link");
+  const currentUrl = window.location.pathname.split("/").pop();
+
+  links.forEach(link => {
+    if (link.getAttribute("href") === currentUrl) {
+      link.classList.add("active");
+    }
+  });
+
+    const navLinks = document.querySelectorAll('.nav-link');
+  const sections = document.querySelectorAll('section[id]');
+
+  // Highlight on scroll
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 120; 
+      if (window.scrollY >= sectionTop) {
+        current = section.getAttribute('id');
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) {
+        link.classList.add('active');
+      }
+    });
+  });
+
+  // Highlight on click
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+    });
+  });
   </script>
 
 
