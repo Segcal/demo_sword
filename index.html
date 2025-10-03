@@ -306,7 +306,22 @@
             <img src="./assets/images/award.jpg" class="absolute w-full h-full object-cover" />
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
             <div class="relative p-6 text-white text-center">
-              <h1 class="text-2xl font-bold text-center">Face <br> of Nigeria</h1>
+               <h1 class="text-2xl font-bold text-center">Face of <br> Nigeria <br> <span
+                  class="text-base">(Male)</span></h1>
+              <!-- <p class="mt-3 text-base opacity-0 group-hover:opacity-100 transition-all duration-300">
+                Music, dance, spoken word, drama, comedy, and art.
+              </p>
+              <button
+                class="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 text-sm font-semibold underline">Register</button> -->
+            </div>
+          </div>
+
+          <div class="group relative w-96  h-64 flex-shrink-0 overflow-hidden rounded-2xl shadow-lg cursor-pointer">
+            <img src="./assets/images/award.jpg" class="absolute w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+            <div class="relative p-6 text-white text-center">
+               <h1 class="text-2xl font-bold text-center">Face of <br> Nigeria <br> <span
+                  class="text-base">(Female)</span></h1>
               <!-- <p class="mt-3 text-base opacity-0 group-hover:opacity-100 transition-all duration-300">
                 Music, dance, spoken word, drama, comedy, and art.
               </p>
@@ -454,103 +469,83 @@
       </div>
 
       <!-- RIGHT SIDE SCROLLABLE CARDS -->
-      <div class="relative">
-        <div id="cardContainer"
-          class="flex gap-4 relative overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory">
+     <div class="relative">
+  <div id="cardContainer"
+    class="flex gap-4 relative overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory">
 
-          <!-- CARD 1 -->
-          <div class="min-w-[250px] md:min-w-[400px] h-[300px] relative 
-             bg-white/10 backdrop-blur-xl 
-             border border-white/20 shadow-xl
-             text-white rounded-2xl py-6 snap-center">
-            <h3 class="text-[24px] px-6 font-semibold mt-8">General Pass</h3>
-            <button class="text-base px-6 cursor-pointer font-semibold flex items-center gap-2">
-              Buy Ticket <i class="fa-solid fa-chevron-right"></i>
-            </button>
-            <img src="./assets/images/Ticket general pass.jpg" class="absolute bottom-0" alt="">
-            <small class="text-black absolute bottom-0 right-0">1 of 7</small>
-          </div>
+    <!-- CARD 1 -->
+    <div class="ticket-card general">
+      <h3>General Pass</h3>
+      <button>Buy Ticket <i class="fa-solid fa-chevron-right"></i></button>
+      <a href="./assets/js/form/regular.html">
+        <img src="./assets/images/Ticket general pass.jpg" alt="General Pass">
+      </a>
+      <small>1 of 7</small>
+    </div>
 
-          <!-- CARD 2 -->
-          <div class="min-w-[250px] md:min-w-[400px] h-[300px] relative 
-             bg-white/10 backdrop-blur-md 
-             border border-white/20 shadow-xl
-             text-white rounded-2xl py-6 snap-center">
-            <h3 class="text-[24px] font-semibold mt-16 px-6">Empower Pass</h3>
-            <button class="text-base px-6 cursor-pointer font-semibold flex items-center gap-2">
-              Buy Ticket <i class="fa-solid fa-chevron-right"></i>
-            </button>
-            <img src="./assets/images/Ticket EMPOWER PASS.jpg" class="absolute bottom-0" alt="">
-             <small class="text-black absolute bottom-0 right-0">2 of 7</small>
-          </div>
+    <!-- CARD 2 -->
+    <div class="ticket-card empower">
+      <h3>Empower Pass</h3>
+      <button>Buy Ticket <i class="fa-solid fa-chevron-right"></i></button>
+      <a href="./assets/js/form/workshop.html">
+        <img src="./assets/images/Ticket EMPOWER PASS.jpg" alt="Empower Pass">
+      </a>
+      <small>2 of 7</small>
+    </div>
 
-          <!-- CARD 3 -->
-          <div class="min-w-[250px] md:min-w-[400px] h-[300px] relative 
-             bg-white/10 backdrop-blur-md 
-             border border-white/20 shadow-xl
-             text-white rounded-2xl py-6 snap-center">
-            <h3 class="text-[24px] font-semibold mt-16 px-6">Vip Pass</h3>
-            <button class="text-base px-6 cursor-pointer font-semibold flex items-center gap-2">
-              Buy Ticket <i class="fa-solid fa-chevron-right"></i>
-            </button>
-            <img src="./assets/images/Ticket VIP pass.jpg" class="absolute bottom-0" alt="">
-             <small class="text-black absolute bottom-0 right-0">3 of 7</small>
-          </div>
+    <!-- CARD 3 -->
+    <div class="ticket-card vip">
+      <h3>VIP Pass</h3>
+      <button>Buy Ticket <i class="fa-solid fa-chevron-right"></i></button>
+      <a href="./assets/js/form/vip.html">
+        <img src="./assets/images/Ticket VIP pass.jpg" alt="VIP Pass">
+      </a>
+      <small>3 of 7</small>
+    </div>
 
-          <!-- CARD 4 -->
-          <div class="min-w-[250px] md:min-w-[400px] h-[300px] relative 
-             bg-white/10 backdrop-blur-md 
-             border border-white/20 shadow-xl
-             text-white rounded-2xl py-6 snap-center">
-            <h3 class="text-[24px] font-semibold mt-16 px-6">Vvip Pass</h3>
-            <button class="text-base px-6 cursor-pointer font-semibold flex items-center gap-2">
-              Buy Ticket <i class="fa-solid fa-chevron-right"></i>
-            </button>
-            <img src="./assets/images/Ticket VVIP PASS.jpg" class="absolute bottom-0" alt="">
-             <small class="text-black absolute bottom-0 right-0">4 of 7</small>
-          </div>
+    <!-- CARD 4 -->
+    <div class="ticket-card vvip">
+      <h3>VVIP Pass</h3>
+      <button>Buy Ticket <i class="fa-solid fa-chevron-right"></i></button>
+      <a href="./assets/js/form/vvip.html">
+        <img src="./assets/images/Ticket VVIP PASS.jpg" alt="VVIP Pass">
+      </a>
+      <small>4 of 7</small>
+    </div>
 
-          <!-- CARD 5 -->
-          <div class="min-w-[250px] md:min-w-[400px] h-[300px] relative 
-             bg-white/10 backdrop-blur-md 
-             border border-white/20 shadow-xl
-             text-white rounded-2xl py-6 snap-center">
-            <h3 class="text-[24px] font-semibold mt-16 px-6">Executive Table for 3</h3>
-            <button class="text-base px-6 cursor-pointer font-semibold flex items-center gap-2">
-              Buy Ticket <i class="fa-solid fa-chevron-right"></i>
-            </button>
-            <img src="./assets/images/Ticket EXCLUSIVE TABLE FOR 5.jpg" class="absolute bottom-0" alt="">
-             <small class="text-black absolute bottom-0 right-0">5 of 7</small>
-          </div>
+    <!-- CARD 5 -->
+    <div class="ticket-card table3">
+      <h3>Executive Table for 3</h3>
+      <button>Buy Ticket <i class="fa-solid fa-chevron-right"></i></button>
+      <a href="./assets/js/form/table.html">
+        <img src="./assets/images/Ticket EXCLUSIVE TABLE FOR 5.jpg" alt="Table for 3">
+      </a>
+      <small>5 of 7</small>
+    </div>
 
-          <!-- CARD 6 -->
-          <div class="min-w-[250px] md:min-w-[400px] h-[300px] relative 
-             bg-white/10 backdrop-blur-md 
-             border border-white/20 shadow-xl
-             text-white rounded-2xl py-6 snap-center">
-            <h3 class="text-[24px] font-semibold mt-16 px-6">Executive Table for 5</h3>
-            <button class="text-base px-6 cursor-pointer font-semibold flex items-center gap-2">
-              Buy Ticket <i class="fa-solid fa-chevron-right"></i>
-            </button>
-            <img src="./assets/images/Ticket EXCLUSIVE TABLE FOR 7.jpg" class="absolute bottom-0" alt="">
-             <small class="text-black absolute bottom-0 right-0">6 of 7</small>
-          </div>
+    <!-- CARD 6 -->
+    <div class="ticket-card table5">
+      <h3>Executive Table for 5</h3>
+      <button>Buy Ticket <i class="fa-solid fa-chevron-right"></i></button>
+      <a href="./assets/js/form/table.html">
+        <img src="./assets/images/Ticket EXCLUSIVE TABLE FOR 7.jpg" alt="Table for 5">
+      </a>
+      <small>6 of 7</small>
+    </div>
 
-          <!-- CARD 7 -->
-          <div class="min-w-[250px] md:min-w-[400px] h-[300px] relative 
-             bg-white/10 backdrop-blur-md 
-             border border-white/20 shadow-xl
-             text-white rounded-2xl py-6 snap-center">
-            <h3 class="text-[24px] font-semibold mt-16 px-6">Executive Table for 7</h3>
-            <button class="text-base px-6 cursor-pointer font-semibold flex items-center gap-2">
-              Buy Ticket <i class="fa-solid fa-chevron-right"></i>
-            </button>
-            <img src="./assets/images/exclusive table for 10.jpg" class="absolute bottom-0" alt="">
-             <small class="text-black absolute bottom-0 right-0">7 of 7</small>
-          </div>
+    <!-- CARD 7 -->
+    <div class="ticket-card table7">
+      <h3>Executive Table for 7</h3>
+      <button>Buy Ticket <i class="fa-solid fa-chevron-right"></i></button>
+      <a href="./assets/js/form/table.html">
+        <img src="./assets/images/exclusive table for 10.jpg" alt="Table for 7">
+      </a>
+      <small>7 of 7</small>
+    </div>
 
-        </div>
-      </div>
+  </div>
+</div>
+
 
     </div>
   </section>

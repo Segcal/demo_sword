@@ -104,3 +104,96 @@
 }
 
     
+/* ✅ Base card (common to all tickets) */
+.ticket-card {
+  min-width: 250px;
+  height: 300px;
+  position: relative;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  color: white;
+  padding: 1.5rem;
+  scroll-snap-align: center;
+  overflow: hidden;
+}
+
+/* Title */
+.ticket-card h3 {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 1rem 0;
+  padding-left: 1rem;
+}
+
+/* Button */
+.ticket-card button {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-left: 1rem;
+}
+
+/* Small number bottom-right */
+.ticket-card small {
+  position: absolute;
+  bottom: 0;
+  right: 0.8rem;
+  color: black;
+}
+
+/* Image */
+.ticket-card img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  max-height: 60%;
+  object-fit: contain;
+}
+.ticket-card.general {
+  backdrop-filter: blur(20px);
+}
+
+
+.ticket-card.empower {
+  backdrop-filter: blur(15px);
+  background: rgba(0, 0, 255, 0.15);
+}
+
+/* VIP Pass */
+.ticket-card.vip {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 215, 0, 0.15); /* gold tint */
+}
+
+/* VVIP Pass */
+.ticket-card.vvip {
+  backdrop-filter: blur(25px);
+  background: rgba(128, 0, 128, 0.2); /* purple tint */
+}
+
+/* Executive Table for 3 */
+.ticket-card.table3 {
+  backdrop-filter: blur(12px);
+  background: rgba(0, 255, 0, 0.15); /* green tint */
+}
+
+/* Executive Table for 5 */
+.ticket-card.table5 {
+  backdrop-filter: blur(18px);
+  background: rgba(255, 69, 0, 0.15); /* orange tint */
+}
+
+/* Executive Table for 7 */
+.ticket-card.table7 {
+  backdrop-filter: blur(22px);
+  background: rgba(70, 130, 180, 0.15); /* steelblue tint */
+}
