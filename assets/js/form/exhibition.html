@@ -137,8 +137,17 @@
 
           <!-- Ethnicity & Costume -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-
-
+            <div>
+              <label class="block mb-1 text-sm">Size of space needed
+              </label>
+              <select name="electricity"
+                class="w-full rounded-lg border border-gray-300 bg-transparent focus:outline-none p-2 text-sm ">
+                <option value="">Select option</option>
+                <option value="african" class="text-gray-900">Small</option>
+                <option value="asian" class="text-gray-900">Medium</option>
+                <option value="european" class="text-gray-900">Large</option>
+              </select>
+            </div>
           </div>
 
           <!-- Submit (goes to Step 2 Payment) -->
@@ -167,7 +176,8 @@
         </div>
         <form onsubmit="processPayment(event)" class="space-y-4">
           <div class="max-w-4xl mx-auto mt-10">
-           <div class="flex relative justify-between md:flex-row flex-col border border-gray-500 rounded-lg text-white">
+            <div
+              class="flex relative justify-between md:flex-row flex-col border border-gray-500 rounded-lg text-white">
               <!-- Ticket Image -->
               <div class="md:w-52 w-full   flex flex-col justify-between">
                 <img src="../../images/Ticket general pass.jpg" class="h-40" alt="">

@@ -89,89 +89,76 @@
         <!-- Registration Form Fields -->
         <form id="registrationForm" class="space-y-4">
 
-          <!-- Who's Registering -->
-          <div>
-            <label class="block mb-1 text-sm">Who's Registering?</label>
-            <select name="who" required
-              class="w-full rounded-lg border border-gray-300 bg-transparent focus:outline-none p-2 text-sm">
-              <option value="">Select option</option>
-              <option value="individual" class="text-gray-900">Individual</option>
-              <option value="group" class="text-gray-900">Group</option>
-              <option value="institution" class="text-gray-900">Institution</option>
-            </select>
-          </div>
+  <!-- Who is Registering -->
+  <div>
+    <label class="block mb-1 text-sm">Who is Registering?</label>
+    <select name="who" required
+      class="w-full rounded-lg border border-gray-300 bg-transparent focus:outline-none p-2 text-sm">
+      <option value="">Select option</option>
+      <option value="individual" class="text-gray-900">Individual</option>
+      <option value="group" class="text-gray-900">Group</option>
+    </select>
+  </div>
 
-          <!-- Name & Email -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label class="block mb-1 text-sm">Name*</label>
-              <input type="text" name="name" placeholder="Name of Institution or Individual or Group" required
-                class="w-full rounded-lg border border-gray-300 bg-transparent focus:outline-none p-2 text-sm">
-            </div>
-            <div>
-              <label class="block mb-1 text-sm">Email*</label>
-              <input type="email" name="email" placeholder="Enter your email" required
-                class="w-full rounded-lg border border-gray-300 bg-transparent focus:outline-none p-2 text-sm">
-            </div>
-          </div>
+  <!-- Group Participants (Shown only if Group is selected) -->
+  <div id="groupParticipants" class="hidden">
+    <label class="block mb-1 text-sm">If group, number of participants</label>
+    <input type="number" name="participants" placeholder="Enter number of participants"
+      class="w-full rounded-lg border border-gray-300 bg-transparent focus:outline-none p-2 text-sm">
+  </div>
 
-          <!-- Phone & Fee -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label class="block mb-1 text-sm">Phone Number*</label>
-              <input type="tel" name="phone" placeholder="Enter your phone number" required
-                class="w-full rounded-lg border border-gray-300 bg-transparent focus:outline-none p-2 text-sm">
-            </div>
-            <div>
-              <label class="block mb-1 text-sm">Registration Fee</label>
-              <input type="text" placeholder="#5000"
-                class="w-full rounded-lg border border-gray-300 bg-transparent focus:outline-none p-2 text-sm text-gray-50">
-            </div>
-          </div>
+  <!-- Email & Phone -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div>
+      <label class="block mb-1 text-sm">Email Address*</label>
+      <input type="email" name="email" placeholder="Enter your email" required
+        class="w-full rounded-lg border border-gray-300 bg-transparent focus:outline-none p-2 text-sm">
+    </div>
+    <div>
+      <label class="block mb-1 text-sm">Phone Number*</label>
+      <input type="tel" name="phone" placeholder="Enter your phone number" required
+        class="w-full rounded-lg border border-gray-300 bg-transparent focus:outline-none p-2 text-sm">
+    </div>
+  </div>
 
-          <!-- Ethnicity & Costume -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              
-              <label class="block mb-1 text-sm">What Ethnicity are you representing?</label>
-              <input type="text" placeholder="what ethnicity are you required to represent?"
-                class="w-full rounded-lg border border-gray-300 bg-transparent focus:outline-none p-2 text-sm text-gray-50">
-            
-            </div>
-            <div>
-              <label class="block mb-1 text-sm">Do you have required Costume?</label>
-              <select name="costume"
-                class="w-full rounded-lg border border-gray-300 bg-transparent focus:outline-none p-2 text-sm">
-                <option value="">Choose from options</option>
-                <option value="traditional" class="text-gray-900">Yes</option>
-                <option value="modern" class="text-gray-900">No</option>
-              </select>
-            </div>
-          </div>
+  <!-- Genre of Performance -->
+  <div>
+    <label class="block mb-1 text-sm">Genre of Performance</label>
+    <select name="genre" required
+      class="w-full rounded-lg border border-gray-300 bg-transparent focus:outline-none p-2 text-sm">
+      <option value="">Select genre</option>
+      <option value="dance" class="text-gray-900">Dance</option>
+      <option value="music" class="text-gray-900">Music</option>
+      <option value="comedy" class="text-gray-900">Comedy</option>
+      <option value="acrobatics" class="text-gray-900">Acrobatics</option>
+      <option value="others" class="text-gray-900">Others (Specify below)</option>
+    </select>
+  </div>
 
-          <!-- Props -->
-          <div>
-            <label class="block mb-1 text-sm">Do you have required Props ?</label>
-            <textarea name="props" rows="3" placeholder="Explain required props in less than 100 words"
-              class="w-full rounded-lg border border-gray-300 bg-transparent focus:outline-none p-2 text-sm"></textarea>
-          </div>
+  <!-- Other Genre (if selected) -->
+  <div id="otherGenre" class="hidden">
+    <label class="block mb-1 text-sm">Specify Other Genre</label>
+    <input type="text" name="other_genre" placeholder="Enter other genre"
+      class="w-full rounded-lg border border-gray-300 bg-transparent focus:outline-none p-2 text-sm">
+  </div>
 
-          <!-- Performance Link -->
-          <div>
-            <label class="block mb-1 text-sm">Performance link</label>
-            <input type="url" name="performance" placeholder="Add a link to your performance online"
-              class="w-full rounded-lg border border-gray-300 bg-transparent focus:outline-none p-2 text-sm">
-          </div>
+  <!-- Link to Previous Performance -->
+  <div>
+    <label class="block mb-1 text-sm">Link to Previous Performance</label>
+    <input type="url" name="performance_link" placeholder="Add a link to your performance"
+      class="w-full rounded-lg border border-gray-300 bg-transparent focus:outline-none p-2 text-sm">
+  </div>
 
-          <!-- Submit (goes to Step 2 Payment) -->
-        <div class="flex justify-between items-center my-6">
+  <!-- Submit -->
+  <div class="flex justify-between items-center my-6">
     <p class="text-gray-200 text-sm">Please review before submitting.</p>
     <button type="submit" id="btnSubmit"
       class="px-8 py-3 bg-white text-black rounded-lg hover:bg-gray-100 transition">
       Submit
     </button>
   </div>
-        </form>
+
+</form>
       </div>
 
      <!-- Step 2: Payment -->
@@ -190,6 +177,18 @@ document.getElementById('registrationForm').addEventListener('submit', function(
     return;
   }
 });
+  const whoSelect = document.querySelector('select[name="who"]');
+  const groupDiv = document.getElementById('groupParticipants');
+  const genreSelect = document.querySelector('select[name="genre"]');
+  const otherGenreDiv = document.getElementById('otherGenre');
+
+  whoSelect.addEventListener('change', () => {
+    groupDiv.classList.toggle('hidden', whoSelect.value !== 'group');
+  });
+
+  genreSelect.addEventListener('change', () => {
+    otherGenreDiv.classList.toggle('hidden', genreSelect.value !== 'others');
+  });
 </script>
 </body>
 </html>
