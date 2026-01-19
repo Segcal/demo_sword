@@ -1,0 +1,198 @@
+ @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins&display=swap');
+ 
+ body {
+  font-family: "Poppins", sans-serif;
+ }
+ 
+ .slide-in {   
+      transform: translateX(100px);
+      transition: all 0.7s ease-in-out;
+    }
+    .slide-in.show {
+      
+      transform: translateX(0);
+    }
+    header {
+      transition: top 0.4s ease, background-color 0.4s ease;
+    }
+
+   .hero-slide {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    position: absolute;
+    inset: 0;
+  }
+  .hero-slide.active {
+    opacity: 1;
+    z-index: 1;
+  }
+
+     .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    #formContainer {
+  scrollbar-width: none;         
+  -ms-overflow-style: none;      
+}
+#formContainer::-webkit-scrollbar {
+  display: none;                 
+}
+
+    
+#formContainer {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+    .hero-slide {
+  /* opacity: 0; */
+  transition: opacity 1s ease-in-out;
+}
+.hero-slide.active {
+   /* semi transparent */
+}
+.hero-slide.inactive {
+  opacity: 0.5; 
+}
+  .hero-slide img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+  display: flex;
+  width: max-content;
+}
+.paused {
+  animation-play-state: paused;
+}
+
+  .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+    .scrollbar-hide {
+      -ms-overflow-style: none; 
+      scrollbar-width: none;  
+    }
+
+
+    .nav-link {
+  color: #f9fafb; /* Tailwind's text-gray-50 */
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  transition: 0.3s;
+}
+.nav-link:hover {
+  background: white;
+  color: black;
+}
+.nav-link.active {
+  background: white;
+  color: black;
+  font-weight: bold;
+}
+
+    
+.ticket-card {
+  min-width: 250px;
+  height: 300px;
+  position: relative;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  color: white;
+  padding: 1.5rem;
+  scroll-snap-align: center;
+  overflow: hidden;
+}
+
+/* Title */
+.ticket-card h3 {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 1rem 0;
+  padding-left: 1rem;
+}
+
+/* Button */
+.ticket-card button {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-left: 1rem;
+}
+
+/* Small number bottom-right */
+.ticket-card small {
+  position: absolute;
+  bottom: 0;
+  right: 0.8rem;
+  color: black;
+}
+
+/* Image */
+.ticket-card img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  max-height: 60%;
+  object-fit: contain;
+}
+.ticket-card.general {
+  backdrop-filter: blur(20px);
+}
+
+
+.ticket-card.empower {
+  backdrop-filter: blur(15px);
+  background: rgba(0, 0, 255, 0.15);
+}
+
+/* VIP Pass */
+.ticket-card.vip {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 215, 0, 0.15); /* gold tint */
+}
+
+/* VVIP Pass */
+.ticket-card.vvip {
+  backdrop-filter: blur(25px);
+  background: rgba(128, 0, 128, 0.2); /* purple tint */
+}
+
+/* Executive Table for 3 */
+.ticket-card.table3 {
+  backdrop-filter: blur(12px);
+  background: rgba(0, 255, 0, 0.15); /* green tint */
+}
+
+/* Executive Table for 5 */
+.ticket-card.table5 {
+  backdrop-filter: blur(18px);
+  background: rgba(255, 69, 0, 0.15); /* orange tint */
+}
+
+/* Executive Table for 7 */
+.ticket-card.table7 {
+  backdrop-filter: blur(22px);
+  background: rgba(70, 130, 180, 0.15); /* steelblue tint */
+}

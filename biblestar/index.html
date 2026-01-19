@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <link rel="stylesheet" href="../assets/styles/styles.css" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>SOWRO TV - BibleStar</title>
+    <style type="text/tailwindcss">
+        @theme {
+        --color-clifford: #da373d;
+        --bg-tran: #ffffff1a;
+        --color-primary: #f0a242;
+      }
+
+      @layer utilities {
+        /* GLASS EFFECT */
+        .glass-container {
+          @apply bg-white/10 backdrop-blur-xl;
+        }
+
+        .bg-section-overlay {
+          background-image: linear-gradient(
+              to bottom right,
+              rgba(15, 15, 15, 0.85),
+              rgba(15, 15, 15, 0.6),
+              rgba(240, 162, 66, 0.25)
+            ),
+            url("https://res.cloudinary.com/dtrqikle5/image/upload/v1766799314/6479557_26565_2_1_qjxypt.png");
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+      }
+      .trophy-shadow {
+        filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.15));
+      }
+
+      .card-hover {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .card-hover:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .confetti {
+        animation: float 3s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      .gradient-bg {
+        background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+      }
+
+      .scrollbar-hide {
+        -ms-overflow-style: none; 
+        scrollbar-width: none; 
+      }
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none; 
+      }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .animate-pulse {
+            animation: pulse 2s infinite;
+        }
+
+        .gallery-img {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 16px;
+  }
+    </style>
+</head>
+
+<body class="bg-[#0f0f0f] text-white">
+    <!-- ======== NAVBAR ======== -->
+    <header class="fixed top-0 left-0 w-full z-50">
+        <!-- Glass Layer -->
+        <div
+            class="relative w-full bg-[#1b1b1b]/60 backdrop-blur-xl border-b border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
+            <!-- Top inner shine -->
+            <div
+                class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent">
+            </div>
+
+            <!-- Left glossy curve -->
+            <div
+                class="pointer-events-none absolute top-0 left-0 h-full w-48 bg-gradient-to-r from-white/10 to-transparent blur-2xl rounded-r-full">
+            </div>
+
+            <!-- Content -->
+            <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+                <!-- Logo -->
+                <a href="./index.html" class="text-orange-500 font-bold text-xl tracking-wide">
+                    <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766409594/sword_TV_logo_y9mnja.png"
+                        width="150" class="rounded-full" />
+                </a>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="./index.html" class="text-white/80 hover:text-orange-400 transition">Home</a>
+                    <a href="#" class="text-white/80 hover:text-orange-400 transition">Event</a>
+                    <a href="#" class="text-white/80 hover:text-orange-400 transition">Programmes</a>
+                    <a href="./Partnership.html" class="text-orange-400 font-semibold">Partnership</a>
+                    <a href="#" class="text-white/80 hover:text-orange-400 transition">Blog</a>
+                    <a href="#" class="text-white/80 hover:text-orange-400 transition">Contact us</a>
+                </nav>
+
+                <!-- CTA Button -->
+                <button
+                    class="open-partner-modal hidden md:block bg-orange-500/90 hover:bg-orange-500 text-black font-semibold px-6 py-2 rounded-full shadow-lg shadow-orange-500/30 transition">
+                    Partner with Us
+                </button>
+
+                <!-- Mobile Menu -->
+                <button id="openMenu" class="md:hidden text-3xl text-white">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ======== MOBILE MENU ======== -->
+    <div id="mobileMenu"
+        class="hidden fixed inset-0 bg-black/20 backdrop-blur-xl z-50 flex items-center justify-center">
+        <div class="bg-[#1b1b1b] w-72 rounded-xl p-6 relative">
+            <button id="closeMenu" class="absolute top-4 right-4 text-xl">✕</button>
+
+            <h2 class="text-orange-400 font-semibold text-xl mb-6">
+                <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766409594/sword_TV_logo_y9mnja.png"
+                    width="150" class="rounded-full" />
+            </h2>
+
+            <div class="flex flex-col space-y-4 text-center">
+                <a href="./index.html">Home</a>
+                <a href="#">Programmes</a>
+                <a class="text-orange-400 font-semibold">Donation</a>
+                <a href="#">Blog</a>
+                <a href="#">Contact us</a>
+
+                <button class="open-partner-modal bg-orange-400 text-black px-5 py-2 rounded-full font-semibold mt-4">
+                    Partner with Us
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======== HERO SECTION ======== -->
+    <section class="pt-24 pb-16 bg-section-overlay glass-container">
+        <div class="max-w-7xl mx-auto px-4">
+            <!-- Banner Image -->
+            <div class="mb-6">
+                <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766629012/Rectangle_3467704_ilaye4.png"
+                    alt="" class="w-full h-[200px] sm:h-[300px] md:h-[520px] object-cover rounded-2xl" />
+            </div>
+
+            <!-- Glass Background Wrapper -->
+            <div class="relative rounded-3xl overflow-hidden" style="
+            background-image: linear-gradient(
+                rgba(0, 0, 0, 0.6),
+                rgba(0, 0, 0, 0.7)
+              ),
+              url('https://images.unsplash.com/photo-1574267432644-f617a24a9f8e?w=1600');
+            background-size: cover;
+            background-position: center;
+          ">
+                <!-- Content -->
+                <div class="px-5 sm:px-8 py-8 md:py-12">
+                    <!-- Top Row -->
+                    <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8">
+                        <!-- Left Content -->
+                        <div class="max-w-4xl">
+                            <!-- Date Badge -->
+                            <div
+                                class="inline-flex items-center gap-2 bg-orange-900/30 backdrop-blur-sm text-amber-200 px-4 py-2 rounded-full text-xs sm:text-sm mb-5">
+                                <i class="far fa-calendar"></i>
+                                <span>March 20th - May 10th, 2026</span>
+                            </div>
+
+                            <!-- Title -->
+                            <h3 class="text-2xl sm:text-3xl md:text-4xl font-medium text-white mb-4">
+                                Bible Star Reality Show
+                            </h3>
+
+                            <!-- Overview Badge -->
+                            <span
+                                class="inline-block bg-orange-900/30 text-white px-4 py-1.5 rounded-full text-xs sm:text-sm mb-4">
+                                Overview
+                            </span>
+
+                            <!-- Details -->
+                            <div
+                                class="flex flex-wrap items-center gap-x-3 gap-y-2 text-gray-300 text-xs sm:text-sm mt-4">
+                                <span>60 days</span>
+                                <span class="opacity-40">•</span>
+                                <span>12 Housemates</span>
+                                <span class="opacity-40">•</span>
+                                <span>1 Big House</span>
+                                <span class="opacity-40">•</span>
+                                <span>1 Winner</span>
+                            </div>
+                        </div>
+
+                        <!-- Right Content -->
+                        <div class="flex flex-col items-start lg:items-end gap-4">
+                            <!-- Location -->
+                            <div class="flex items-center gap-2 text-white">
+                                <i class="fas fa-map-marker-alt text-amber-500"></i>
+                                <span class="text-xs sm:text-sm">Ilorin, Kwara State</span>
+                            </div>
+
+                            <!-- Share -->
+                            <div>
+                                <h3 class="text-white font-semibold mb-2 text-sm">
+                                    Share Show
+                                </h3>
+
+                                <div class="flex gap-2">
+                                    <button
+                                        class="w-9 h-9 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition">
+                                        <i class="fas fa-share-alt text-xs"></i>
+                                    </button>
+                                    <button
+                                        class="w-9 h-9 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition">
+                                        <i class="fab fa-facebook-f text-xs"></i>
+                                    </button>
+                                    <button
+                                        class="w-9 h-9 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition">
+                                        <i class="fab fa-instagram text-xs"></i>
+                                    </button>
+                                    <button
+                                        class="w-9 h-9 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition">
+                                        <i class="fab fa-x-twitter text-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- About Section -->
+                    <div class="mt-10">
+                        <h2 class="uppercase text-lg sm:text-xl text-white font-medium mb-3">
+                            About the Show
+                        </h2>
+                        <p class="text-gray-300 text-sm sm:text-base leading-relaxed max-w-3xl">
+                            Join Sword Television upcoming conferences, competitions,
+                            festival, and spirit-lifting gatherings designed to inspire,
+                            equip, and connect believers. Explore all events happening
+                            across our programmes.
+                        </p>
+                        <!-- CTA Buttons -->
+                        <div class="mt-8 flex flex-col sm:flex-row gap-4 items-center justify-center">
+                            <!-- Open Partner Modal -->
+                            <button id="openPartnerModal"
+                                class="inline-flex items-center justify-center gap-2 bg-orange-500/90 hover:bg-orange-600 text-white font-medium px-6 py-3 rounded-full backdrop-blur-md transition shadow-lg hover:shadow-orange-500/30">
+                                Register
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+
+                            <!-- Go to Next Page -->
+                            <a href="/vote.html"
+                                class="inline-flex items-center justify-center gap-2 border border-orange-400/60 text-orange-400 hover:bg-orange-400 hover:text-black font-medium px-6 py-3 rounded-full backdrop-blur-md transition">
+                                Vote
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+
+                        <div class="flex items-center justify-center flex-col py-10">
+                            <div
+                                class="bg-white/10 backdrop-blur-lg mt-8 flex w-full p-4 rounded-sm flex-col sm:flex-row gap-4 items-center justify-center">
+                                <p class="text-xl">
+                                    Watch out for season two’s housemate registeration.
+                                </p>
+                            </div>
+                            <div class="mt-10">
+                                <a href="#" class="underline text-orange-400 text-2xl">
+                                    Viewer's price play
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--  -->
+
+    <section class="pb-20 bg-section-overlay glass-container">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center px-6 py-24">
+            <!-- Image -->
+            <div>
+                <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1764887498/Frame_1618873003_kv1nlm.png"
+                    class="rounded-3xl h-96 w-full md:w-auto" alt="Image" />
+            </div>
+
+            <!-- Text -->
+            <div>
+                <h2 class="text-3xl font-semibold text-orange-400">Highlight</h2>
+
+                <!-- Benefit List -->
+                <div class="mt-6 space-y-4">
+                    <div class="px-4 py-3 flex items-center gap-3 bg-white/10 backdrop-blur-md rounded-full shadow-lg">
+                        <span class="text-orange-400 text-xl">
+                            <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1764997136/Group_1618872793_vsemir.png"
+                                alt="" width="15" />
+                        </span>
+                        Multi-Talent Exhibition: Each housemate presents their talents to
+                        the world
+                    </div>
+
+                    <div class="px-4 py-3 flex items-center gap-3 bg-white/10 backdrop-blur-md rounded-full shadow-lg">
+                        <span class="text-orange-400 text-xl">
+                            <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1764997136/Group_1618872793_vsemir.png"
+                                alt="" width="15" />
+                        </span>
+                        World Cup Challenges
+                    </div>
+                    <div class="px-4 py-3 flex items-center gap-3 bg-white/10 backdrop-blur-md rounded-full shadow-lg">
+                        <span class="text-orange-400 text-xl">
+                            <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1764997136/Group_1618872793_vsemir.png"
+                                alt="" width="15" />
+                        </span>
+                        Campfire Sessions
+                    </div>
+                    <div class="px-4 py-3 flex items-center gap-3 bg-white/10 backdrop-blur-md rounded-full shadow-lg">
+                        <span class="text-orange-400 text-xl">
+                            <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1764997136/Group_1618872793_vsemir.png"
+                                alt="" width="15" />
+                        </span>
+                        Inspirational Talks & Bible Teachings
+                    </div>
+                    <div class="px-4 py-3 flex items-center gap-3 bg-white/10 backdrop-blur-md rounded-full shadow-lg">
+                        <span class="text-orange-400 text-xl">
+                            <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1764997136/Group_1618872793_vsemir.png"
+                                alt="" width="15" />
+                        </span>
+                        No eviction — points-based competition
+                    </div>
+
+                    <div class="px-4 py-3 flex items-center gap-3 bg-white/10 backdrop-blur-md rounded-full shadow-lg">
+                        <span class="text-orange-400 text-xl">
+                            <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1764997136/Group_1618872793_vsemir.png"
+                                alt="" width="15" />
+                        </span>
+                        Fun & Interactive Tasks: All designed to engage, educate, and
+                        inspire
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ======== HOW TO JOIN ======== -->
+    <section class="w-full py-16 bg-section-overlay glass-container">
+        <div class="max-w-6xl mx-auto px-4">
+            <!-- Heading -->
+            <h2 class="text-4xl md:text-5xl font-semibold text-center text-orange-400 mb-12">
+                How To Join
+            </h2>
+
+            <!-- Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Step 1 -->
+                <div class="bg-orange-500 text-white rounded-xl p-8 shadow-lg">
+                    <div
+                        class="w-12 h-12 flex items-center justify-center bg-white text-orange-500 font-bold rounded-full mb-4">
+                        1.
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Select Donation Category</h3>
+
+                    <ul class="space-y-1 text-white/90">
+                        <li>Major Weight: ₦50,000,000 and above</li>
+                        <li>Medium Weight: ₦20,000,000 to ₦50,000,000</li>
+                        <li>Light Weight: ₦20,000,000 and below</li>
+                    </ul>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-xl p-8 shadow-lg">
+                    <div
+                        class="w-12 h-12 flex items-center justify-center bg-orange-500 text-white font-bold rounded-full mb-4">
+                        2.
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">
+                        Choose the Programme You Want to Support
+                    </h3>
+
+                    <p class="text-white/90 leading-relaxed">
+                        Select the specific Sword Television program your donation will
+                        fund. Your partnership will appear on the program page and help
+                        fund production, activities, and outreach.
+                    </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-white rounded-xl p-8 shadow-lg">
+                    <div
+                        class="w-12 h-12 flex items-center justify-center bg-orange-500 text-white font-bold rounded-full mb-4">
+                        3.
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-900">
+                        Provide Your Details
+                    </h3>
+
+                    <p class="text-gray-700">
+                        Enter your name, contact information, and other required details.
+                    </p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="bg-orange-500 text-white rounded-xl p-8 shadow-lg">
+                    <div
+                        class="w-12 h-12 flex items-center justify-center bg-white text-orange-500 font-bold rounded-full mb-4">
+                        4.
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Make Your Donation</h3>
+
+                    <p class="text-white/90">
+                        Complete the donation process via our secure payment system.
+                    </p>
+                </div>
+
+                <!-- Step 5 (full width) -->
+                <div
+                    class="md:col-span-2 bg-[#4a2e1f]/80 backdrop-blur-md border border-white/10 text-white rounded-xl p-8 shadow-lg">
+                    <div
+                        class="w-12 h-12 flex items-center justify-center bg-orange-500 text-white font-bold rounded-full mb-4">
+                        5.
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Receive Confirmation</h3>
+
+                    <p class="text-white/90">
+                        You will receive confirmation of your donation and details of the
+                        program your partnership supports.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--  -->
+
+    <section class="w-full py-16 bg-section-overlay glass-container">
+        <div class="mx-auto px-4 text-center">
+            <!-- Heading -->
+            <h2 class="text-4xl font-semibold text-orange-400 mb-10">
+                Awards &Prizes
+            </h2>
+
+            <!-- Cards Container -->
+            <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+                <!-- Card 1 -->
+                <div
+                    class="w-64 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-6 cursor-pointer hover:scale-105 transition duration-300">
+                    <div class="flex justify-center mb-4">
+                        <img src="../assets/images/img-3.png" alt="Organisations" class="w-520 h-20" />
+                    </div>
+                    <p class="text-white text-lg font-medium">
+                        Crowned Bible Personality of the Year
+                    </p>
+                </div>
+
+                <!-- Card 2 (Active) -->
+                <div
+                    class="w-64 bg-orange-500 text-white rounded-xl p-6 shadow-xl cursor-pointer hover:scale-105 transition duration-300">
+                    <div class="flex justify-center mb-4">
+                        <img src="../assets/images/img-1.png" alt="Individuals" class="w-52 h-20" />
+                    </div>
+                    <p class="text-lg font-medium">Brand-new SUV</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div
+                    class="w-64 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-6 cursor-pointer hover:scale-105 transition duration-300">
+                    <div class="flex justify-center mb-4">
+                        <img src="../assets/images/img-2.png" alt="Organisations" class="w-52 h-20" />
+                    </div>
+                    <p class="text-white text-lg font-medium">Cash Prize</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--  -->
+    <section class="py-16 bg-gradient-to-b from-[#5a3a22] to-[#3a2414] text-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <!-- Heading -->
+            <h2 class="text-center text-3xl md:text-4xl font-bold mb-12">
+                Awards & Prizes
+            </h2>
+
+            <!-- Cards Wrapper -->
+            <div
+                class="flex md:grid md:grid-cols-3 gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-hide pb-6">
+                <!-- First Runner-up -->
+                <div class="min-w-[280px] bg-white text-[#4a2a12] rounded-2xl p-6 text-center snap-center">
+                    <div class="bg-[#4a2a12] text-white rounded-full py-3 font-semibold mb-6">
+                        First Runner-up
+                    </div>
+
+                    <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766892140/4320674_18399_1_yqusqm.png"
+                        alt="Trophy" class="w-40 h-40 mx-auto mb-6" />
+
+                    <div class="bg-[#4a2a12] text-white rounded-full py-2 font-medium">
+                        Cash Prize
+                    </div>
+                </div>
+
+                <!-- Winner -->
+                <div
+                    class="min-w-[300px] bg-orange-500 text-white rounded-2xl p-6 text-center scale-105 shadow-xl snap-center">
+                    <div class="bg-white text-[#4a2a12] rounded-full py-3 font-semibold mb-6">
+                        Winner
+                    </div>
+
+                    <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766892140/4320674_18399_1_yqusqm.png"
+                        alt="Winner Trophy" class="w-48 h-48 mx-auto mb-6" />
+
+                    <div class="bg-white text-[#4a2a12] rounded-full py-2 font-medium">
+                        Cash Prize
+                    </div>
+                </div>
+
+                <!-- Other Housemates -->
+                <div class="min-w-[280px] bg-white text-[#4a2a12] rounded-2xl p-6 text-center snap-center">
+                    <div class="bg-[#4a2a12] text-white rounded-full py-3 font-semibold mb-6">
+                        Other Housemates
+                    </div>
+
+                    <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766892140/4320674_18399_1_yqusqm.png"
+                        alt="Trophy" class="w-40 h-40 mx-auto mb-6" />
+
+                    <div class="bg-[#4a2a12] text-white rounded-full py-2 font-medium">
+                        Consolation Cash Prize
+                    </div>
+                </div>
+            </div>
+
+            <!-- Register Button -->
+            <div class="mt-12 text-center">
+                <button
+                    class="bg-orange-500 hover:bg-orange-600 px-10 py-3 rounded-full text-white font-semibold inline-flex items-center gap-2">
+                    Register →
+                </button>
+            </div>
+        </div>
+    </section>
+<!--  -->
+    <section class="w-full py-16 bg-section-overlay glass-container">
+        <section class="relative py-20 px-4 overflow-hidden">
+            <!-- Background Image -->
+            <div class="absolute inset-0 -z-20 bg-cover bg-center" style="
+            background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1600');
+          "></div>
+
+            <!-- Dark Blur Overlay -->
+            <div class="absolute inset-0 -z-10 bg-black/70 backdrop-blur-xl"></div>
+
+            <div class="max-w-6xl mx-auto text-center">
+                <!-- Top CTA -->
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold text-white mb-3">
+                    Ready to be a part of the next Bible<br class="hidden sm:block" />
+                    Stars Reality Show?
+                </h2>
+
+                <p class="text-gray-300 text-sm sm:text-base max-w-2xl mx-auto mb-6">
+                    Fill the form, submit your video, and take the first step toward the
+                    house.
+                </p>
+
+                <a href="/register.html"
+                    class="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-7 py-3 rounded-full font-medium transition shadow-lg">
+                    Register
+                    <i class="fas fa-arrow-right text-sm"></i>
+                </a>
+
+                <!-- Divider -->
+                <div class="my-16 border-t border-white/10"></div>
+
+                <!-- Voting Section -->
+                <h3 class="text-xl sm:text-2xl font-medium text-white mb-2">
+                    Vote for Your Favourite Housemate
+                </h3>
+
+                <p class="text-gray-400 text-sm sm:text-base mb-10">
+                    Support your favourite housemate and help them win the competition.
+                </p>
+
+                <!-- Image Card -->
+                <div class="bg-black/60 backdrop:blur-2xl rounded-[2.5rem] p-4 sm:p-6 shadow-xl max-w-5xl mx-auto">
+                    <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766695340/0fd1928ed6728ca349d59036db03659e63318ab6_xlarr8.jpg"
+                        alt="Housemates voting"
+                        class="w-full h-[220px] sm:h-[320px] md:h-[420px] object-cover rounded-[2rem]" />
+                </div>
+
+                <!-- Vote Button -->
+                <div class="mt-10">
+                    <a href="/vote.html"
+                        class="inline-flex items-center gap-2 border border-orange-400 text-orange-400 hover:bg-orange-400 hover:text-black px-8 py-3 rounded-full font-medium transition">
+                        Vote
+                        <i class="fas fa-arrow-right text-sm"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </section>
+    <!--  -->
+    <section class="relative py-20 px-4 overflow-hidden bg-section-overlay glass-container">
+        <div class="max-w-6xl mx-auto">
+            <!-- ================= Predict & Win ================= -->
+            <div class="text-center mb-12">
+                <h2 class="text-2xl sm:text-3xl font-semibold text-orange-400 mb-3">
+                    Predict and Win
+                </h2>
+                <p class="text-gray-300 text-sm sm:text-base max-w-2xl mx-auto">
+                    Test your prediction skills! Each week, answer questions based on
+                    upcoming tasks or outcomes. Top predictions win exciting weekly
+                    rewards.
+                </p>
+            </div>
+
+            <!-- Tasks -->
+            <div class="space-y-4">
+                <!-- Task Item -->
+                <div
+                    class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-5 py-4">
+                    <div class="flex items-start gap-4">
+                        <span class="px-3 py-1 rounded-full">
+                            <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1764997136/Group_1618872793_vsemir.png"
+                                alt="" width="15" />
+                        </span>
+                        <p class="text-gray-300 text-sm leading-relaxed">
+                            Prize-winning weekly game
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Duplicate for other tasks -->
+                <div
+                    class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-5 py-4">
+                    <div class="flex items-start gap-4">
+                        <span class="px-3 py-1 rounded-full">
+                            <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1764997136/Group_1618872793_vsemir.png"
+                                alt="" width="15" />
+                        </span>
+                        <p class="text-gray-300 text-sm">
+                            Viewers purchase a pin to participate
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-5 py-4">
+                    <div class="flex items-start gap-4">
+                        <span class="px-3 py-1 rounded-full">
+                            <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1764997136/Group_1618872793_vsemir.png"
+                                alt="" width="15" />
+                        </span>
+                        <p class="text-gray-300 text-sm">
+                            Predict the winner of segments, activities, or the overall show
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-5 py-4">
+                    <div class="flex items-start gap-4">
+                        <span class="px-3 py-1 rounded-full">
+                            <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1764997136/Group_1618872793_vsemir.png"
+                                alt="" width="15" />
+                        </span>
+                        <p class="text-gray-300 text-sm">
+                            Predict the winner of segments, activities, or the overall show
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-center">
+                <button
+                    class="mt-8 bg-orange-500 hover:bg-orange-600 px-8 py-3 rounded-full text-white font-semibold inline-flex items-center gap-2">
+                    Predict and Win
+                    <i class="fas fa-arrow-right text-sm"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+    <!--  -->
+
+    <section class="relative bg-gradient-to-b from-black via-[#0f0f0f] to-black text-white py-20">
+        <div class="max-w-6xl mx-auto px-4">
+            <!-- ================= Weekly Activities ================= -->
+            <div class="mb-20">
+                <h2 class="text-center text-3xl md:text-4xl font-semibold text-white mb-3">
+                    Viewers’ Prize Play
+                </h2>
+
+                <p class="text-center text-gray-50 max-w-2xl mx-auto mb-10 text-sm md:text-base">
+                    Participate in our weekly Viewers’ Prize Play challenge and stand
+                    a chance to win exciting prizes.
+                </p>
+
+                <div class="space-y-4">
+                    <!-- Task Item -->
+                    <div
+                        class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-5 py-4">
+                        <div class="flex items-start gap-4">
+                            <span class="px-3 py-1 rounded-full">
+                                <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1764997136/Group_1618872793_vsemir.png"
+                                    alt="" width="15" />
+                            </span>
+                            <p class="text-gray-300 text-sm leading-relaxed">
+                                Prize-winning weekly online quiz
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Duplicate for other tasks -->
+                    <div
+                        class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-5 py-4">
+                        <div class="flex items-start gap-4">
+                            <span class="px-3 py-1 rounded-full">
+                                <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1764997136/Group_1618872793_vsemir.png"
+                                    alt="" width="15" />
+                            </span>
+                            <p class="text-gray-300 text-sm">
+                                Winners selection is based on accuracy and fastest response
+                            </p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-5 py-4">
+                        <div class="flex items-start gap-4">
+                            <span class="px-3 py-1 rounded-full">
+                                <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1764997136/Group_1618872793_vsemir.png"
+                                    alt="" width="15" />
+                            </span>
+                            <p class="text-gray-300 text-sm">
+                                Engaging, fun, and user-friendly for all ages
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= Prize Play ================= -->
+            <div class="text-center mb-24">
+                <button
+                    class="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-black font-medium px-7 py-3 rounded-full transition">
+                    Play Now
+                    <span class="text-lg">→</span>
+                </button>
+            </div>
+
+
+        </div>
+    </section>
+
+    <!-- ================= Latest Update Section ================= -->
+    <section class="mt-24 px-4  bg-section-overlay glass-container py-24">
+        <div class="text-center max-w-5xl mx-auto">
+
+            <!-- Title -->
+            <h3 class="text-xl sm:text-2xl font-semibold text-orange-400 mb-6">
+                Update from the House
+            </h3>
+
+            <!-- Filter -->
+            <div class="flex items-center justify-center gap-3 mb-6">
+                <span class="text-gray-300 text-sm">Filter:</span>
+
+                <select id="videoFilter" class="bg-black/40 backdrop-blur-md text-white text-sm
+               border border-orange-400/40
+               rounded-full px-5 py-2
+               focus:outline-none focus:ring-2 focus:ring-orange-400">
+
+                    <option value="today">Today</option>
+                    <option value="week">This Week</option>
+                    <option value="month">This Month</option>
+                </select>
+            </div>
+
+            <!-- Video Card -->
+            <div class="relative bg-black rounded-3xl overflow-hidden
+             max-w-4xl mx-auto
+             h-[220px] sm:h-[320px] md:h-[420px]
+             group">
+
+                <!-- Video -->
+                <video id="houseVideo" class="w-full h-full object-cover" poster="poster-today.jpg" preload="metadata">
+
+                    <source id="videoSource" src="video-today.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
+
+                <!-- Play Overlay -->
+                <button id="playBtn" class="absolute inset-0 flex items-center justify-center
+               bg-black/30 backdrop-blur-sm
+               transition-opacity group-hover:bg-black/40">
+
+                    <span class="w-16 h-16 sm:w-20 sm:h-20
+                 bg-white/20 backdrop-blur-md
+                 rounded-full flex items-center justify-center
+                 hover:scale-105 transition">
+
+                        <svg class="w-7 h-7 sm:w-8 sm:h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z" />
+                        </svg>
+                    </span>
+                </button>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="relative bg-gradient-to-b from-black/60 via-[#0f0f0f] to-black/60 text-white py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <!-- ================= Weekly Activities ================= -->
+            <div class="">
+                <h2 class="text-center text-3xl md:text-6xl font-semibold text-white mb-3">
+                    Ready to be a part of the next <br class="md:block hidden" /> Bible Stars Reality Show?
+                </h2>
+
+                <p class="text-center text-gray-50 max-w-2xl mx-auto my-10 text-sm md:text-base">
+                    Fill the form, submit your video, and take the first step toward the house.
+                </p>
+
+
+            </div>
+
+
+            <div class="text-center ">
+                <button
+                    class="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-black font-medium px-7 py-3 rounded-full transition">
+                    Register
+                    <span class="text-lg">→</span>
+                </button>
+            </div>
+
+
+        </div>
+    </section>
+
+    <!-- ================= Gallery Section ================= -->
+    <section class="relative py-12 sm:py-20 px-4 bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden">
+
+        <h3 class="text-center text-3xl sm:text-4xl md:text-5xl font-bold text-orange-400 mb-8 sm:mb-12 tracking-wide">
+            Our Gallery
+        </h3>
+
+        <div class="relative max-w-7xl mx-auto">
+
+            <!-- Slides Container -->
+            <div class="overflow-hidden rounded-xl">
+                <div id="galleryTrack" class="flex transition-transform duration-700 ease-in-out">
+
+                    <!-- Slide 1 -->
+                    <div class="min-w-full flex justify-center px-2 sm:px-4">
+                        <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766756750/2149186296_2_wnxaxh.png"
+                            alt="Gallery image 1" class="gallery-img" />
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="min-w-full flex justify-center px-2 sm:px-4">
+                        <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766756750/2149186296_2_wnxaxh.png"
+                            alt="Gallery image 2" class="gallery-img" />
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="min-w-full flex justify-center px-2 sm:px-4">
+                        <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766756750/2149186296_2_wnxaxh.png"
+                            alt="Gallery image 3" class="gallery-img" />
+                    </div>
+
+                    <!-- Slide 4 -->
+                    <div class="min-w-full flex justify-center px-2 sm:px-4">
+                        <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766756750/2149186296_2_wnxaxh.png"
+                            alt="Gallery image 4" class="gallery-img" />
+                    </div>
+
+                    <!-- Slide 5 -->
+                    <div class="min-w-full flex justify-center px-2 sm:px-4">
+                        <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766756750/2149186296_2_wnxaxh.png"
+                            alt="Gallery image 5" class="gallery-img" />
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Left Arrow -->
+            <button id="prevBtn" class="swiper-button absolute left-2 sm:left-4 md:left-8 top-1/2 -translate-y-1/2
+               bg-white/10 backdrop-blur-md text-white text-2xl sm:text-3xl
+               w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center
+               hover:bg-orange-400 hover:shadow-lg z-10 border border-white/20">
+                ‹
+            </button>
+
+            <!-- Right Arrow -->
+            <button id="nextBtn" class="swiper-button absolute right-2 sm:right-4 md:right-8 top-1/2 -translate-y-1/2
+               bg-white/10 backdrop-blur-md text-white text-2xl sm:text-3xl
+               w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center
+               hover:bg-orange-400 hover:shadow-lg z-10 border border-white/20">
+                ›
+            </button>
+
+            <!-- Navigation Dots -->
+            <div id="dotsContainer" class="flex justify-center gap-2 sm:gap-3 mt-6 sm:mt-8">
+                <span class="dot w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-orange-400 active"></span>
+                <span class="dot w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-gray-500"></span>
+                <span class="dot w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-gray-500"></span>
+                <span class="dot w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-gray-500"></span>
+                <span class="dot w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-gray-500"></span>
+            </div>
+
+        </div>
+    </section>
+
+
+
+    <section class="w-full py-16  bg-section-overlay glass-container">
+        <div class="max-w-7xl mx-auto px-4">
+
+            <!-- Header -->
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-bold text-amber-500 mb-3">FAQs</h1>
+                <p class="text-gray-300 text-lg">Frequently Asked Questions</p>
+            </div>
+
+            <!-- FLEX WRAPPER -->
+            <div class="flex flex-col md:flex-row gap-10">
+
+                <!-- LEFT: FAQ LIST -->
+                <div class="flex-1 space-y-4">
+
+                    <!-- FAQ 1 -->
+                    <div class="faq-item border border-amber-600 rounded-lg overflow-hidden bg-opacity-50">
+                        <button
+                            class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-white/10 backdrop-blur-md hover:bg-opacity-30 transition-colors">
+                            <span class="text-white font-medium pr-4">How many housemates are in the show?</span>
+                            <span class="faq-icon text-amber-500 text-2xl flex-shrink-0">⊖</span>
+                        </button>
+                        <div class="faq-content px-6 pb-4">
+                            <p class="text-gray-300 text-sm">
+                                There are 12 housemates competing in the Bible Stars Reality Show.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="faq-item border border-amber-600 rounded-lg overflow-hidden bg-opacity-50">
+                        <button
+                            class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-white/10 backdrop-blur-md hover:bg-opacity-30 transition-colors">
+                            <span class="text-white font-medium pr-4">How long does the show last?</span>
+                            <span class="faq-icon text-amber-500 text-2xl flex-shrink-0">⊖</span>
+                        </button>
+                        <div class="faq-content px-6 pb-4">
+                            <p class="text-gray-300 text-sm">
+                                8 days of continuous activities, challenges, and talent showcases.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="faq-item border border-amber-600 rounded-lg overflow-hidden bg-opacity-50">
+                        <button
+                            class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-white/10 backdrop-blur-md hover:bg-opacity-30 transition-colors">
+                            <span class="text-white font-medium pr-4">Are housemates evicted weekly?</span>
+                            <span class="faq-icon text-amber-500 text-2xl flex-shrink-0">⊖</span>
+                        </button>
+                        <div class="faq-content px-6 pb-4">
+                            <p class="text-gray-300 text-sm">
+                                No. There is no eviction. Winners are determined by total points earned throughout the
+                                season.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 4 -->
+                    <div class="faq-item border border-amber-600 rounded-lg overflow-hidden bg-opacity-50">
+                        <button
+                            class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-white/10 backdrop-blur-md hover:bg-opacity-30 transition-colors">
+                            <span class="text-white font-medium pr-4">How can viewers participate?</span>
+                            <span class="faq-icon text-amber-500 text-2xl flex-shrink-0">⊖</span>
+                        </button>
+                        <div class="faq-content px-6 pb-4">
+                            <p class="text-gray-300 text-sm">
+                                Viewers participate by purchasing a pin to join Predict &amp; Win, vote for their
+                                favorite housemates,
+                                and play the Viewer’s Prize Play game weekly.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 5 -->
+                    <div class="faq-item border border-amber-600 rounded-lg overflow-hidden bg-opacity-50">
+                        <button
+                            class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-white/10 backdrop-blur-md hover:bg-opacity-30 transition-colors">
+                            <span class="text-white font-medium pr-4">Who can participate in Predict &amp; Win?</span>
+                            <span class="faq-icon text-amber-500 text-2xl flex-shrink-0">⊖</span>
+                        </button>
+                        <div class="faq-content px-6 pb-4">
+                            <p class="text-gray-300 text-sm">
+                                Anyone can participate regardless of age, as the games are designed to be user-friendly
+                                and engaging.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 6 -->
+                    <div class="faq-item border border-amber-600 rounded-lg overflow-hidden bg-opacity-50">
+                        <button
+                            class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-white/10 backdrop-blur-md hover:bg-opacity-30 transition-colors">
+                            <span class="text-white font-medium pr-4">What prizes can viewers win?</span>
+                            <span class="faq-icon text-amber-500 text-2xl flex-shrink-0">⊖</span>
+                        </button>
+                        <div class="faq-content px-6 pb-4">
+                            <p class="text-gray-300 text-sm">
+                                Weekly cash prizes for correct predictions and fast responses, plus grand prizes at the
+                                end of the season.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 7 -->
+                    <div class="faq-item border border-amber-600 rounded-lg overflow-hidden bg-opacity-50">
+                        <button
+                            class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-white/10 backdrop-blur-md hover:bg-opacity-30 transition-colors">
+                            <span class="text-white font-medium pr-4">What is the Bible Personality of the Year
+                                prize?</span>
+                            <span class="faq-icon text-amber-500 text-2xl flex-shrink-0">⊖</span>
+                        </button>
+                        <div class="faq-content px-6 pb-4">
+                            <p class="text-gray-300 text-sm">
+                                The winner receives a brand-new SUV, cash prizes, and the title of Bible Personality of
+                                the Year.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 8 -->
+                    <div class="faq-item border border-amber-600 rounded-lg overflow-hidden bg-opacity-50">
+                        <button
+                            class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-white/10 backdrop-blur-md hover:bg-opacity-30 transition-colors">
+                            <span class="text-white font-medium pr-4">Can viewers vote for multiple housemates?</span>
+                            <span class="faq-icon text-amber-500 text-2xl flex-shrink-0">⊖</span>
+                        </button>
+                        <div class="faq-content px-6 pb-4">
+                            <p class="text-gray-300 text-sm">
+                                Yes. Each pin allows you to vote and participate in predictions to support your favorite
+                                housemates.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 9 -->
+                    <div class="faq-item border border-amber-600 rounded-lg overflow-hidden bg-opacity-50">
+                        <button
+                            class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-white/10 backdrop-blur-md hover:bg-opacity-30 transition-colors">
+                            <span class="text-white font-medium pr-4">Are there celebrity guests on the show?</span>
+                            <span class="faq-icon text-amber-500 text-2xl flex-shrink-0">⊖</span>
+                        </button>
+                        <div class="faq-content px-6 pb-4">
+                            <p class="text-gray-300 text-sm">
+                                Yes. Celebrity guests appear weekly to interact with housemates and participate in key
+                                segments.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 10 -->
+                    <div class="faq-item border border-amber-600 rounded-lg overflow-hidden bg-opacity-50">
+                        <button
+                            class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-white/10 backdrop-blur-md hover:bg-opacity-30 transition-colors">
+                            <span class="text-white font-medium pr-4">How can I watch the show if I miss a
+                                segment?</span>
+                            <span class="faq-icon text-amber-500 text-2xl flex-shrink-0">⊖</span>
+                        </button>
+                        <div class="faq-content px-6 pb-4">
+                            <p class="text-gray-300 text-sm">
+                                All past segments, features, and highlights are available in the “In Case You Missed It”
+                                section.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- RIGHT COLUMN -->
+                <div class="md:w-1/3 w-full">
+                    <div class=" bg-opacity-50 border border-amber-600 rounded-lg p-8 text-center">
+                        <h2 class="text-white text-xl font-semibold mb-3">Still have questions?</h2>
+                        <p class="text-gray-300 text-sm mb-6">Can't find the answer you are looking for? Kindly check
+                            our complete
+                            list of FAQs.</p>
+                        <button
+                            class="bg-amber-500 hover:bg-amber-600 text-gray-900 font-semibold px-8 py-3 rounded-full transition-colors">
+                            View Complete FAQs
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- footer main section -->
+    <section class="w-full py-16">
+        <div class="flex flex-col items-center justify-center p-4">
+            <!-- Newsletter Card -->
+            <div class="bg-white rounded-3xl shadow-2xl max-w-4xl w-full p-12 mb-8">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <!-- Left Column -->
+                    <div>
+                        <h2 class="text-4xl font-bold text-gray-900 mb-4">
+                            Stay Connected!
+                        </h2>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            Receive updates on upcoming events, new programmes, auditions,
+                            competitions, and ministry opportunities.
+                        </p>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div>
+                        <p class="text-sm text-gray-900 mb-4">
+                            Subscribe and be the first to know — and never miss a moment of
+                            impact.
+                        </p>
+                        <div class="flex gap-2 flex-col md:flex-row">
+                            <input type="email" placeholder="Enter your email address"
+                                class="flex-1 px-4 py-3 rounded-full bg-gray-100 text-black text-sm focus:outline-none focus:ring-2 focus:ring-orange-400" />
+                            <button
+                                class="px-8 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-full font-medium text-sm transition-colors duration-300">
+                                Subscribe
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="w-full max-w-6xl">
+                <div class="grid md:grid-cols-2 gap-12 mb-8">
+                    <!-- Left Section -->
+                    <div>
+                        <a href="./index.html" class="text-orange-500 text-xl font-bold mb-6">
+                            <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766409594/sword_TV_logo_y9mnja.png"
+                                width="150" class="rounded-full" />
+                        </a>
+                        <div class="space-y-3 text-gray-400 text-sm pl-3 mt-3">
+                            <div class="flex items-center gap-2">
+                                <i class="far fa-envelope"></i>
+                                <span>info@swordtelevision.com</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-phone"></i>
+                                <span>+2348087863562 | +2347048811294 | +2349060672683</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Suite 8, Dabic Shopping Complex, Behind M & M Super Market Ilorin, Kwara State,
+                                    Nigeria.</span>
+                            </div>
+                        </div>
+
+                        <!-- Social Icons -->
+                        <div class="flex gap-4 mt-6">
+                            <a href="#"
+                                class="w-8 h-8  rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                                <i class="fa-brands fa-facebook text-lg text-gray-850"  ></i>
+                            </a>
+                            <a href="#"
+                                class="w-8 h-8  rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                                <i class="fa-brands fa-youtube text-lg text-gray-8050"  ></i>
+                            </a>
+                            <a href="#"
+                                class="w-8 h-8  rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                                <i class="fa-brands fa-linkedin-in text-lg text-gray-50"  ></i>
+                            </a>
+                            <a href="#"
+                                class="w-8 h-8  rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                                <i class="fa-brands fa-x-twitter text-lg text-gray-50"  ></i>
+                            </a>
+                            <a href="#"
+                                class="w-8 h-8  rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                                <i class="fa-brands fa-tiktok text-lg text-gray-80050"  ></i>
+                            </a>
+                            <a href="#"
+                                class="w-8 h-8  rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                                <i class="fa-brands fa-instagram text-lg text-gray-50"  ></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right Section - Navigation -->
+                    <div class="grid grid-cols-2 gap-8">
+                        <div>
+                            <ul class="space-y-3 text-gray-300 text-sm">
+                                <li>
+                                    <a href="#" class="hover:text-orange-500 transition-colors duration-300">Home</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="hover:text-orange-500 transition-colors duration-300">About
+                                        Us</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="hover:text-orange-500 transition-colors duration-300">Events</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="hover:text-orange-500 transition-colors duration-300">Gallery</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul class="space-y-3 text-gray-300 text-sm">
+                                <li>
+                                    <a href="#" class="hover:text-orange-500 transition-colors duration-300">Contact
+                                        Us</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="hover:text-orange-500 transition-colors duration-300">Partner
+                                        With Us</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="hover:text-orange-500 transition-colors duration-300">Donate</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="hover:text-orange-500 transition-colors duration-300">Blog</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Copyright -->
+                <div class="border-t border-gray-800 pt-6 text-center text-gray-500 text-sm">
+                    <p>Sword Television © 2025 | All rights reserved.</p>
+                </div>
+            </footer>
+        </div>
+    </section>
+
+    <!-- PARTNER MODAL -->
+    <div id="partners-modal" class="fixed inset-0 hidden z-[999]
+            bg-black/60 backdrop-blur-lg
+            flex items-center justify-center px-4">
+
+        <div class="bg-white w-full max-w-3xl rounded-2xl shadow-2xl relative">
+
+            <!-- COUNTDOWN -->
+            <div class="bg-black text-white px-6 py-4 rounded-t-2xl text-center">
+                <p class="text-xs mb-1">Registration Closes In</p>
+
+                <div class="flex justify-center gap-4 text-sm">
+                    <div>
+                        <span id="days">00</span>
+                        <p class="text-xs">Days</p>
+                    </div>
+                    <div>
+                        <span id="hours">00</span>
+                        <p class="text-xs">Hours</p>
+                    </div>
+                    <div>
+                        <span id="minutes">00</span>
+                        <p class="text-xs">Minutes</p>
+                    </div>
+                    <div>
+                        <span id="seconds">00</span>
+                        <p class="text-xs">Seconds</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="p-6 relative">
+                <button id="partner-close-btn" class="absolute top-4 right-4 text-gray-900 text-xl">✕</button>
+                  <!-- RETURN BUTTON -->
+      <button class="text-orange-500 text-xs sm:text-sm
+             border border-orange-400
+             px-4 py-1.5 rounded-full mb-6">
+        Return to Partnership Page
+      </button>
+
+                <p class="text-xs text-gray-900 mb-2">
+                    Section <span id="partner-step-number">1</span> of 5
+                </p>
+
+                <div class="w-full h-2 bg-gray-200 rounded-full mb-6">
+                    <div id="partner-progress-bar" class="h-2 bg-orange-400 rounded-full transition-all duration-300"
+                        style="width:20%"></div>
+                </div>
+
+                <!-- STEPS -->
+                <div class="space-y-6">
+
+                    <!-- STEP 1 -->
+                    <div class="partner-step" data-step="1">
+                        <h2 class="text-xl font-semibold mb-4 text-black">Personal Information</h2>
+                        <div class="flex flex-col md:flex-row gap-4">
+                            <input placeholder="First Name"
+                                class="w-full border border-gray-400 text-black px-4 py-3 rounded" />
+                            <input placeholder="Last Name"
+                                class="w-full border border-gray-400 text-black px-4 py-3 rounded" />
+                        </div>
+                    </div>
+
+                    <!-- STEP 2 -->
+                    <div class="partner-step hidden" data-step="2">
+                        <h2 class="text-xl font-semibold mb-4 text-black">Contact Details</h2>
+                        <div class="flex flex-col md:flex-row gap-4">
+                            <input placeholder="Email"
+                                class="w-full border border-gray-400 text-black px-4 py-3 rounded" />
+                            <input placeholder="Phone"
+                                class="w-full border border-gray-400 text-black px-4 py-3 rounded" />
+                        </div>
+                    </div>
+
+                    <!-- STEP 3 -->
+                    <div class="partner-step hidden" data-step="3">
+                        <h2 class="text-xl font-semibold mb-4 text-black">Other Details</h2>
+                        <div class="flex flex-col md:flex-row gap-4">
+                            <input placeholder="State"
+                                class="w-full border border-gray-400 text-black px-4 py-3 rounded" />
+                            <input placeholder="Church"
+                                class="w-full border border-gray-400 text-black px-4 py-3 rounded" />
+                        </div>
+                    </div>
+
+                    <!-- STEP 4 -->
+                    <div class="partner-step hidden" data-step="4">
+                        <h2 class="text-xl font-semibold mb-4 text-black">Video Link</h2>
+                        <input placeholder="2-minute video link"
+                            class="w-full border border-gray-400 text-black px-4 py-3 rounded" />
+                    </div>
+
+                    <!-- STEP 5 -->
+                    <div class="partner-step hidden" data-step="5">
+                        <h2 class="text-black text-xl font-semibold mb-2">
+                            Payment Method
+                        </h2>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <label class="border border-orange-500 rounded-xl p-4 cursor-pointer
+                          has-[:checked]:border-orange-500
+                          has-[:checked]:bg-orange-50 text-black">
+                                <input type="radio" name="partner-payment" value="online" />
+                                Online Payment
+                            </label>
+
+                            <label class="border border-orange-500 rounded-xl p-4 cursor-pointer
+                          has-[:checked]:border-orange-500
+                          has-[:checked]:bg-orange-50 text-black">
+                                <input type="radio" name="partner-payment" value="offline" />
+                                Offline Payment
+                            </label>
+                        </div>
+
+                        <p id="partner-payment-error" class="text-red-500 text-sm mt-3 hidden">
+                            Please select a payment method
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FOOTER -->
+                <div class="flex justify-between mt-8">
+                    <button id="partner-prev-btn"
+                        class="border border-gray-400 text-black px-6 py-2 rounded-full disabled:opacity-40">
+                        Previous
+                    </button>
+                    <button id="partner-next-btn" class="bg-orange-500 text-white px-8 py-2 rounded-full">
+                        Next
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="../assets/js/script.js"></script>
+
+    <script>
+    
+          const track = document.getElementById("galleryTrack");
+  const slides = track.children;
+  const prevBtns = document.getElementById("prevBtn");
+  const nextBtns = document.getElementById("nextBtn");
+  const dots = document.querySelectorAll(".dot");
+
+  let currentIndex = 0;
+  const totalSlides = slides.length;
+
+  function updateSlider() {
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+    dots.forEach((dot, index) => {
+      dot.classList.toggle("bg-orange-400", index === currentIndex);
+      dot.classList.toggle("bg-gray-500", index !== currentIndex);
+    });
+  }
+
+  nextBtns.addEventListener("click", () => {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    updateSlider();
+  });
+
+  prevBtns.addEventListener("click", () => {
+    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+    updateSlider();
+  });
+
+  dots.forEach((dot, index) => {
+    dot.addEventListener("click", () => {
+      currentIndex = index;
+      updateSlider();
+    });
+  });
+
+  /* Optional Auto Slide */
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    updateSlider();
+  }, 5000);
+
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const modal = document.getElementById('partners-modal');
+            const closeBtn = document.getElementById('partner-close-btn');
+            const steps = document.querySelectorAll('.partner-step');
+            const nextBtn = document.getElementById('partner-next-btn');
+            const prevBtn = document.getElementById('partner-prev-btn');
+            const stepNumber = document.getElementById('partner-step-number');
+            const progressBar = document.getElementById('partner-progress-bar');
+            const paymentError = document.getElementById('partner-payment-error');
+
+            let currentStep = 1;
+            const totalSteps = steps.length;
+
+            /* ===== OPEN MODAL ===== */
+            document.querySelectorAll('.open-partner-modal').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    modal.classList.remove('hidden');
+                    resetModal();
+                });
+            });
+
+            /* ===== CLOSE MODAL ===== */
+            closeBtn.addEventListener('click', closeModal);
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+
+            function closeModal() {
+                modal.classList.add('hidden');
+            }
+
+            function resetModal() {
+                currentStep = 1;
+                document.querySelectorAll(
+                    'input[name="partner-payment"]'
+                ).forEach(r => r.checked = false);
+                showStep(currentStep);
+            }
+
+            function showStep(step) {
+                steps.forEach(s => s.classList.add('hidden'));
+
+                const activeStep = document.querySelector(
+                    `.partner-step[data-step="${step}"]`
+                );
+                if (activeStep) activeStep.classList.remove('hidden');
+
+                stepNumber.textContent = step;
+                progressBar.style.width = `${(step / totalSteps) * 100}%`;
+
+                prevBtn.disabled = step === 1;
+                nextBtn.textContent = step === totalSteps ? 'Submit' : 'Next';
+
+                paymentError.classList.add('hidden');
+            }
+
+            function validateStep(step) {
+                if (step === totalSteps) {
+                    const selected = document.querySelector(
+                        'input[name="partner-payment"]:checked'
+                    );
+                    if (!selected) {
+                        paymentError.classList.remove('hidden');
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            nextBtn.addEventListener('click', () => {
+                if (!validateStep(currentStep)) return;
+
+                if (currentStep < totalSteps) {
+                    currentStep++;
+                    showStep(currentStep);
+                } else {
+                    alert('Form submitted successfully!');
+                    closeModal();
+                }
+            });
+
+            prevBtn.addEventListener('click', () => {
+                if (currentStep > 1) {
+                    currentStep--;
+                    showStep(currentStep);
+                }
+            });
+
+            showStep(currentStep);
+        });
+    </script>
+
+
+</body>
+
+</html>
