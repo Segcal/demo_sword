@@ -4,6 +4,16 @@ document.getElementById("openMenu").onclick = () =>
 document.getElementById("closeMenu").onclick = () =>
   mobileMenu.classList.add("hidden");
 
+// Mobile Programs Dropdown
+const mobileProgramsBtn = document.getElementById("mobilePrograms");
+const mobileProgramsList = document.getElementById("mobileProgramsList");
+
+if (mobileProgramsBtn && mobileProgramsList) {
+  mobileProgramsBtn.onclick = () => {
+    mobileProgramsList.classList.toggle("hidden");
+  };
+}
+
 window.addEventListener("scroll", () => {
   document
     .querySelector("header div")

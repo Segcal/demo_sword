@@ -57,7 +57,7 @@
 <body class="glass">
 
     <!-- ================= NAVBAR ================= -->
-    <header class=" z-50 glass">
+        <header class="fixed top-0 left-0 w-full z-50 glass">
         <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-4">
 
             <!-- Logo -->
@@ -69,53 +69,91 @@
 
             <!-- Desktop Menu -->
             <nav class="hidden md:flex items-center gap-8  text-white">
-                <a href="./index.html" class="text-white text-base">Home</a>
+                <a href="#" class=" text-base">Home</a>
 
                 <!-- Programs Dropdown -->
                 <div class="relative group">
-                    <button class="flex items-center gap-1 text-base hover:text-orange-400">
+                    <a href="./Programs.html" class="flex items-center gap-1 text-base hover:text-orange-400">
                         Programs
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
-                    </button>
+                    </a>
 
                     <!-- Dropdown -->
-                    <div
-                        class="absolute left-0 mt-4 w-[620px] glass rounded-2xl p-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                        <div class="grid grid-cols-3 gap-4 text-sm">
-                            <div class="flex items-center gap-3">
-                                <div class="w-12 h-12 bg-orange-500 rounded-lg"></div>
-                                <span>Bible Stars Reality Show</span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <div class="w-12 h-12 bg-orange-500 rounded-lg"></div>
-                                <span>Ilorin Youth Mega Festival</span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <div class="w-12 h-12 bg-orange-500 rounded-lg"></div>
-                                <span>Bible Championship Season 2</span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <div class="w-12 h-12 bg-orange-500 rounded-lg"></div>
-                                <span>The Noah’s Ark Show</span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <div class="w-12 h-12 bg-orange-500 rounded-lg"></div>
-                                <span>The National Bible Cup</span>
-                            </div>
-                            <div class="flex items-center gap-3">
-                                <div class="w-12 h-12 bg-orange-500 rounded-lg"></div>
-                                <span>The Church & You Talk Show</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                   <div
+  class="absolute left-0 mt-4 w-[620px] glass rounded-2xl p-6 
+         opacity-0 invisible group-hover:opacity-100 group-hover:visible 
+         transition-all duration-300">
 
+  <div class="grid grid-cols-3 gap-6 text-sm">
+
+    <!-- ITEM -->
+    <a href="./biblestar/index.html"
+       class="flex items-center gap-3 p-2 rounded-lg hover:bg-white/10 transition">
+      <div class="w-12 h-12 flex items-center justify-center rounded-lg overflow-hidden shrink-0">
+        <img
+          src="https://res.cloudinary.com/dtrqikle5/image/upload/v1767998926/bible_start_reality_show_banner_copy_1_v4jiok.png"
+          alt=""
+          class="w-full h-full object-cover">
+      </div>
+      <span class="leading-tight">Bible Stars Reality Show</span>
+    </a>
+
+    <!-- ITEM -->
+    <a href="./iymf/index.html"
+       class="flex items-center gap-3 p-2 rounded-lg hover:bg-white/10 transition">
+      <div class="w-12 h-12 flex items-center justify-center rounded-lg overflow-hidden shrink-0">
+        <img
+          src="https://res.cloudinary.com/dtrqikle5/image/upload/v1767998911/YOUTH_FESTIVAL_BANNER_copy_1_h7jnxy.png"
+          alt=""
+          class="w-full h-full object-cover">
+      </div>
+      <span class="leading-tight">Ilorin Youth Mega Festival</span>
+    </a>
+
+    <!-- ITEM -->
+    <div class="flex items-center gap-3 p-2">
+      <div class="w-12 h-12 flex items-center justify-center rounded-lg overflow-hidden shrink-0">
+        <img
+          src="https://res.cloudinary.com/dtrqikle5/image/upload/v1767998899/bible_championship_season_2_banner_copy_2_da1lg1.png"
+          alt=""
+          class="w-full h-full object-cover">
+      </div>
+      <span class="leading-tight">Bible Championship Season 2</span>
+    </div>
+
+    <!-- ITEM -->
+    <div class="flex items-center gap-3 p-2">
+      <div class="w-12 h-12 flex items-center justify-center rounded-lg bg-orange-500 shrink-0"></div>
+      <span class="leading-tight">The Noah’s Ark Show</span>
+    </div>
+
+    <!-- ITEM -->
+    <div class="flex items-center gap-3 p-2">
+      <div class="w-12 h-12 flex items-center justify-center rounded-lg bg-orange-500 shrink-0"></div>
+      <span class="leading-tight">The National Bible Cup</span>
+    </div>
+
+    <!-- ITEM -->
+    <div class="flex items-center gap-3 p-2">
+      <div class="w-12 h-12 flex items-center justify-center rounded-lg overflow-hidden shrink-0">
+        <img
+          src="https://res.cloudinary.com/dtrqikle5/image/upload/v1767998884/church_and_you_banner_copy_kflaxp.png"
+          alt=""
+          class="w-full h-full object-cover">
+      </div>
+      <span class="leading-tight">The Church & You Talk Show</span>
+    </div>
+
+  </div>
+</div>
+
+                </div>
                 <a href="./Partnership.html" class="hover:text-orange-400 text-base">Partnership</a>
-                <a href="./About.html" class="text-orange-400 text-base">About Us</a>
-                <a href="#" class="hover:text-orange-400 text-base">Blog</a>
-                <a href="#" class="hover:text-orange-400 text-base">Contact us</a>
+                <a href="./About.html" class="text-orange-400 hover:text-orange-400 text-base">About Us</a>
+                <a href="./blog.html" class="hover:text-orange-400 text-base">Blog</a>
+                <a href="./contact-us.html" class="hover:text-orange-400 text-base">Contact us</a>
             </nav>
 
             <!-- CTA -->
@@ -134,14 +172,13 @@
     </header>
 
     <!-- ================= MOBILE MENU ================= -->
-    <div id="mobileMenu" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden z-50 text-white">
+   <div id="mobileMenu" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden z-50 text-white">
         <div class="absolute right-4 top-4 w-[90%] max-w-sm glass rounded-2xl p-6">
             <!-- Close -->
             <button id="closeMenu" class="absolute top-4 right-4 text-xl">×</button>
 
             <nav class="flex flex-col gap-6 mt-8 text-center">
                 <a href="./index.html">Home</a>
-                <a href="#">Event</a>
 
                 <!-- Mobile Programs -->
                 <button id="mobilePrograms" class="flex justify-center items-center gap-1">
@@ -152,12 +189,12 @@
                 </button>
 
                 <div id="mobileProgramsList" class="hidden flex flex-col gap-3 text-sm">
-                    <span>Bible Stars Reality Show</span>
-                    <span>Ilorin Youth Mega Festival</span>
-                    <span>Bible Championship Season 2</span>
-                    <span>The Noah’s Ark Show</span>
-                    <span>The National Bible Cup</span>
-                    <span>The Church & You Talk Show</span>
+                    <a href="./biblestar/index.html">Bible Stars Reality Show</a>
+                    <a href="./iymf/index.html">Ilorin Youth Mega Festival</a>
+                    <a href="#">Bible Championship Season 2</a>
+                    <a href="#">The Noah’s Ark Show</a>
+                    <a href="#">The National Bible Cup</a>
+                    <a href="#">The Church & You Talk Show</a>
                 </div>
                 <a href="./About.html">About Us</a>
                 <a href="./Partnership.html">Partnership</a>
@@ -470,7 +507,6 @@
     </main>
 
 
-    <!-- ================= JS ================= -->
     <script>
         const openMenu = document.getElementById("openMenu");
         const closeMenu = document.getElementById("closeMenu");
@@ -529,6 +565,8 @@
         // Auto slide
         setInterval(nextSlide, 5000);
     </script>
+
+    
 
 </body>
 
