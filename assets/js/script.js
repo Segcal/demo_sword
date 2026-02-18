@@ -146,7 +146,7 @@ function updateStep() {
 
   prevBtn.style.visibility = currentStep === 0 ? "hidden" : "visible";
 
-  // 🔹 Change button text on last step
+
   nextBtn.textContent =
     currentStep === LAST_STEP_INDEX ? "Submit" : "Next";
 

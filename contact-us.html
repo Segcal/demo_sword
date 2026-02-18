@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <link rel="stylesheet" href="../assets/styles/styles.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+
+    <title>SOWRO TV - Contact-Us</title>
+
+    <style type="text/tailwindcss">
+        @theme {
+          --bg-tran: #ffffff1a;
+          --color-primary: #f0a242;
+        }
+
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+
+        .bg-img-hero{
+            background-image: url("https://res.cloudinary.com/dtrqikle5/image/upload/v1767414079/30764_1_2_zyotaa.png");
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+        }
+
+        .bi {
+            background: linear-gradient(135deg, #0a192f 0%, #1a365d 50%, #2c5282 100%);
+            min-height: 100vh;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        } 
+    </style>
+</head>
+
+
+<body class="bg-[#0f0f0f] text-white pt-28">
+
+    <!-- ================= MARQUEE ================= -->
+    <div class="px-6 fixed top-0 w-full z-50 bg-black/60 backdrop-blur-xl h-14 flex items-center">
+        <marquee behavior="smooth" direction="left" class="w-full">
+            <div class="flex items-center gap-8">
+
+                <!-- Text + Icon -->
+                <div class="flex items-center gap-3">
+                    <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1767317361/streamline_announcement-megaphone-solid_b59alx.png"
+                        class="w-6 h-6" alt="" />
+                    <p class="text-sm whitespace-nowrap">
+                        (i) A New Moment Begins: 100 Friends of the Bible needed. Your Partnership will transform lives
+                        across the Globe.
+                    </p>
+                    <p class="text-sm whitespace-nowrap">
+                        (i) A New Moment Begins: 100 Friends of the Bible needed. Your Partnership will transform lives
+                        across the Globe.
+                    </p>
+                </div>
+
+                <!-- Social Icons -->
+                <div class="flex items-center gap-3">
+                    <a href="#"
+                        class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition">
+                        <i class="fa-brands fa-x-twitter text-black text-sm"></i>
+                    </a>
+
+                    <a href="#"
+                        class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition">
+                        <i class="fa-brands fa-linkedin-in text-blue-600 text-sm"></i>
+                    </a>
+
+                    <a href="#"
+                        class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition">
+                        <i class="fa-brands fa-instagram text-pink-600 text-sm"></i>
+                    </a>
+
+                    <a href="#"
+                        class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition">
+                        <i class="fa-brands fa-facebook-f text-blue-700 text-sm"></i>
+                    </a>
+
+                    <a href="#"
+                        class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition">
+                        <i class="fa-brands fa-tiktok text-black text-sm"></i>
+                    </a>
+
+                    <a href="#"
+                        class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition">
+                        <i class="fa-brands fa-youtube text-red-600 text-sm"></i>
+                    </a>
+                </div>
+
+            </div>
+        </marquee>
+    </div>
+
+
+    <!-- ================= NAVBAR ================= -->
+    <header class="fixed top-14 left-0 w-full z-40">
+        <div
+            class="relative w-full bg-[#1b1b1b]/60 backdrop-blur-xl border-b border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
+            <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+                <a href="./index.html">
+                    <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766409594/sword_TV_logo_y9mnja.png"
+                        width="150" class="rounded-full" />
+                </a>
+
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="./index.html">Home</a>
+                    <a href="./Programs.html">Programmes</a>
+                    <a href="../Partnership.html" class="font-semibold">Partnership</a>
+                    <a href="./blog.html">Blog</a>
+                    <a href="#">Contact us</a>
+                </nav>
+
+                <button
+                    class="open-partner-modal hidden md:block bg-orange-500 text-black font-semibold px-6 py-2 rounded-full">
+                    Partner with Us
+                </button>
+
+                <button id="openMenu" class="md:hidden text-3xl">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= MOBILE MENU ================= -->
+    <div id="mobileMenu"
+        class="hidden fixed inset-0 bg-black/20 backdrop-blur-xl z-50 flex items-center justify-center">
+        <div class="bg-[#1b1b1b] w-72 rounded-xl p-6 relative">
+            <button id="closeMenu" class="absolute top-4 right-4">✕</button>
+
+            <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766409594/sword_TV_logo_y9mnja.png"
+                width="150" class="rounded-full mx-auto mb-6" />
+
+            <div class="flex flex-col space-y-4 text-center">
+                <a href="./index.html">Home</a>
+                <a href="#">Programmes</a>
+                <a href="../Partnership.html" class="font-semibold">Partnership</a>
+                <a href="#">Blog</a>
+                <a href="#">Contact us</a>
+
+                <button class="open-partner-modal bg-orange-400 text-black px-5 py-2 rounded-full font-semibold mt-4">
+                    Partner with Us
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+<!-- contact form -->
+
+<div class="bg-gray-950 text-gray-100 min-h-screen flex flex-col">
+    <!-- Main Content -->
+  <main class="flex-grow flex items-center justify-center py-12 px-6">
+    <div class="w-full max-w-4xl">
+
+      <!-- Header -->
+      <div class="text-center mb-12 py-32">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+          Contact Us
+        </h1>
+        <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto">
+          We're here to help. Reach out to us for any inquiries, support, or collaboration opportunities.
+        </p>
+      </div>
+
+      <!-- Form Card -->
+      <div class="bg-gray-900/70 backdrop-blur-sm border border-gray-800 rounded-2xl shadow-2xl overflow-hidden max-w-3xl mx-auto">
+        <div class="px-6 py-10 md:px-10 md:py-12">
+
+          <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-orange-500">
+            Send Us a Message
+          </h2>
+
+          <form class="space-y-6">
+            <!-- Name & Email -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label for="name" class="block text-sm font-medium text-gray-300 mb-2">
+                  Name<span class="text-orange-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-white placeholder-gray-500 transition"
+                  placeholder="Your name"
+                />
+              </div>
+
+              <div>
+                <label for="email" class="block text-sm font-medium text-gray-300 mb-2">
+                  Email<span class="text-orange-500">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-white placeholder-gray-500 transition"
+                  placeholder="your.email@example.com"
+                />
+              </div>
+            </div>
+
+            <!-- Phone & Subject -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label for="phone" class="block text-sm font-medium text-gray-300 mb-2">
+                  Phone Number
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-white placeholder-gray-500 transition"
+                  placeholder="+123 456 7890"
+                />
+              </div>
+
+              <div>
+                <label for="subject" class="block text-sm font-medium text-gray-300 mb-2">
+                  Subject<span class="text-orange-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  required
+                  class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-white placeholder-gray-500 transition"
+                  placeholder="How can we help you?"
+                />
+              </div>
+            </div>
+
+            <!-- Message -->
+            <div>
+              <label for="message" class="block text-sm font-medium text-gray-300 mb-2">
+                Message<span class="text-orange-500">*</span>
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows="6"
+                required
+                class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent text-white placeholder-gray-500 resize-y transition"
+                placeholder="Write your message here..."
+              ></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="pt-4">
+              <button
+                type="submit"
+                class="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white font-semibold py-4 px-8 rounded-xl shadow-lg transform transition-all duration-300 hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-orange-500/30"
+              >
+                Send Message
+              </button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <section class="py-16 px-6 bg-gradient-to-b from-gray-950 to-gray-900">
+    <div class="max-w-6xl mx-auto">
+
+      <!-- Title -->
+      <div class="text-center mb-12">
+        <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight">
+          Get In Touch
+        </h2>
+        <div class="w-24 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
+      </div>
+
+      <!-- Cards Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+
+        <!-- Email Card -->
+        <div class="group bg-gray-900/70 backdrop-blur-sm border border-gray-800 rounded-2xl p-8 text-center transition-all duration-300 hover:border-blue-600/50 hover:shadow-xl hover:shadow-blue-900/20">
+          <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-900/30 rounded-full mb-6 group-hover:bg-blue-800/40 transition-colors">
+            <span class="text-3xl text-blue-400">✉️</span>
+          </div>
+          <h3 class="text-2xl font-semibold text-white mb-3">
+            Email Us
+          </h3>
+          <p class="text-blue-400 font-medium text-lg mb-2">
+            info@swordtelevision.com
+          </p>
+          <a href="mailto:info@swordtelevision.com" 
+             class="text-gray-400 hover:text-blue-400 transition-colors text-sm">
+            Send an email →
+          </a>
+        </div>
+
+        <!-- WhatsApp Card -->
+        <div class="group bg-gray-900/70 backdrop-blur-sm border border-gray-800 rounded-2xl p-8 text-center transition-all duration-300 hover:border-blue-600/50 hover:shadow-xl hover:shadow-blue-900/20">
+          <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-900/30 rounded-full mb-6 group-hover:bg-blue-800/40 transition-colors">
+            <span class="text-3xl text-blue-400">💬</span> <!-- or use WhatsApp icon font if preferred -->
+          </div>
+          <h3 class="text-2xl font-semibold text-white mb-3">
+            WhatsApp
+          </h3>
+          <p class="text-blue-400 font-medium text-lg mb-2">
+            +2348087863562
+          </p>
+          <a href="https://wa.me/2348087863562" target="_blank" rel="noopener noreferrer"
+             class="text-gray-400 hover:text-blue-400 transition-colors text-sm">
+            Chat on WhatsApp →
+          </a>
+        </div>
+
+        <!-- Phone Card -->
+        <div class="group bg-gray-900/70 backdrop-blur-sm border border-gray-800 rounded-2xl p-8 text-center transition-all duration-300 hover:border-blue-600/50 hover:shadow-xl hover:shadow-blue-900/20">
+          <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-900/30 rounded-full mb-6 group-hover:bg-blue-800/40 transition-colors">
+            <span class="text-3xl text-blue-400">📞</span>
+          </div>
+          <h3 class="text-2xl font-semibold text-white mb-3">
+            Phone
+          </h3>
+          <p class="text-blue-400 font-medium text-lg mb-1">
+            +2348087863562
+          </p>
+          <p class="text-blue-400 font-medium text-lg">
+            +2349060672683
+          </p>
+          <a href="tel:+2348087863562" 
+             class="text-gray-400 hover:text-blue-400 transition-colors text-sm mt-2 inline-block">
+            Call now →
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+</div>
+
+   
+    <!-- footer main section -->
+    <section class="w-full py-16">
+        <div class="flex flex-col items-center justify-center p-4"> <!-- Newsletter Card -->
+            <div class="bg-white rounded-3xl shadow-2xl max-w-4xl w-full p-12 mb-8">
+                <div class="grid md:grid-cols-2 gap-8 items-center"> <!-- Left Column -->
+                    <div>
+                        <h2 class="text-4xl font-bold text-gray-900 mb-4"> Stay Connected! </h2>
+                        <p class="text-gray-600 text-sm leading-relaxed"> Receive updates on upcoming events, new
+                            programmes, auditions, competitions, and ministry opportunities. </p>
+                    </div> <!-- Right Column -->
+                    <div>
+                        <p class="text-sm text-gray-900 mb-4"> Subscribe and be the first to know — and never miss a
+                            moment of impact. </p>
+                        <div class="flex gap-2 flex-col md:flex-row"> <input type="email"
+                                placeholder="Enter your email address"
+                                class="flex-1 px-4 py-3 rounded-full bg-gray-100 text-black text-sm focus:outline-none focus:ring-2 focus:ring-orange-400" />
+                            <button
+                                class="px-8 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-full font-medium text-sm transition-colors duration-300">
+                                Subscribe </button> </div>
+                    </div>
+                </div>
+            </div> <!-- Footer -->
+            <footer class="w-full max-w-6xl">
+                <div class="grid md:grid-cols-2 gap-12 mb-8"> <!-- Left Section -->
+                    <div> <a href="./index.html" class="text-orange-500 text-xl font-bold mb-6"> <img
+                                src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766409594/sword_TV_logo_y9mnja.png"
+                                width="150" class="rounded-full" /> </a>
+                        <div class="space-y-3 text-gray-400 text-sm pl-3 mt-3">
+                            <div class="flex items-center gap-2"> <i class="far fa-envelope"></i>
+                                <span>info@swordtelevision.com</span> </div>
+                            <div class="flex items-center gap-2"> <i class="fas fa-phone"></i> <span>+2348087863562 |
+                                    +2347048811294 | +2349060672683</span> </div>
+                            <div class="flex items-center gap-2"> <i class="fas fa-map-marker-alt"></i> <span>Suite 8,
+                                    Dabic Shopping Complex, Behind M & M Super Market Ilorin, Kwara State,
+                                    Nigeria.</span> </div>
+                        </div> <!-- Social Icons -->
+                        <div class="flex gap-4 mt-6"> <a href="#"
+                                class="w-8 h-8 rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                                <i class="fa-brands fa-facebook text-lg text-gray-850"></i> </a> <a href="#"
+                                class="w-8 h-8 rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                                <i class="fa-brands fa-youtube text-lg text-gray-8050"></i> </a> <a href="#"
+                                class="w-8 h-8 rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                                <i class="fa-brands fa-linkedin-in text-lg text-gray-50"></i> </a> <a href="#"
+                                class="w-8 h-8 rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                                <i class="fa-brands fa-x-twitter text-lg text-gray-50"></i> </a> <a href="#"
+                                class="w-8 h-8 rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                                <i class="fa-brands fa-tiktok text-lg text-gray-80050"></i> </a> <a href="#"
+                                class="w-8 h-8 rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                                <i class="fa-brands fa-instagram text-lg text-gray-50"></i> </a> </div>
+                    </div> <!-- Right Section - Navigation -->
+                    <div class="grid grid-cols-2 gap-8">
+                        <div>
+                            <ul class="space-y-3 text-gray-300 text-sm">
+                                <li> <a href="#" class="hover:text-orange-500 transition-colors duration-300">Home</a>
+                                </li>
+                                <li> <a href="#" class="hover:text-orange-500 transition-colors duration-300">About
+                                        Us</a> </li>
+                                <li> <a href="#" class="hover:text-orange-500 transition-colors duration-300">Events</a>
+                                </li>
+                                <li> <a href="#"
+                                        class="hover:text-orange-500 transition-colors duration-300">Gallery</a> </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul class="space-y-3 text-gray-300 text-sm">
+                                <li> <a href="#" class="hover:text-orange-500 transition-colors duration-300">Contact
+                                        Us</a> </li>
+                                <li> <a href="#" class="hover:text-orange-500 transition-colors duration-300">Partner
+                                        With Us</a> </li>
+                                <li> <a href="#" class="hover:text-orange-500 transition-colors duration-300">Donate</a>
+                                </li>
+                                <li> <a href="#" class="hover:text-orange-500 transition-colors duration-300">Blog</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div> <!-- Copyright -->
+                <div class="border-t border-gray-800 pt-6 text-center text-gray-500 text-sm">
+                    <p>Sword Television © 2025 | All rights reserved.</p>
+                </div>
+            </footer>
+        </div>
+    </section>
+
+    <script src="../assets/js/script.js"></script>
+   
+</body>
+
+</html>
