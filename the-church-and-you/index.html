@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <link rel="stylesheet" href="./assets/styles/styles.css" />
+    <link rel="stylesheet" href="./assets/styles/blog.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+
+    <title>SOWRO TV - The Church and You</title>
+
+    <style type="text/tailwindcss">
+        @theme {
+          --bg-tran: #ffffff1a;
+          --color-primary: #f0a242;
+        }
+
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+
+        .bg-img-hero{
+            background-image: url("https://res.cloudinary.com/dtrqikle5/image/upload/v1766799314/6479557_26565_2_1_qjxypt.png");
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+        }
+        
+  
+    </style>
+</head>
+
+
+<body class="bg-[#0f0f0f] text-white pt-28">
+
+    <!-- ================= MARQUEE ================= -->
+    <div class="px-6 fixed top-0 w-full z-50 bg-black/60 backdrop-blur-xl h-14 flex items-center">
+        <marquee behavior="smooth" direction="left" class="w-full">
+            <div class="flex items-center gap-8">
+
+                <!-- Text + Icon -->
+                <div class="flex items-center gap-3">
+                    <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1767317361/streamline_announcement-megaphone-solid_b59alx.png"
+                        class="w-6 h-6" alt="" />
+                    <p class="text-sm whitespace-nowrap">
+                        (i) A New Moment Begins: 100 Friends of the Bible needed. Your Partnership will transform lives
+                        across the Globe.
+                    </p>
+                    <p class="text-sm whitespace-nowrap">
+                        (i) A New Moment Begins: 100 Friends of the Bible needed. Your Partnership will transform lives
+                        across the Globe.
+                    </p>
+                </div>
+
+                <!-- Social Icons -->
+                <div class="flex items-center gap-3">
+                    <a href="#"
+                        class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition">
+                        <i class="fa-brands fa-x-twitter text-black text-sm"></i>
+                    </a>
+
+                    <a href="#"
+                        class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition">
+                        <i class="fa-brands fa-linkedin-in text-blue-600 text-sm"></i>
+                    </a>
+
+                    <a href="#"
+                        class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition">
+                        <i class="fa-brands fa-instagram text-pink-600 text-sm"></i>
+                    </a>
+
+                    <a href="#"
+                        class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition">
+                        <i class="fa-brands fa-facebook-f text-blue-700 text-sm"></i>
+                    </a>
+
+                    <a href="#"
+                        class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition">
+                        <i class="fa-brands fa-tiktok text-black text-sm"></i>
+                    </a>
+
+                    <a href="#"
+                        class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition">
+                        <i class="fa-brands fa-youtube text-red-600 text-sm"></i>
+                    </a>
+                </div>
+
+            </div>
+        </marquee>
+    </div>
+
+
+    <!-- ================= NAVBAR ================= -->
+    <header class="fixed top-14 left-0 w-full z-40">
+        <div
+            class="relative w-full bg-[#1b1b1b]/60 backdrop-blur-xl border-b border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
+            <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+                <a href="./index.html">
+                    <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766409594/sword_TV_logo_y9mnja.png"
+                        width="150" class="rounded-full" />
+                </a>
+
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="./index.html">Home</a>
+                    <a href="./Programs.html">Programmes</a>
+                    <a href="../Partnership.html" class="font-semibold">Partnership</a>
+                    <a href="./blog.html" class="text-orange-400">Blog</a>
+                    <a href="./contact-us.html">Contact us</a>
+                </nav>
+
+                <button
+                    class="open-partner-modal hidden md:block bg-orange-500 text-black font-semibold px-6 py-2 rounded-full">
+                    Partner with Us
+                </button>
+
+                <button id="openMenu" class="md:hidden text-3xl">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= MOBILE MENU ================= -->
+    <div id="mobileMenu"
+        class="hidden fixed inset-0 bg-black/20 backdrop-blur-xl z-50 flex items-center justify-center">
+        <div class="bg-[#1b1b1b] w-72 rounded-xl p-6 relative">
+            <button id="closeMenu" class="absolute top-4 right-4">✕</button>
+
+            <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766409594/sword_TV_logo_y9mnja.png"
+                width="150" class="rounded-full mx-auto mb-6" />
+
+            <div class="flex flex-col space-y-4 text-center">
+                <a href="./index.html">Home</a>
+                <a href="./Programs.html">Programmes</a>
+                <a href="../Partnership.html">Partnership</a>
+                <a href="./blog.html" class="text-orange-400">Blog</a>
+                <a href="./contact-us.html">Contact us</a>
+
+                <button class="open-partner-modal bg-orange-400 text-black px-5 py-2 rounded-full font-semibold mt-4">
+                    Partner with Us
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- blog content -->
+
+
+    <section class="">
+        <div class="lg:px-56 md:px-32 px-10 py-24">
+            <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1771427704/ChatGPT_Image_Jan_11_2026_05_59_14_PM_1_1_efa3dd.png"
+                alt="">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 py-10 w-full">
+            <div class="grid lg:grid-cols-3 gap-10 items-start">
+                <!-- LEFT SIDE -->
+                <div class="lg:col-span-2">
+                    <!-- Badge -->
+                    <div class="flex items-center gap-3 mb-6">
+                        <span
+                            class="bg-orange-500/20 border border-orange-400 text-orange-300 px-4 py-2 rounded-full text-sm flex items-center gap-2">
+                            <i class="fa-regular fa-calendar"></i>
+                            -
+                        </span>
+                    </div>
+
+                    <!-- Title -->
+                    <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+                        The Church and You
+                    </h1>
+
+                    <!-- Tag -->
+                    <span class="border border-orange-400 text-white px-4 py-1 rounded-full text-sm">
+                        Overview
+                    </span>
+
+                    <!-- Description -->
+                    <p class="text-gray-300 mt-6 text-xl max-w-xl">
+                        Encourage understanding of church dynamics. Educate members on
+                        realistic expectations of pastors. Promote transparency,
+                        reflection, and practical advice.
+                    </p>
+
+                    <!-- About -->
+                    <h2 class="text-3xl font-bold text-white mt-10 mb-4">
+                        About the Show
+                    </h2>
+
+                    <p class="text-gray-300 text-xl mb-4">
+                        The Church and You is a premium podcast-style talk show with an audience, offering a safe,
+                        balanced, and interactive platform for Christians to discuss church experiences globally.
+                        The show allows participants to
+                    </p>
+
+                    <ul class="text-gray-300 space-y-2 text-lg list-disc list-inside mb-8">
+                        <li> Share real-life experiences, frustrations, and insights regarding their church</li>
+
+                        <li>
+                            Offer advice to fellow church members</li>
+
+                        <li> Provide constructive feedback to pastors and church leadership</li>
+                    </ul>
+
+                    <!-- Button -->
+                    <button
+                        class="mt-8 bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-full font-semibold flex items-center gap-3 transition">
+                        Share Your Experience
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- RIGHT SIDE SHARE -->
+                <div class="lg:text-right">
+                    <h3 class="text-white text-lg font-semibold mb-4">Share Show</h3>
+
+                    <div class="flex lg:justify-end gap-4">
+                        <button class="bg-white/10 hover:bg-orange-500 w-10 h-10 rounded-full text-white transition">
+                            <i class="fab fa-tiktok"></i>
+                        </button>
+
+                        <button class="bg-white/10 hover:bg-orange-500 w-10 h-10 rounded-full text-white transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </button>
+
+                        <button class="bg-white/10 hover:bg-orange-500 w-10 h-10 rounded-full text-white transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </button>
+
+                        <button class="bg-white/10 hover:bg-orange-500 w-10 h-10 rounded-full text-white transition">
+                            <i class="fab fa-x-twitter"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--  -->
+
+        
+    </section>
+
+      <section class="w-full py-16 bg-section-overlay glass-container">
+    <div class=" mx-auto px-4 text-center">
+
+    
+      <!-- Cards Container -->
+      <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+
+        <!-- Card 1 -->
+        <div
+          class="w-64 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-6 cursor-pointer hover:scale-105 transition duration-300">
+          <div class="flex justify-center mb-4">
+            <img src="../assets/images/img-3.png" alt="Organisations" class="w-52 h-20">
+          </div>
+          <p class="text-white text-lg font-medium">Organisations</p>
+        </div>
+
+        <!-- Card 2 (Active) -->
+        <div
+          class="w-64 bg-white/10 backdrop-blur text-white rounded-xl p-6 shadow-xl cursor-pointer hover:scale-105 transition duration-300">
+          <div class="flex justify-center mb-4">
+            <img src="../assets/images/img-1.png" alt="Individuals" class="w-52 h-20">
+          </div>
+          <p class="text-lg font-medium">Individuals</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div
+          class="w-64 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-6 cursor-pointer hover:scale-105 transition duration-300">
+          <div class="flex justify-center mb-4">
+            <img src="../assets/images/img-2.png" alt="Organisations" class="w-52 h-20">
+          </div>
+          <p class="text-white text-lg font-medium">Organisations</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+    <!-- footer main section -->
+    <section class="w-full py-16">
+        <div class="flex flex-col items-center justify-center p-4"> <!-- Newsletter Card -->
+            <div class="bg-white rounded-3xl shadow-2xl max-w-4xl w-full p-12 mb-8">
+                <div class="grid md:grid-cols-2 gap-8 items-center"> <!-- Left Column -->
+                    <div>
+                        <h2 class="text-4xl font-bold text-gray-900 mb-4"> Stay Connected! </h2>
+                        <p class="text-gray-600 text-sm leading-relaxed"> Receive updates on upcoming events, new
+                            programmes, auditions, competitions, and ministry opportunities. </p>
+                    </div> <!-- Right Column -->
+                    <div>
+                        <p class="text-sm text-gray-900 mb-4"> Subscribe and be the first to know — and never miss a
+                            moment of impact. </p>
+                        <div class="flex gap-2 flex-col md:flex-row"> <input type="email"
+                                placeholder="Enter your email address"
+                                class="flex-1 px-4 py-3 rounded-full bg-gray-100 text-black text-sm focus:outline-none focus:ring-2 focus:ring-orange-400" />
+                            <button
+                                class="px-8 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-full font-medium text-sm transition-colors duration-300">
+                                Subscribe </button>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- Footer -->
+            <footer class="w-full max-w-6xl">
+                <div class="grid md:grid-cols-2 gap-12 mb-8"> <!-- Left Section -->
+                    <div> <a href="./index.html" class="text-orange-500 text-xl font-bold mb-6"> <img
+                                src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766409594/sword_TV_logo_y9mnja.png"
+                                width="150" class="rounded-full" /> </a>
+                        <div class="space-y-3 text-gray-400 text-sm pl-3 mt-3">
+                            <div class="flex items-center gap-2"> <i class="far fa-envelope"></i>
+                                <span>info@swordtelevision.com</span>
+                            </div>
+                            <div class="flex items-center gap-2"> <i class="fas fa-phone"></i> <span>+2348087863562 |
+                                    +2347048811294 | +2349060672683</span> </div>
+                            <div class="flex items-center gap-2"> <i class="fas fa-map-marker-alt"></i> <span>Suite 8,
+                                    Dabic Shopping Complex, Behind M & M Super Market Ilorin, Kwara State,
+                                    Nigeria.</span> </div>
+                        </div> <!-- Social Icons -->
+                        <div class="flex gap-4 mt-6"> <a href="#"
+                                class="w-8 h-8 rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                                <i class="fa-brands fa-facebook text-lg text-gray-850"></i> </a> <a href="#"
+                                class="w-8 h-8 rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                                <i class="fa-brands fa-youtube text-lg text-gray-8050"></i> </a> <a href="#"
+                                class="w-8 h-8 rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                                <i class="fa-brands fa-linkedin-in text-lg text-gray-50"></i> </a> <a href="#"
+                                class="w-8 h-8 rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                                <i class="fa-brands fa-x-twitter text-lg text-gray-50"></i> </a> <a href="#"
+                                class="w-8 h-8 rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                                <i class="fa-brands fa-tiktok text-lg text-gray-80050"></i> </a> <a href="#"
+                                class="w-8 h-8 rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                                <i class="fa-brands fa-instagram text-lg text-gray-50"></i> </a> </div>
+                    </div> <!-- Right Section - Navigation -->
+                    <div class="grid grid-cols-2 gap-8">
+                        <div>
+                            <ul class="space-y-3 text-gray-300 text-sm">
+                                <li> <a href="#" class="hover:text-orange-500 transition-colors duration-300">Home</a>
+                                </li>
+                                <li> <a href="#" class="hover:text-orange-500 transition-colors duration-300">About
+                                        Us</a> </li>
+                                <li> <a href="#" class="hover:text-orange-500 transition-colors duration-300">Events</a>
+                                </li>
+                                <li> <a href="#"
+                                        class="hover:text-orange-500 transition-colors duration-300">Gallery</a> </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul class="space-y-3 text-gray-300 text-sm">
+                                <li> <a href="#" class="hover:text-orange-500 transition-colors duration-300">Contact
+                                        Us</a> </li>
+                                <li> <a href="#" class="hover:text-orange-500 transition-colors duration-300">Partner
+                                        With Us</a> </li>
+                                <li> <a href="#" class="hover:text-orange-500 transition-colors duration-300">Donate</a>
+                                </li>
+                                <li> <a href="#" class="hover:text-orange-500 transition-colors duration-300">Blog</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div> <!-- Copyright -->
+                <div class="border-t border-gray-800 pt-6 text-center text-gray-500 text-sm">
+                    <p>Sword Television © 2025 | All rights reserved.</p>
+                </div>
+            </footer>
+        </div>
+    </section>
+
+    <script src="../assets/js/script.js"></script>
+
+
+</body>
+
+</html>
