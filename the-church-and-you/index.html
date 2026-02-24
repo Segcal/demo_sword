@@ -754,6 +754,429 @@
         </div>
     </section>
 
+      <!-- PARTNER MODAL -->
+  <div id="partnerModal" class="fixed inset-0 z-[999] hidden
+         flex items-center justify-center
+         bg-black/60 backdrop-blur-lg
+         px-4 py-6 overflow-y-auto">
+
+    <!-- MODAL CARD -->
+    <div class="bg-white w-full max-w-3xl
+           rounded-2xl p-6 sm:p-8
+           shadow-2xl relative
+           my-auto">
+
+      <!-- CLOSE BUTTON -->
+      <button id="closePartnerModal" class="absolute top-4 right-4
+             text-gray-400 hover:text-black
+             text-xl">
+        ✕
+      </button>
+
+      <!-- RETURN BUTTON -->
+      <button class="text-orange-500 text-xs sm:text-sm
+             border border-orange-400
+             px-4 py-1.5 rounded-full mb-6">
+        Return to Partnership Page
+      </button>
+
+      <!-- STEP INDICATOR -->
+      <p class="text-xs text-gray-500 mb-2">
+        Section <span id="stepNumber">1</span> of 6
+      </p>
+
+      <!-- PROGRESS BAR -->
+      <div class="w-full h-2 bg-gray-200 rounded-full mb-8">
+        <div id="progressBar" class="h-2 bg-orange-400 rounded-full
+               transition-all duration-300" style="width:16.66%">
+        </div>
+      </div>
+
+      <!-- STEPS CONTAINER -->
+      <div class="space-y-6 max-h-[60vh] overflow-y-auto pr-1">
+
+        <!-- STEP 1 -->
+         <div class="step">
+          <h2 class="text-orange-500 text-xl font-semibold mb-2">
+            Select Programme
+          </h2>
+
+          <p class="text-sm text-gray-600 mb-5">
+            Which of the below programme do you want to support?
+          </p>
+
+          <!-- PROGRAMME OPTIONS -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+            <!-- OPTION -->
+            <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition">
+              <input type="radio" name="programme" class="mt-1">
+              <span class="font-medium text-sm text-gray-900">
+                Bible Stars Reality Show
+              </span>
+            </label>
+
+            <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition">
+              <input type="radio" name="programme" class="mt-1">
+              <span class="font-medium text-sm text-gray-900">
+                Ilorin Youth Mega Festival
+              </span>
+            </label>
+
+            <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition">
+              <input type="radio" name="programme" class="mt-1">
+              <span class="font-medium text-sm text-gray-900">
+                Bible Championship Season 2
+              </span>
+            </label>
+
+            <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition">
+              <input type="radio" name="programme" class="mt-1">
+              <span class="font-medium text-sm text-gray-900">
+                The Noah’s Ark Show
+              </span>
+            </label>
+
+            <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition">
+              <input type="radio" name="programme" class="mt-1">
+              <span class="font-medium text-sm text-gray-900">
+                The National Bible Cup
+              </span>
+            </label>
+
+            <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition">
+              <input type="radio" name="programme" class="mt-1">
+              <span class="font-medium text-sm text-gray-900">
+                The Church & You Talk Show
+              </span>
+            </label>
+
+            <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition sm:col-span-2">
+              <input type="radio" name="programme" class="mt-1">
+              <span class="font-medium text-sm text-gray-900">
+                Marriage Realities Show
+              </span>
+            </label>
+
+          </div>
+        </div>
+         <!--  -->
+       
+
+        <!-- PLACEHOLDER STEPS -->
+        <!-- STEP 2 -->
+        
+ <div class="step hidden">
+          <h2 class="text-orange-500 text-xl font-semibold mb-2">
+            Select Category
+          </h2>
+
+          <p class="text-sm text-gray-600 mb-4">
+            Which of the below categories do you want to donate for?
+          </p>
+
+          <!-- OPTION -->
+          <label class="block border border-orange-300 rounded-xl
+                 p-4 sm:p-5 mb-3
+                 flex gap-3 items-start cursor-pointer">
+            <input type="radio" name="category" class="mt-1">
+            <div>
+              <span class="font-medium">Major Weight</span><br>
+              <span class="text-sm text-gray-600">
+                ₦50,000,000 and above
+              </span>
+            </div>
+          </label>
+
+          <!-- OPTION -->
+          <label class="block border border-orange-300 rounded-xl
+                 p-4 sm:p-5 mb-3
+                 flex gap-3 items-start cursor-pointer">
+            <input type="radio" name="category" class="mt-1">
+            <div>
+              <span class="font-medium">Medium Weight</span><br>
+              <span class="text-sm text-gray-600">
+                ₦20,000,000 to ₦50,000,000
+              </span>
+            </div>
+          </label>
+
+          <!-- OPTION -->
+          <label class="block border border-orange-300 rounded-xl
+                 p-4 sm:p-5
+                 flex gap-3 items-start cursor-pointer">
+            <input type="radio" name="category" class="mt-1">
+            <div>
+              <span class="font-medium">Light Weight</span><br>
+              <span class="text-sm text-gray-600">
+                ₦20,000,000 and below
+              </span>
+            </div>
+          </label>
+        </div>
+        <!-- STEP 3 -->
+
+        <div class="step hidden" id="step3">
+          <h2 class="text-orange-500 text-xl font-semibold mb-2">
+            Fill form
+          </h2>
+
+          <p class="text-sm text-gray-800 mb-6">
+            Kindly fill the below form to proceed with your donation.
+          </p>
+
+          <div class="space-y-5">
+
+            <div>
+              <label class="block text-gray-700 text-sm font-medium mb-1">Full name</label>
+              <input id="fullName" type="text" placeholder="Enter your full name"
+                class="w-full rounded border border-gray-400 px-4 py-3" />
+            </div>
+
+            <div>
+              <label class="block text-gray-700 text-sm font-medium mb-1">Email Address</label>
+              <input id="email" type="email" placeholder="Enter your email address"
+                class="w-full rounded border border-gray-400 px-4 py-3" />
+            </div>
+
+            <div>
+              <label class="block text-gray-700 text-sm font-medium mb-1">Phone Number</label>
+              <input id="phone" type="tel" placeholder="Enter your phone number"
+                class="w-full rounded border border-gray-400 px-4 py-3" />
+            </div>
+
+            <div>
+              <label class="block text-gray-700 text-sm font-medium mb-1">
+                How much do you wish to donate?
+              </label>
+              <input id="amount" type="number" placeholder="0"
+                class="w-full rounded border border-gray-400 px-4 py-3" />
+            </div>
+
+          </div>
+        </div>
+
+        <!-- step 4 -->
+        <div class="step hidden">
+          <h2 class="text-orange-500 text-xl font-semibold mb-2">
+            Payment Method
+          </h2>
+
+          <p class="text-sm text-gray-600 mb-5">
+            Which payment method would you prefer to use?
+          </p>
+
+          <!-- PROGRAMME OPTIONS -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+            <!-- OPTION -->
+            <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition">
+              <input type="radio" name="programme" class="mt-1">
+              <span class="font-medium text-sm text-gray-900">
+                Online Payment
+              </span>
+            </label>
+
+            <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition">
+              <input type="radio" name="programme" class="mt-1">
+              <span class="font-medium text-sm text-gray-900">
+                Offline Payment
+              </span>
+            </label>
+
+
+
+          </div>
+        </div>
+        <!-- STEP 5 -->
+        <div class="step hidden">
+          <h2 class="text-orange-500 text-xl font-semibold mb-6">
+            Complete Your Offline Payment
+          </h2>
+
+          <!-- Amount Card -->
+          <div class="bg-orange-50 rounded-2xl p-5 sm:p-6 mb-6 shadow-sm">
+            <h3 class="font-medium text-gray-900 mb-2">
+              Amount You Want To Donate
+            </h3>
+
+            <p class="text-sm text-gray-600 mb-1">
+              Transferable amount
+            </p>
+
+            <p class="text-xl font-semibold text-gray-900">
+              ₦50,000,000
+            </p>
+          </div>
+
+          <!-- Account Details Card -->
+          <div class="bg-orange-50 rounded-2xl p-5 sm:p-6 shadow-sm">
+            <h3 class="font-medium text-gray-900 mb-4">
+              Account Details
+            </h3>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+              <!-- Bank -->
+              <div>
+                <p class="text-sm text-gray-600 mb-1">Bank:</p>
+                <div class="flex items-center gap-2">
+                  <span class="font-medium text-gray-900">First Bank</span>
+                  <button class="text-gray-500 hover:text-gray-800">
+                    📋
+                  </button>
+                </div>
+              </div>
+
+              <!-- Account Number -->
+              <div>
+                <p class="text-sm text-gray-600 mb-1">Account Number:</p>
+                <div class="flex items-center gap-2">
+                  <span class="font-medium text-gray-900">2096184982</span>
+                  <button class="text-gray-500 hover:text-gray-800">
+                    📋
+                  </button>
+                </div>
+              </div>
+
+              <!-- Account Name -->
+              <div>
+                <p class="text-sm text-gray-600 mb-1">Account Name:</p>
+                <div class="flex items-center gap-2">
+                  <span class="font-medium text-gray-900">
+                    Sword Television Ltd
+                  </span>
+                  <button class="text-gray-500 hover:text-gray-800">
+                    📋
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ACTION BUTTONS -->
+          <div class="flex flex-col sm:flex-row justify-between mt-10">
+
+            <button id="paymentConfirmed" class="w-full sm:w-auto bg-orange-500 text-white
+             px-6 py-3 rounded-full font-medium">
+              I Have Made Payment
+            </button>
+
+            <button class="w-full sm:w-auto border border-orange-400
+             text-orange-500 px-6 py-3 rounded-full font-medium">
+              Join Friends of the Bible Forum
+            </button>
+
+          </div>
+        </div>
+
+        <div class="step hidden">
+          <h2 class="text-orange-500 text-xl font-semibold mb-6">
+            Which Of Our Forum Are You Interested In?
+          </h2>
+
+          <div class="space-y-4">
+
+            <label class="block border border-orange-300 rounded-xl
+           p-4 sm:p-5
+           cursor-pointer
+           transition
+           hover:bg-orange-50
+           has-[:checked]:border-orange-500
+           has-[:checked]:bg-orange-100">
+
+              <div class="flex items-center gap-3">
+                <input type="radio" name="forum" class="accent-orange-500">
+                <span class="font-medium text-gray-900">
+                  Friends of the Bible International Meetings
+                </span>
+              </div>
+            </label>
+
+            <label class="block border border-orange-300 rounded-xl
+           p-4 sm:p-5
+           cursor-pointer
+           transition
+           hover:bg-orange-50
+           has-[:checked]:border-orange-500
+           has-[:checked]:bg-orange-100">
+
+              <div class="flex items-center gap-3">
+                <input type="radio" name="forum" class="accent-orange-500">
+                <span class="font-medium text-gray-900">
+                  Consultation Session
+                </span>
+              </div>
+            </label>
+
+            <label class="block border border-orange-300 rounded-xl
+           p-4 sm:p-5
+           cursor-pointer
+           transition
+           hover:bg-orange-50
+           has-[:checked]:border-orange-500
+           has-[:checked]:bg-orange-100">
+
+              <div class="flex items-center gap-3">
+                <input type="radio" name="forum" class="accent-orange-500">
+                <span class="font-medium text-gray-900">
+                  Prayer Session
+                </span>
+              </div>
+            </label>
+
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+      <!-- FOOTER BUTTONS -->
+      <div class="flex flex-col sm:flex-row
+             gap-4 sm:justify-between
+             items-center mt-10">
+
+        <button id="prevStep" class="w-full sm:w-auto
+               border border-orange-400
+               text-orange-500
+               px-6 py-3 rounded-full">
+          Previous
+        </button>
+
+        <button id="nextStep" class="w-full sm:w-auto
+               bg-orange-400 text-white
+               px-8 py-3 rounded-full
+               disabled:opacity-40" disabled>
+          Next
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+
+
     <script src="../assets/js/script.js"></script>
     <script src="./assets/script.js"></script>
 
