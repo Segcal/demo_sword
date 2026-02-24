@@ -8,6 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <link rel="stylesheet" href="./assets/styles/styles.css" />
+    <link rel="stylesheet" href="./assets/styles.css">
     <link rel="stylesheet" href="./assets/styles/blog.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
@@ -110,11 +111,11 @@
                 </a>
 
                 <nav class="hidden md:flex items-center space-x-8">
-                    <a href="./index.html">Home</a>
-                    <a href="./Programs.html">Programmes</a>
+                    <a href="../index.html">Home</a>
+                    <a href="../Programs.html">Programmes</a>
                     <a href="../Partnership.html" class="font-semibold">Partnership</a>
-                    <a href="./blog.html" class="text-orange-400">Blog</a>
-                    <a href="./contact-us.html">Contact us</a>
+                    <a href="../blog.html" class="text-orange-400">Blog</a>
+                    <a href="../contact-us.html">Contact us</a>
                 </nav>
 
                 <button
@@ -137,11 +138,11 @@
                 width="150" class="rounded-full mx-auto mb-6" />
 
             <div class="flex flex-col space-y-4 text-center">
-                <a href="./index.html">Home</a>
-                <a href="./Programs.html">Programmes</a>
+                <a href="../index.html">Home</a>
+                <a href="../Programs.html">Programmes</a>
                 <a href="../Partnership.html">Partnership</a>
-                <a href="./blog.html" class="text-orange-400">Blog</a>
-                <a href="./contact-us.html">Contact us</a>
+                <a href="../blog.html" class="text-orange-400">Blog</a>
+                <a href="../contact-us.html">Contact us</a>
 
                 <button class="open-partner-modal bg-orange-400 text-black px-5 py-2 rounded-full font-semibold mt-4">
                     Partner with Us
@@ -248,44 +249,424 @@
         
     </section>
 
-      <section class="w-full py-16 bg-section-overlay glass-container">
-    <div class=" mx-auto px-4 text-center">
+<section class="w-full py-16 bg-section-overlay glass-container">
+  <div class="max-w-6xl mx-auto px-4 text-center">
 
-    
-      <!-- Cards Container -->
-      <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+    <!-- Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-        <!-- Card 1 -->
-        <div
-          class="w-64 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-6 cursor-pointer hover:scale-105 transition duration-300">
-          <div class="flex justify-center mb-4">
-            <img src="../assets/images/img-3.png" alt="Organisations" class="w-52 h-20">
-          </div>
-          <p class="text-white text-lg font-medium">Organisations</p>
+      <!-- Card 1 -->
+      <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:scale-105 transition duration-300">
+        <div class="flex justify-center mb-4">
+          <img src="../assets/images/img-1.png" class="w-40 h-20 object-contain">
         </div>
-
-        <!-- Card 2 (Active) -->
-        <div
-          class="w-64 bg-white/10 backdrop-blur text-white rounded-xl p-6 shadow-xl cursor-pointer hover:scale-105 transition duration-300">
-          <div class="flex justify-center mb-4">
-            <img src="../assets/images/img-1.png" alt="Individuals" class="w-52 h-20">
-          </div>
-          <p class="text-lg font-medium">Individuals</p>
-        </div>
-
-        <!-- Card 3 -->
-        <div
-          class="w-64 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-6 cursor-pointer hover:scale-105 transition duration-300">
-          <div class="flex justify-center mb-4">
-            <img src="../assets/images/img-2.png" alt="Organisations" class="w-52 h-20">
-          </div>
-          <p class="text-white text-lg font-medium">Organisations</p>
-        </div>
-
+        <h3 class="text-white font-semibold text-lg mb-2">
+          Audience-Based Podcast
+        </h3>
+        <p class="text-gray-300 text-sm">
+          Live and virtual participants.
+        </p>
       </div>
+
+      <!-- Card 2 -->
+      <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:scale-105 transition duration-300">
+        <div class="flex justify-center mb-4">
+          <img src="../assets/images/img-1.png" class="w-40 h-20 object-contain">
+        </div>
+        <h3 class="text-white font-semibold text-lg mb-2">
+          Question & Answer Sessions
+        </h3>
+        <p class="text-gray-300 text-sm">
+          Viewers submit questions or concerns before or during the show.
+        </p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:scale-105 transition duration-300">
+        <div class="flex justify-center mb-4">
+          <img src="../assets/images/img-1.png" class="w-40 h-20 object-contain">
+        </div>
+        <h3 class="text-white font-semibold text-lg mb-2">
+          Experience Sharing
+        </h3>
+        <p class="text-gray-300 text-sm">
+          Users share stories, bitter experiences, and positive insights.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Bottom row centered -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 justify-center mt-6 md:px-40">
+
+      <!-- Card 4 -->
+      <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:scale-105 transition duration-300">
+        <div class="flex justify-center mb-4">
+          <img src="../assets/images/img-1.png" class="w-40 h-20 object-contain">
+        </div>
+        <h3 class="text-white font-semibold text-lg mb-2">
+          Evidence Submission
+        </h3>
+        <p class="text-gray-300 text-sm">
+          Pictures, documents, or short videos as evidence of personal experiences.
+        </p>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:scale-105 transition duration-300">
+        <div class="flex justify-center mb-4">
+          <img src="../assets/images/img-1.png" class="w-40 h-20 object-contain">
+        </div>
+        <h3 class="text-white font-semibold text-lg mb-2">
+          Expert Guidance
+        </h3>
+        <p class="text-gray-300 text-sm">
+          Pastoral or leadership advice integrated into responses.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+  <!-- ======== WHY PARTNER WITH US ======== -->
+  <section class="pb-20 section-overlay glass-container">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-20 px-6 items-center">
+
+      <!-- Image -->
+      <div>
+        <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1771852719/IMG-20260107-WA0082_qacmwu.png"
+          class="rounded-3xl h-auto w-full" alt="Image" />
+      </div>
+
+      <!-- Text -->
+      <div>
+        <h2 class="text-3xl capitalize font-semibold text-orange-400">Why the church and you?</h2>
+
+        
+        <!-- Benefit List -->
+        <div class="mt-6 space-y-4">
+          <div class=" px-4 py-3 flex items-center gap-3 bg-white/10 backdrop-blur-md rounded-full shadow-lg">
+            <span class="text-orange-400 text-xl">
+              <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1764997136/Group_1618872793_vsemir.png"
+                alt="" width="15">
+            </span>
+            Encourage understanding of church dynamics
+          </div>
+
+          <div class=" px-4 py-3  flex items-center gap-3 bg-white/10 backdrop-blur-md rounded-full shadow-lg">
+            <span class="text-orange-400 text-xl">
+              <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1764997136/Group_1618872793_vsemir.png"
+                alt="" width="15">
+            </span>
+            Educate members on realistic expectations of pastors
+          </div>
+
+          <div class=" px-4 py-3  flex items-center gap-3 bg-white/10 backdrop-blur-md rounded-full shadow-lg">
+            <span class="text-orange-400 text-xl">
+              <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1764997136/Group_1618872793_vsemir.png"
+                alt="" width="15">
+            </span>
+            Promote transparency, reflection, and practical advice
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
+  <!--  -->
+
+  
+<section class="section-bg min-h-screen py-16 px-4 sm:px-6 lg:px-8">
+  <div class="crowd-silhouette"></div>
+
+  <div class="relative z-10 max-w-5xl mx-auto">
+
+    <!-- Title -->
+    <h2 class="section-title text-5xl sm:text-6xl lg:text-7xl text-center mb-10 text-orange-400">
+      Watch &amp; Engage
+    </h2>
+
+    <!-- Toggle -->
+    <div class="flex justify-center mb-10">
+      <div class="toggle-pill relative flex rounded-full p-1 w-72 sm:w-80" id="toggleContainer">
+        <!-- Sliding indicator -->
+        <div class="toggle-indicator" id="toggleIndicator"></div>
+        <!-- Live Stream -->
+        <button
+          class="toggle-btn active flex-1 py-2.5 text-sm sm:text-base rounded-full text-center relative"
+          id="btnLive"
+          onclick="switchTab('live')"
+        >
+          🔴 Live Stream
+        </button>
+        <!-- Past Episodes -->
+        <button
+          class="toggle-btn flex-1 py-2.5 text-sm sm:text-base rounded-full text-center relative"
+          id="btnPast"
+          onclick="switchTab('past')"
+        >
+          Past Episodes
+        </button>
+      </div>
+    </div>
+
+    <!-- Live Stream Panel -->
+    <div id="panelLive" class="section-panel entering">
+      <div class="player-wrap rounded-2xl overflow-hidden aspect-video w-full relative flex items-center justify-center">
+        <!-- Fake video bg gradient -->
+        <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-950"></div>
+
+      
+
+     
+
+        <!-- Play button -->
+        <button class="play-btn rounded-full flex items-center justify-center relative z-10">
+          <svg class="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+        </button>
+
+       
+      </div>
+
+      <p class="text-center text-white/40 text-sm mt-4 tracking-wide">Stream begins when the show goes live. Stay tuned!</p>
+    </div>
+
+    <!-- Past Episodes Panel -->
+    <div id="panelPast" class="section-panel hidden-panel">
+      <!-- Filter bar -->
+      <div class="flex flex-wrap gap-2 mb-6 justify-center" id="seasonFilters">
+        <button onclick="filterSeason('all')" data-season="all" class="season-filter-btn active-filter px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all">All</button>
+        <button onclick="filterSeason('3')" data-season="3" class="season-filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-white/50 hover:text-white/80 hover:bg-white/10 transition-all tracking-wide">Season 3</button>
+        <button onclick="filterSeason('2')" data-season="2" class="season-filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-white/50 hover:text-white/80 hover:bg-white/10 transition-all tracking-wide">Season 2</button>
+        <button onclick="filterSeason('1')" data-season="1" class="season-filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-white/50 hover:text-white/80 hover:bg-white/10 transition-all tracking-wide">Season 1</button>
+      </div>
+
+      <!-- Episodes Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="episodesGrid">
+        <!-- Rendered by JS -->
+      </div>
+
+      <!-- Empty state -->
+      <div id="emptyState" class="hidden text-center py-16 text-white/30 text-sm tracking-wide">
+        No episodes found for this season.
+      </div>
+
+      <!-- Load more -->
+      <div class="flex justify-center mt-8">
+        <button id="loadMoreBtn" class="px-8 py-3 rounded-full border border-orange-500/40 text-orange-400 text-sm font-semibold tracking-wide hover:bg-orange-500/10 hover:border-orange-500 transition-all">
+          Load More Episodes
+        </button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<section class="gallery-section py-16 px-4 sm:px-6 lg:px-8 min-h-screen flex flex-col justify-center">
+
+  <!-- Title -->
+  <h2 class="gallery-title text-5xl sm:text-6xl lg:text-7xl text-center mb-10 sm:mb-14">
+    Our Gallery
+  </h2>
+
+  <!-- Carousel wrapper -->
+  <div class="relative w-full max-w-6xl mx-auto overflow-hidden" id="carouselOuter">
+    <!-- Edge fade overlays -->
+    <div class="absolute left-0 top-0 bottom-0 w-24 sm:w-40 z-20 pointer-events-none"
+         style="background: linear-gradient(to right, #0f0f0f 0%, transparent 100%)"></div>
+    <div class="absolute right-0 top-0 bottom-0 w-24 sm:w-40 z-20 pointer-events-none"
+         style="background: linear-gradient(to left, #0f0f0f 0%, transparent 100%)"></div>
+
+    <!-- Track -->
+    <div class="flex items-center no-select" id="carouselTrack" style="gap: 0;">
+      <!-- Slides injected by JS -->
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <div class="flex items-center justify-center gap-4 mt-8 sm:mt-10">
+    <!-- Prev -->
+    <button class="nav-btn" id="prevBtn" aria-label="Previous">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+      </svg>
+    </button>
+
+    <!-- Dots -->
+    <div class="dot-bar" id="dotBar"></div>
+
+    <!-- Next -->
+    <button class="nav-btn" id="nextBtn" aria-label="Next">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Image counter -->
+  <p class="text-center text-white/30 text-sm mt-4 tracking-widest font-medium" id="counter"></p>
+</section>
+
+<!-- Lightbox -->
+<div id="lightbox">
+  <button id="lbClose" aria-label="Close">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+    </svg>
+  </button>
+  <button class="lb-nav" id="lbPrev" aria-label="Previous">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+    </svg>
+  </button>
+  <img id="lbImg" src="" alt="Gallery image"/>
+  <button class="lb-nav" id="lbNext" aria-label="Next">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+    </svg>
+  </button>
+  <div id="lbCaption"></div>
+</div>
+<!-- gallary end -->
+
+
+
+<section class="form-section flex flex-col items-center justify-center px-4 py-20 sm:py-16 relative">
+
+  <!-- Glow blobs -->
+  <div class="glow-left"></div>
+  <div class="glow-right"></div>
+
+  <!-- Header text -->
+  <div class="relative z-10 text-center mb-8 sm:mb-10 px-4">
+    <h1 style="font-family:'Bebas Neue',sans-serif; letter-spacing:0.06em;"
+        class="text-5xl sm:text-6xl lg:text-7xl text-orange-400 mb-3">
+      Sword TV Form
+    </h1>
+    <p class="text-white/55 text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
+      Submit your questions, experiences, feedback, suggestions, or share short video testimonies or evidence
+    </p>
+  </div>
+
+  <!-- Form Card -->
+  <div class="form-card relative z-10 w-full max-w-2xl p-6 sm:p-8 lg:p-10">
+
+    <form id="swordForm" novalidate>
+
+      <!-- Row 1: Name + Email -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-5">
+        <div>
+          <label class="field-label" for="name">Name<span class="required">*</span></label>
+          <input class="form-input" id="name" name="name" type="text" placeholder="Type your full name here..." required/>
+          <p class="text-red-500 text-xs mt-1 hidden" id="nameErr">Name is required</p>
+        </div>
+        <div>
+          <label class="field-label" for="email">Email<span class="required">*</span></label>
+          <input class="form-input" id="email" name="email" type="email" placeholder="Type your email address here..." required/>
+          <p class="text-red-500 text-xs mt-1 hidden" id="emailErr">Valid email is required</p>
+        </div>
+      </div>
+
+      <!-- Row 2: Phone + File -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-5">
+        <div>
+          <label class="field-label" for="phone">Phone Number</label>
+          <input class="form-input" id="phone" name="phone" type="tel" placeholder="Type your phone number here..."/>
+        </div>
+        <div>
+          <label class="field-label">Attach images or video here</label>
+          <label class="file-upload-label" id="fileLabel" for="fileInput">
+            <span id="fileNames">Click to attach images or video</span>
+            <svg class="w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828L18 9.828a4 4 0 00-5.656-5.656l-6.586 6.586a6 6 0 108.486 8.486L19 13"/>
+            </svg>
+          </label>
+          <input type="file" id="fileInput" name="files" multiple accept="image/*,video/*" class="sr-only"/>
+        </div>
+      </div>
+
+      <!-- Subject -->
+      <div class="mb-5">
+        <label class="field-label" for="subject">Subject<span class="required">*</span></label>
+        <input class="form-input" id="subject" name="subject" type="text" placeholder="Enter your subject..." required/>
+        <p class="text-red-500 text-xs mt-1 hidden" id="subjectErr">Subject is required</p>
+      </div>
+
+      <!-- Message -->
+      <div class="mb-7">
+        <label class="field-label" for="message">Message<span class="required">*</span></label>
+        <textarea class="form-input" id="message" name="message" placeholder="Type your message here..." required></textarea>
+        <p class="text-red-500 text-xs mt-1 hidden" id="messageErr">Message is required</p>
+      </div>
+
+      <!-- Submit -->
+      <button type="submit" class="submit-btn" id="submitBtn">
+        <!-- Send / paper plane icon -->
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/>
+        </svg>
+        Send Message
+      </button>
+
+    </form>
+
+  </div>
+
+</section>
+
+<!-- Toast notification -->
+<div id="toast">
+  <div class="dot"></div>
+  Message sent successfully!
+</div>
+
+<!-- form ends -->
+
+
+<section class="faq-section px-4 sm:px-6 lg:px-8 py-20 sm:py-28 relative">
+  <div class="glow-l"></div>
+  <div class="glow-r"></div>
+
+  <!-- Header -->
+  <div class="relative z-10 text-center mb-12">
+    <h1 style="font-family:'Bebas Neue',sans-serif; letter-spacing:0.08em;"
+        class="text-6xl sm:text-7xl text-orange-400 mb-2">FAQs</h1>
+    <p class="text-white font-semibold text-lg sm:text-xl tracking-wide">Frequently Asked Questions</p>
+  </div>
+
+  <!-- Two-column layout -->
+  <div class="relative z-10 max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-start">
+
+    <!-- ── FAQ Accordion (left / 2 cols) ── -->
+    <div class="lg:col-span-2 flex flex-col gap-3" id="faqList">
+
+      <!-- Items injected by JS -->
+
+    </div>
+
+    <!-- ── Side card (right / 1 col) ── -->
+    <div class="side-card lg:sticky lg:top-8">
+      <p class="text-white font-semibold text-lg mb-2">Still have questions?</p>
+      <p class="text-white/55 text-sm leading-relaxed mb-6">
+        Can't find the answer you are looking for? Kindly check our complete list of FAQs
+      </p>
+      <a href="#" class="cta-btn">
+        View Complete FAQs
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+    </div>
+
+  </div>
+</section>
 
     <!-- footer main section -->
     <section class="w-full py-16">
@@ -374,6 +755,7 @@
     </section>
 
     <script src="../assets/js/script.js"></script>
+    <script src="./assets/script.js"></script>
 
 
 </body>
