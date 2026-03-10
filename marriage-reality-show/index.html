@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <link rel="stylesheet" href="./assets/styles/styles.css" />
+    <link rel="stylesheet" href="../the-church-and-you/assets/styles.css">
+    <link rel="stylesheet" href="./assets/styles/blog.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+
+    <title>SOWRO TV - Marriage Reality Show</title>
+
+    <style type="text/tailwindcss">
+        @theme {
+          --bg-tran: #ffffff1a;
+          --color-primary: #f0a242;
+        }
+
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+
+        .bg-img-hero{
+            background-image: url("https://res.cloudinary.com/dtrqikle5/image/upload/v1766799314/6479557_26565_2_1_qjxypt.png");
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+        }
+        
+  
+    </style>
+</head>
+
+
+<body class="bg-[#0f0f0f] text-white pt-28">
+
+    <!-- ================= MARQUEE ================= -->
+    <div class="px-6 fixed top-0 w-full z-50 bg-black/60 backdrop-blur-xl h-14 flex items-center">
+        <marquee behavior="smooth" direction="left" class="w-full">
+            <div class="flex items-center gap-8">
+
+                <!-- Text + Icon -->
+                <div class="flex items-center gap-3">
+                    <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1767317361/streamline_announcement-megaphone-solid_b59alx.png"
+                        class="w-6 h-6" alt="" />
+                    <p class="text-sm whitespace-nowrap">
+                        (i) A New Moment Begins: 100 Friends of the Bible needed. Your Partnership will transform lives
+                        across the Globe.
+                    </p>
+                    <p class="text-sm whitespace-nowrap">
+                        (i) A New Moment Begins: 100 Friends of the Bible needed. Your Partnership will transform lives
+                        across the Globe.
+                    </p>
+                </div>
+
+                <!-- Social Icons -->
+                <div class="flex items-center gap-3">
+                    <a href="#"
+                        class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition">
+                        <i class="fa-brands fa-x-twitter text-black text-sm"></i>
+                    </a>
+
+                    <a href="#"
+                        class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition">
+                        <i class="fa-brands fa-linkedin-in text-blue-600 text-sm"></i>
+                    </a>
+
+                    <a href="#"
+                        class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition">
+                        <i class="fa-brands fa-instagram text-pink-600 text-sm"></i>
+                    </a>
+
+                    <a href="#"
+                        class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition">
+                        <i class="fa-brands fa-facebook-f text-blue-700 text-sm"></i>
+                    </a>
+
+                    <a href="#"
+                        class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition">
+                        <i class="fa-brands fa-tiktok text-black text-sm"></i>
+                    </a>
+
+                    <a href="#"
+                        class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition">
+                        <i class="fa-brands fa-youtube text-red-600 text-sm"></i>
+                    </a>
+                </div>
+
+            </div>
+        </marquee>
+    </div>
+
+
+    <header class="fixed top-14 left-0 w-full z-40">
+        <div
+            class="relative w-full bg-[#1b1b1b]/60 backdrop-blur-xl border-b border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
+            <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+                <a href="./index.html">
+                    <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766409594/sword_TV_logo_y9mnja.png"
+                        width="150" class="rounded-full" />
+                </a>
+
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="../index.html">Home</a>
+                    <a href="../Programs.html" class="text-orange-400">Programmes</a>
+                    <a href="../Partnership.html" class="font-semibold">Partnership</a>
+                    <a href="../blog.html" class="">Blog</a>
+                    <a href="../contact-us.html">Contact us</a>
+                </nav>
+
+                <a href="../Partnership.html"
+                    class="open-partner-modal hidden md:block bg-orange-500 text-black font-semibold px-6 py-2 rounded-full">
+                    Partner with Us
+                </a>
+
+                <button id="openMenu" class="md:hidden text-3xl">☰</button>
+            </div>
+        </div>
+    </header>
+
+  <!-- ================= MOBILE MENU ================= -->
+<div id="mobileMenu"
+    class="fixed inset-0 bg-black/70 backdrop-blur-lg z-50 hidden items-center justify-center">
+
+    <div class="bg-[#1b1b1b] w-72 rounded-xl p-6 relative">
+        <button id="closeMenu" class="absolute top-4 right-4 text-xl">✕</button>
+
+        <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766409594/sword_TV_logo_y9mnja.png"
+            width="150" class="rounded-full mx-auto mb-6" />
+
+        <div class="flex flex-col space-y-4 text-center">
+            <a href="../index.html">Home</a>
+            <a href="../Programs.html" class="text-orange-400">Programmes</a>
+            <a href="../Partnership.html">Partnership</a>
+            <a href="../blog.html">Blog</a>
+            <a href="../contact-us.html">Contact us</a>
+
+            <button class="open-partner-modal bg-orange-400 text-black px-5 py-2 rounded-full font-semibold mt-4">
+                Partner with Us
+            </button>
+        </div>
+    </div>
+
+</div>
+
+
+    <!-- blog content -->
+
+
+    <section class="">
+        <div class="lg:px-56 md:px-32 px-10 py-24">
+            <img src="./assets/img/marriage-r.png"
+                alt="">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 py-10 w-full">
+            <div class="grid lg:grid-cols-3 gap-10 items-start">
+                <!-- LEFT SIDE -->
+                <div class="lg:col-span-2">
+                    <!-- Badge -->
+                    <div class="flex items-center gap-3 mb-6">
+                        <span
+                            class="bg-orange-500/20 border border-orange-400 text-orange-300 px-4 py-2 rounded-full text-sm flex items-center gap-2">
+                            <i class="fa-regular fa-calendar"></i>
+                            -
+                        </span>
+                    </div>
+
+                    <!-- Title -->
+                    <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+                        Marriage Realities Show
+                    </h1>
+
+                    <!-- Tag -->
+                    <span class="border border-orange-400 text-white px-4 py-1 rounded-full text-sm">
+                        Overview
+                    </span>
+
+                    <!-- Description -->
+                    <p class="text-gray-300 mt-6 text-xl max-w-xl">
+                        Pre-marriage issues. Happy marriages. Struggling marriages. Divorce and remarriage. Life
+                        experiences of older couples.
+                    </p>
+
+                    <!-- About -->
+                    <h2 class="text-3xl font-bold text-white mt-10 mb-4">
+                        About the Show
+                    </h2>
+
+                    <p class="text-gray-300 text-xl mb-4">
+                        The Marriage Realities Show is a premium, audience-based talk show that explores all aspects of
+                        marriage and family life. It provides a safe platform for participants to express their
+                        experiences, share stories, and seek guidance.
+                    </p>
+
+                    <!-- Button -->
+                    <div class="flex text-center items-center  gap-8 flex-col md:flex-row mt-8">
+                        <a href="#contact-form"
+                            class=" bg-orange-500 text-center hover:bg-orange-600 text-white px-8 py-4 rounded-full font-semibold flex items-center gap-3 transition">
+                            Beacome a Guest
+                            <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                        <a href="#share-story"
+                            class=" bg-transparent border border-orange-500 hover:bg-orange-500 text-white px-8 py-4 rounded-full font-semibold flex items-center gap-3 transition">
+                            Share Your Story
+                            <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                    </div>
+
+                </div>
+
+                <!-- RIGHT SIDE SHARE -->
+                <div class="lg:text-right">
+                    <h3 class="text-white text-lg font-semibold mb-4">Share Show</h3>
+
+                    <div class="flex lg:justify-end gap-4">
+                        <button class="bg-white/10 hover:bg-orange-500 w-10 h-10 rounded-full text-white transition">
+                            <i class="fab fa-tiktok"></i>
+                        </button>
+
+                        <button class="bg-white/10 hover:bg-orange-500 w-10 h-10 rounded-full text-white transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </button>
+
+                        <button class="bg-white/10 hover:bg-orange-500 w-10 h-10 rounded-full text-white transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </button>
+
+                        <button class="bg-white/10 hover:bg-orange-500 w-10 h-10 rounded-full text-white transition">
+                            <i class="fab fa-x-twitter"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--  -->
+
+
+    </section>
+
+    <section class="w-full py-16 bg-section-overlay glass-container">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+
+            <!-- Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                <!-- Card 1 -->
+                <div
+                    class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:scale-105 transition duration-300">
+                    <div class="flex justify-center mb-4">
+                        <img src="../assets/images/img-1.png" class="w-40 h-20 object-contain">
+                    </div>
+                    <h3 class="text-white font-semibold text-lg mb-2">
+                        Audience-Based Podcast
+                    </h3>
+                    <p class="text-gray-300 text-sm">
+                        Live and virtual participants.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div
+                    class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:scale-105 transition duration-300">
+                    <div class="flex justify-center mb-4">
+                        <img src="../assets/images/img-1.png" class="w-40 h-20 object-contain">
+                    </div>
+                    <h3 class="text-white font-semibold text-lg mb-2">
+                        Question & Answer Sessions
+                    </h3>
+                    <p class="text-gray-300 text-sm">
+                        Viewers submit questions or concerns before or during the show.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div
+                    class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:scale-105 transition duration-300">
+                    <div class="flex justify-center mb-4">
+                        <img src="../assets/images/img-1.png" class="w-40 h-20 object-contain">
+                    </div>
+                    <h3 class="text-white font-semibold text-lg mb-2">
+                        Experience Sharing
+                    </h3>
+                    <p class="text-gray-300 text-sm">
+                        Users share stories, bitter experiences, and positive insights.
+                    </p>
+                </div>
+
+                 <!-- Card 4 -->
+                <div
+                    class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:scale-105 transition duration-300">
+                    <div class="flex justify-center mb-4">
+                        <img src="../assets/images/img-1.png" class="w-40 h-20 object-contain">
+                    </div>
+                    <h3 class="text-white font-semibold text-lg mb-2">
+                        Evidence Submission
+                    </h3>
+                    <p class="text-gray-300 text-sm">
+                        Pictures, documents, or short videos as evidence of personal experiences.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!--  -->
+
+
+    <section class="section-bg min-h-screen py-16 px-4 sm:px-6 lg:px-8" id="share-story">
+        <div class="crowd-silhouette"></div>
+
+        <div class="relative z-10 max-w-5xl mx-auto">
+
+            <!-- Title -->
+            <h2 class="section-title text-5xl sm:text-6xl lg:text-7xl text-center mb-10 text-orange-400">
+                Watch &amp; Engage
+            </h2>
+
+            <!-- Toggle -->
+            <div class="flex justify-center mb-10">
+                <div class="toggle-pill relative flex rounded-full p-1 w-72 sm:w-80" id="toggleContainer">
+                    <!-- Sliding indicator -->
+                    <div class="toggle-indicator" id="toggleIndicator"></div>
+                    <!-- Live Stream -->
+                    <button
+                        class="toggle-btn active flex-1 py-2.5 text-sm sm:text-base rounded-full text-center relative"
+                        id="btnLive" onclick="switchTab('live')">
+                        🔴 Live Stream
+                    </button>
+                    <!-- Past Episodes -->
+                    <button class="toggle-btn flex-1 py-2.5 text-sm sm:text-base rounded-full text-center relative"
+                        id="btnPast" onclick="switchTab('past')">
+                        Past Episodes
+                    </button>
+                </div>
+            </div>
+
+            <!-- Live Stream Panel -->
+            <div id="panelLive" class="section-panel entering">
+                <div
+                    class="player-wrap rounded-2xl overflow-hidden aspect-video w-full relative flex items-center justify-center">
+                    <!-- Fake video bg gradient -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-950"></div>
+
+
+
+
+
+                    <!-- Play button -->
+                    <button class="play-btn rounded-full flex items-center justify-center relative z-10">
+                        <svg class="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z" />
+                        </svg>
+                    </button>
+
+
+                </div>
+
+                <p class="text-center text-white/40 text-sm mt-4 tracking-wide">Stream begins when the show goes live.
+                    Stay tuned!</p>
+            </div>
+
+            <!-- Past Episodes Panel -->
+            <div id="panelPast" class="section-panel hidden-panel">
+                <!-- Filter bar -->
+                <div class="flex flex-wrap gap-2 mb-6 justify-center" id="seasonFilters">
+                    <button onclick="filterSeason('all')" data-season="all"
+                        class="season-filter-btn active-filter px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all">All</button>
+                    <button onclick="filterSeason('3')" data-season="3"
+                        class="season-filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-white/50 hover:text-white/80 hover:bg-white/10 transition-all tracking-wide">Season
+                        3</button>
+                    <button onclick="filterSeason('2')" data-season="2"
+                        class="season-filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-white/50 hover:text-white/80 hover:bg-white/10 transition-all tracking-wide">Season
+                        2</button>
+                    <button onclick="filterSeason('1')" data-season="1"
+                        class="season-filter-btn px-4 py-1.5 rounded-full text-xs font-semibold bg-white/5 border border-white/10 text-white/50 hover:text-white/80 hover:bg-white/10 transition-all tracking-wide">Season
+                        1</button>
+                </div>
+
+                <!-- Episodes Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="episodesGrid">
+                    <!-- Rendered by JS -->
+                </div>
+
+                <!-- Empty state -->
+                <div id="emptyState" class="hidden text-center py-16 text-white/30 text-sm tracking-wide">
+                    No episodes found for this season.
+                </div>
+
+                <!-- Load more -->
+                <div class="flex justify-center mt-8">
+                    <button id="loadMoreBtn"
+                        class="px-8 py-3 rounded-full border border-orange-500/40 text-orange-400 text-sm font-semibold tracking-wide hover:bg-orange-500/10 hover:border-orange-500 transition-all">
+                        Load More Episodes
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+    <section class="gallery-section py-16 px-4 sm:px-6 lg:px-8 min-h-screen flex flex-col justify-center">
+
+        <!-- Title -->
+        <h2 class="gallery-title text-5xl sm:text-6xl lg:text-7xl text-center mb-10 sm:mb-14">
+            Our Gallery
+        </h2>
+
+        <!-- Carousel wrapper -->
+        <div class="relative w-full max-w-6xl mx-auto overflow-hidden" id="carouselOuter">
+            <!-- Edge fade overlays -->
+            <div class="absolute left-0 top-0 bottom-0 w-24 sm:w-40 z-20 pointer-events-none"
+                style="background: linear-gradient(to right, #0f0f0f 0%, transparent 100%)"></div>
+            <div class="absolute right-0 top-0 bottom-0 w-24 sm:w-40 z-20 pointer-events-none"
+                style="background: linear-gradient(to left, #0f0f0f 0%, transparent 100%)"></div>
+
+            <!-- Track -->
+            <div class="flex items-center no-select" id="carouselTrack" style="gap: 0;">
+                <!-- Slides injected by JS -->
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="flex items-center justify-center gap-4 mt-8 sm:mt-10">
+            <!-- Prev -->
+            <button class="nav-btn" id="prevBtn" aria-label="Previous">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+
+            <!-- Dots -->
+            <div class="dot-bar" id="dotBar"></div>
+
+            <!-- Next -->
+            <button class="nav-btn" id="nextBtn" aria-label="Next">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Image counter -->
+        <p class="text-center text-white/30 text-sm mt-4 tracking-widest font-medium" id="counter"></p>
+    </section>
+
+    <!-- Lightbox -->
+    <div id="lightbox">
+        <button id="lbClose" aria-label="Close">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        <button class="lb-nav" id="lbPrev" aria-label="Previous">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+        </button>
+        <img id="lbImg" src="" alt="Gallery image" />
+        <button class="lb-nav" id="lbNext" aria-label="Next">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+        </button>
+        <div id="lbCaption"></div>
+    </div>
+    <!-- gallary end -->
+
+
+
+    <section class="form-section flex flex-col items-center justify-center px-4 py-20 sm:py-16 relative" id="contact-form">
+
+        <!-- Glow blobs -->
+        <div class="glow-left"></div>
+        <div class="glow-right"></div>
+
+        <!-- Header text -->
+        <div class="relative z-10 text-center mb-8 sm:mb-10 px-4">
+            <h1 style="font-family:'Bebas Neue',sans-serif; letter-spacing:0.06em;"
+                class="text-5xl sm:text-6xl lg:text-7xl text-orange-400 mb-3">
+                Sword TV Form
+            </h1>
+            <p class="text-white/55 text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
+                Submit your questions, experiences, feedback, suggestions, or share short video testimonies or evidence
+            </p>
+        </div>
+
+        <!-- Form Card -->
+        <div class="form-card relative z-10 w-full max-w-2xl p-6 sm:p-8 lg:p-10">
+
+            <form id="swordForm" novalidate>
+
+                <!-- Row 1: Name + Email -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-5">
+                    <div>
+                        <label class="field-label" for="name">Name<span class="required">*</span></label>
+                        <input class="form-input" id="name" name="name" type="text"
+                            placeholder="Type your full name here..." required />
+                        <p class="text-red-500 text-xs mt-1 hidden" id="nameErr">Name is required</p>
+                    </div>
+                    <div>
+                        <label class="field-label" for="email">Email<span class="required">*</span></label>
+                        <input class="form-input" id="email" name="email" type="email"
+                            placeholder="Type your email address here..." required />
+                        <p class="text-red-500 text-xs mt-1 hidden" id="emailErr">Valid email is required</p>
+                    </div>
+                </div>
+
+                <!-- Row 2: Phone + File -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-5">
+                    <div>
+                        <label class="field-label" for="phone">Phone Number</label>
+                        <input class="form-input" id="phone" name="phone" type="tel"
+                            placeholder="Type your phone number here..." />
+                    </div>
+                    <div>
+                        <label class="field-label">Attach images or video here</label>
+                        <label class="file-upload-label" id="fileLabel" for="fileInput">
+                            <span id="fileNames">Click to attach images or video</span>
+                            <svg class="w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor"
+                                stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828L18 9.828a4 4 0 00-5.656-5.656l-6.586 6.586a6 6 0 108.486 8.486L19 13" />
+                            </svg>
+                        </label>
+                        <input type="file" id="fileInput" name="files" multiple accept="image/*,video/*"
+                            class="sr-only" />
+                    </div>
+                </div>
+
+                <!-- Subject -->
+                <div class="mb-5">
+                    <label class="field-label" for="subject">Subject<span class="required">*</span></label>
+                    <input class="form-input" id="subject" name="subject" type="text"
+                        placeholder="Enter your subject..." required />
+                    <p class="text-red-500 text-xs mt-1 hidden" id="subjectErr">Subject is required</p>
+                </div>
+
+                <!-- Message -->
+                <div class="mb-7">
+                    <label class="field-label" for="message">Message<span class="required">*</span></label>
+                    <textarea class="form-input" id="message" name="message" placeholder="Type your message here..."
+                        required></textarea>
+                    <p class="text-red-500 text-xs mt-1 hidden" id="messageErr">Message is required</p>
+                </div>
+
+                <!-- Submit -->
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <!-- Send / paper plane icon -->
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z" />
+                    </svg>
+                    Send Message
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+    <!-- Toast notification -->
+    <div id="toast">
+        <div class="dot"></div>
+        Message sent successfully!
+    </div>
+
+    <!-- form ends -->
+
+
+    <section class="faq-section px-4 sm:px-6 lg:px-8 py-20 sm:py-28 relative">
+        <div class="glow-l"></div>
+        <div class="glow-r"></div>
+
+        <!-- Header -->
+        <div class="relative z-10 text-center mb-12">
+            <h1 style="font-family:'Bebas Neue',sans-serif; letter-spacing:0.08em;"
+                class="text-6xl sm:text-7xl text-orange-400 mb-2">FAQs</h1>
+            <p class="text-white font-semibold text-lg sm:text-xl tracking-wide">Frequently Asked Questions</p>
+        </div>
+
+        <!-- Two-column layout -->
+        <div class="relative z-10 max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-start">
+
+            <!-- ── FAQ Accordion (left / 2 cols) ── -->
+            <div class="lg:col-span-2 flex flex-col gap-3" id="faqListWrap">
+
+                <!-- Items injected by JS -->
+
+            </div>
+
+            <!-- ── Side card (right / 1 col) ── -->
+            <div class="side-card lg:sticky lg:top-8">
+                <p class="text-white font-semibold text-lg mb-2">Still have questions?</p>
+                <p class="text-white/55 text-sm leading-relaxed mb-6">
+                    Can't find the answer you are looking for? Kindly check our complete list of FAQs
+                </p>
+                <a href="#" class="cta-btn">
+                    View Complete FAQs
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- footer main section -->
+    <section class="w-full py-16">
+        <div class="flex flex-col items-center justify-center p-4"> <!-- Newsletter Card -->
+            <div class="bg-white rounded-3xl shadow-2xl max-w-4xl w-full p-12 mb-8">
+                <div class="grid md:grid-cols-2 gap-8 items-center"> <!-- Left Column -->
+                    <div>
+                        <h2 class="text-4xl font-bold text-gray-900 mb-4"> Stay Connected! </h2>
+                        <p class="text-gray-600 text-sm leading-relaxed"> Receive updates on upcoming events, new
+                            programmes, auditions, competitions, and ministry opportunities. </p>
+                    </div> <!-- Right Column -->
+                    <div>
+                        <p class="text-sm text-gray-900 mb-4"> Subscribe and be the first to know — and never miss a
+                            moment of impact. </p>
+                        <div class="flex gap-2 flex-col md:flex-row"> <input type="email"
+                                placeholder="Enter your email address"
+                                class="flex-1 px-4 py-3 rounded-full bg-gray-100 text-black text-sm focus:outline-none focus:ring-2 focus:ring-orange-400" />
+                            <button
+                                class="px-8 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-full font-medium text-sm transition-colors duration-300">
+                                Subscribe </button>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- Footer -->
+            <footer class="w-full max-w-6xl">
+                <div class="grid md:grid-cols-2 gap-12 mb-8"> <!-- Left Section -->
+                    <div> <a href="./index.html" class="text-orange-500 text-xl font-bold mb-6"> <img
+                                src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766409594/sword_TV_logo_y9mnja.png"
+                                width="150" class="rounded-full" /> </a>
+                        <div class="space-y-3 text-gray-400 text-sm pl-3 mt-3">
+                            <div class="flex items-center gap-2"> <i class="far fa-envelope"></i>
+                                <span>info@swordtelevision.com</span>
+                            </div>
+                            <div class="flex items-center gap-2"> <i class="fas fa-phone"></i> <span>+2348087863562 |
+                                    +2347048811294 | +2349060672683</span> </div>
+                            <div class="flex items-center gap-2"> <i class="fas fa-map-marker-alt"></i> <span>Suite 8,
+                                    Dabic Shopping Complex, Behind M & M Super Market Ilorin, Kwara State,
+                                    Nigeria.</span> </div>
+                        </div> <!-- Social Icons -->
+                        <div class="flex gap-4 mt-6"> <a href="#"
+                                class="w-8 h-8 rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                                <i class="fa-brands fa-facebook text-lg text-gray-850"></i> </a> <a href="#"
+                                class="w-8 h-8 rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                                <i class="fa-brands fa-youtube text-lg text-gray-8050"></i> </a> <a href="#"
+                                class="w-8 h-8 rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                                <i class="fa-brands fa-linkedin-in text-lg text-gray-50"></i> </a> <a href="#"
+                                class="w-8 h-8 rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                                <i class="fa-brands fa-x-twitter text-lg text-gray-50"></i> </a> <a href="#"
+                                class="w-8 h-8 rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                                <i class="fa-brands fa-tiktok text-lg text-gray-80050"></i> </a> <a href="#"
+                                class="w-8 h-8 rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                                <i class="fa-brands fa-instagram text-lg text-gray-50"></i> </a> </div>
+                    </div> <!-- Right Section - Navigation -->
+                    <div class="grid grid-cols-2 gap-8">
+                        <div>
+                            <ul class="space-y-3 text-gray-300 text-sm">
+                                <li> <a href="#" class="hover:text-orange-500 transition-colors duration-300">Home</a>
+                                </li>
+                                <li> <a href="#" class="hover:text-orange-500 transition-colors duration-300">About
+                                        Us</a> </li>
+                                <li> <a href="#" class="hover:text-orange-500 transition-colors duration-300">Events</a>
+                                </li>
+                                <li> <a href="#"
+                                        class="hover:text-orange-500 transition-colors duration-300">Gallery</a> </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul class="space-y-3 text-gray-300 text-sm">
+                                <li> <a href="#" class="hover:text-orange-500 transition-colors duration-300">Contact
+                                        Us</a> </li>
+                                <li> <a href="#" class="hover:text-orange-500 transition-colors duration-300">Partner
+                                        With Us</a> </li>
+                                <li> <a href="#" class="hover:text-orange-500 transition-colors duration-300">Donate</a>
+                                </li>
+                                <li> <a href="#" class="hover:text-orange-500 transition-colors duration-300">Blog</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div> <!-- Copyright -->
+                <div class="border-t border-gray-800 pt-6 text-center text-gray-500 text-sm">
+                    <p>Sword Television © 2025 | All rights reserved.</p>
+                </div>
+            </footer>
+        </div>
+    </section>
+
+    <!-- PARTNER MODAL -->
+    <div id="partnerModal" class="fixed inset-0 z-[999] hidden
+         flex items-center justify-center
+         bg-black/60 backdrop-blur-lg
+         px-4 py-6 overflow-y-auto">
+
+        <!-- MODAL CARD -->
+        <div class="bg-white w-full max-w-3xl
+           rounded-2xl p-6 sm:p-8
+           shadow-2xl relative
+           my-auto">
+
+            <!-- CLOSE BUTTON -->
+            <button id="closePartnerModal" class="absolute top-4 right-4
+             text-gray-400 hover:text-black
+             text-xl">
+                ✕
+            </button>
+
+            <!-- RETURN BUTTON -->
+            <button class="text-orange-500 text-xs sm:text-sm
+             border border-orange-400
+             px-4 py-1.5 rounded-full mb-6">
+                Return to Partnership Page
+            </button>
+
+            <!-- STEP INDICATOR -->
+            <p class="text-xs text-gray-500 mb-2">
+                Section <span id="stepNumber">1</span> of 6
+            </p>
+
+            <!-- PROGRESS BAR -->
+            <div class="w-full h-2 bg-gray-200 rounded-full mb-8">
+                <div id="progressBar" class="h-2 bg-orange-400 rounded-full
+               transition-all duration-300" style="width:16.66%">
+                </div>
+            </div>
+
+            <!-- STEPS CONTAINER -->
+            <div class="space-y-6 max-h-[60vh] overflow-y-auto pr-1">
+
+                <!-- STEP 1 -->
+                <div class="step">
+                    <h2 class="text-orange-500 text-xl font-semibold mb-2">
+                        Select Programme
+                    </h2>
+
+                    <p class="text-sm text-gray-600 mb-5">
+                        Which of the below programme do you want to support?
+                    </p>
+
+                    <!-- PROGRAMME OPTIONS -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+                        <!-- OPTION -->
+                        <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition">
+                            <input type="radio" name="programme" class="mt-1">
+                            <span class="font-medium text-sm text-gray-900">
+                                Bible Stars Reality Show
+                            </span>
+                        </label>
+
+                        <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition">
+                            <input type="radio" name="programme" class="mt-1">
+                            <span class="font-medium text-sm text-gray-900">
+                                Ilorin Youth Mega Festival
+                            </span>
+                        </label>
+
+                        <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition">
+                            <input type="radio" name="programme" class="mt-1">
+                            <span class="font-medium text-sm text-gray-900">
+                                Bible Championship Season 2
+                            </span>
+                        </label>
+
+                        <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition">
+                            <input type="radio" name="programme" class="mt-1">
+                            <span class="font-medium text-sm text-gray-900">
+                                The Noah’s Ark Show
+                            </span>
+                        </label>
+
+                        <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition">
+                            <input type="radio" name="programme" class="mt-1">
+                            <span class="font-medium text-sm text-gray-900">
+                                The National Bible Cup
+                            </span>
+                        </label>
+
+                        <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition">
+                            <input type="radio" name="programme" class="mt-1">
+                            <span class="font-medium text-sm text-gray-900">
+                                The Church & You Talk Show
+                            </span>
+                        </label>
+
+                        <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition sm:col-span-2">
+                            <input type="radio" name="programme" class="mt-1">
+                            <span class="font-medium text-sm text-gray-900">
+                                Marriage Realities Show
+                            </span>
+                        </label>
+
+                    </div>
+                </div>
+                <!--  -->
+
+
+                <!-- PLACEHOLDER STEPS -->
+                <!-- STEP 2 -->
+
+                <div class="step hidden">
+                    <h2 class="text-orange-500 text-xl font-semibold mb-2">
+                        Select Category
+                    </h2>
+
+                    <p class="text-sm text-gray-600 mb-4">
+                        Which of the below categories do you want to donate for?
+                    </p>
+
+                    <!-- OPTION -->
+                    <label class="block border border-orange-300 rounded-xl
+                 p-4 sm:p-5 mb-3
+                 flex gap-3 items-start cursor-pointer">
+                        <input type="radio" name="category" class="mt-1">
+                        <div>
+                            <span class="font-medium">Major Weight</span><br>
+                            <span class="text-sm text-gray-600">
+                                ₦50,000,000 and above
+                            </span>
+                        </div>
+                    </label>
+
+                    <!-- OPTION -->
+                    <label class="block border border-orange-300 rounded-xl
+                 p-4 sm:p-5 mb-3
+                 flex gap-3 items-start cursor-pointer">
+                        <input type="radio" name="category" class="mt-1">
+                        <div>
+                            <span class="font-medium">Medium Weight</span><br>
+                            <span class="text-sm text-gray-600">
+                                ₦20,000,000 to ₦50,000,000
+                            </span>
+                        </div>
+                    </label>
+
+                    <!-- OPTION -->
+                    <label class="block border border-orange-300 rounded-xl
+                 p-4 sm:p-5
+                 flex gap-3 items-start cursor-pointer">
+                        <input type="radio" name="category" class="mt-1">
+                        <div>
+                            <span class="font-medium">Light Weight</span><br>
+                            <span class="text-sm text-gray-600">
+                                ₦20,000,000 and below
+                            </span>
+                        </div>
+                    </label>
+                </div>
+                <!-- STEP 3 -->
+
+                <div class="step hidden" id="step3">
+                    <h2 class="text-orange-500 text-xl font-semibold mb-2">
+                        Fill form
+                    </h2>
+
+                    <p class="text-sm text-gray-800 mb-6">
+                        Kindly fill the below form to proceed with your donation.
+                    </p>
+
+                    <div class="space-y-5">
+
+                        <div>
+                            <label class="block text-gray-700 text-sm font-medium mb-1">Full name</label>
+                            <input id="fullName" type="text" placeholder="Enter your full name"
+                                class="w-full rounded border border-gray-400 px-4 py-3" />
+                        </div>
+
+                        <div>
+                            <label class="block text-gray-700 text-sm font-medium mb-1">Email Address</label>
+                            <input id="email" type="email" placeholder="Enter your email address"
+                                class="w-full rounded border border-gray-400 px-4 py-3" />
+                        </div>
+
+                        <div>
+                            <label class="block text-gray-700 text-sm font-medium mb-1">Phone Number</label>
+                            <input id="phone" type="tel" placeholder="Enter your phone number"
+                                class="w-full rounded border border-gray-400 px-4 py-3" />
+                        </div>
+
+                        <div>
+                            <label class="block text-gray-700 text-sm font-medium mb-1">
+                                How much do you wish to donate?
+                            </label>
+                            <input id="amount" type="number" placeholder="0"
+                                class="w-full rounded border border-gray-400 px-4 py-3" />
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- step 4 -->
+                <div class="step hidden">
+                    <h2 class="text-orange-500 text-xl font-semibold mb-2">
+                        Payment Method
+                    </h2>
+
+                    <p class="text-sm text-gray-600 mb-5">
+                        Which payment method would you prefer to use?
+                    </p>
+
+                    <!-- PROGRAMME OPTIONS -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+                        <!-- OPTION -->
+                        <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition">
+                            <input type="radio" name="programme" class="mt-1">
+                            <span class="font-medium text-sm text-gray-900">
+                                Online Payment
+                            </span>
+                        </label>
+
+                        <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition">
+                            <input type="radio" name="programme" class="mt-1">
+                            <span class="font-medium text-sm text-gray-900">
+                                Offline Payment
+                            </span>
+                        </label>
+
+
+
+                    </div>
+                </div>
+                <!-- STEP 5 -->
+                <div class="step hidden">
+                    <h2 class="text-orange-500 text-xl font-semibold mb-6">
+                        Complete Your Offline Payment
+                    </h2>
+
+                    <!-- Amount Card -->
+                    <div class="bg-orange-50 rounded-2xl p-5 sm:p-6 mb-6 shadow-sm">
+                        <h3 class="font-medium text-gray-900 mb-2">
+                            Amount You Want To Donate
+                        </h3>
+
+                        <p class="text-sm text-gray-600 mb-1">
+                            Transferable amount
+                        </p>
+
+                        <p class="text-xl font-semibold text-gray-900">
+                            ₦50,000,000
+                        </p>
+                    </div>
+
+                    <!-- Account Details Card -->
+                    <div class="bg-orange-50 rounded-2xl p-5 sm:p-6 shadow-sm">
+                        <h3 class="font-medium text-gray-900 mb-4">
+                            Account Details
+                        </h3>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+                            <!-- Bank -->
+                            <div>
+                                <p class="text-sm text-gray-600 mb-1">Bank:</p>
+                                <div class="flex items-center gap-2">
+                                    <span class="font-medium text-gray-900">First Bank</span>
+                                    <button class="text-gray-500 hover:text-gray-800">
+                                        📋
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Account Number -->
+                            <div>
+                                <p class="text-sm text-gray-600 mb-1">Account Number:</p>
+                                <div class="flex items-center gap-2">
+                                    <span class="font-medium text-gray-900">2096184982</span>
+                                    <button class="text-gray-500 hover:text-gray-800">
+                                        📋
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Account Name -->
+                            <div>
+                                <p class="text-sm text-gray-600 mb-1">Account Name:</p>
+                                <div class="flex items-center gap-2">
+                                    <span class="font-medium text-gray-900">
+                                        Sword Television Ltd
+                                    </span>
+                                    <button class="text-gray-500 hover:text-gray-800">
+                                        📋
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- ACTION BUTTONS -->
+                    <div class="flex flex-col sm:flex-row justify-between mt-10">
+
+                        <button id="paymentConfirmed" class="w-full sm:w-auto bg-orange-500 text-white
+             px-6 py-3 rounded-full font-medium">
+                            I Have Made Payment
+                        </button>
+
+                        <button class="w-full sm:w-auto border border-orange-400
+             text-orange-500 px-6 py-3 rounded-full font-medium">
+                            Join Friends of the Bible Forum
+                        </button>
+
+                    </div>
+                </div>
+
+                <div class="step hidden">
+                    <h2 class="text-orange-500 text-xl font-semibold mb-6">
+                        Which Of Our Forum Are You Interested In?
+                    </h2>
+
+                    <div class="space-y-4">
+
+                        <label class="block border border-orange-300 rounded-xl
+           p-4 sm:p-5
+           cursor-pointer
+           transition
+           hover:bg-orange-50
+           has-[:checked]:border-orange-500
+           has-[:checked]:bg-orange-100">
+
+                            <div class="flex items-center gap-3">
+                                <input type="radio" name="forum" class="accent-orange-500">
+                                <span class="font-medium text-gray-900">
+                                    Friends of the Bible International Meetings
+                                </span>
+                            </div>
+                        </label>
+
+                        <label class="block border border-orange-300 rounded-xl
+           p-4 sm:p-5
+           cursor-pointer
+           transition
+           hover:bg-orange-50
+           has-[:checked]:border-orange-500
+           has-[:checked]:bg-orange-100">
+
+                            <div class="flex items-center gap-3">
+                                <input type="radio" name="forum" class="accent-orange-500">
+                                <span class="font-medium text-gray-900">
+                                    Consultation Session
+                                </span>
+                            </div>
+                        </label>
+
+                        <label class="block border border-orange-300 rounded-xl
+           p-4 sm:p-5
+           cursor-pointer
+           transition
+           hover:bg-orange-50
+           has-[:checked]:border-orange-500
+           has-[:checked]:bg-orange-100">
+
+                            <div class="flex items-center gap-3">
+                                <input type="radio" name="forum" class="accent-orange-500">
+                                <span class="font-medium text-gray-900">
+                                    Prayer Session
+                                </span>
+                            </div>
+                        </label>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+            <!-- FOOTER BUTTONS -->
+            <div class="flex flex-col sm:flex-row
+             gap-4 sm:justify-between
+             items-center mt-10">
+
+                <button id="prevStep" class="w-full sm:w-auto
+               border border-orange-400
+               text-orange-500
+               px-6 py-3 rounded-full">
+                    Previous
+                </button>
+
+                <button id="nextStep" class="w-full sm:w-auto
+               bg-orange-400 text-white
+               px-8 py-3 rounded-full
+               disabled:opacity-40" disabled>
+                    Next
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <script src="../the-church-and-you/assets/script.js"></script>
+    <script src="./assets/script.js"></script>
+    <script src="../assets/js/script.js"></script>
+    <script>
+        /* =============================
+   NAVIGATION MENU FUNCTIONALITY
+============================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const openMenuBtn = document.getElementById("openMenu");
+  const closeMenuBtn = document.getElementById("closeMenu");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  // OPEN MENU
+  openMenuBtn.addEventListener("click", () => {
+    mobileMenu.classList.remove("hidden");
+    mobileMenu.classList.add("flex");
+    document.body.style.overflow = "hidden";
+  });
+
+  // CLOSE MENU
+  closeMenuBtn.addEventListener("click", () => {
+    mobileMenu.classList.add("hidden");
+    mobileMenu.classList.remove("flex");
+    document.body.style.overflow = "auto";
+  });
+
+  // CLOSE WHEN CLICKING OUTSIDE
+  mobileMenu.addEventListener("click", (e) => {
+    if (e.target === mobileMenu) {
+      mobileMenu.classList.add("hidden");
+      mobileMenu.classList.remove("flex");
+      document.body.style.overflow = "auto";
+    }
+  });
+
+});
+   </script>
+
+
+</body>
+
+</html>
