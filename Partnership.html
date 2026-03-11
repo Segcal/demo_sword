@@ -60,11 +60,11 @@
            shadow-[0_8px_30px_rgba(0,0,0,0.35)] flex items-center justify-between py-4 max-w-7xl mx-auto px-6 md:px-0">
 
             <!-- Logo -->
-            <div class="flex items-center gap-2">
+            <a href="./index.html" class="flex items-center gap-2">
                 <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766409594/sword_TV_logo_y9mnja.png"
                     width="150" class="rounded-full" />
 
-            </div>
+            </a>
 
             <!-- Desktop Menu -->
             <nav class="hidden md:flex items-center gap-8  text-white">
@@ -173,42 +173,84 @@
 
 
   <!-- ======== MOBILE MENU ======== -->
-  <div id="mobileMenu" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden z-50 text-white">
-        <div class="absolute right-4 top-4 w-[90%] max-w-sm glass rounded-2xl p-6">
-            <!-- Close -->
-            <button id="closeMenu" class="absolute top-4 right-4 text-xl">×</button>
+ <div id="mobileMenu"
+  class="hidden fixed inset-0 bg-black/20 backdrop-blur-xl z-50 flex items-center justify-center text-white">
 
-            <nav class="flex flex-col gap-6 mt-8 text-center">
-                <a href="#">Home</a>
-               
+  <!-- MENU CARD -->
+  <div class="bg-[#1b1b1b]/80 backdrop-blur-md border border-white/10 w-72 rounded-xl p-6 relative shadow-2xl">
 
-                <!-- Mobile Programs -->
-                <button id="mobilePrograms" class="flex justify-center items-center gap-1">
-                    Programs
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </button>
+    <!-- Close Button -->
+    <button id="closeMenu" class="absolute top-4 right-4 text-xl hover:text-orange-400 transition">
+      ✕
+    </button>
 
-                <div id="mobileProgramsList" class="hidden flex flex-col gap-3 text-sm">
-                    <a href="./biblestar/index.html">Bible Stars Reality Show</a>
-                    <a href="./iymf/index.html">Ilorin Youth Mega Festival</a>
-                    <a href="#">Bible Championship Season 2</a>
-                    <a href="#">The Noah’s Ark Show</a>
-                    <a href="#">The National Bible Cup</a>
-                    <a href="#">The Church & You Talk Show</a>
-                </div>
-                <a href="./About.html">About Us</a>
-                <a href="./Partnership.html">Partnership</a>
-                <a href="./blog.html">Blog</a>
-                <a href="./contact-us.html">Contact us</a>
+    <!-- Logo -->
+    <h2 class="text-orange-400 font-semibold text-xl mb-6 flex justify-center">
+      <img
+        src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766409594/sword_TV_logo_y9mnja.png"
+        width="150"
+        class="rounded-full" />
+    </h2>
 
-                <a href="#" class="open-partner-modal bg-orange-500 py-3 rounded-full mt-4">
-                    Partner with Us
-                </a>
-            </nav>
-        </div>
-    </div>
+    <!-- Navigation -->
+    <nav class="flex flex-col space-y-4 text-center">
+
+      <a href="./index.html" class="hover:text-orange-400 transition">Home</a>
+
+      <!-- Programs Dropdown -->
+      <button id="mobilePrograms"
+        class="flex justify-center items-center gap-2 text-orange-400 font-semibold">
+        Programs
+        <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+
+      <!-- Programs List -->
+      <div id="mobileProgramsList" class="hidden flex flex-col gap-3 text-sm text-gray-300">
+
+        <a href="./biblestar/index.html" class="hover:text-orange-400">
+          Bible Stars Reality Show
+        </a>
+
+        <a href="./iymf/index.html" class="hover:text-orange-400">
+          Ilorin Youth Mega Festival
+        </a>
+
+        <a href="#" class="hover:text-orange-400">
+          Bible Championship Season 2
+        </a>
+
+        <a href="#" class="hover:text-orange-400">
+          The Noah’s Ark Show
+        </a>
+
+        <a href="#" class="hover:text-orange-400">
+          The National Bible Cup
+        </a>
+
+        <a href="#" class="hover:text-orange-400">
+          The Church & You Talk Show
+        </a>
+
+      </div>
+
+      <a href="./Partnership.html" class="hover:text-orange-400 transition">Partnership</a>
+      <a href="./About.html" class="hover:text-orange-400 transition">About Us</a>
+      <a href="./blog.html" class="hover:text-orange-400 transition">Blog</a>
+      <a href="./contact-us.html" class="hover:text-orange-400 transition">Contact us</a>
+
+      <!-- Partner Button -->
+      <button
+        class="open-partner-modal bg-orange-400 text-black px-5 py-2 rounded-full font-semibold mt-4 hover:bg-orange-500 transition">
+        Partner with Us
+      </button>
+
+    </nav>
+
+  </div>
+</div>
 
   <!-- ======== HERO SECTION ======== -->
   <section class="pt-32 pb-20 bg-section-overlay glass-container">
