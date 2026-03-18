@@ -1,1182 +1,1571 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  <link rel="stylesheet" href="./assets/css/styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="shortcut icon" href="./assets/images/favicon.png" type="image/png">
-  <title>IYMF</title>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <link rel="stylesheet" href="./assets/styles/styles.css" />
+  <link rel="stylesheet" href="./assets/styles.css">
+  <link rel="stylesheet" href="./assets/styles/blog.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+
+  <title>SOWRO TV - IYMF</title>
+
   <style type="text/tailwindcss">
     @theme {
-    --color-clifford: #da373d;
-    --color-primary: #030935;
+          --bg-tran: #ffffff1a;
+          --color-primary: #f0a242;
+        }
 
-    --background-image-slider-1: url('./assets/images/slider 1 copy.jpg');
-    --background-image-slider-2: url('./assets/images/slider 2.jpg');
-    --background-image-slider-3: url('./assets/images/slider_1.jpg');
-    --background-image-slider-4: url('./assets/images/slider4.jpg');
-    --background-image-slider-6: url('./assets/images/slider6.jpg');
-    --background-image-slider-7: url('./assets/images/slider7.jpg');
-    --background-image-slider-8: url('./assets/images/slider8.jpg');
-    --background-image-slider-9: url('./assets/images/slider9.jpg');
-    --background-image-slider-10: url('./assets/images/slider10.jpg');
-  }
-</style>
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
 
+        .bg-img-hero{
+            background-image: url("https://res.cloudinary.com/dtrqikle5/image/upload/v1766799314/6479557_26565_2_1_qjxypt.png");
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+        }
+        
+  
+        @keyframes ringPulse{
+0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.6}
+50%{transform:translate(-50%,-50%) scale(1.18);opacity:.2}
+}
+
+    :root {
+      --gold: #f97316 ;
+      --gold-light: #fdba74;
+      --dark: #0e0e0e;
+      --dark-card: #1a1a14;
+      --dark-card2: #141410;
+    }
+
+    /* ── Gallery ── */
+    .gallery-title {
+      color: var(--gold);
+      letter-spacing: 0.05em;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s cubic-bezier(.4,0,.2,1);
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      display: block;
+      border-radius: 4px;
+    }
+
+    /* dot indicators */
+    .dot {
+      width: 24px;
+      height: 5px;
+      border-radius: 3px;
+      background: #555;
+      cursor: pointer;
+      transition: background 0.3s, width 0.3s;
+    }
+    .dot.active {
+      background: var(--gold);
+      width: 36px;
+    }
+
+    /* nav arrows */
+    .carousel-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity .2s;
+    }
+    .carousel-btn:hover { opacity: .8; }
+    .carousel-btn.prev { background: #333; }
+    .carousel-btn.next { background: var(--gold); }
+
+    /* ── FAQ ── */
+    .faq-section {
+      background: #111108;
+    }
+
+    .faq-title {
+      color: var(--gold);
+    }
+
+    .faq-subtitle {
+      letter-spacing: 0.04em;
+    }
+
+    .faq-card {
+      background: #1c1c14;
+      border: 1px solid #2a2a1a;
+      border-radius: 6px;
+      overflow: hidden;
+      transition: border-color .3s;
+    }
+    .faq-card:hover { border-color: #444420; }
+
+    .faq-question {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: #f0e8d0;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .faq-answer {
+      font-size: 0.82rem;
+      color: #b0a890;
+      line-height: 1.65;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+      padding: 0 1rem;
+    }
+    .faq-answer.open {
+      max-height: 300px;
+      padding: 0 1rem 1rem;
+    }
+
+    .faq-toggle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1.5px solid #555;
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: border-color .3s, background .3s;
+    }
+    .faq-toggle.open {
+      border-color: var(--gold);
+      background: rgba(200,145,42,.12);
+    }
+
+    .faq-toggle svg { transition: transform .3s; }
+    .faq-toggle.open svg { transform: rotate(45deg); }
+
+    /* CTA card */
+    .cta-card {
+      background: #1c1c14;
+      border: 1px solid #2a2a1a;
+      border-radius: 6px;
+    }
+
+    .cta-btn {
+      background: var(--gold);
+      color: #fff;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background .25s, transform .2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .cta-btn:hover { background: var(--gold-light); transform: translateX(3px); }
+
+    /* responsive gallery height */
+    @media (max-width: 640px) {
+      .carousel-slide img { height: 220px; }
+    }
+
+    </style>
 </head>
 
-<body>
-  <header class="fixed top-0 left-0 w-full bg-black/90  z-50 transition-all duration-300 ease-in-out">
-    <div class="flex items-center justify-between lg:px-40 md:px-28 px-6 md:hidden">
-      <!-- Logo -->
-      <div class="logo">
-        <a href="#" class="text-white text-2xl font-bold">
-          <img src="./assets/images/logo.png" width="100" height="100" alt="">
-        </a>
-      </div>
 
+<body class="bg-[#0f0f0f] text-white pt-28">
 
+  <!-- ================= MARQUEE ================= -->
+  <div class="px-6 fixed top-0 w-full z-50 bg-black/60 backdrop-blur-xl h-14 flex items-center">
+    <marquee behavior="smooth" direction="left" class="w-full">
+      <div class="flex items-center gap-8">
 
-      <!-- Mobile Hamburger -->
-      <button id="menu-btn" class="md:hidden focus:outline-none">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24"
-          stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
-      <div id="mobile-menu" class="fixed top-0 left-0 h-full w-64 bg-black text-white 
-         transform -translate-x-full transition-transform 
-         duration-300 ease-in-out md:hidden z-50">
-        <div class="flex justify-between items-center px-6 py-4 border-b border-gray-700">
-          <span class="text-2xl font-bold">
-            <img src="./assets/images/logo.png" width="100" height="150" alt="">
-          </span>
-          <!-- Close Button -->
-          <button id="close-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
+        <!-- Text + Icon -->
+        <div class="flex items-center gap-3">
+          <img
+            src="https://res.cloudinary.com/dtrqikle5/image/upload/v1767317361/streamline_announcement-megaphone-solid_b59alx.png"
+            class="w-6 h-6" alt="" />
+          <p class="text-sm whitespace-nowrap">
+            (i) A New Moment Begins: 100 Friends of the Bible needed. Your Partnership will transform lives
+            across the Globe.
+          </p>
+          <p class="text-sm whitespace-nowrap">
+            (i) A New Moment Begins: 100 Friends of the Bible needed. Your Partnership will transform lives
+            across the Globe.
+          </p>
         </div>
-<ul id="mainNav" class="flex flex-col gap-6 mt-8 px-6">
-  <a href="#home" class="nav-link">HOME</a>
-  <a href="#program" class="nav-link">PROGRAM</a>
-  <a href="#tickets" class="nav-link">TICKETS</a>
-  <a href="#sponsor" class="nav-link">SPONSOR</a>
-  <a href="#donate" class="nav-link">DONATE</a>
-  <a href="#" onclick="openModal()" class="nav-link">REGISTER</a>
-</ul>
 
-        <!-- <div class="px-6 mt-10">
-          <button class=" text-white w-full hover:bg-white hover:text-black py-2 rounded uppercase text-sm">
-            Register
-          </button>
-        </div> -->
+        <!-- Social Icons -->
+        <div class="flex items-center gap-3">
+          <a href="#" class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition">
+            <i class="fa-brands fa-x-twitter text-black text-sm"></i>
+          </a>
+
+          <a href="#" class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition">
+            <i class="fa-brands fa-linkedin-in text-blue-600 text-sm"></i>
+          </a>
+
+          <a href="#" class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition">
+            <i class="fa-brands fa-instagram text-pink-600 text-sm"></i>
+          </a>
+
+          <a href="#" class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition">
+            <i class="fa-brands fa-facebook-f text-blue-700 text-sm"></i>
+          </a>
+
+          <a href="#" class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition">
+            <i class="fa-brands fa-tiktok text-black text-sm"></i>
+          </a>
+
+          <a href="#" class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition">
+            <i class="fa-brands fa-youtube text-red-600 text-sm"></i>
+          </a>
+        </div>
+
+      </div>
+    </marquee>
+  </div>
+
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="fixed top-14 left-0 w-full z-40">
+    <div
+      class="relative w-full bg-[#1b1b1b]/60 backdrop-blur-xl border-b border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
+      <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+        <a href="./index.html">
+          <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766409594/sword_TV_logo_y9mnja.png" width="150"
+            class="rounded-full" />
+        </a>
+
+        <nav class="hidden md:flex items-center space-x-8">
+          <a href="../index.html">Home</a>
+          <a href="../Programs.html" class="text-orange-400">Programmes</a>
+          <a href="../Partnership.html" class="font-semibold">Partnership</a>
+          <a href="../blog.html" class="">Blog</a>
+          <a href="../contact-us.html">Contact us</a>
+        </nav>
+
+        <button
+          class="open-partner-modal hidden md:block bg-orange-500 text-black font-semibold px-6 py-2 rounded-full">
+          Partner with Us
+        </button>
+
+        <button id="openMenu" class="md:hidden text-3xl">☰</button>
       </div>
     </div>
   </header>
-  <section class="relative w-full md:h-screen h-[50vh] bg-black overflow-hidden ">
-    <!-- Background Slider -->
-    <div class="absolute inset-0 z-0  hidden md:block">
-      <!-- First Slide (Desktop) -->
-      <div class="hero-slide active backdrop-blur-xl absolute inset-0 
-             bg-[image:var(--background-image-slider-1)] 
-             bg-no-repeat bg-center bg-cover"></div>
 
-      <!-- Second Slide (Desktop) -->
-      <div class="hero-slide backdrop-blur-xl absolute inset-0 
-             bg-[image:var(--background-image-slider-2)] 
-             bg-no-repeat bg-center bg-cover"></div>
-      <div class="hero-slide backdrop-blur-xl absolute inset-0 
-             bg-[image:var(--background-image-slider-10)] 
-             bg-no-repeat bg-center bg-cover">
-      </div>
-      <div class="hero-slide backdrop-blur-xl absolute inset-0 
-             bg-[image:var(--background-image-slider-5)] 
-             bg-no-repeat bg-center bg-cover">
-      </div>
-      <div class="hero-slide backdrop-blur-xl absolute inset-0 
-             bg-[image:var(--background-image-slider-9)] 
-             bg-no-repeat bg-center bg-cover">
+  <!-- ================= MOBILE MENU ================= -->
+  <div id="mobileMenu" class="hidden fixed inset-0 bg-black/20 backdrop-blur-xl z-50 flex items-center justify-center">
+    <div class="bg-[#1b1b1b] w-72 rounded-xl p-6 relative">
+      <button id="closeMenu" class="absolute top-4 right-4">✕</button>
 
-      </div>
-    </div>
+      <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766409594/sword_TV_logo_y9mnja.png" width="150"
+        class="rounded-full mx-auto mb-6" />
 
-    <!-- Mobile Slides -->
-    <div class="absolute inset-0 z-0 md:hidden block  mt-14">
+      <div class="flex flex-col space-y-4 text-center">
+        <a href="../index.html">Home</a>
+        <a href="../Programs.html" class="text-orange-400">Programmes</a>
+        <a href="../Partnership.html">Partnership</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../contact-us.html">Contact us</a>
 
-      <div class="hero-slide active backdrop-blur-xl 
-             bg-[image:var(--background-image-slider-7)] 
-             bg-no-repeat bg-center bg-contain h-[50vh]"></div>
-
-
-      <div class="hero-slide backdrop-blur-xl 
-             bg-[image:var(--background-image-slider-8)] 
-             bg-no-repeat bg-center bg-contain h-[50vh]"></div>
-
-      <div class="hero-slide backdrop-blur-xl 
-             bg-[image:var(--background-image-slider-10)] 
-             bg-no-repeat bg-center bg-contain h-[50vh]">
-      </div>
-
-      <div class="hero-slide backdrop-blur-xl 
-             bg-[image:var(--background-image-slider-9)] 
-             bg-no-repeat bg-center bg-contain h-[50vh]">
-
-      </div>
-    </div>
-
-    <header id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 hidden md:block ease-in-out">
-      <div class="flex items-center justify-between lg:px-40 md:px-28 px-6 md:py-6 py-2">
-        <!-- Logo -->
-        <div class="logo">
-          <a href="#" class="text-white text-2xl font-bold">
-            <img src="./assets/images/logo.png" width="100" height="100" alt="">
-          </a>
-        </div>
-
-        <!-- Desktop Menu -->
-        <ul class="md:flex hidden gap-10 items-center">
-          <li><a href="#" class="text-gray-50 hover:text-gray-300">HOME</a></li>
-          <li><a href="#" class="text-gray-50 hover:text-gray-300">PROGRAM</a></li>
-          <li><a href="#" class="text-gray-50 hover:text-gray-300">TICKETS</a></li>
-          <li><a href="#" class="text-gray-50 hover:text-gray-300">SPONSOR</a></li>
-          <li><a href="#" class="text-gray-50 hover:text-gray-300">DONATE</a></li>
-        </ul>
-
-        <!-- Register Button -->
-        <button class="bg-white text-black px-4 py-2 rounded uppercase text-sm hidden md:block" onclick="openModal()">
-          Register
-        </button>
-
-        <!-- Mobile Hamburger -->
-        <button id="menu-btn" class="md:hidden focus:outline-none">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24"
-            stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-        <div id="mobile-menu" class="fixed top-0 left-0 h-[100vh] w-64 bg-black text-white 
-         transform -translate-x-full transition-transform 
-         duration-300 ease-in-out md:hidden z-50">
-          <div class="flex justify-between items-center px-6 py-4 border-b border-gray-700">
-            <span class="text-2xl font-bold">
-              <img src="./assets/images/sword tv logo white.png" width="150" height="150" alt="">
-            </span>
-            <!-- Close Button -->
-            <button id="close-btn">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-          <ul class="flex flex-col gap-6 mt-8 px-6">
-            <li><a href="#" class="text-gray-50 hover:text-gray-300 border border-white rounded py-2 ">HOME</a></li>
-            <li><a href="#" class="text-gray-50 hover:text-gray-300 border border-white rounded py-2 ">PROGRAM</a></li>
-            <li><a href="#" class="text-gray-50 hover:text-gray-300 border border-white rounded py-2 ">TICKETS</a></li>
-            <li><a href="#" class="text-gray-50 hover:text-gray-300 border border-white rounded py-2 ">SPONSOR</a></li>
-            <li><a href="#" class="text-gray-50 hover:text-gray-300 border border-white rounded py-2 ">DONATE</a></li>
-          </ul>
-          <div class="px-6 mt-10">
-            <button onclick="openModal()" class="bg-white text-black w-full py-2 rounded uppercase text-sm">
-              Register
-            </button>
-          </div>
-        </div>
-      </div>
-    </header>
-  </section>
-
-  <!-- hero  -->
-  <main
-    class="flex flex-col bg-black/90 backdrop-blur-lg lg:flex-row justify-center items-center  md:py-[6rem] py-4 lg:px-40 md:px-20 px-4 gap-10 ">
-    <!-- Left Content -->
-    <div
-      class="text-gray-900 max-w-2xl py-6 flex items-center justify-center  text-center flex-col md:delay-[200ms] md:duration-[400ms] md:taos:scale-[0.6] md:taos:opacity-0"
-      data-taos-offset="400">
-      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-50 mb-3">
-        Welcome to Ilorin Youth Mega Festival 2025!
-      </h2>
-      <h3 class="text-[2rem] font-semibold text-gray-50 mt-4 mb-2">About the Festival</h3>
-      <p class="text-base md:text-lg text-gray-50 leading-relaxed mb-6">
-        The Ilorin Youth Mega Festival 2025 is a landmark event designed to unite, empower, and celebrate the
-        creativity, talent, and potential of young people in Ilorin and beyond. It will feature talent showcases,
-        competitions, exhibitions, and entertainment, while also creating opportunities for networking,
-        entrepreneurship, and empowerment. Our goal is to inspire the next generation of leaders, innovators, and
-        changemakers.
-      </p>
-      <p class=" md:text-lg text-gray-50 leading-relaxed my-[1px] text-[1.3rem]">
-        Date: 5th-7th, December 2025
-      </p>
-      <p class="text-[1.3rem] md:text-lg text-gray-50 leading-relaxed mt-[1px] mb-3">Venue: The Lion Center, Opposite
-        Ultimate Hotel/Event Hall, New Yidi Road, Ilorin, Kwara State</p>
-      <div class="flex flex-col sm:flex-row gap-4">
-        <button onclick="openModal()"
-          class="bg-gray-50 text-black font-semibold px-6 py-3 rounded-md hover:border-gray-50 hover:border-1 hover:text-white hover:bg-transparent transition w-full sm:w-auto">
-          REGISTER NOW
-        </button>
-        <button onclick="openPartnerModal()"
-          class="flex items-center justify-center gap-2 border border-gray-50 text-white hover:bg-gray-50 hover:text-black font-semibold px-6 py-3 rounded-md transition w-full sm:w-auto">
-          PARTNER WITH US
-          <i class="fa-solid fa-arrow-right"></i>
+        <button class="open-partner-modal bg-orange-400 text-black px-5 py-2 rounded-full font-semibold mt-4">
+          Partner with Us
         </button>
       </div>
     </div>
-
-  </main>
-
-  <!-- about section -->
-  <section id="about" class="bg-gray-900 lg:px-40 md:px-28 px-4 py-20">
-    <div class="mb-12">
-      <h3 class="text-sm md:text-xl font-semibold uppercase text-gray-100 mb-2">About</h3>
-      <h1 class="text-2xl md:text-4xl lg:text-5xl font-bold leading-tight md:w-1/2 w-full text-gray-50">
-        Empowering Youth Through Cultural Celebration
-      </h1>
-    </div>
-
-
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-
-      <div>
-        <img src="./assets/images/about empowering youth copy.jpg" alt="About IYMF"
-          class="w-full rounded-md shadow-md object-cover">
-      </div>
-
-
-      <div id="festival-section" class="flex flex-col justify-center max-w-3xl mx-auto">
-        <p class="text-gray-50 text-base md:text-lg leading-relaxed mb-6">
-          The Ilorin Youth Mega Festival is more than an event. It's a platform for young
-          talents to showcase their creativity, connect with peers, and transform their
-          community. We believe in nurturing potential and creating opportunities for growth.
-        </p>
-
-
-        <div>
-          <button id="exploreBtn" aria-expanded="false"
-            class="px-6 py-3  font-medium cursor-pointer  border border-gray-50 text-white duration-200 ease-in-out hover:bg-gray-50 hover:text-black transition">
-            Explore Our Programs →
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Highlights section -->
-
-  <section class="bg-gray-900">
-    <div class="md:py-16 py-4 flex items-center justify-center text-center flex-col">
-      <h3 class="text-5xl font-semibold uppercase text-gray-100 mb-2">
-        <i class="fa-solid fa-award"></i>
-      </h3>
-      <h1 class="text-2xl md:text-4xl lg:text-5xl font-bold leading-tight md:w-1/2 w-full it text-gray-50">
-        Ilorin Youth Mega Festival <br> <span class="undeline text-3xl">Awards</span>
-      </h1>
-      <p class="text-gray-50 text-lg py-2"> The Spotlight is Calling!
-      </p>
-      <p class="text-gray-50 py-4 md:text-xl text-lg px-5">The festival stage is set. This is your chance to shine - or to
-        power your favorite to victory with your PAID VOTES. Every vote costs a little, but the more you vote, the
-        closer they get to the crown. Don't just watch... decide the winner!
-      </p>
-      <div class="flex gap-4 mt-4">
-        <button onclick="openVoteModal()"
-          class="px-6 py-3  font-medium cursor-pointer  border border-gray-50 text-white duration-200 ease-in-out hover:bg-gray-50 hover:text-black transition">
-          Vote Now
-        </button>
-        <button onclick="openNominateModal()"
-          class="px-6 py-3  font-medium cursor-pointer  border border-gray-50 text-white duration-200 ease-in-out hover:bg-gray-50 hover:text-black transition">
-          Join The Race
-        </button>
-      </div>
-    </div>
-    <!--  -->
-    <main class="relative w-full overflow-hidden  py-12">
-
-      <div id="marquee" class="flex animate-marquee whitespace-nowrap">
-
-        <div class="flex gap-1">
-          <!-- Card 1 -->
-          <div class="group relative w-96  h-64 flex-shrink-0 overflow-hidden rounded-2xl shadow-lg cursor-pointer">
-            <img src="./assets/images/award.jpg" class="absolute w-full h-full object-cover" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-            <div class="relative p-6 text-white text-center">
-               <h1 class="text-2xl font-bold text-center">Face of <br> Nigeria <br> <span
-                  class="text-base">(Male)</span></h1>
-              <!-- <p class="mt-3 text-base opacity-0 group-hover:opacity-100 transition-all duration-300">
-                Music, dance, spoken word, drama, comedy, and art.
-              </p>
-              <button
-                class="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 text-sm font-semibold underline">Register</button> -->
-            </div>
-          </div>
-
-          <div class="group relative w-96  h-64 flex-shrink-0 overflow-hidden rounded-2xl shadow-lg cursor-pointer">
-            <img src="./assets/images/award.jpg" class="absolute w-full h-full object-cover" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-            <div class="relative p-6 text-white text-center">
-               <h1 class="text-2xl font-bold text-center">Face of <br> Nigeria <br> <span
-                  class="text-base">(Female)</span></h1>
-              <!-- <p class="mt-3 text-base opacity-0 group-hover:opacity-100 transition-all duration-300">
-                Music, dance, spoken word, drama, comedy, and art.
-              </p>
-              <button
-                class="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 text-sm font-semibold underline">Register</button> -->
-            </div>
-          </div>
-
-       
-
-          <!-- Card 3 -->
-          <div class="group relative w-96  h-64 flex-shrink-0 overflow-hidden rounded-2xl shadow-lg cursor-pointer">
-            <img src="./assets/images/award2.png" class="absolute w-full h-full object-cover" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-            <div class="relative p-6 text-white text-center">
-              <h1 class="text-2xl font-bold text-center">Most <br> Indigenous <br> <span class="text-base">(Male)</span>
-              </h1>
-              <!-- <p class="mt-3 text-base opacity-0 group-hover:opacity-100 transition-all duration-300">
-                Youth-owned businesses, tech startups, fashion, crafts.
-              </p>
-              <button
-                class="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 text-sm font-semibold underline">Register</button> -->
-            </div>
-          </div>
-
-          <!-- Card 4 -->
-          <div class="group relative w-96  h-64 flex-shrink-0 overflow-hidden rounded-2xl shadow-lg cursor-pointer">
-            <img src="./assets/images/award3.jpg" class="absolute w-full h-full object-cover" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-            <div class="relative p-6 text-white text-center">
-              <h1 class="text-2xl font-bold text-center">Most <br> Indigenous <br> <span
-                  class="text-base">(Female)</span></h1>
-              <!-- <p class="mt-3 text-base opacity-0 group-hover:opacity-100 transition-all duration-300">
-                Guest artists, comedians, and cultural displays.
-              </p>
-              <button
-                class="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 text-sm font-semibold underline">Register</button> -->
-            </div>
-          </div>
-
-         
-
-          
-
-          <!-- Card 7 -->
-           <div class="group relative w-96  h-64 flex-shrink-0 overflow-hidden rounded-2xl shadow-lg cursor-pointer">
-            <img src="./assets/images/award6.jpg" class="absolute w-full h-full object-cover" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-            <div class="relative p-6 text-white text-center">
-              <h1 class="text-2xl font-bold text-center">Best <br> Nigeria <br> Cultural <br>Group</h1>
-              <!-- <p class="mt-3 text-base opacity-0 group-hover:opacity-100 transition-all duration-300">
-                Recognizing outstanding youth achievements and talents.
-              </p>
-              <button
-                class="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 text-sm font-semibold underline">Register</button> -->
-            </div>
-          </div>
-          <!-- Card 8 -->
-            <div class="group relative w-96  h-64 flex-shrink-0 overflow-hidden rounded-2xl shadow-lg cursor-pointer">
-            <img src="./assets/images/card7bg.jpg" class="absolute w-full h-full object-cover" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-            <div class="relative p-6 text-white text-center">
-              <h1 class="text-2xl font-bold text-center">Best <br> Personality <br> <span class="text-base">(Male)</span>
-              </h1>
-              <!-- <p class="mt-3 text-base opacity-0 group-hover:opacity-100 transition-all duration-300">
-                Recognizing outstanding youth achievements and talents.
-              </p>
-              <button
-                class="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 text-sm font-semibold underline">Register</button> -->
-            </div>
-          </div>
-          <!-- Card 9 -->
-            <div class="group relative w-96  h-64 flex-shrink-0 overflow-hidden rounded-2xl shadow-lg cursor-pointer">
-            <img src="./assets/images/card7bg.jpg" class="absolute w-full h-full object-cover" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-            <div class="relative p-6 text-white text-center">
-              <h1 class="text-2xl font-bold text-center">Best <br> Personality <br> <span class="text-base">(Female)</span>
-              </h1>
-              <!-- <p class="mt-3 text-base opacity-0 group-hover:opacity-100 transition-all duration-300">
-                Recognizing outstanding youth achievements and talents.
-              </p>
-              <button
-                class="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 text-sm font-semibold underline">Register</button> -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-  </section>
-  <!-- ticket section  -->
-  <section class="w-full px-6 md:px-16 py-12 bg-black" id="tickets">
-    <div class="grid grid-cols-1 lg:grid-cols-2 md:gap-6 gap-0">
-
-      <!-- LEFT CARD (STATIC) -->
-      <div class="relative rounded-xl overflow-hidden h-[350px] flex items-center justify-center text-white">
-        <img src="./assets/images/ticket.jpg" alt="Festival" class="absolute inset-0 w-full h-full object-cover" />
-        <div class="absolute inset-0 bg-black/60"></div>
-        <div class="relative z-10 p-6">
-          <p class="text-sm uppercase tracking-wide">Passes</p>
-          <h1 class="text-2xl md:text-3xl font-bold mb-4">Ticket Categories for the Ilorin Youth Mega Festival
-          </h1>
-          <p class="text-sm md:text-base mb-6">Select from our range of ticket options to match your festival
-            preferences</p>
-          <button onclick="openModal()"
-            class="px-6 py-2 border border-white hover:bg-white hover:text-black transition">Register</button>
-        </div>
-      </div>
-
-      <!-- RIGHT SIDE SCROLLABLE CARDS -->
-     <div class="relative">
-  <div id="cardContainer"
-    class="flex gap-4 relative overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory">
-
-    <!-- CARD 1 -->
-    <div class="ticket-card general">
-      <h3>General Pass</h3>
-      <button>Buy Ticket <i class="fa-solid fa-chevron-right"></i></button>
-      <a href="./assets/js/form/regular.html">
-        <img src="./assets/images/Ticket general pass.jpg" alt="General Pass">
-      </a>
-      <small>1 of 7</small>
-    </div>
-
-    <!-- CARD 2 -->
-    <div class="ticket-card empower">
-      <h3>Empower Pass</h3>
-      <button>Buy Ticket <i class="fa-solid fa-chevron-right"></i></button>
-      <a href="./assets/js/form/workshop.html">
-        <img src="./assets/images/Ticket EMPOWER PASS.jpg" alt="Empower Pass">
-      </a>
-      <small>2 of 7</small>
-    </div>
-
-    <!-- CARD 3 -->
-    <div class="ticket-card vip">
-      <h3>VIP Pass</h3>
-      <button>Buy Ticket <i class="fa-solid fa-chevron-right"></i></button>
-      <a href="./assets/js/form/vip.html">
-        <img src="./assets/images/Ticket VIP pass.jpg" alt="VIP Pass">
-      </a>
-      <small>3 of 7</small>
-    </div>
-
-    <!-- CARD 4 -->
-    <div class="ticket-card vvip">
-      <h3>VVIP Pass</h3>
-      <button>Buy Ticket <i class="fa-solid fa-chevron-right"></i></button>
-      <a href="./assets/js/form/vvip.html">
-        <img src="./assets/images/Ticket VVIP PASS.jpg" alt="VVIP Pass">
-      </a>
-      <small>4 of 7</small>
-    </div>
-
-    <!-- CARD 5 -->
-    <div class="ticket-card table3">
-      <h3>Executive Table for 3</h3>
-      <button>Buy Ticket <i class="fa-solid fa-chevron-right"></i></button>
-      <a href="./assets/js/form/table.html">
-        <img src="./assets/images/Ticket EXCLUSIVE TABLE FOR 5.jpg" alt="Table for 3">
-      </a>
-      <small>5 of 7</small>
-    </div>
-
-    <!-- CARD 6 -->
-    <div class="ticket-card table5">
-      <h3>Executive Table for 5</h3>
-      <button>Buy Ticket <i class="fa-solid fa-chevron-right"></i></button>
-      <a href="./assets/js/form/table.html">
-        <img src="./assets/images/Ticket EXCLUSIVE TABLE FOR 7.jpg" alt="Table for 5">
-      </a>
-      <small>6 of 7</small>
-    </div>
-
-    <!-- CARD 7 -->
-    <div class="ticket-card table7">
-      <h3>Executive Table for 7</h3>
-      <button>Buy Ticket <i class="fa-solid fa-chevron-right"></i></button>
-      <a href="./assets/js/form/table.html">
-        <img src="./assets/images/exclusive table for 10.jpg" alt="Table for 7">
-      </a>
-      <small>7 of 7</small>
-    </div>
-
   </div>
-</div>
 
 
-    </div>
-  </section>
-  <!-- image gallary  -->
+  <!-- blog content -->
 
-  <section class="w-full py-10 bg-black" id="program">
-    <div class="
-      flex  overflow-x-auto scrollbar-hide snap-x snap-mandatory 
-      md:grid md:grid-cols-3 gap-2 md:gap-0 md:grid-rows-2 md:overflow-visible md:snap-none
-    ">
 
-      <!-- Image 1 -->
-      <div class="min-w-[250px] md:min-w-0 snap-center">
-        <img src="./assets/images/IMG-20250928-WA0006.jpg" alt="Event 1" class=" w-full md:h-72 h-60 object-cover" />
-      </div>
+  <section class="">
+    <section class="w-full py-12">
+      <div class="bg-black text-center py-6 border-b border-white/10">
 
-      <!-- Image 2 -->
-      <div class="min-w-[250px] md:min-w-0 snap-center">
-        <img src="./assets/images/IMG-20250928-WA0008.jpg" alt="Event 2" class=" w-full md:h-72 h-60 object-cover" />
-      </div>
-
-      <!-- Image 3 -->
-      <div class="min-w-[250px] md:min-w-0 snap-center">
-        <img src="./assets/images/IMG-20250928-WA0009.jpg" alt="Event 3" class=" w-full md:h-72 h-60 object-cover" />
-      </div>
-
-      <!-- Image 4 -->
-      <div class="min-w-[250px] md:min-w-0 snap-center">
-        <img src="./assets/images/IMG-20250928-WA0010.jpg" alt="Event 4" class=" w-full md:h-72 h-60 object-cover" />
-      </div>
-
-      <!-- Image 5 -->
-      <div class="min-w-[250px] md:min-w-0 snap-center">
-        <img src="./assets/images/IMG-20250928-WA0011.jpg" alt="Event 5" class=" w-full md:h-72 h-60 object-cover" />
-      </div>
-
-      <!-- Image 6 -->
-      <div class="min-w-[250px] md:min-w-0 snap-center">
-        <img src="./assets/images/IMG-20250928-WA0013.jpg" alt="Event 6"
-          class=" w-full  md:h-72 h-60 md:object-cover object-center" />
-      </div>
-
-    </div>
-  </section>
-  <!--  -->
-  <section class="w-full" id="sponsor">
-    <div class="flex flex-col md:flex-row pl-6 md:pl-16 md:py-12 py-4 max-w-full md:gap-14 gap-0 bg-black ">
-
-      <!-- Left Text -->
-      <div class="flex flex-col justify-center w-full md:w-2/5">
-        <p class="text-sm font-semibold uppercase text-gray-100">Sponsorship</p>
-        <h1 class="text-3xl md:text-4xl text-gray-50 font-bold my-6">
-          Unlock Sponsorship <br /> Opportunities
-        </h1>
-        <p class="text-gray-50 mb-6">
-          Become a vital part of the Ilorin Youth Mega Festival by choosing a sponsorship level that aligns with your
-          brand.
-          Your support will not only enhance the festival experience but also empower the youth of Ilorin.
+        <p class="text-gray-300 mb-2 flex items-center justify-center gap-2">
+          <span class="text-orange-400">🕒</span>
+          Registration Closes In:
         </p>
 
+        <div class="flex justify-center gap-10 text-white">
+
+          <div>
+            <h2 id="days" class="text-4xl font-bold">00</h2>
+            <p class="text-gray-400 text-sm">Days</p>
+          </div>
+
+          <div>
+            <h2 id="hours" class="text-4xl font-bold">00</h2>
+            <p class="text-gray-400 text-sm">Hours</p>
+          </div>
+
+          <div>
+            <h2 id="minutes" class="text-4xl font-bold">00</h2>
+            <p class="text-gray-400 text-sm">Minutes</p>
+          </div>
+
+          <div>
+            <h2 id="seconds" class="text-4xl font-bold">00</h2>
+            <p class="text-gray-400 text-sm">Seconds</p>
+          </div>
+
+        </div>
+
       </div>
+    </section>
+    <div class="lg:px-56 md:px-32 px-10 py-4">
+      <img
+        src="https://res.cloudinary.com/dtrqikle5/image/upload/v1773726234/ChatGPT_Image_Jan_11_2026_01_23_40_PM_1_zddhj9.png"
+        alt="">
+    </div>
 
-      <!-- Right Slider -->
-      <div
-        class="flex-1  overflow-x-auto snap-x snap-mandatory flex gap-8 md:py-44 py-8 scrollbar-hide md:bg-gray-900 bg-gray-950">
+    <div class="max-w-7xl mx-auto px-6 py-10 w-full">
+      <div class="grid lg:grid-cols-3 gap-10 items-start">
+        <!-- LEFT SIDE -->
+        <div class="lg:col-span-2">
 
-        <!-- Card 1 -->
-        <div
-          class="md:min-w-[550px] min-w-[520px] md:h-[450px] h-[300px] relative bg-black text-white p-8 snap-center flex flex-col justify-between transition-all duration-300">
-          <div>
-            <div class="flex justify-between items-center mb-4">
-              <h2 class="text-3xl font-bold flex items-center gap-4">
-                ₦10M
-                <span class="bg-white text-xs px-3 py-1 rounded-full text-black inline-flex items-center">
-                  Platinum
-                </span>
-              </h2>
-              <span><img src="./assets/images/SVG.png" width="40" alt=""></span>
-            </div>
-            <h3 class="font-semibold mb-4 text-xl">Platinum Sponsor Packages</h3>
-            <ul class="space-y-3 text-base">
-              <li>✔ Naming rights: “Ilorin Youth Mega Festival powered by [Platinum Sponsor]”</li>
-              <li>✔ Naming rights for a key festival session (e.g., The Platinum Sponsor Masterclass).</li>
-              <li>✔ Opportunity to present prizes during select competitions</li>
-              <small class="text-white animate-pulse text-base">✔ And lots more </small>
-            </ul>
+          <!-- Title -->
+          <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+            Ilorin Youth Mega Festival
+          </h1>
+          <!-- Badge -->
+          <div class="flex items-center gap-3 mb-6">
+            <span
+              class="bg-orange-500/20 border border-orange-400 text-orange-300 px-4 py-2 rounded-full text-sm flex items-center gap-2">
+              <i class="fa-regular fa-calendar"></i>
+              10th - 12th April, 2026
+            </span>
+            <!-- Tag -->
+            <span class="border border-orange-400 text-white px-4 py-1 rounded-full text-sm">
+              Overview
+            </span>
           </div>
-          <small class="absolute text-base font-bold bottom-0 right-60 text-gray-300">
-            1 of 4
-          </small>
-        </div>
-
-        <!-- Card 2 -->
-        <div
-          class="min-w-[550px] relative md:h-[450px] h-[300px] bg-white text-black border  p-8 snap-center flex flex-col justify-between transition-all duration-300">
-          <div>
-            <div class="flex justify-between items-center mb-4">
-              <h2 class="text-3xl font-bold flex items-center gap-4">
-                ₦5M
-                <span class="bg-black te text-xs px-6 py-1 rounded-full text-white">
-                  Gold
-                </span>
-              </h2>
-            </div>
-            <h3 class="font-semibold mb-4 text-xl">Gold Sponsor Packages</h3>
-            <ul class="space-y-3 text-base">
-              <li>✔ Recognition across TV, radio, and online media platforms.</li>
-              <li>✔ Direct brand activation opportunity during peak festival hours.</li>
-              <li>✔ Special recognition during awards presentation.</li>
-              <small class="text-gray-900 animate-pulse text-base">✔ And lots more</small>
-            </ul>
-          </div>
-          <small class="absolute text-base  font-bold bottom-0 right-60 text-gray-900">
-            2 of 4
-          </small>
-        </div>
-
-        <!-- Card 3 -->
-        <div
-          class="min-w-[550px] relative md:h-[450px] h-[300px] bg-black text-white   p-8 snap-center flex flex-col justify-between transition-all duration-300">
-          <div>
-            <div class="flex justify-between items-center mb-4">
-              <h2 class="text-3xl font-bold flex items-center gap-4">
-                ₦3M
-                <span class="bg-gray-200 text-xs px-6 py-1 rounded-full text-gray-700">
-                  Silver
-                </span>
-              </h2>
-            </div>
-            <h3 class="font-semibold mb-4 text-xl">Silver Sponsor Packages</h3>
-            <ul class="space-y-3 text-base">
-              <li>✔ Recognition across TV, radio, and online media platforms</li>
-              <li>✔ Lifetime recognition in festival archives and post-event documentaries.</li>
-              <li>✔ Dedicated exhibition booth</li>
-              <small class="text-white animate-pulse text-base">✔ And lots more</small>
-            </ul>
-          </div>
-          <small class="absolute text-base  font-bold bottom-0 right-60 text-gray-200">
-            3 of 4
-          </small>
-        </div>
-
-        <!-- Card 4 -->
-        <div
-          class="min-w-[550px] relative md:h-[450px] h-[300px] bg-white text-black border  p-8 snap-center flex flex-col justify-between transition-all duration-300">
-          <div>
-            <div class="flex justify-between items-center mb-4">
-              <h2 class="text-3xl font-bold flex items-center gap-4">
-                ₦1.5M
-                <span class="bg-black text-xs px-6 py-1 rounded-full text-white">
-                  Bronze
-                </span>
-              </h2>
-            </div>
-            <h3 class="font-semibold mb-4 text-xl">Bronze Sponsor Packages</h3>
-            <ul class="space-y-3 text-base">
-              <li>✔ Recognition across TV, radio, and online media platforms</li>
-              <li>✔ Lifetime recognition in festival archives and post-event documentaries.</li>
-              <li>✔ Dedicated exhibition booth</li>
-              <small class="text-gray-900 animate-pulse text-base">✔ And lots more</small>
-            </ul>
-          </div>
-          <small class="absolute text-base  font-bold bottom-0 right-60 text-gray-900">
-            4 of 4
-          </small>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="donate"
-    class="flex flex-col bg-gray-50 relative h-[50vh] justify-center items-center   md:pt-[6rem] lg:px-40 md:px-20 px-6 gap-10">
-    <!-- Left Content -->
-    <div class="text-gray-900 max-w-2xl md:py-12 py-4 flex items-center justify-center  text-center flex-col">
-      <h2 class="text-[2.3rem] leading-9 italic font-bold text-gray-900 mb-3">
-        Support This Festival
-      </h2>
-      <p class=" md:text-xl font-medium text-lg text-gray-800  leading-relaxed mb-6">
-        Join us in making a difference!
-        Your support not only enhances the festival experience but also empowers the youth of Ilorin to reach their full
-        potential.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4">
-        <button onclick="openPartnerModal()"
-          class=" font-semibold px-6 py-3 uppercase rounded-md ease-in-out duration-300 border border-gray-900 text-black  hover:bg-gray-950 hover:text-gray-50 transition w-full sm:w-auto">
-          Donate
-        </button>
-      </div>
-    </div>
-    <div class="absolute md:bottom-20 bottom-0 md:left-52 hidden md:block left-0">
-      <img src="./assets/images/person1.jpg" width="100" alt="">
-    </div>
-    <div class="absolute md:top-20 top-0 md:right-52 hidden md:block  right-0">
-      <img src="./assets/images/person2.jpg" width="100" alt="">
-    </div>
-  </section>
-  <!--  -->
-
-  <section class="bg-gray-900 lg:px-40 md:px-28 px-4 py-20">
-    <div class="md:pl-44 pl-6">
-      <h1 class="text-4xl font-bold capitalize text-white">our latest event</h1>
-    </div>
-    <div class="flex justify-center items-center gap-10 mt-10 flex-col md:flex-row">
-      <!-- card 1 -->
-
-
-      <!-- <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-        <a href="#">
-          <img class="rounded-t-lg " src="./assets/images/card_img.jpg" alt="" />
-        </a>
-        <div class="p-5">
-          <p class="mb-3 font-normal text-gray-50">November 25-27, 2025</p>
-          <a href="#">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">The Best Event Trends That
-              Shaping The Future</h5>
-          </a>
-          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Stay ahead in event planning—create unique,
-            immersive, and unforgettable experiences
-            that leave a lasting impact!</p>
-          <a href="#"
-            class="inline-flex uppercase items-center gap-2 px-3 py-2 text-sm font-medium text-center text-white ">
-            Learn more
-            <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-              fill="none" viewBox="0 0 14 10">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M1 5h12m0 0L9 1m4 4L9 9" />
-            </svg>
-          </a>
-        </div>
-      </div> -->
-      <!-- card 2 -->
 
 
 
-      <!-- <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-        <a href="#">
-          <img class="rounded-t-lg" src="./assets/images/card_img.jpg" alt="" />
-        </a>
-        <div class="p-5">
-          <p class="mb-3 font-normal text-gray-50">November 25-27, 2025</p>
-          <a href="#">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">The Best Event Trends That
-              Shaping The Future</h5>
-          </a>
-          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Stay ahead in event planning—create unique,
-            immersive, and unforgettable experiences
-            that leave a lasting impact!</p>
-          <a href="#"
-            class="inline-flex uppercase items-center gap-2 px-3 py-2 text-sm font-medium text-center text-white ">
-            Learn more
-            <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-              fill="none" viewBox="0 0 14 10">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M1 5h12m0 0L9 1m4 4L9 9" />
-            </svg>
-          </a>
-        </div>
-      </div> -->
-
-      <!-- card 3 -->
 
 
-      <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-        <a href="#">
-          <img class="rounded-t-lg" src="./assets/images/IMG-20250928-WA0009.jpg" alt="" />
-        </a>
-        <div class="p-5">
-          <p class="mb-3 font-normal text-gray-50">October 01, 2025</p>
-          <a href="#">
-            <h5 class="mb-2 text-[1.8rem] font-bold tracking-tight text-gray-900 dark:text-white">
-              The Joy of Festival Celebrations: A Time for Unity, Culture, and Joy
-            </h5>
-          </a>
-          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            <strong class="font-extrabold">Festivals have always been more than just colorful events on the
-              calendar—they are vibrant moments that
-              bring people together, bridging generations and communities</strong>. Whether celebrated with music,
-            dance, food, or
-            rituals, festivals carry the essence of culture, tradition, and shared joy.
+          <!-- Description -->
+          <p class="text-gray-300 mt-6 text-xl max-w-xl">
+            The Ultimate Celebration of Nigerian Talent, Culture, and Heritage — Ilorin Youth Mega Festival 2026.
           </p>
 
-          <!-- Hidden Blog Content -->
-          <div id="extraContent" class="hidden mt-4 text-gray-700 dark:text-gray-300">
+          <!-- About -->
+          <h2 class="text-3xl font-bold text-white mt-10 mb-4">
+            About the Show
+          </h2>
 
+          <p class="text-gray-300 text-xl mb-4">
+            The Ilorin Youth Mega Festival is a premier Nigerian cultural and talent festival that celebrates
+            creativity, intelligence, and indigenous heritage. Attendees will enjoy a rich mix of music, dance, drama,
+            art exhibitions, workshops, competitions, and interactive sessions — designed to empower talents, nurture
+            creativity, and honor Nigeria’s rich cultural legacy.
+          </p>
 
-            <p class="mb-2"><strong>The Spirit of Togetherness:</strong>At the heart of every festival is unity. It is a
-              time when families gather, neighbors connect, and communities come alive. No matter the differences in
-              background, belief, or status, festivals create a common ground where everyone is welcome.</p>
-            <p class="mb-2"><strong>Preserving Culture and Tradition:</strong> Festivals are living expressions of
-              history and heritage. They pass down stories, customs, and values from one generation to the next. By
-              participating in these celebrations, we keep our traditions alive while also giving them new meaning in
-              today’s world.</p>
-            <p class="mb-2"><strong>A Burst of Joy and Color:</strong> The atmosphere of a festival is unmatched—streets
-              filled with music, homes decorated with vibrant colors, and delicious meals shared with loved ones. They
-              remind us to pause, celebrate life, and create memories that linger long after the festivities end.</p>
-            <p class="mb-2"><strong>Economic and Social Impact:</strong> Beyond the joy, festivals also strengthen local
-              economies. Markets bustle with activity, artisans showcase their crafts, and tourism thrives. On a social
-              level, festivals encourage harmony, tolerance, and appreciation of diversity.
-            </p>
-            <p class="mb-2"><strong>Why We Celebrate:</strong> UUltimately, festivals remind us of the importance of
-              gratitude, reflection, and hope. They are milestones in the year that refresh our spirits and inspire us
-              to embrace the beauty of togetherness.</p>
-            <p class="mb-2"><strong>Conclusion:</strong> Celebrating festivals is not just about honoring
-              traditions—it’s about building bonds, spreading joy, and creating lasting memories.</p>
+          <!-- Button -->
+          <div class="flex text-center items-center   gap-8 flex-col md:flex-row mt-8">
+            <a href="../Partnership.html"
+              class=" bg-orange-500 text-center hover:bg-orange-600 text-white px-8 py-4 rounded-full font-semibold flex items-center gap-3 transition">
+              Paticipate
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
           </div>
 
-          <!-- Learn More Button -->
-          <button onclick="toggleContent()"
-            class="inline-flex uppercase items-center gap-2 px-3 py-2 text-sm font-medium text-center text-white  rounded-lg mt-3">
-            Learn more
-            <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-              fill="none" viewBox="0 0 14 10">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M1 5h12m0 0L9 1m4 4L9 9" />
+        </div>
+
+        <!-- RIGHT SIDE SHARE -->
+        <div class="lg:text-right space-y-6">
+
+          <!-- Location -->
+          <div class="flex items-center lg:justify-end gap-3 text-gray-300">
+            <div class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 text-orange-400">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <p class="text-sm max-w-xs">
+              The Lion center, opp., JIB Ultimate Multipurpose Hotel/event center.
+            </p>
+          </div>
+
+          <!-- Time -->
+          <div class="flex items-center lg:justify-end gap-3 text-gray-300">
+            <div class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 text-orange-400">
+              <i class="fas fa-clock"></i>
+            </div>
+            <p class="text-sm">10:00 A.M Daily</p>
+          </div>
+
+          <!-- Share Section -->
+          <div>
+            <h3 class="text-white text-xl font-semibold mb-4">Share Show</h3>
+
+            <div class="flex lg:justify-end gap-4">
+              <button
+                class="bg-white/10 hover:bg-orange-500 w-11 h-11 rounded-full text-white flex items-center justify-center transition duration-300 hover:scale-110">
+                <i class="fab fa-tiktok"></i>
+              </button>
+
+              <button
+                class="bg-white/10 hover:bg-orange-500 w-11 h-11 rounded-full text-white flex items-center justify-center transition duration-300 hover:scale-110">
+                <i class="fab fa-facebook-f"></i>
+              </button>
+
+              <button
+                class="bg-white/10 hover:bg-orange-500 w-11 h-11 rounded-full text-white flex items-center justify-center transition duration-300 hover:scale-110">
+                <i class="fab fa-linkedin-in"></i>
+              </button>
+
+              <button
+                class="bg-white/10 hover:bg-orange-500 w-11 h-11 rounded-full text-white flex items-center justify-center transition duration-300 hover:scale-110">
+                <i class="fab fa-x-twitter"></i>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!--  -->
+
+
+  </section>
+
+  <section class="w-full py-16  bg-section-overlay glass-container">
+    <div class="max-w-6xl mx-auto px-4">
+
+      <!-- Heading -->
+      <h2 class="text-4xl md:text-5xl font-semibold text-center text-orange-400 mb-12">
+        How To Participate
+      </h2>
+
+      <!-- Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- Step 1 -->
+        <div class="bg-orange-500 text-white rounded-xl p-8 shadow-lg">
+          <div class="w-12 h-12 flex items-center justify-center bg-white text-orange-500 font-bold rounded-full mb-4">
+            1.
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Select Your Participation Type</h3>
+
+          <p class="space-y-1 text-white/90">
+            Choose how you want to be part of the festival — as a competitor, performer, exhibitor, volunteer,
+            spectator, or sponsor. Everyone can be involved in the way that suits them.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-xl p-8 shadow-lg">
+          <div class="w-12 h-12 flex items-center justify-center bg-orange-500 text-white font-bold rounded-full mb-4">
+            2.
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Fill Out the Registration Form</h3>
+
+          <p class="text-white/90 leading-relaxed">
+            Provide your personal details, category (if applicable), and participation type. Subsections are available
+            for specific talents or genres (e.g., dance, music, fashion, art).
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="bg-white rounded-xl p-8 shadow-lg">
+          <div class="w-12 h-12 flex items-center justify-center bg-orange-500 text-white font-bold rounded-full mb-4">
+            3.
+          </div>
+          <h3 class="text-xl font-semibold mb-3 text-gray-900">Make Your Payment (if required)</h3>
+
+          <p class="text-gray-700">
+            Complete the registration or sponsorship payment to confirm your participation.
+          </p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="bg-orange-500 text-white rounded-xl p-8 shadow-lg">
+          <div class="w-12 h-12 flex items-center justify-center bg-white text-orange-500 font-bold rounded-full mb-4">
+            4.
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Get Your Confirmation</h3>
+
+          <p class="text-white/90">
+            Receive an official confirmation via email or SMS.
+          </p>
+        </div>
+
+        <!-- Step 5 (full width) -->
+        <div
+          class="md:col-span-2 bg-[#4a2e1f]/80 backdrop-blur-md border border-white/10 text-white rounded-xl p-8 shadow-lg">
+          <div class="w-12 h-12 flex items-center justify-center bg-orange-500 text-white font-bold rounded-full mb-4">
+            5.
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Prepare and Show Up</h3>
+
+          <p class="text-white/90">
+            Competitors and performers should rehearse or prepare content; spectators and sponsors should plan to attend
+            or view online.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!--  -->
+
+
+
+
+
+  <!-- GOLD SEPARATOR -->
+
+  <div class="w-full h-[1px] bg-gradient-to-r from-transparent via-[#f5a623]/40 to-transparent"></div>
+
+
+
+  <!-- =========================
+AWARD SECTION
+========================= -->
+
+  <section class="py-10">
+    <div class="flex items-center justify-center text-center flex-col py-10 gap-4">
+      <h2 class="text-[#f97316] text-xl md:text-3xl lg:text-5xl font-semibold ">
+        Award Categories & Requirements
+      </h2>
+      <p>Participants and audiences can compete or vote in the following categories</p>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto px-4">
+
+      <!-- Card 1 -->
+      <div
+        class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:scale-105 transition duration-300">
+        <div class="flex justify-start mb-4">
+          <img src="../assets/images/img-1.png" class="w-40 h-20 object-contain">
+        </div>
+        <h3 class="text-white font-semibold text-lg mb-2">
+          Face of Nigeria Award — Male & Female
+        </h3>
+        <p class="text-gray-300 text-sm">
+          A clean natural photograph is required (no eyeglasses, no AI images, no heavy makeup). Ladies may use
+          indigenous hairstyles only.
+        </p>
+      </div>
+
+      <!-- Card 2 -->
+      <div
+        class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:scale-105 transition duration-300">
+        <div class="flex justify-start mb-4">
+          <img src="../assets/images/img-1.png" class="w-40 h-20 object-contain">
+        </div>
+        <h3 class="text-white font-semibold text-lg mb-2">
+          Most Indigenous Nigerian Award — Male & Female
+        </h3>
+        <p class="text-gray-300 text-sm">
+          Dress in traditional attire of your ethnic group or one you choose to represent. Submit a short 2-minute video
+          or carousel showcasing your cultural display.
+        </p>
+      </div>
+
+      <!-- Card 3 -->
+      <div
+        class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:scale-105 transition duration-300">
+        <div class="flex justify-start mb-4">
+          <img src="../assets/images/img-1.png" class="w-40 h-20 object-contain">
+        </div>
+        <h3 class="text-white font-semibold text-lg mb-2">
+          Most Creative Award — Male & Female
+        </h3>
+        <p class="text-gray-300 text-sm">
+          Showcase your creative work with a short 2-minute video demonstrating the process and final piece.
+        </p>
+      </div>
+
+      <!-- Card 4 -->
+      <div
+        class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:scale-105 transition duration-300">
+        <div class="flex justify-start mb-4">
+          <img src="../assets/images/img-1.png" class="w-40 h-20 object-contain">
+        </div>
+        <h3 class="text-white font-semibold text-lg mb-2">
+          Most Intelligent Award — Male & Female
+        </h3>
+        <p class="text-gray-300 text-sm">
+          Demonstrate knowledge, skills, or innovation relevant to your field. Video or documentation may be required.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- GOLD DIVIDER -->
+  <div class="w-full h-[1px] bg-gradient-to-r from-transparent via-[#f97316] to-transparent"></div>
+
+
+
+  <!-- =====================================
+UPDATE SECTION
+===================================== -->
+  <section class="relative w-full py-20 px-6 bg-gradient-to-b from-[#0d0f13] to-[#0a0c10] overflow-hidden">
+
+    <!-- glow -->
+    <div
+      class="absolute -top-16 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-[radial-gradient(ellipse,rgba(245,166,35,.06),transparent)]">
+    </div>
+
+    <div class="relative z-10 max-w-3xl mx-auto">
+
+      <h2 class="text-center text-[clamp(1.5rem,3.2vw,2.2rem)] text-[#f97316] mb-8 tracking-wider font-[Cinzel]">
+        Update from the House
+      </h2>
+
+
+      <!-- FILTER -->
+      <div class="flex items-center justify-center gap-3 mb-8">
+
+        <span class="text-xs text-gray-400 tracking-widest">Filter:</span>
+
+        <div class="relative">
+
+          <select
+            class="appearance-none bg-black border border-white/20 rounded-full px-6 py-2 pr-10 text-sm text-white cursor-pointer hover:border-[#f5a623] focus:border-[#f5a623] outline-none">
+
+            <option>Today</option>
+            <option>This Week</option>
+            <option>This Month</option>
+            <option>All Time</option>
+
+          </select>
+
+          <div class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
+
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="6 9 12 15 18 9" />
             </svg>
-          </button>
+
+          </div>
+
         </div>
       </div>
 
+
+
+      <!-- VIDEO CARD -->
+      <div id="video-card"
+        class="relative w-full aspect-video rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-black cursor-pointer">
+
+        <div class="absolute inset-0 bg-gradient-to-br from-[#0e1520] to-[#060810]"></div>
+
+        <div class="absolute inset-0 bg-gradient-to-br from-[#1e283c80] to-black/60"></div>
+
+        <!-- play ring -->
+        <div class="absolute top-1/2 left-1/2 w-[90px] h-[90px] border-2 border-[#f97316] rounded-full opacity-60"
+          style="transform:translate(-50%,-50%);animation:ringPulse 2s infinite">
+        </div>
+
+
+        <!-- play button -->
+        <div id="play-btn"
+          class="absolute top-1/2 left-1/2 w-[68px] h-[68px] rounded-full flex items-center justify-center backdrop-blur bg-white/20 hover:bg-[#f5a62340] transition"
+          style="transform:translate(-50%,-50%)">
+
+          <svg id="play-icon" width="26" height="26" viewBox="0 0 24 24" fill="white">
+            <polygon points="5 3 19 12 5 21 5 3" />
+          </svg>
+
+        </div>
+
+
+        <!-- progress bar -->
+        <div class="absolute bottom-0 left-0 right-0 h-[3px] bg-white/10">
+
+          <div id="bar-fill" class="h-full bg-[#f97316] w-0"></div>
+
+        </div>
+
+      </div>
 
     </div>
   </section>
 
-  <!-- footer -->
+  <!--  -->
 
-  <footer class="bg-gray-800 text-gray-300 px-6 md:px-16 py-10">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-10">
+  <!-- ================= Gallery Section ================= -->
 
-      <!-- Left Section -->
-      <div class="flex flex-col gap-3 w-full md:w-1/3">
-        <a href="index.html" class="font-bold">
-          <img src="./assets/images/sword tv logo white.png" width="150" height="100" alt="">
-        </a>
-        <p class="text-sm uppercase">The king of Television</p>
-        <p class="text-xs text-gray-400 mt-4">© 2025 Ilorin Youth Mega Festival. All rights reserved.</p>
-      </div>
+  <section class="py-12 px-4">
+    <h2 class="gallery-title text-center text-3xl md:text-4xl font-semibold mb-8">Our Gallery</h2>
 
-      <!-- Center Navigation -->
-      <div class="w-full md:w-1/3 flex flex-col md:items-center">
-        <ul class="flex flex-col md:flex-row gap-4 md:gap-8 text-sm font-semibold">
-          <li><a href="#" class="hover:text-white transition">HOME</a></li>
-          <li><a href="#" class="hover:text-white transition">PROGRAM</a></li>
-          <li><a href="#" class="hover:text-white transition">TICKETS</a></li>
-          <li><a href="#" class="hover:text-white transition">SPONSOR</a></li>
-          <li><a href="#" class="hover:text-white transition">DONATE</a></li>
-        </ul>
-      </div>
+    <!-- Carousel wrapper -->
+    <div class="max-w-3xl mx-auto relative overflow-hidden rounded-lg" id="carousel">
+      <div class="carousel-track" id="carouselTrack">
 
-      <!-- Right Socials -->
-      <div class="w-full md:w-1/3 flex md:justify-end gap-4 text-lg">
-        <a href="#" class="hover:text-white"><i class="fab fa-instagram"></i></a>
-        <a href="#" class="hover:text-white"><i class="fab fa-x-twitter"></i></a>
-        <a href="#" class="hover:text-white"><i class="fab fa-tiktok"></i></a>
-        <a href="#" class="hover:text-white"><i class="fab fa-youtube"></i></a>
-        <a href="#" class="hover:text-white"><i class="fab fa-linkedin"></i></a>
+        <!-- Slide 1 – placeholder using a warm crowd image -->
+        <div class="carousel-slide">
+          <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=900&q=80" alt="Gallery photo 1" />
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="carousel-slide">
+          <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=900&q=80" alt="Gallery photo 2" />
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="carousel-slide">
+          <img src="https://images.unsplash.com/photo-1506869640319-fe1a24fd76dc?w=900&q=80" alt="Gallery photo 3" />
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="carousel-slide">
+          <img src="https://images.unsplash.com/photo-1543269664-56d93c1b41a6?w=900&q=80" alt="Gallery photo 4" />
+        </div>
       </div>
     </div>
-  </footer>
 
-
-
-
-  <!-- Modal -->
-  <div id="ticketModal"
-    class="fixed inset-0 hidden py-8 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50">
-    <div
-      class="bg-black/30 backdrop-blur-md  rounded-2xl shadow-lg w-[90%] max-w-3xl p-6 py-12 relative max-h-[90vh] overflow-y-auto">
-
-      <!-- Close Button -->
-      <button onclick="closeModal()" class="absolute top-1 right-4 text-gray-100 hover:text-white text-2xl">
-        ✕
+    <!-- Controls -->
+    <div class="max-w-3xl mx-auto mt-4 flex items-center justify-center gap-2">
+      <!-- Prev -->
+      <button class="carousel-btn prev" id="prevBtn" aria-label="Previous slide">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e5e5e5" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
       </button>
 
-      <!-- Title -->
-      <h2 class="text-2xl font-bold text-gray-100">Register for the IYMF 2025</h2>
-      <p class="text-sm text-gray-200 mt-1">
-        Select how you’d like to participate, as an attendee, performer, exhibitor, Volunteer or as a resource person.
-      </p>
+      <!-- Dots -->
+      <div class="flex items-center gap-2 mx-2" id="dotsContainer"></div>
 
-      <!-- Step 1: Ticket Options -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
-        <a href="./assets/js/form/regular.html"
-          class="option-card border-gray-100 border rounded-xl p-4 cursor-pointer hover:border-blue-600">
-          <input type="radio" name="ticket" value="regular" class="hidden">
-          <h3 class="font-semibold text-xl text-white">Regular Ticket</h3>
-          <p class="text-base text-gray-100">Access to main events and exhibitions.</p>
-        </a>
+      <!-- Next -->
+      <button class="carousel-btn next" id="nextBtn" aria-label="Next slide">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6" />
+        </svg>
+      </button>
+    </div>
+  </section>
 
-        <a href="./assets/js/form/workshop.html"
-          class="option-card border-gray-100 border rounded-xl p-4 cursor-pointer hover:border-blue-600">
-          <input type="radio" name="ticket" value="workshop" class="hidden">
-          <h3 class="font-semibold text-xl text-white">Empower Ticket</h3>
-          <p class="text-base text-gray-100">Access to 6 professional empowerment workshop sessions in addition to the main event 
+  <!-- ═══════════════════════════════════════════
+     FAQ SECTION
+════════════════════════════════════════════ -->
+  <section class="faq-section py-16 px-4">
+    <div class="max-w-5xl mx-auto">
 
-</p>
-        </a>
+      <!-- Heading -->
+      <div class="text-center mb-10">
+        <h2 class="faq-title text-3xl md:text-4xl font-semibold mb-2">FAQs</h2>
+        <p class="faq-subtitle text-sm text-gray-400 uppercase tracking-widest">Frequently Asked Questions</p>
+      </div>
 
-        <a href="./assets/js/form/vip.html"
-          class="option-card border-gray-100 border rounded-xl p-4 cursor-pointer hover:border-blue-600">
-          <input type="radio" name="ticket" value="vip" class="hidden">
-          <h3 class="font-semibold text-xl text-white">VIP/VVIP Ticket</h3>
-          <p class="text-base text-gray-100">Premium perks, exclusive seating, meet & greet.</p>
-        </a>
+      <!-- Two-column layout: FAQ list + CTA card -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
 
-        <a href="./assets/js/form/table.html"
-          class="option-card border-gray-100 border rounded-xl p-4 cursor-pointer hover:border-blue-600">
-          <input type="radio" name="ticket" value="table" class="hidden">
-          <h3 class="font-semibold text-xl text-white">Executive Table for 3/5/7 Tickets</h3>
-          <p class="text-base text-gray-100">Reserved tables with refreshments and recognition.</p>
-        </a>
+        <!-- FAQ list (2 columns wide on lg) -->
+        <div class="lg:col-span-2 flex flex-col gap-3" id="faqList">
 
-        <a href="./assets/js/form/exhibition.html"
-          class="option-card border-gray-100 border rounded-xl p-4 cursor-pointer hover:border-blue-600">
-          <input type="radio" name="ticket" value="exhibition" class="hidden">
-          <h3 class="font-semibold text-xl text-white">Exhibitions Space Ticket </h3>
-          <p class="text-base text-gray-100">Showcase your brand, products, or creativity.</p>
-        </a>
+          <!-- FAQ items injected by JS -->
 
-        <a href="./assets/js/form/volunteer.html"
-          class="option-card border-gray-100 border rounded-xl p-4 cursor-pointer hover:border-blue-600">
-          <input type="radio" name="ticket" value="volunteer" class="hidden">
-          <h3 class="font-semibold text-xl text-white">Volunteer</h3>
-          <p class="text-base text-gray-100">Join the team, support logistics and coordination.</p>
-        </a>
+        </div>
 
-        <a href="./assets/js/form/cultural.html"
-          class="option-card border-gray-100 border rounded-xl p-4 cursor-pointer hover:border-blue-600">
-          <input type="radio" name="ticket" value="cultural" class="hidden">
-          <h3 class="font-semibold text-xl text-white">Cultural Performances/Multi-talent Showcase</h3>
-          <p class="text-base text-gray-100">Music, dance, spoken word, and cultural displays.</p>
-        </a>
+        <!-- CTA side card -->
+        <div class="cta-card p-6 flex flex-col gap-4">
+          <div>
+            <p class="font-bold text-sm text-yellow-100 mb-1">Still have questions?</p>
+            <p class="text-xs text-gray-400 leading-relaxed">
+              Can't find the answer you are looking for? Kindly check our complete list of FAQs
+            </p>
+          </div>
+          <button class="cta-btn px-5 py-2.5">
+            View Complete FAQs
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </button>
+        </div>
 
-        <!-- <a href="./assets/js/form/showcase.html"
-          class="option-card border-gray-100 border rounded-xl p-4 cursor-pointer hover:border-blue-600">
-          <input type="radio" name="ticket" value="showcase" class="hidden">
-          <h3 class="font-semibold text-xl text-white">Multi-talent Showcase</h3>
-          <p class="text-base text-gray-100">Perform and compete in drama, art, and comedy.</p>
-        </a> -->
-
-
-
-        <a href="./assets/js/form/resource.html"
-          class="option-card border-gray-100 border rounded-xl p-4 cursor-pointer hover:border-blue-600">
-          <input type="radio" name="ticket" value="resource" class="hidden">
-          <h3 class="font-semibold text-xl text-white">Resource Person</h3>
-          <p class="text-base text-gray-100">Lead sessions, mentor, and share expertise.</p>
-        </a>
       </div>
     </div>
-  </div>
-
-
-  <!-- Partner With Us Modal -->
-  <div id="partnerModal"
-    class="fixed inset-0 hidden bg-black/30 backdrop-blur-sm flex items-center justify-center z-50">
-    <div
-      class="bg-black/30 backdrop-blur-md rounded-2xl shadow-lg w-[90%] max-w-3xl p-6 relative max-h-[90vh] overflow-y-auto">
-
-      <!-- Close Button -->
-      <button onclick="closePartnerModal()"
-        class="absolute top-4 right-4 text-gray-100 hover:text-gray-200 text-2xl">&times;</button>
-
-      <!-- Modal Header -->
-      <h2 class="text-2xl md:text-3xl font-bold text-gray-100 mb-4">Partner With Us</h2>
-      <p class="text-gray-200 mb-6">
-        Join us as a Sponsor or Donor at the Ilorin Youth Mega Festival 2025. Support the vision and showcase your brand
-        to millions of attendees
-      </p>
-
-      <!-- Form -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
-        <a href="./assets/js/form/donate.html"
-          class="option-card border-gray-100  ease-in-out duration-300 transition-all hover:animate-none border rounded-xl p-4 cursor-pointer hover:border-blue-600">
-          <input type="radio" name="ticket" value="regular" class="hidden">
-          <h3 class="font-semibold text-xl text-white">DONATE</h3>
-
-        </a>
-
-        <a href="./assets/js/form/sponsor.html"
-          class="option-card border-gray-100 border rounded-xl p-4 cursor-pointer hover:border-blue-600">
-          <input type="radio" name="ticket" value="vip" class="hidden">
-          <h3 class="font-semibold text-xl text-white uppercase">SPONSOR</h3>
-
-        </a>
-      </div>
-    </div>
-  </div>
+  </section>
 
 
 
 
 
-  <script src="https://unpkg.com/taos@1.0.5/dist/taos.js"></script>
-  <script>
-    const modal = document.getElementById("ticketModal");
-    const optionsGrid = document.getElementById("optionsGrid");
-    const formContainer = document.getElementById("formContainer");
-    const backBtn = document.getElementById("backBtn");
-    const nextBtn = document.getElementById("nextBtn");
-    function openPartnerModal() {
-      document.getElementById("partnerModal").classList.remove("hidden");
-    }
-    function closePartnerModal() {
-      document.getElementById("partnerModal").classList.add("hidden");
-    }
 
-    // Open modal
-    function openModal() {
-      modal.classList.remove("hidden");
-    }
 
-    // Close modal
-    function closeModal() {
-      modal.classList.add("hidden");
-      resetSteps();
-    }
-
-    // Close modal when clicking outside the box
-    window.addEventListener("click", function (e) {
-      if (e.target === modal) {
-        closeModal();
-      }
-    });
-
-    // Go to Step 2 (form)
-    function goNext() {
-      const selected = document.querySelector('input[name="ticket"]:checked');
-      if (!selected) {
-        alert("Please select an option first!");
-        return;
-      }
-      optionsGrid.classList.add("hidden");
-      formContainer.classList.remove("hidden");
-      backBtn.classList.remove("hidden");
-      nextBtn.classList.add("hidden");
-    }
-
-    // Go back to Step 1 (options)
-    function goBack() {
-      optionsGrid.classList.remove("hidden");
-      formContainer.classList.add("hidden");
-      backBtn.classList.add("hidden");
-      nextBtn.classList.remove("hidden");
-    }
-
-    // Reset steps when modal closes
-    function resetSteps() {
-      optionsGrid.classList.remove("hidden");
-      formContainer.classList.add("hidden");
-      backBtn.classList.add("hidden");
-      nextBtn.classList.remove("hidden");
-      document.querySelectorAll('input[name="ticket"]').forEach(radio => radio.checked = false);
-    }
-
-    // 
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const btn = document.getElementById('exploreBtn');
-      const container = document.getElementById('festival-section');
-
-      if (!btn || !container) {
-        console.error('Missing #exploreBtn or #festival-section. Check the IDs.');
-        return;
-      }
-
-      const extraHTML = `
-        <div id="extraContent" class="mt-6 text-gray-50 space-y-6">
+  <!-- footer main section -->
+  <section class="w-full py-16">
+    <div class="flex flex-col items-center justify-center p-4"> <!-- Newsletter Card -->
+      <div class="bg-white rounded-3xl shadow-2xl max-w-4xl w-full p-12 mb-8">
+        <div class="grid md:grid-cols-2 gap-8 items-center"> <!-- Left Column -->
           <div>
-            <h2 class="text-xl font-bold mb-2">Theme</h2>
-            <p>Celebrating Our Rich Culture, Shared Heritage, Creativity, and the Future.
-            The festival will spotlight creativity, innovation, and resilience, showcasing the power of youths as a driving force for community and national development.</p>
-          </div>
-
+            <h2 class="text-4xl font-bold text-gray-900 mb-4"> Stay Connected! </h2>
+            <p class="text-gray-600 text-sm leading-relaxed"> Receive updates on upcoming events, new
+              programmes, auditions, competitions, and ministry opportunities. </p>
+          </div> <!-- Right Column -->
           <div>
-            <h2 class="text-xl font-bold mb-2">Objectives</h2>
-            <ul class="list-disc pl-6 space-y-1">
-              <li>To create a platform for youths to showcase their talents and innovations.</li>
-              <li>To foster unity and community engagement among young people.</li>
-              <li>To provide empowerment through workshops, talks, and networking opportunities.</li>
-              <li>To promote entrepreneurship and youth-led businesses.</li>
-              <li>To offer sponsors and partners visibility while impacting the lives of young people.</li>
-            </ul>
-          </div>
-
-          <div>
-            <h2 class="text-xl font-bold mb-2">Target Audience</h2>
-            <ul class="list-disc pl-6 space-y-1">
-              <li>Youths between ages 15–35 (students, entrepreneurs, creatives, professionals).</li>
-              <li>Parents, educators, mentors, and community leaders.</li>
-              <li>Government agencies, NGOs, and faith-based organizations.</li>
-              <li>Businesses and corporate sponsors seeking to connect with the youth market.</li>
-              <li>Expected Attendance: 2,500+ youths (within Ilorin and neighboring communities).</li>
-            </ul>
-          </div>
-
-          <div>
-            <h2 class="text-xl font-bold mb-2">Festival Highlights</h2>
-            <ul class="list-disc pl-6 space-y-1">
-              <li>Talent Exhibitions – Music, dance, spoken word, drama, comedy, and art.</li>
-              <li>Competitions – Quiz, debates, sports, and creative contests.</li>
-              <li>Workshops & Talks – Leadership, entrepreneurship, digital skills, career development.</li>
-              <li>Exhibitions – Youth-owned businesses, tech startups, fashion, crafts.</li>
-              <li>Special Performances – Guest artists, comedians, and cultural displays.</li>
-              <li>Award Ceremony – Recognizing outstanding Personalities across various sectors.</li>
-            </ul>
+            <p class="text-sm text-gray-900 mb-4"> Subscribe and be the first to know — and never miss a
+              moment of impact. </p>
+            <div class="flex gap-2 flex-col md:flex-row"> <input type="email" placeholder="Enter your email address"
+                class="flex-1 px-4 py-3 rounded-full bg-gray-100 text-black text-sm focus:outline-none focus:ring-2 focus:ring-orange-400" />
+              <button
+                class="px-8 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-full font-medium text-sm transition-colors duration-300">
+                Subscribe </button>
+            </div>
           </div>
         </div>
-      `;
+      </div> <!-- Footer -->
+      <footer class="w-full max-w-6xl">
+        <div class="grid md:grid-cols-2 gap-12 mb-8"> <!-- Left Section -->
+          <div> <a href="./index.html" class="text-orange-500 text-xl font-bold mb-6"> <img
+                src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766409594/sword_TV_logo_y9mnja.png" width="150"
+                class="rounded-full" /> </a>
+            <div class="space-y-3 text-gray-400 text-sm pl-3 mt-3">
+              <div class="flex items-center gap-2"> <i class="far fa-envelope"></i>
+                <span>info@swordtelevision.com</span>
+              </div>
+              <div class="flex items-center gap-2"> <i class="fas fa-phone"></i> <span>+2348087863562 |
+                  +2347048811294 | +2349060672683</span> </div>
+              <div class="flex items-center gap-2"> <i class="fas fa-map-marker-alt"></i> <span>Suite 8,
+                  Dabic Shopping Complex, Behind M & M Super Market Ilorin, Kwara State,
+                  Nigeria.</span> </div>
+            </div> <!-- Social Icons -->
+            <div class="flex gap-4 mt-6"> <a href="#"
+                class="w-8 h-8 rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                <i class="fa-brands fa-facebook text-lg text-gray-850"></i> </a> <a href="#"
+                class="w-8 h-8 rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                <i class="fa-brands fa-youtube text-lg text-gray-8050"></i> </a> <a href="#"
+                class="w-8 h-8 rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                <i class="fa-brands fa-linkedin-in text-lg text-gray-50"></i> </a> <a href="#"
+                class="w-8 h-8 rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                <i class="fa-brands fa-x-twitter text-lg text-gray-50"></i> </a> <a href="#"
+                class="w-8 h-8 rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                <i class="fa-brands fa-tiktok text-lg text-gray-80050"></i> </a> <a href="#"
+                class="w-8 h-8 rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                <i class="fa-brands fa-instagram text-lg text-gray-50"></i> </a> </div>
+          </div> <!-- Right Section - Navigation -->
+          <div class="grid grid-cols-2 gap-8">
+            <div>
+              <ul class="space-y-3 text-gray-300 text-sm">
+                <li> <a href="#" class="hover:text-orange-500 transition-colors duration-300">Home</a>
+                </li>
+                <li> <a href="#" class="hover:text-orange-500 transition-colors duration-300">About
+                    Us</a> </li>
+                <li> <a href="#" class="hover:text-orange-500 transition-colors duration-300">Events</a>
+                </li>
+                <li> <a href="#" class="hover:text-orange-500 transition-colors duration-300">Gallery</a> </li>
+              </ul>
+            </div>
+            <div>
+              <ul class="space-y-3 text-gray-300 text-sm">
+                <li> <a href="#" class="hover:text-orange-500 transition-colors duration-300">Contact
+                    Us</a> </li>
+                <li> <a href="#" class="hover:text-orange-500 transition-colors duration-300">Partner
+                    With Us</a> </li>
+                <li> <a href="#" class="hover:text-orange-500 transition-colors duration-300">Donate</a>
+                </li>
+                <li> <a href="#" class="hover:text-orange-500 transition-colors duration-300">Blog</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div> <!-- Copyright -->
+        <div class="border-t border-gray-800 pt-6 text-center text-gray-500 text-sm">
+          <p>Sword Television © 2025 | All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+  </section>
 
+  <!-- PARTNER MODAL -->
+
+<div id="partnerModal" class="fixed inset-0 z-[999] hidden
+         flex items-center justify-center
+         bg-black/60 backdrop-blur-lg
+         px-4 py-6 overflow-y-auto">
+ 
+    <!-- MODAL CARD -->
+    <div class="bg-white w-full max-w-3xl
+           rounded-2xl p-6 sm:p-8
+           shadow-2xl relative
+           my-auto">
+ 
+      <!-- CLOSE BUTTON -->
+      <button id="closePartnerModal" class="absolute top-4 right-4
+             text-gray-400 hover:text-black text-xl">
+        ✕
+      </button>
+ 
+      <!-- RETURN BUTTON -->
+      <button class="text-orange-500 text-xs sm:text-sm
+             border border-orange-400
+             px-4 py-1.5 rounded-full mb-6">
+        Return to Partnership Page
+      </button>
+ 
+      <!-- STEP INDICATOR -->
+      <p class="text-xs text-gray-500 mb-2">
+        Section <span id="stepNumber">1</span> of 5
+      </p>
+ 
+      <!-- PROGRESS BAR -->
+      <div class="w-full h-2 bg-gray-200 rounded-full mb-8">
+        <div id="progressBar" class="h-2 bg-orange-400 rounded-full
+               transition-all duration-300" style="width:25%">
+        </div>
+      </div>
+ 
+      <!-- STEPS CONTAINER -->
+      <div class="space-y-6 max-h-[60vh] overflow-y-auto pr-1">
+ 
+        <!-- STEP 1: Select Participation Type -->
+        <!-- FIX 1: was "step-partner", must be "partner-step" to match JS selector -->
+        <div class="partner-step" data-step="1">
+          <h2 class="text-orange-500 text-xl font-semibold mb-2">
+            Select Your Participation Type
+          </h2>
+          <!-- FIX 3: removed stray "Which" from the copy -->
+          <p class="text-sm text-gray-600 mb-5">
+            How do you want to be part of this fest?
+          </p>
+ 
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+ 
+            <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition
+                  has-[:checked]:border-orange-500 has-[:checked]:bg-orange-50">
+              <input type="radio" name="participation" class="mt-1 accent-orange-500">
+              <span class="font-medium text-sm text-gray-900">Competitor</span>
+            </label>
+ 
+            <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition
+                  has-[:checked]:border-orange-500 has-[:checked]:bg-orange-50">
+              <input type="radio" name="participation" class="mt-1 accent-orange-500">
+              <span class="font-medium text-sm text-gray-900">Performer</span>
+            </label>
+ 
+            <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition
+                  has-[:checked]:border-orange-500 has-[:checked]:bg-orange-50">
+              <input type="radio" name="participation" class="mt-1 accent-orange-500">
+              <span class="font-medium text-sm text-gray-900">Exhibitor</span>
+            </label>
+ 
+            <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition
+                  has-[:checked]:border-orange-500 has-[:checked]:bg-orange-50">
+              <input type="radio" name="participation" class="mt-1 accent-orange-500">
+              <span class="font-medium text-sm text-gray-900">Volunteer</span>
+            </label>
+ 
+            <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition
+                  has-[:checked]:border-orange-500 has-[:checked]:bg-orange-50">
+              <input type="radio" name="participation" class="mt-1 accent-orange-500">
+              <span class="font-medium text-sm text-gray-900">Spectator</span>
+            </label>
+ 
+            <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition
+                  has-[:checked]:border-orange-500 has-[:checked]:bg-orange-50">
+              <input type="radio" name="participation" class="mt-1 accent-orange-500">
+              <span class="font-medium text-sm text-gray-900">Sponsor</span>
+            </label>
+ 
+          </div>
+        </div>
+ 
+        <!-- STEP 2: Personal Information -->
+        <div class="partner-step hidden" data-step="2">
+          <h2 class="text-orange-500 text-xl font-semibold mb-2">
+            Personal Information
+          </h2>
+ 
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-6">
+ 
+            <div>
+              <label class="block text-gray-700 text-sm font-medium mb-1">
+                First Name
+              </label>
+              <input
+                id="firstName"
+                type="text"
+                placeholder="Enter your first name"
+                class="w-full rounded border border-gray-300 px-4 py-3 text-sm
+                       focus:outline-none focus:border-orange-400 text-gray-900" />
+            </div>
+ 
+            <div>
+              <label class="block text-gray-700 text-sm font-medium mb-1">
+                Last Name
+              </label>
+              <input
+                id="lastName"
+                type="text"
+                placeholder="Enter your last name"
+                class="w-full rounded border border-gray-300 px-4 py-3 text-sm
+                       focus:outline-none focus:border-orange-400 text-gray-900" />
+            </div>
+ 
+            <div class="sm:col-span-2">
+              <label class="block text-gray-700 text-sm font-medium mb-1">
+                Email Address
+              </label>
+              <input
+                id="emailAddr"
+                type="email"
+                placeholder="Enter your email address"
+                class="w-full rounded border border-gray-300 px-4 py-3 text-sm
+                       focus:outline-none focus:border-orange-400 text-gray-900" />
+            </div>
+ 
+            <div class="sm:col-span-2">
+              <label class="block text-gray-700 text-sm font-medium mb-1">
+                Phone Number
+              </label>
+              <input
+                id="phoneNum"
+                type="tel"
+                placeholder="Enter your phone number"
+                class="w-full rounded border border-gray-300 px-4 py-3 text-sm
+                       focus:outline-none focus:border-orange-400 text-gray-900" />
+            </div>
+ 
+          </div>
+        </div>
+ 
+        <!-- STEP 3: Select Category -->
+        <div class="partner-step hidden" data-step="3">
+          <h2 class="text-orange-500 text-xl font-semibold mb-2">
+            Select the category you want to participate in
+          </h2>
+ 
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-6">
+ 
+            <div>
+              <label class="block text-gray-700 text-sm font-medium mb-1">
+                Category
+              </label>
+              <!-- FIX 2: added id="category" so validateStep() can find this element -->
+              <select id="category" class="w-full rounded border border-gray-300 px-4 py-3 text-sm
+                             text-gray-700 bg-white focus:outline-none focus:border-orange-400
+                             appearance-none cursor-pointer">
+                <option value="" disabled selected>Select</option>
+                <option>Arts & Culture</option>
+                <option>Sports</option>
+                <option>Technology</option>
+                <option>Business</option>
+                <option>Music</option>
+              </select>
+            </div>
+ 
+            <div>
+              <label class="block text-gray-700 text-sm font-medium mb-1">
+                Sub-Category
+              </label>
+              <!-- FIX 2: added id="subCategory" so validateStep() can find this element -->
+              <select id="subCategory" class="w-full rounded border border-gray-300 px-4 py-3 text-sm
+                             text-gray-700 bg-white focus:outline-none focus:border-orange-400
+                             appearance-none cursor-pointer">
+                <option value="" disabled selected>Select</option>
+                <option>Option A</option>
+                <option>Option B</option>
+                <option>Option C</option>
+              </select>
+            </div>
+ 
+          </div>
+        </div>
+ 
+        <!-- STEP 4: Payment Method -->
+        <div class="partner-step hidden" data-step="4">
+          <h2 class="text-orange-500 text-xl font-semibold mb-2">
+            Payment Method
+          </h2>
+          <p class="text-sm text-gray-600 mb-5">
+            Which payment method would you prefer to use?
+          </p>
+ 
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+ 
+            <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition
+                  has-[:checked]:border-orange-500 has-[:checked]:bg-orange-50">
+              <input type="radio" name="payment" class="mt-1 accent-orange-500">
+              <span class="font-medium text-sm text-gray-900">Online payment</span>
+            </label>
+ 
+            <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition
+                  has-[:checked]:border-orange-500 has-[:checked]:bg-orange-50">
+              <input type="radio" name="payment" class="mt-1 accent-orange-500">
+              <span class="font-medium text-sm text-gray-900">Offline payment</span>
+            </label>
+ 
+          </div>
+        </div>
+ 
+        <!-- STEP 5: Feedback -->
+        <div class="partner-step hidden" data-step="5">
+          <h2 class="text-orange-500 text-xl font-semibold mb-2">
+            Any Feedback or Comments?
+          </h2>
+          <p class="text-sm text-gray-600 mb-5">
+            Let us know if you have questions, special requests, or anything else before you join.
+          </p>
+ 
+          <div class="space-y-5">
+            <div>
+              <label class="block text-gray-700 text-sm font-medium mb-1">
+                Your Message <span class="text-gray-400 font-normal">(optional)</span>
+              </label>
+              <textarea
+                id="feedbackMessage"
+                rows="5"
+                maxlength="500"
+                placeholder="Write your feedback or message here…"
+                class="w-full rounded border border-gray-300 px-4 py-3 text-sm
+                       focus:outline-none focus:border-orange-400 text-gray-900 resize-none"></textarea>
+              <p id="charCount" class="text-right text-xs text-gray-400 mt-1">0 / 500</p>
+            </div>
+ 
+            <div>
+              <label class="block text-gray-700 text-sm font-medium mb-1">
+                How did you hear about us?
+              </label>
+              <select id="referralSource" class="w-full rounded border border-gray-300 px-4 py-3 text-sm
+                             text-gray-700 bg-white focus:outline-none focus:border-orange-400
+                             appearance-none cursor-pointer">
+                <option value="" disabled selected>Select an option</option>
+                <option>Social Media</option>
+                <option>Friend / Word of mouth</option>
+                <option>Website / Blog</option>
+                <option>Email Newsletter</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+        </div>
+ 
+      </div>
+ 
+      <!-- SUCCESS SCREEN (replaces modal content on submit) -->
+      <div id="successScreen" class="hidden text-center py-10">
+        <div class="flex items-center justify-center w-16 h-16 rounded-full bg-orange-100 mx-auto mb-4">
+          <svg class="w-8 h-8 text-orange-500" fill="none" stroke="currentColor" stroke-width="2.5"
+               viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+          </svg>
+        </div>
+        <h2 class="text-xl font-semibold text-gray-800 mb-2">You're all set!</h2>
+        <p class="text-sm text-gray-500 max-w-sm mx-auto">
+          Your registration has been submitted successfully. We'll be in touch shortly with next steps.
+        </p>
+        <button id="doneBtn" class="mt-8 bg-orange-400 text-white px-8 py-3 rounded-full text-sm">
+          Done
+        </button>
+      </div>
+ 
+      <!-- FOOTER BUTTONS -->
+      <div class="flex flex-col sm:flex-row
+             gap-4 sm:justify-between
+             items-center mt-10">
+ 
+        <button id="prevStep" class="w-full sm:w-auto
+               border border-orange-400
+               text-orange-500
+               px-6 py-3 rounded-full">
+          Previous
+        </button>
+ 
+        <button id="nextStep" class="w-full sm:w-auto
+               bg-orange-400 text-white
+               px-8 py-3 rounded-full
+               disabled:opacity-40" disabled>
+          Next
+        </button>
+ 
+      </div>
+ 
+    </div>
+  </div>
+
+
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+ 
+    const modal        = document.getElementById('partnerModal');
+    const closeBtn     = document.getElementById('closePartnerModal');
+    const steps        = document.querySelectorAll('.partner-step[data-step]');
+    const nextBtn      = document.getElementById('nextStep');
+    const prevBtn      = document.getElementById('prevStep');
+    const stepNumber   = document.getElementById('stepNumber');
+    const progressBar  = document.getElementById('progressBar');
+    const successScreen = document.getElementById('successScreen');
+    const stepsWrapper  = successScreen.previousElementSibling; // the steps container div
+    const footerBtns    = document.querySelector('#prevStep').parentElement;
+    const stepIndicator = stepNumber.parentElement;
+    const progressWrap  = progressBar.parentElement;
+    const doneBtn       = document.getElementById('doneBtn');
+ 
+    let currentStep = 1;
+    const totalSteps = 5; // now 5 steps
+ 
+    /* CHARACTER COUNTER */
+    const textarea  = document.getElementById('feedbackMessage');
+    const charCount = document.getElementById('charCount');
+    textarea?.addEventListener('input', () => {
+      const len = textarea.value.length;
+      charCount.textContent = `${len} / 500`;
+    });
+ 
+    /* OPEN MODAL */
+    document.querySelectorAll('.open-partner-modal').forEach(btn => {
       btn.addEventListener('click', () => {
-        const existing = document.getElementById('extraContent');
-        if (existing) {
-          existing.remove();
-          btn.setAttribute('aria-expanded', 'false');
-          return;
-        }
-        container.insertAdjacentHTML('beforeend', extraHTML);
-        btn.setAttribute('aria-expanded', 'true');
-
-        const added = document.getElementById('extraContent');
-        if (added) added.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        showStep(1);
+        showFormUI();
       });
     });
-    function toggleContent() {
-      const content = document.getElementById("extraContent");
-      content.classList.toggle("hidden");
+ 
+    /* CLOSE */
+    closeBtn?.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+    doneBtn?.addEventListener('click', closeModal);
+ 
+    function closeModal() {
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
     }
-     const links = document.querySelectorAll(".nav-link");
-  const currentUrl = window.location.pathname.split("/").pop();
-
-  links.forEach(link => {
-    if (link.getAttribute("href") === currentUrl) {
-      link.classList.add("active");
+ 
+    /* SHOW / HIDE the form UI vs success screen */
+    function showFormUI() {
+      stepsWrapper.classList.remove('hidden');
+      footerBtns.classList.remove('hidden');
+      stepIndicator.classList.remove('hidden');
+      progressWrap.classList.remove('hidden');
+      successScreen.classList.add('hidden');
     }
-  });
-
-    const navLinks = document.querySelectorAll('.nav-link');
-  const sections = document.querySelectorAll('section[id]');
-
-  // Highlight on scroll
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop - 120; 
-      if (window.scrollY >= sectionTop) {
-        current = section.getAttribute('id');
+ 
+    function showSuccessScreen() {
+      stepsWrapper.classList.add('hidden');
+      footerBtns.classList.add('hidden');
+      stepIndicator.classList.add('hidden');
+      progressWrap.classList.add('hidden');
+      successScreen.classList.remove('hidden');
+    }
+ 
+    /* SHOW STEP */
+    function showStep(step) {
+      steps.forEach(s => s.classList.add('hidden'));
+      document.querySelector(`.partner-step[data-step="${step}"]`)
+        ?.classList.remove('hidden');
+ 
+      currentStep = step;
+      stepNumber.textContent = step;
+      progressBar.style.width = `${(step / totalSteps) * 100}%`;
+ 
+      prevBtn.disabled = step === 1;
+      nextBtn.textContent = step === totalSteps ? 'Submit' : 'Next';
+ 
+      updateNextBtn();
+    }
+ 
+    /* VALIDATION */
+    function validateStep() {
+      if (currentStep === 1) {
+        return !!modal.querySelector('input[name="participation"]:checked');
+      }
+      if (currentStep === 2) {
+        const first = document.getElementById('firstName')?.value.trim();
+        const last  = document.getElementById('lastName')?.value.trim();
+        const email = document.getElementById('emailAddr')?.value.trim();
+        const phone = document.getElementById('phoneNum')?.value.trim();
+        return !!(first && last && email && phone);
+      }
+      if (currentStep === 3) {
+        const cat = document.getElementById('category')?.value;
+        const sub = document.getElementById('subCategory')?.value;
+        return !!(cat && sub);
+      }
+      if (currentStep === 4) {
+        return !!modal.querySelector('input[name="payment"]:checked');
+      }
+      if (currentStep === 5) {
+        // Feedback is optional — always valid; referral source is also optional
+        return true;
+      }
+      return true;
+    }
+ 
+    /* BUTTON STATE */
+    function updateNextBtn() {
+      const valid = validateStep();
+      nextBtn.disabled = !valid;
+      nextBtn.classList.toggle('opacity-40', !valid);
+      nextBtn.classList.toggle('cursor-not-allowed', !valid);
+    }
+ 
+    /* LIVE INPUT */
+    modal.querySelectorAll('input, select, textarea').forEach(el => {
+      el.addEventListener('input', updateNextBtn);
+      el.addEventListener('change', updateNextBtn);
+    });
+ 
+    /* NEXT */
+    nextBtn.addEventListener('click', () => {
+      if (!validateStep()) return;
+      if (currentStep < totalSteps) {
+        showStep(currentStep + 1);
+      } else {
+        showSuccessScreen();
       }
     });
+ 
+    /* PREVIOUS */
+    prevBtn.addEventListener('click', () => {
+      if (currentStep > 1) showStep(currentStep - 1);
+    });
+ 
+    /* INIT */
+    showStep(1);
+  });
+</script>
 
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === '#' + current) {
-        link.classList.add('active');
+
+  <script>
+    const mobileMenu = document.getElementById("mobileMenu");
+document.getElementById("openMenu").onclick = () =>
+  mobileMenu.classList.remove("hidden");
+document.getElementById("closeMenu").onclick = () =>
+  mobileMenu.classList.add("hidden");
+
+// Mobile Programs Dropdown
+const mobileProgramsBtn = document.getElementById("mobilePrograms");
+const mobileProgramsList = document.getElementById("mobileProgramsList");
+
+if (mobileProgramsBtn && mobileProgramsList) {
+  mobileProgramsBtn.onclick = () => {
+    mobileProgramsList.classList.toggle("hidden");
+  };
+}
+
+window.addEventListener("scroll", () => {
+  document
+    .querySelector("header div")
+    .classList.toggle("backdrop-blur-2xl", window.scrollY > 10);
+});
+  </script>
+  <script src="./assets/script.js"></script>
+  <script src="./assets/main.js"></script>
+
+  <script>
+    /* ─── FAQ DATA ─── */
+    const faqs = [
+      {
+        q: "How do I participate in the Bible Championship?",
+        a: "Participation requires a Registration PIN. Each participant must register individually, provide personal details, select a preferred team, and submit their online audition. The top three scorers per team form the official team for that team in the competition."
+      },
+      {
+        q: "Can I register more than once?",
+        a: "Yes. Participants can register multiple times, but each registration must have a unique Registration PIN."
+      },
+      {
+        q: "How are teams structured?",
+        a: "Each team has 3 members. Participants compete individually against their corresponding member from the opposing team (A vs A, B vs B, C vs C). Points from all three members are added together to determine the winning team."
+      },
+      {
+        q: "How is the winner determined?",
+        a: "The team with the highest cumulative points after all rounds of a face-off wins. Out of 12 teams per season, 6 champion teams emerge."
+      },
+      {
+        q: "What types of tasks are included?",
+        a: "Participants complete Bible-based challenges in three rounds per face-off. Tasks test knowledge, speed, and accuracy."
+      },
+      {
+        q: "What is an Engagement PIN and how is it used?",
+        a: "The Engagement PIN allows viewers to vote, participate in Predict & Win, and Viewers' Prize Play. Users must spend at least 50–70% of their PIN on voting before using it for games or challenges."
+      },
+      {
+        q: "Is there eviction in the show?",
+        a: "No. Bible Championship has no eviction; points accumulate over the rounds to determine winners."
+      },
+      {
+        q: "When are the champion teams announced?",
+        a: "After all face-offs are completed, champion teams are announced and awarded grand prizes."
       }
-    });
-  });
+    ];
 
-  // Highlight on click
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.forEach(l => l.classList.remove('active'));
-      link.classList.add('active');
+    /* ─── Render FAQs ─── */
+    const faqList = document.getElementById('faqList');
+
+    faqs.forEach((item, i) => {
+      const card = document.createElement('div');
+      card.className = 'faq-card';
+
+      card.innerHTML = `
+      <div class="flex items-center justify-between gap-3 p-4 faq-question" data-index="${i}">
+        <span>${item.q}</span>
+        <button class="faq-toggle" aria-label="Toggle answer" data-index="${i}">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="3" stroke-linecap="round">
+            <line x1="12" y1="5" x2="12" y2="19"/>
+            <line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+        </button>
+      </div>
+      <div class="faq-answer" id="answer-${i}">${item.a}</div>
+    `;
+      faqList.appendChild(card);
     });
-  });
+
+    /* ─── Toggle logic ─── */
+    document.querySelectorAll('.faq-question').forEach(row => {
+      row.addEventListener('click', () => {
+        const idx = row.dataset.index;
+        const answer = document.getElementById(`answer-${idx}`);
+        const btn = row.querySelector('.faq-toggle');
+        const isOpen = answer.classList.contains('open');
+
+        // Close all
+        document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+        document.querySelectorAll('.faq-toggle').forEach(b => b.classList.remove('open'));
+
+        if (!isOpen) {
+          answer.classList.add('open');
+          btn.classList.add('open');
+        }
+      });
+    });
+
+    /* ─── Carousel ─── */
+    const track = document.getElementById('carouselTrack');
+    const slides = track.children;
+    const total = slides.length;
+    const dotsContainer = document.getElementById('dotsContainer');
+    let current = 0;
+    let autoTimer;
+
+    // Build dots
+    for (let i = 0; i < total; i++) {
+      const d = document.createElement('div');
+      d.className = 'dot' + (i === 0 ? ' active' : '');
+      d.addEventListener('click', () => goTo(i));
+      dotsContainer.appendChild(d);
+    }
+
+    function updateDots() {
+      dotsContainer.querySelectorAll('.dot').forEach((d, i) => {
+        d.classList.toggle('active', i === current);
+      });
+    }
+
+    function goTo(idx) {
+      current = (idx + total) % total;
+      track.style.transform = `translateX(-${current * 100}%)`;
+      updateDots();
+    }
+
+    document.getElementById('prevBtn').addEventListener('click', () => { goTo(current - 1); resetAuto(); });
+    document.getElementById('nextBtn').addEventListener('click', () => { goTo(current + 1); resetAuto(); });
+
+    function startAuto() {
+      autoTimer = setInterval(() => goTo(current + 1), 4000);
+    }
+    function resetAuto() { clearInterval(autoTimer); startAuto(); }
+
+    startAuto();
+
+    /* Touch swipe */
+    let touchStartX = 0;
+    track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 50) { goTo(dx < 0 ? current + 1 : current - 1); resetAuto(); }
+    });
+  </script>
+
+  <script>
+    const countdownDate = new Date("July 18, 2026 23:59:59").getTime();
+
+    const timer = setInterval(function () {
+
+      const now = new Date().getTime();
+      const distance = countdownDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24))
+        / (1000 * 60 * 60));
+
+      const minutes = Math.floor((distance % (1000 * 60 * 60))
+        / (1000 * 60));
+
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").innerHTML = days;
+      document.getElementById("hours").innerHTML = hours;
+      document.getElementById("minutes").innerHTML = minutes;
+      document.getElementById("seconds").innerHTML = seconds;
+
+      if (distance < 0) {
+        clearInterval(timer);
+        document.getElementById("days").innerHTML = "00";
+        document.getElementById("hours").innerHTML = "00";
+        document.getElementById("minutes").innerHTML = "00";
+        document.getElementById("seconds").innerHTML = "00";
+      }
+
+    }, 1000);
   </script>
 
 
-
-  <script src="./assets/js/script.js"></script>
 </body>
 
 </html>

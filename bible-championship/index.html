@@ -319,44 +319,38 @@
 
     <section class="">
         <section class="w-full py-12">
-            <div class="max-w-3xl mx-auto px-6">
+            <div class="bg-black text-center py-6 border-b border-white/10">
 
-                <!-- Top Text -->
-                <div class="flex items-center justify-center text-xl gap-2 text-gray-400 mb-6">
-                    <span class="">⏰</span>
-                    <p>Registration Closes In:</p>
+            <p class="text-gray-300 mb-2 flex items-center justify-center gap-2">
+                <span class="text-orange-400">🕒</span>
+                Registration Closes In:
+            </p>
+
+            <div class="flex justify-center gap-10 text-white">
+
+                <div>
+                    <h2 id="days" class="text-4xl font-bold">00</h2>
+                    <p class="text-gray-400 text-sm">Days</p>
                 </div>
 
-                <!-- Countdown Grid -->
-               <div class="grid grid-cols-4 gap-2 text-center">
+                <div>
+                    <h2 id="hours" class="text-4xl font-bold">00</h2>
+                    <p class="text-gray-400 text-sm">Hours</p>
+                </div>
 
-    <!-- Days -->
-    <div>
-        <h2 id="days" class="text-4xl md:text-5xl font-bold text-gray-200">02</h2>
-        <p class="text-gray-500 text-sm mt-1">Days</p>
-    </div>
+                <div>
+                    <h2 id="minutes" class="text-4xl font-bold">00</h2>
+                    <p class="text-gray-400 text-sm">Minutes</p>
+                </div>
 
-    <!-- Hours -->
-    <div>
-        <h2 id="hours" class="text-4xl md:text-5xl font-bold text-gray-200">07</h2>
-        <p class="text-gray-500 text-sm mt-1">Hours</p>
-    </div>
-
-    <!-- Minutes -->
-    <div>
-        <h2 id="minutes" class="text-4xl md:text-5xl font-bold text-gray-200">43</h2>
-        <p class="text-gray-500 text-sm mt-1">Minutes</p>
-    </div>
-
-    <!-- Seconds -->
-    <div>
-        <h2 id="seconds" class="text-4xl md:text-5xl font-bold text-gray-200">12</h2>
-        <p class="text-gray-500 text-sm mt-1">Seconds</p>
-    </div>
-
-</div>
+                <div>
+                    <h2 id="seconds" class="text-4xl font-bold">00</h2>
+                    <p class="text-gray-400 text-sm">Seconds</p>
+                </div>
 
             </div>
+
+        </div>
         </section>
         <div class="lg:px-56 md:px-32 px-10 py-4">
             <img src="./assets/images/bible.png" alt="">
@@ -377,7 +371,7 @@
 
                     <!-- Title -->
                     <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
-                        Bible Champion (Season 2)
+                        Bible Champion (Season 1)
                     </h1>
 
                     <!-- Tag -->
@@ -404,7 +398,7 @@
 
                     <!-- Button -->
                     <div class="flex text-center items-center   gap-8 flex-col md:flex-row mt-8">
-                        <a href="#contact-form"
+                        <a href="../Partnership.html"
                             class=" bg-orange-500 text-center hover:bg-orange-600 text-white px-8 py-4 rounded-full font-semibold flex items-center gap-3 transition">
                             Beacome a Guest
                             <i class="fa-solid fa-arrow-right"></i>
@@ -1638,32 +1632,36 @@ UPDATE SECTION
 </script>
 
 <script>
-const targetDate = new Date("April 1, 2026 00:00:00").getTime();
+        const countdownDate = new Date("July 18, 2026 23:59:59").getTime();
 
-const countdown = setInterval(() => {
+        const timer = setInterval(function () {
 
-    const now = new Date().getTime();
-    const distance = targetDate - now;
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24))
+                / (1000 * 60 * 60));
 
-    document.getElementById("days").innerText = String(days).padStart(2, "0");
-    document.getElementById("hours").innerText = String(hours).padStart(2, "0");
-    document.getElementById("minutes").innerText = String(minutes).padStart(2, "0");
-    document.getElementById("seconds").innerText = String(seconds).padStart(2, "0");
+            const minutes = Math.floor((distance % (1000 * 60 * 60))
+                / (1000 * 60));
 
-    if (distance < 0) {
-        clearInterval(countdown);
-        document.getElementById("days").innerText = "00";
-        document.getElementById("hours").innerText = "00";
-        document.getElementById("minutes").innerText = "00";
-        document.getElementById("seconds").innerText = "00";
-    }
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-}, 1000);
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = hours;
+            document.getElementById("minutes").innerHTML = minutes;
+            document.getElementById("seconds").innerHTML = seconds;
+
+            if (distance < 0) {
+                clearInterval(timer);
+                document.getElementById("days").innerHTML = "00";
+                document.getElementById("hours").innerHTML = "00";
+                document.getElementById("minutes").innerHTML = "00";
+                document.getElementById("seconds").innerHTML = "00";
+            }
+
+        }, 1000);
 </script>
 
 
