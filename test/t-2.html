@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to the Quiz</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-white min-h-screen font-sans flex flex-col justify-center items-center relative p-4 select-none">
+
+  <div class="absolute top-6 left-6 right-6 flex justify-between items-center z-10">
+    <button class="flex items-center text-gray-400 hover:text-white transition duration-200 text-sm font-medium">
+      <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+      </svg>
+      Back to Home
+    </button>
+
+    <button class="flex items-center bg-[#25140b] border border-[#402313] hover:bg-[#341d10] text-gray-300 hover:text-white px-4 py-2 rounded-full transition duration-200 text-sm font-medium">
+      <svg class="w-4 h-4 mr-2 text-[#ca6b24]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+      </svg>
+      View Rankings
+    </button>
+  </div>
+
+  <div class="w-full max-w-2xl bg-[#130b06] border border-[#23150c] rounded-3xl p-8 md:p-12 text-center shadow-2xl flex flex-col items-center mt-12 md:mt-0">
+    
+    <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-white mb-8">
+      Welcome, djj!
+    </h1>
+
+    <div class="w-full bg-[#1b1008] border border-[#2a1a0f] rounded-2xl p-6 md:p-8 text-left mb-8 max-w-xl">
+      <p class="text-gray-400 text-sm md:text-base mb-6 leading-relaxed">
+        Test your knowledge with a time-based quiz focussed on Nigeria, covering:
+      </p>
+
+      <ul class="space-y-4">
+        <li class="flex items-start text-gray-300 text-sm md:text-base">
+          <span class="text-[#ca6b24] mr-3 mt-0.5 flex-shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </span>
+          Cultural and traditional knowledge
+        </li>
+        <li class="flex items-start text-gray-300 text-sm md:text-base">
+          <span class="text-[#ca6b24] mr-3 mt-0.5 flex-shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </span>
+          Nigerian history and heritage
+        </li>
+        <li class="flex items-start text-gray-300 text-sm md:text-base">
+          <span class="text-[#ca6b24] mr-3 mt-0.5 flex-shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </span>
+          Civic knowledge and governance
+        </li>
+        <li class="flex items-start text-gray-300 text-sm md:text-base">
+          <span class="text-[#ca6b24] mr-3 mt-0.5 flex-shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </span>
+          Scoring based on accuracy AND speed
+        </li>
+      </ul>
+    </div>
+
+    <button class="px-10 py-3 bg-[#5c2e14] border border-[#85421c] text-white font-medium rounded-full hover:bg-[#6e3718] active:scale-[0.98] transition-all duration-200">
+      Start Quiz
+    </button>
+
+  </div>
+
+</body>
+</html>

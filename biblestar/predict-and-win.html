@@ -1,21 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
     <title>SOWRO TV — Predict and Win</title>
-
-    <style type="text/tailwindcss">
-        @theme {
-            --color-primary: #f0a242;
-        }
-    </style>
-
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
     <style>
         *,
         *::before,
@@ -25,179 +17,105 @@
             padding: 0;
         }
 
+        :root {
+            --gold: #f0a242;
+            --gold-dim: rgba(240, 162, 66, 0.1);
+            --gold-glow: rgba(240, 162, 66, 0.22);
+            --card: linear-gradient(155deg, #1f1309 0%, #130d04 100%);
+            --border: rgba(255, 255, 255, 0.06);
+            --border-gold: rgba(240, 162, 66, 0.1);
+            --dim: rgba(255, 255, 255, 0.35);
+            --mid: rgba(255, 255, 255, 0.6);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'DM Sans', sans-serif;
-            background: #0d0d0d;
-            color: white;
+            background: #0a0a0a;
+            color: #fff;
             min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
         }
 
-      
-
-        /* ─── Card ─── */
-        .card {
-            background: linear-gradient(160deg, #1e1208 0%, #130d04 100%);
-            border: 1px solid rgba(240, 162, 66, 0.08);
-            border-radius: 20px;
-            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        .serif {
+            font-family: 'Cormorant Garamond', serif;
         }
 
-        /* ─── Inputs ─── */
-        .field {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            border-radius: 10px;
-            padding: 13px 16px;
-            color: white;
-            font-family: 'DM Sans', sans-serif;
-            font-size: 14px;
-            outline: none;
-            transition: border-color .2s, background .2s;
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
         }
 
-        .field:focus {
-            border-color: rgba(240, 162, 66, 0.45);
-            background: rgba(240, 162, 66, 0.04);
+        ::-webkit-scrollbar-thumb {
+            background: rgba(240, 162, 66, 0.18);
+            border-radius: 4px;
         }
 
-        .field::placeholder {
-            color: rgba(255, 255, 255, 0.25);
-        }
-
-        .field-icon {
-            position: relative;
-        }
-
-        .field-icon .ico {
-            position: absolute;
-            left: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.25);
-            pointer-events: none;
-        }
-
-        .field-icon .field {
-            padding-left: 42px;
-        }
-
-        select.field {
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23f0a242' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 14px center;
-            background-color: rgba(255, 255, 255, 0.05);
-            padding-right: 38px;
-            cursor: pointer;
-        }
-
-        select.field option {
-            background: #1e1208;
-            color: white;
-        }
-
-        /* ─── Buttons ─── */
-        .btn-primary {
-            width: 100%;
-            padding: 13px 24px;
-            background: linear-gradient(135deg, #f0a242 0%, #c97d1a 100%);
-            color: #180e00;
-            font-family: 'DM Sans', sans-serif;
-            font-size: 14px;
-            font-weight: 600;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: opacity .15s, transform .1s;
-            box-shadow: 0 4px 20px rgba(240, 162, 66, 0.25);
-        }
-
-        .btn-primary:hover {
-            opacity: .9;
-            transform: translateY(-1px);
-        }
-
-        .btn-primary:active {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .btn-ghost {
-            width: 100%;
-            padding: 12px 24px;
-            background: transparent;
-            color: rgba(255, 255, 255, 0.5);
-            font-family: 'DM Sans', sans-serif;
-            font-size: 14px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            cursor: pointer;
-            transition: border-color .2s, color .2s;
-        }
-
-        .btn-ghost:hover {
-            border-color: rgba(240, 162, 66, 0.3);
-            color: #f0a242;
-        }
-
-        /* ─── Icon circle ─── */
-        .icon-ring {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: linear-gradient(145deg, #f0a242, #8b4e0a);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 18px;
-            box-shadow: 0 0 0 8px rgba(240, 162, 66, 0.08), 0 8px 24px rgba(240, 162, 66, 0.25);
-        }
-
-        .icon-ring-sm {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            background: linear-gradient(145deg, #f0a242, #8b4e0a);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 0 5px rgba(240, 162, 66, 0.08);
-            flex-shrink: 0;
-        }
-
-        .icon-ring-green {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: linear-gradient(145deg, #22c55e, #15803d);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 18px;
-            box-shadow: 0 0 0 8px rgba(34, 197, 94, 0.08), 0 8px 24px rgba(34, 197, 94, 0.2);
-        }
-
-        /* ─── Nav ─── */
-        .topnav {
+        /* NAV */
+        .nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            z-index: 100;
+            z-index: 200;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 14px 28px;
-            background: rgba(13, 13, 13, 0.85);
-            backdrop-filter: blur(12px);
+            padding: 12px 20px;
+            background: rgba(10, 10, 10, 0.92);
+            backdrop-filter: blur(16px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.04);
         }
 
-        /* ─── Screens ─── */
+        .nav-logo {
+            color: var(--gold);
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: .06em;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-pill {
+            font-size: 11px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            color: var(--dim);
+            display: none;
+        }
+
+        .nav-btn {
+            font-size: 11px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(240, 162, 66, 0.22);
+            color: var(--gold);
+            background: transparent;
+            cursor: pointer;
+            transition: background .2s;
+            display: none;
+        }
+
+        .nav-btn:hover {
+            background: var(--gold-dim);
+        }
+
+        .show {
+            display: block !important;
+        }
+
+        /* SCREENS */
         .screen {
             display: none;
-            animation: fadeUp .3s ease;
+            width: 100%;
         }
 
         .screen.active {
@@ -216,72 +134,292 @@
             }
         }
 
-        /* ─── Week tabs ─── */
-        .tabs-scroll {
+        .screen.active>* {
+            animation: fadeUp .3s ease;
+        }
+
+        /* PAGES */
+        .page-c {
+            min-height: 100vh;
+            padding: 74px 16px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .page {
+            min-height: 100vh;
+            padding: 74px 16px 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .w-sm {
+            max-width: 440px;
+            width: 100%;
+        }
+
+        .w-md {
+            max-width: 640px;
+            width: 100%;
+        }
+
+        .w-lg {
+            max-width: 920px;
+            width: 100%;
+        }
+
+        /* CARD */
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border-gold);
+            border-radius: 18px;
+            box-shadow: 0 20px 56px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        }
+
+        /* RINGS */
+        .ring {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #f0a242, #8b4e0a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            box-shadow: 0 0 0 8px rgba(240, 162, 66, 0.07), 0 6px 20px rgba(240, 162, 66, 0.22);
+        }
+
+        .ring-sm {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #f0a242, #8b4e0a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 0 5px rgba(240, 162, 66, 0.07);
+            flex-shrink: 0;
+        }
+
+        .ring-g {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #22c55e, #166534);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            box-shadow: 0 0 0 8px rgba(34, 197, 94, 0.07), 0 6px 20px rgba(34, 197, 94, 0.18);
+        }
+
+        /* INPUTS */
+        .inp {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1.5px solid rgba(255, 255, 255, 0.08);
+            border-radius: 50px;
+            color: #fff;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            outline: none;
+            transition: border-color .2s, background .2s;
+        }
+
+        .inp:focus {
+            border-color: rgba(240, 162, 66, 0.4);
+            background: rgba(240, 162, 66, 0.04);
+        }
+
+        .inp::placeholder {
+            color: var(--dim);
+        }
+
+        .inp-w {
+            position: relative;
+        }
+
+        .inp-w .ico {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--dim);
+            pointer-events: none;
+        }
+
+        .inp-w .inp {
+            padding-left: 46px;
+        }
+
+        select.sel {
+            width: 100%;
+            padding: 13px 36px 13px 13px;
+            background: rgba(255, 255, 255, 0.05);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='%23f0a242' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 13px center;
+            border: 1.5px solid rgba(255, 255, 255, 0.07);
+            border-radius: 10px;
+            color: #fff;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13.5px;
+            outline: none;
+            cursor: pointer;
+            appearance: none;
+            transition: border-color .2s;
+        }
+
+        select.sel:focus {
+            border-color: rgba(240, 162, 66, 0.38);
+        }
+
+        select.sel option {
+            background: #1e1208;
+            color: #fff;
+        }
+
+        /* BUTTONS */
+        .btn {
+            width: 100%;
+            padding: 13px 22px;
+            background: linear-gradient(135deg, #f0a242, #c97d1a);
+            color: #1a0d00;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: opacity .15s, transform .1s;
+            box-shadow: 0 4px 18px rgba(240, 162, 66, 0.22);
+        }
+
+        .btn:hover {
+            opacity: .88;
+            transform: translateY(-1px);
+        }
+
+        .btn-brown {
+            width: 100%;
+            padding: 15px 24px;
+            background: linear-gradient(135deg, #7a3d0a, #5c2c07);
+            color: #fff;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: opacity .15s, transform .1s;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+        }
+
+        .btn-brown:hover {
+            opacity: .88;
+            transform: translateY(-1px);
+        }
+
+        .btn-ghost {
+            width: 100%;
+            padding: 12px 22px;
+            background: transparent;
+            color: var(--mid);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: border-color .2s, color .2s;
+        }
+
+        .btn-ghost:hover {
+            border-color: rgba(240, 162, 66, 0.28);
+            color: var(--gold);
+        }
+
+        /* TABS */
+        .tabs {
             overflow-x: auto;
             display: flex;
-            gap: 8px;
+            gap: 6px;
             align-items: center;
-            padding-bottom: 2px;
             scrollbar-width: none;
         }
 
-        .tabs-scroll::-webkit-scrollbar {
+        .tabs::-webkit-scrollbar {
             display: none;
         }
 
         .tab {
-            padding: 7px 14px;
-            border-radius: 8px;
-            font-size: 13px;
+            padding: 6px 13px;
+            border-radius: 7px;
+            font-size: 12px;
             font-weight: 500;
             white-space: nowrap;
             cursor: pointer;
             border: 1px solid transparent;
             background: rgba(255, 255, 255, 0.05);
-            color: rgba(255, 255, 255, 0.45);
+            color: var(--dim);
             transition: all .2s;
-        }
-
-        .tab:hover:not(.tab-active) {
-            color: #f0a242;
-            background: rgba(240, 162, 66, 0.1);
-        }
-
-        .tab.tab-active {
-            background: #f0a242;
-            color: #180e00;
-            font-weight: 700;
-            box-shadow: 0 2px 12px rgba(240, 162, 66, 0.3);
-        }
-
-        /* ─── Checklist ─── */
-        .check-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .check-box {
-            width: 20px;
-            height: 20px;
-            border-radius: 5px;
-            border: 1.5px solid rgba(240, 162, 66, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
             flex-shrink: 0;
         }
 
-        /* ─── Score bar ─── */
-        .bar-track {
-            height: 5px;
+        .tab:hover:not(.on) {
+            color: var(--gold);
+            background: var(--gold-dim);
+        }
+
+        .tab.on {
+            background: var(--gold);
+            color: #1a0d00;
+            font-weight: 700;
+            box-shadow: 0 2px 12px var(--gold-glow);
+        }
+
+        /* AVATAR */
+        .av {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(240, 162, 66, 0.2), rgba(139, 78, 10, 0.28));
+            border: 1px solid rgba(240, 162, 66, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--gold);
+            flex-shrink: 0;
+        }
+
+        .av-lg {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(240, 162, 66, 0.25), rgba(139, 78, 10, 0.35));
+            border: 2px solid rgba(240, 162, 66, 0.28);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+            font-weight: 700;
+            color: var(--gold);
+            margin: 0 auto 10px;
+            box-shadow: 0 0 0 7px rgba(240, 162, 66, 0.06);
+        }
+
+        /* BARS */
+        .bt {
+            height: 4px;
             border-radius: 3px;
             background: rgba(255, 255, 255, 0.06);
             overflow: hidden;
         }
 
-        .bar-fill {
+        .bf {
             height: 100%;
             border-radius: 3px;
             background: linear-gradient(90deg, #f0a242, #c97d1a);
@@ -289,461 +427,616 @@
             transition: width 1s cubic-bezier(.25, .8, .25, 1);
         }
 
-        /* ─── Avatar ─── */
-        .avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, rgba(240, 162, 66, 0.25), rgba(139, 78, 10, 0.3));
-            border: 1px solid rgba(240, 162, 66, 0.2);
+        /* CHECK */
+        .ci {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .cb {
+            width: 19px;
+            height: 19px;
+            border-radius: 5px;
+            border: 1.5px solid rgba(240, 162, 66, 0.38);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 12px;
-            font-weight: 700;
-            color: #f0a242;
             flex-shrink: 0;
         }
 
-        /* ─── Error shake ─── */
+        /* ANIMATIONS */
         @keyframes shake {
 
             0%,
             100% {
-                transform: translateX(0);
+                transform: translateX(0)
             }
 
             20%,
             60% {
-                transform: translateX(-4px);
+                transform: translateX(-4px)
             }
 
             40%,
             80% {
-                transform: translateX(4px);
+                transform: translateX(4px)
             }
         }
 
         .shake {
             animation: shake .35s ease;
         }
+
+        @keyframes pop {
+            0% {
+                transform: scale(.8);
+                opacity: 0
+            }
+
+            60% {
+                transform: scale(1.05)
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1
+            }
+        }
+
+        .pop {
+            animation: pop .4s ease forwards;
+        }
+
+        /* SPLIT LAYOUT */
+        .split {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        .s-main {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .s-side {
+            width: 252px;
+            flex-shrink: 0;
+            display: none;
+        }
+
+        @media(min-width:820px) {
+            .s-side {
+                display: block;
+            }
+        }
+
+        /* WINNER CARD */
+        .w-card {
+            background: linear-gradient(155deg, #231408, #140d03);
+            border: 1px solid rgba(240, 162, 66, 0.13);
+            border-radius: 16px;
+            padding: 22px 18px;
+            text-align: center;
+            position: sticky;
+            top: 78px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.38);
+        }
+
+        /* MOBILE WINNER STRIP */
+        .w-strip {
+            background: linear-gradient(90deg, rgba(240, 162, 66, 0.06), rgba(240, 162, 66, 0.02));
+            border: 1px solid rgba(240, 162, 66, 0.1);
+            border-radius: 12px;
+            padding: 13px 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        @media(min-width:820px) {
+            .w-strip {
+                display: none;
+            }
+        }
+
+        /* LB ROW */
+        .lb-row {
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 11px;
+            padding: 10px 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .lb-row.top {
+            background: rgba(240, 162, 66, 0.05);
+            border-color: rgba(240, 162, 66, 0.15);
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- ═══════════ TOP NAV ═══════════ -->
-    <nav class="topnav">
-        <span class="serif" style="color:#f0a242;font-size:17px;font-weight:700;letter-spacing:0.02em;">SOWRO TV</span>
-        <div style="display:flex;align-items:center;gap:12px;">
-            <span id="nav-user" style="font-size:13px;color:rgba(255,255,255,0.4);display:none;"></span>
-            <button id="nav-lb-btn" onclick="showScreen('leaderboard')"
-                style="display:none;font-size:12px;padding:6px 14px;border-radius:20px;border:1px solid rgba(240,162,66,0.25);color:#f0a242;background:transparent;cursor:pointer;transition:background .2s;"
-                onmouseover="this.style.background='rgba(240,162,66,0.1)'"
-                onmouseout="this.style.background='transparent'">
-                🏆 Leaderboard
-            </button>
+    <!-- ══ NAV ══ -->
+    <nav class="nav">
+        <span class="nav-logo">
+            <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766409594/sword_TV_logo_y9mnja.png"
+                        width="150" class="rounded-full" />
+        </span>
+        <div class="nav-right">
+            <span id="nav-pill" class="nav-pill"></span>
+            <button id="nav-lb" class="nav-btn" onclick="gotoLeaderboard()">🏆 Leaderboard</button>
         </div>
     </nav>
 
-    <!-- ═══════════ WRAPPER ═══════════ -->
-    <div style="min-height:100vh;padding:90px 16px 40px;display:flex;align-items:center;justify-content:center;">
-        <div style="width:100%;max-width:640px;">
-
-            <!-- ════════ SCREEN 1: LOGIN ════════ -->
-            <div id="screen-login" class="screen active">
-                <div class="card" style="padding:40px 32px 32px;">
-
-                    <!-- Icon -->
-                    <div class="icon-ring">
-                        <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1777663371/Icon_eegrn6.png" alt="">
+    <!-- ══════════════════════════════════════
+     SCREEN 1 — LOGIN
+══════════════════════════════════════ -->
+    <div id="screen-login" class="screen active">
+        <div class="page-c">
+            <div class="w-sm">
+                <div class="card" style="padding:38px 26px 28px;">
+                    <div class="ring">
+                        <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
                     </div>
-
-                    <!-- Title -->
-                    <h1 class="serif"
-                        style="text-align:center;font-size:32px;font-weight:700;margin-bottom:8px;letter-spacing:-0.01em;">
+                    <h1 class="serif" style="text-align:center;font-size:30px;font-weight:700;margin-bottom:6px;">
                         Predict and Win</h1>
-                    <p style="text-align:center;color:rgba(255,255,255,0.4);font-size:14px;margin-bottom:32px;">Enter
-                        your PIN to participate</p>
+                    <p style="text-align:center;color:var(--dim);font-size:13.5px;margin-bottom:26px;">Enter your PIN to
+                        participate</p>
 
-                    <!-- PIN Input — pill shape -->
-                    <div style="position:relative;margin-bottom:14px;">
-                        <span
-                            style="position:absolute;left:20px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,0.3);pointer-events:none;">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <div class="inp-w" style="margin-bottom:11px;">
+                        <span class="ico"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"
+                                viewBox="0 0 24 24">
                                 <rect x="3" y="11" width="18" height="11" rx="2" />
                                 <circle cx="12" cy="16" r="1" />
                                 <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-                            </svg>
-                        </span>
-                        <input id="inp-pin" type="text" placeholder="Enter your PIN or Subscription ID"
-                            onkeydown="if(event.key==='Enter') doLogin()"
-                            style="width:100%;background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.09);border-radius:50px;padding:16px 20px 16px 50px;color:white;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:border-color .2s,background .2s;letter-spacing:0.01em;"
-                            onfocus="this.style.borderColor='rgba(240,162,66,0.4)';this.style.background='rgba(240,162,66,0.04)'"
-                            onblur="this.style.borderColor='rgba(255,255,255,0.09)';this.style.background='rgba(255,255,255,0.06)'" />
+                            </svg></span>
+                        <input id="inp-pin" type="text" class="inp" placeholder="Enter your PIN or Subscription ID"
+                            onkeydown="if(event.key==='Enter')doLogin()" />
                     </div>
 
-                    <!-- Access Platform button — pill shape, brown -->
-                    <button onclick="doLogin()"
-                        style="width:100%;padding:16px 24px;background:linear-gradient(135deg,#7a3d0a 0%,#5c2d07 100%);color:white;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;border:none;border-radius:50px;cursor:pointer;transition:opacity .15s,transform .1s;box-shadow:0 4px 20px rgba(0,0,0,0.4),inset 0 1px 0 rgba(255,255,255,0.08);letter-spacing:0.01em;margin-bottom:20px;"
-                        onmouseover="this.style.opacity='.88';this.style.transform='translateY(-1px)'"
-                        onmouseout="this.style.opacity='1';this.style.transform='translateY(0)'">
-                        Access Platform
-                    </button>
+                    <button class="btn-brown" onclick="doLogin()" style="margin-bottom:15px;">Access Platform</button>
 
-                    <!-- Get PIN link -->
-                    <div style="text-align:center;margin-bottom:28px;">
-                        <a href="../Partnership.html"
-                            style="color:#f0a242;font-size:14px;font-weight:500;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(240,162,66,0.4);transition:text-decoration-color .2s;"
-                            onmouseover="this.style.textDecorationColor='#f0a242'"
-                            onmouseout="this.style.textDecorationColor='rgba(240,162,66,0.4)'">
-                            Get PIN / Subscribe Now
-                        </a>
+                    <div style="text-align:center;margin-bottom:22px;">
+                        <a href="./pin-purches.html"
+                            style="color:var(--gold);font-size:13.5px;font-weight:500;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(240,162,66,0.32);">Get
+                            PIN / Subscribe Now</a>
                     </div>
-
-                    <!-- Divider -->
-                    <div style="border-top:1px solid rgba(255,255,255,0.06);padding-top:20px;">
-                        <div style="display:flex;align-items:flex-start;gap:14px;">
-                            <!-- Sparkle icon -->
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f0a242"
-                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                                style="flex-shrink:0;margin-top:1px;">
-                                <path
-                                    d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
-                            </svg>
-                            <p style="color:rgba(255,255,255,0.38);font-size:13px;line-height:1.7;">
-                                Make predictions for weekly events and climb the leaderboard. Top performers win amazing
-                                prizes!
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- ════════ SCREEN 2: WELCOME ════════ -->
-            <div id="screen-welcome" class="screen">
-                <div class="card" style="padding:40px 36px;">
-                    <div class="icon-ring">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path
-                                d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
-                        </svg>
-                    </div>
-                    <h1 class="serif" style="text-align:center;font-size:28px;font-weight:700;margin-bottom:6px;">
-                        Welcome, <span id="welcome-name" style="color:#f0a242;">Joseph</span>!
-                    </h1>
-                    <p style="text-align:center;color:rgba(255,255,255,0.35);font-size:13.5px;margin-bottom:30px;">
-                        Predict and win prizes every week</p>
 
                     <div
-                        style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:20px 20px;margin-bottom:28px;">
+                        style="border-top:1px solid rgba(255,255,255,0.05);padding-top:17px;display:flex;align-items:flex-start;gap:12px;">
+                        <svg width="20" height="20" fill="none" stroke="var(--gold)" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"
+                            style="flex-shrink:0;margin-top:1px;">
+                            <path
+                                d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+                        </svg>
+                        <p style="color:rgba(255,255,255,0.3);font-size:13px;line-height:1.65;">Make predictions for
+                            weekly events and climb the leaderboard. Top performers win amazing prizes!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+     SCREEN 2 — WELCOME
+══════════════════════════════════════ -->
+    <div id="screen-welcome" class="screen">
+        <div class="page-c">
+            <div class="w-md">
+                <div class="card" style="padding:38px 26px;">
+                    <div class="ring">
+                        <svg width="22" height="22" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
+                    </div>
+                    <h1 class="serif" style="text-align:center;font-size:30px;font-weight:700;margin-bottom:7px;">
+                        Welcome, <span id="welcome-name" style="color:var(--gold);">Joseph</span>!
+                    </h1>
+                    <p style="text-align:center;color:var(--dim);font-size:13.5px;margin-bottom:26px;">Predict and win
+                        prizes every week</p>
+
+                    <div
+                        style="background:rgba(255,255,255,0.022);border:1px solid rgba(255,255,255,0.055);border-radius:14px;padding:18px;margin-bottom:22px;">
                         <p
-                            style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,0.3);margin-bottom:16px;font-weight:600;">
-                            Today's Predictions</p>
-                        <div style="display:flex;flex-direction:column;gap:14px;">
-                            <div class="check-item">
-                                <div class="check-box"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
-                                        stroke="#f0a242" stroke-width="3">
+                            style="font-size:10.5px;text-transform:uppercase;text-align:center;letter-spacing:.1em;color:var(--dim);margin-bottom:14px;font-weight:600;">
+                            Weekly Prediction:</p>
+                        <div style="display:flex;flex-direction:column;gap:12px; align-items:center;">
+                            
+                            
+                            <div class="ci">
+                                <div class="cb"><svg width="9" height="9" fill="none" stroke="var(--gold)"
+                                        stroke-width="3" viewBox="0 0 24 24">
                                         <path d="M20 6L9 17l-5-5" />
-                                    </svg></div>
-                                <span style="font-size:14px;color:rgba(255,255,255,0.65);">Predict match winners for
-                                    each week</span>
-                            </div>
-                            <div class="check-item">
-                                <div class="check-box"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
-                                        stroke="#f0a242" stroke-width="3">
-                                        <path d="M20 6L9 17l-5-5" />
-                                    </svg></div>
-                                <span style="font-size:14px;color:rgba(255,255,255,0.65);">Answers published after each
-                                    show airs</span>
-                            </div>
-                            <div class="check-item">
-                                <div class="check-box"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
-                                        stroke="#f0a242" stroke-width="3">
-                                        <path d="M20 6L9 17l-5-5" />
-                                    </svg></div>
-                                <span style="font-size:14px;color:rgba(255,255,255,0.65);">Top scorer wins exclusive
-                                    prizes</span>
+                                    </svg></div><span style="font-size:13.5px;color:var(--mid);">Attempt predict and win every win to win amzing prizes.</span>
                             </div>
                         </div>
                     </div>
 
-                    <button class="btn-primary" onclick="showScreen('predict')">Play Now</button>
+                    <button class="btn" onclick="goPredict()">Play Now</button>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <!-- ════════ SCREEN 3: PREDICTIONS ════════ -->
-            <div id="screen-predict" class="screen">
-                <!-- Header -->
+    <!-- ══════════════════════════════════════
+     SCREEN 3 — PREDICT
+══════════════════════════════════════ -->
+    <div id="screen-predict" class="screen">
+        <div class="page" style="padding-top:74px;">
+            <div class="w-lg">
+
+                <!-- header -->
                 <div class="card"
-                    style="padding:24px 28px;margin-bottom:12px;display:flex;align-items:center;gap:16px;">
-                    <div class="icon-ring-sm">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
+                    style="padding:16px 20px;margin-bottom:10px;display:flex;align-items:center;gap:12px;">
+                    <div class="ring-sm"><svg width="16" height="16" fill="none" stroke="white" stroke-width="2"
+                            viewBox="0 0 24 24">
                             <path
-                                d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
-                        </svg>
-                    </div>
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg></div>
                     <div>
-                        <h1 class="serif" style="font-size:22px;font-weight:700;">Predict and Win</h1>
-                        <p style="font-size:13px;color:rgba(255,255,255,0.35);margin-top:2px;">Select a week and fill in
-                            your predictions</p>
+                        <h1 class="serif" style="font-size:20px;font-weight:700;">Predict and Win</h1>
+                        <p style="font-size:12px;color:var(--dim);margin-top:1px;">Select a week and fill in your
+                            predictions</p>
                     </div>
                 </div>
 
-                <!-- Week tabs -->
-                <div class="card" style="padding:16px 20px;margin-bottom:12px;">
-                    <div class="tabs-scroll" id="week-tabs"></div>
+                <!-- week tabs -->
+                <div class="card" style="padding:12px 15px;margin-bottom:10px;">
+                    <div class="tabs" id="pred-tabs"></div>
                 </div>
 
-                <!-- Questions -->
-                <div class="card" style="padding:28px;">
-                    <h2 id="match-heading" class="serif"
-                        style="font-size:17px;font-weight:600;color:rgba(255,255,255,0.7);margin-bottom:22px;border-bottom:1px solid rgba(255,255,255,0.05);padding-bottom:16px;">
-                        Match 1 — Predictions</h2>
-                    <div id="q-list" style="display:flex;flex-direction:column;gap:20px;"></div>
-                    <button class="btn-primary" style="margin-top:28px;" onclick="submitPredictions()">Submit
-                        Predictions to Enter</button>
+                <div class="split">
+                    <!-- main -->
+                    <div class="s-main">
+                        <!-- mobile winner strip -->
+                        <div class="w-strip" id="pred-strip">
+                            <div class="av" id="pred-s-av"></div>
+                            <div style="flex:1;min-width:0;">
+                                <p style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--dim);margin-bottom:2px;"
+                                    id="pred-s-lbl"></p>
+                                <p style="font-size:14px;font-weight:600;color:var(--gold);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"
+                                    id="pred-s-name"></p>
+                            </div>
+                            <span style="font-size:14px;font-weight:700;color:var(--gold);flex-shrink:0;"
+                                id="pred-s-sc"></span>
+                        </div>
+
+                        <div class="card" style="padding:22px;">
+                            <h2 id="match-hdg" class="serif"
+                                style="font-size:16px;font-weight:600;color:var(--mid);margin-bottom:18px;border-bottom:1px solid rgba(255,255,255,0.05);padding-bottom:13px;">
+                            </h2>
+                            <div id="q-list" style="display:flex;flex-direction:column;gap:16px;"></div>
+                            <button class="btn" style="margin-top:22px;" onclick="submitPredictions()">Submit
+                                Predictions to Enter</button>
+                        </div>
+                    </div>
+
+                    <!-- desktop sidebar -->
+                    <div class="s-side">
+                        <div class="w-card" id="pred-wcard"></div>
+                    </div>
                 </div>
+
             </div>
+        </div>
+    </div>
 
-            <!-- ════════ SCREEN 4: SUCCESS ════════ -->
-            <div id="screen-success" class="screen">
-                <div class="card" style="padding:40px 36px;text-align:center;">
-                    <div class="icon-ring-green">
-                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"
-                            stroke-linecap="round" stroke-linejoin="round">
+    <!-- ══════════════════════════════════════
+     SCREEN 4 — SUCCESS
+══════════════════════════════════════ -->
+    <div id="screen-success" class="screen">
+        <div class="page-c">
+            <div class="w-md">
+                <div class="card" style="padding:38px 26px;text-align:center;">
+                    <div class="ring-g">
+                        <svg width="24" height="24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" viewBox="0 0 24 24">
                             <path d="M20 6L9 17l-5-5" />
                         </svg>
                     </div>
                     <h1 class="serif" style="font-size:28px;font-weight:700;margin-bottom:8px;">Predictions Submitted!
                     </h1>
-                    <p style="color:rgba(255,255,255,0.4);font-size:13.5px;margin-bottom:4px;">You entered to win on</p>
-                    <p id="success-date" style="color:#f0a242;font-size:14px;font-weight:600;margin-bottom:28px;"></p>
+                    <p style="color:var(--dim);font-size:13px;margin-bottom:4px;">You entered to win on</p>
+                    <p id="success-date" style="color:var(--gold);font-size:13.5px;font-weight:600;margin-bottom:24px;">
+                    </p>
 
                     <div
-                        style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:18px 20px;margin-bottom:24px;text-align:left;">
-                        <p style="color:rgba(255,255,255,0.35);font-size:13px;margin-bottom:8px;">Your submission has
-                            been recorded successfully.</p>
-                        <a href="#" style="color:#f0a242;font-size:13.5px;text-decoration:none;font-weight:500;"
-                            onmouseover="this.style.textDecoration='underline'"
-                            onmouseout="this.style.textDecoration='none'">
-                            View predictions on my portal →
-                        </a>
+                        style="background:rgba(255,255,255,0.022);border:1px solid rgba(255,255,255,0.055);border-radius:13px;padding:15px 17px;margin-bottom:20px;text-align:left;">
+                        <p style="color:var(--dim);font-size:13px;margin-bottom:7px;">Your submission has been recorded
+                            successfully.</p>
+                        <a href="#"
+                            style="color:var(--gold);font-size:13px;font-weight:500;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(240,162,66,0.32);">View
+                            predictions on my portal →</a>
                     </div>
 
-                    <button class="btn-primary" onclick="playAnother()" style="margin-bottom:12px;">Play
-                        Another!</button>
-                    <button class="btn-ghost" onclick="showScreen('leaderboard')">View Top Performers 🏆</button>
+                    <button class="btn" onclick="playAnother()" style="margin-bottom:10px;">Play Another!</button>
+                    <button class="btn-ghost" onclick="gotoLeaderboard()">View Top Performers 🏆</button>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <!-- ════════ SCREEN 5: LEADERBOARD ════════ -->
-            <div id="screen-leaderboard" class="screen">
-                <div class="card" style="padding:28px 28px 32px;">
-                    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
-                        <div style="display:flex;align-items:center;gap:14px;">
-                            <div class="icon-ring-sm">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white"
-                                    stroke-width="2">
-                                    <path
-                                        d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
-                                </svg>
+    <!-- ══════════════════════════════════════
+     SCREEN 5 — LEADERBOARD
+══════════════════════════════════════ -->
+    <div id="screen-leaderboard" class="screen">
+        <div class="page" style="padding-top:74px;">
+            <div class="w-lg">
+
+                <!-- header -->
+                <div class="card"
+                    style="padding:16px 20px;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;">
+                    <div style="display:flex;align-items:center;gap:12px;">
+                        <div class="ring-sm"><svg width="16" height="16" fill="none" stroke="white" stroke-width="2"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg></div>
+                        <h1 class="serif" style="font-size:20px;font-weight:700;">Top Performers</h1>
+                    </div>
+                    <button onclick="goPredict()"
+                        style="font-size:12px;color:var(--dim);background:transparent;border:none;cursor:pointer;padding:4px 8px;transition:color .2s;"
+                        onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--dim)'">←
+                        Back</button>
+                </div>
+
+                <!-- week tabs -->
+                <div class="card" style="padding:12px 15px;margin-bottom:10px;">
+                    <div class="tabs" id="lb-tabs"></div>
+                </div>
+
+                <div class="split">
+                    <!-- main list -->
+                    <div class="s-main">
+                        <!-- mobile winner strip -->
+                        <div class="w-strip" id="lb-strip">
+                            <div class="av" id="lb-s-av"></div>
+                            <div style="flex:1;min-width:0;">
+                                <p style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--dim);margin-bottom:2px;"
+                                    id="lb-s-lbl"></p>
+                                <p style="font-size:14px;font-weight:600;color:var(--gold);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"
+                                    id="lb-s-name"></p>
                             </div>
-                            <h1 class="serif" style="font-size:24px;font-weight:700;">Top Performers</h1>
+                            <span style="font-size:14px;font-weight:700;color:var(--gold);flex-shrink:0;"
+                                id="lb-s-sc"></span>
                         </div>
-                        <button onclick="showScreen('predict')"
-                            style="font-size:12px;color:rgba(255,255,255,0.35);background:transparent;border:none;cursor:pointer;transition:color .2s;padding:4px 8px;"
-                            onmouseover="this.style.color='white'"
-                            onmouseout="this.style.color='rgba(255,255,255,0.35)'">
-                            ← Back
-                        </button>
-                    </div>
-                    <div id="lb-list" style="display:flex;flex-direction:column;gap:8px;"></div>
-                </div>
-            </div>
 
+                        <div class="card" style="padding:18px;">
+                            <div id="lb-list" style="display:flex;flex-direction:column;gap:7px;"></div>
+                        </div>
+                    </div>
+
+                    <!-- desktop winner sidebar -->
+                    <div class="s-side">
+                        <div class="w-card" id="lb-wcard"></div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 
     <script>
-        // ─── Data ───────────────────────────────────────────────────
+        /* ─── DATA ─── */
         const WEEKS = ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8'];
 
-        const QUESTIONS = [
-            {
-                label: 'Who will be at double count?',
-                opts: ['Michael', 'Amara', 'Daniel', 'Sofia', 'Kevin', 'Lily', 'James', 'Chloe']
-            },
-            {
-                label: 'Who will have to leave the camp?',
-                opts: ['Michael', 'Amara', 'Daniel', 'Sofia', 'Kevin', 'Lily', 'James', 'Chloe']
-            },
-            {
-                label: 'How many shows will be attended?',
-                opts: ['1', '2', '3', '4', '5', '6']
-            },
-            {
-                label: 'What topic will win in the rankings?',
-                opts: ['Sports', 'Entertainment', 'Politics', 'Technology', 'Fashion', 'Music']
-            },
-            {
-                label: 'How many housemates remain on the final day?',
-                opts: ['1', '2', '3', '4', '5']
-            },
+        const QS = [
+            { label: 'Who will be at double count?', opts: ['Michael', 'Amara', 'Daniel', 'Sofia', 'Kevin', 'Lily', 'James', 'Chloe'] },
+            { label: 'Who will have to leave the camp?', opts: ['Michael', 'Amara', 'Daniel', 'Sofia', 'Kevin', 'Lily', 'James', 'Chloe'] },
+            { label: 'How many shows will be attended?', opts: ['1', '2', '3', '4', '5', '6'] },
+            { label: 'What topic will win in the rankings?', opts: ['Sports', 'Entertainment', 'Politics', 'Technology', 'Fashion', 'Music'] },
+            { label: 'How many housemates remain on final day?', opts: ['1', '2', '3', '4', '5'] },
         ];
 
-        const LEADERBOARD = [
-            { name: 'Michael A.', sub: 'Top Scorer', score: 350 },
-            { name: 'Sandra C.', sub: 'Runner Up', score: 333 },
-            { name: 'David K.', sub: '3rd Place', score: 320 },
-            { name: 'Victor A.', sub: 'Player', score: 300 },
-            { name: 'Amelia T.', sub: 'Player', score: 287 },
-            { name: 'Felix B.', sub: 'Player', score: 261 },
-            { name: 'Gareth N.', sub: 'Player', score: 250 },
-            { name: 'Pamela J.', sub: 'Player', score: 243 },
-            { name: 'Deborah S.', sub: 'Player', score: 222 },
-            { name: 'James L.', sub: 'Player', score: 202 },
+        // Each week has its own leaderboard — winner rotates
+        const WK_DATA = [
+            [{ n: 'Michael A.', sc: 350 }, { n: 'Sandra C.', sc: 333 }, { n: 'David K.', sc: 320 }, { n: 'Victor A.', sc: 300 }, { n: 'Amelia T.', sc: 287 }, { n: 'Felix B.', sc: 261 }, { n: 'Gareth N.', sc: 250 }, { n: 'Pamela J.', sc: 243 }, { n: 'Deborah S.', sc: 222 }, { n: 'James L.', sc: 202 }],
+            [{ n: 'Sandra C.', sc: 362 }, { n: 'Amelia T.', sc: 348 }, { n: 'Michael A.', sc: 315 }, { n: 'Chloe M.', sc: 298 }, { n: 'Victor A.', sc: 275 }, { n: 'Felix B.', sc: 264 }, { n: 'David K.', sc: 251 }, { n: 'James L.', sc: 238 }, { n: 'Gareth N.', sc: 219 }, { n: 'Pamela J.', sc: 207 }],
+            [{ n: 'David K.', sc: 375 }, { n: 'Michael A.', sc: 360 }, { n: 'Gareth N.', sc: 342 }, { n: 'Sandra C.', sc: 318 }, { n: 'James L.', sc: 299 }, { n: 'Amelia T.', sc: 281 }, { n: 'Victor A.', sc: 265 }, { n: 'Chloe M.', sc: 248 }, { n: 'Felix B.', sc: 233 }, { n: 'Deborah S.', sc: 210 }],
+            [{ n: 'Amelia T.', sc: 388 }, { n: 'Felix B.', sc: 371 }, { n: 'Sandra C.', sc: 354 }, { n: 'Michael A.', sc: 337 }, { n: 'Gareth N.', sc: 320 }, { n: 'Victor A.', sc: 305 }, { n: 'David K.', sc: 288 }, { n: 'James L.', sc: 272 }, { n: 'Chloe M.', sc: 255 }, { n: 'Pamela J.', sc: 239 }],
+            [{ n: 'Felix B.', sc: 395 }, { n: 'Victor A.', sc: 380 }, { n: 'Amelia T.', sc: 362 }, { n: 'David K.', sc: 345 }, { n: 'Michael A.', sc: 328 }, { n: 'Sandra C.', sc: 311 }, { n: 'James L.', sc: 294 }, { n: 'Gareth N.', sc: 277 }, { n: 'Deborah S.', sc: 260 }, { n: 'Pamela J.', sc: 244 }],
+            [{ n: 'Victor A.', sc: 402 }, { n: 'Chloe M.', sc: 387 }, { n: 'Felix B.', sc: 370 }, { n: 'Amelia T.', sc: 353 }, { n: 'Michael A.', sc: 336 }, { n: 'David K.', sc: 319 }, { n: 'Sandra C.', sc: 302 }, { n: 'Gareth N.', sc: 285 }, { n: 'James L.', sc: 268 }, { n: 'Pamela J.', sc: 251 }],
+            [{ n: 'Chloe M.', sc: 410 }, { n: 'Sandra C.', sc: 394 }, { n: 'Victor A.', sc: 377 }, { n: 'Felix B.', sc: 360 }, { n: 'Amelia T.', sc: 343 }, { n: 'Gareth N.', sc: 326 }, { n: 'Michael A.', sc: 309 }, { n: 'David K.', sc: 292 }, { n: 'James L.', sc: 275 }, { n: 'Deborah S.', sc: 258 }],
+            [{ n: 'Gareth N.', sc: 418 }, { n: 'Chloe M.', sc: 401 }, { n: 'Amelia T.', sc: 384 }, { n: 'Victor A.', sc: 367 }, { n: 'Felix B.', sc: 350 }, { n: 'Sandra C.', sc: 333 }, { n: 'David K.', sc: 316 }, { n: 'Michael A.', sc: 299 }, { n: 'James L.', sc: 282 }, { n: 'Pamela J.', sc: 265 }],
         ];
 
-        const MAX_SCORE = 350;
+        const RC = ['#f0a242', '#c0c0c0', '#cd7f32'];
 
-        // ─── State ──────────────────────────────────────────────────
-        let currentUser = 'Joseph';
-        let activeWeek = 0; // index
+        /* ─── STATE ─── */
+        let user = 'Joseph', week = 0, lbWeek = 0;
 
-        // ─── Screen control ─────────────────────────────────────────
+        /* ─── HELPERS ─── */
+        const $ = id => document.getElementById(id);
+        const initials = n => n.split(' ').map(x => x[0]).join('').slice(0, 2);
+
         function showScreen(name) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-            document.getElementById('screen-' + name).classList.add('active');
-            if (name === 'leaderboard') animateBars();
+            $('screen-' + name).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // ─── Login ───────────────────────────────────────────────────
+        /* ─── LOGIN ─── */
         function doLogin() {
-            const pin = document.getElementById('inp-pin').value.trim();
+            const pin = $('inp-pin').value.trim();
             if (!pin) {
-                const inp = document.getElementById('inp-pin');
-                inp.style.borderColor = 'rgba(239,68,68,0.5)';
-                inp.classList.add('shake');
-                setTimeout(() => { inp.style.borderColor = 'rgba(255,255,255,0.09)'; inp.classList.remove('shake'); }, 500);
+                $('inp-pin').style.borderColor = 'rgba(239,68,68,0.5)';
+                $('inp-pin').classList.add('shake');
+                setTimeout(() => { $('inp-pin').style.borderColor = ''; $('inp-pin').classList.remove('shake'); }, 500);
                 return;
             }
-            currentUser = 'Subscriber';
-            document.getElementById('welcome-name').textContent = currentUser;
-            document.getElementById('nav-user').textContent = 'PIN: ' + pin.slice(0, 4) + '••';
-            document.getElementById('nav-user').style.display = 'block';
-            document.getElementById('nav-lb-btn').style.display = 'block';
+            $('welcome-name').textContent = user;
+            $('nav-pill').textContent = 'PIN: ' + pin.slice(0, 4) + '••';
+            $('nav-pill').classList.add('show');
+            $('nav-lb').classList.add('show');
             showScreen('welcome');
         }
 
-        // ─── Week tabs ───────────────────────────────────────────────
-        function renderTabs() {
-            const el = document.getElementById('week-tabs');
-            el.innerHTML = '';
+        /* ─── WELCOME → PREDICT ─── */
+        function goPredict() { showScreen('predict'); renderPredict(); }
+
+        /* ─── PREDICT ─── */
+        function renderPredict() {
+            renderPredTabs();
+            renderQs();
+            renderWCard('pred-wcard', week);
+            renderStrip('pred', week);
+        }
+
+        function renderPredTabs() {
+            const el = $('pred-tabs'); el.innerHTML = '';
             WEEKS.forEach((w, i) => {
-                const btn = document.createElement('button');
-                btn.className = 'tab' + (i === activeWeek ? ' tab-active' : '');
-                btn.textContent = w;
-                btn.onclick = () => { activeWeek = i; renderTabs(); renderQuestions(); };
-                el.appendChild(btn);
+                const b = document.createElement('button');
+                b.className = 'tab' + (i === week ? ' on' : '');
+                b.textContent = w;
+                b.onclick = () => { week = i; renderPredTabs(); renderQs(); renderWCard('pred-wcard', week); renderStrip('pred', week); };
+                el.appendChild(b);
             });
-            // User avatar pill at end
-            const pill = document.createElement('div');
-            pill.innerHTML = `<div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,rgba(240,162,66,0.3),rgba(139,78,10,0.4));border:1px solid rgba(240,162,66,0.25);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#f0a242;flex-shrink:0;margin-left:4px;">${currentUser.charAt(0)}</div>`;
-            el.appendChild(pill);
+            // user avatar dot
+            const d = document.createElement('div');
+            d.style.cssText = 'width:27px;height:27px;border-radius:50%;background:linear-gradient(135deg,rgba(240,162,66,0.2),rgba(139,78,10,0.28));border:1px solid rgba(240,162,66,0.2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--gold);flex-shrink:0;margin-left:4px;';
+            d.textContent = user.charAt(0);
+            el.appendChild(d);
         }
 
-        // ─── Questions ───────────────────────────────────────────────
-        function renderQuestions() {
-            document.getElementById('match-heading').textContent = `Match ${activeWeek + 1} — Predictions`;
-            const list = document.getElementById('q-list');
-            list.innerHTML = '';
-            QUESTIONS.forEach((q, i) => {
-                const wrap = document.createElement('div');
-                wrap.innerHTML = `
-            <p style="font-size:13.5px;color:rgba(255,255,255,0.55);margin-bottom:9px;">${i + 1}. ${q.label}</p>
-            <select id="q${i}" class="field" style="cursor:pointer;">
-                <option value="" disabled selected>Select an answer</option>
-                ${q.opts.map(o => `<option value="${o}">${o}</option>`).join('')}
-            </select>
-        `;
-                list.appendChild(wrap);
+        function renderQs() {
+            $('match-hdg').textContent = `Match ${week + 1} — Predictions`;
+            const list = $('q-list'); list.innerHTML = '';
+            QS.forEach((q, i) => {
+                const w = document.createElement('div');
+                w.innerHTML = `<p style="font-size:13px;color:var(--mid);margin-bottom:7px;">${i + 1}. ${q.label}</p>
+            <select id="q${i}" class="sel"><option value="" disabled selected>Select an answer</option>${q.opts.map(o => `<option value="${o}">${o}</option>`).join('')}</select>`;
+                list.appendChild(w);
             });
         }
 
-        // ─── Submit ──────────────────────────────────────────────────
         function submitPredictions() {
-            let allOk = true;
-            QUESTIONS.forEach((_, i) => {
-                const el = document.getElementById('q' + i);
+            let ok = true;
+            QS.forEach((_, i) => {
+                const el = $('q' + i);
                 if (!el.value) {
-                    allOk = false;
-                    el.style.borderColor = 'rgba(239,68,68,0.5)';
+                    ok = false; el.style.borderColor = 'rgba(239,68,68,0.45)';
                     el.classList.add('shake');
                     setTimeout(() => { el.style.borderColor = ''; el.classList.remove('shake'); }, 600);
                 }
             });
-            if (!allOk) return;
-
+            if (!ok) return;
             const now = new Date();
-            document.getElementById('success-date').textContent = now.toLocaleDateString('en-GB', {
-                weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-            });
+            $('success-date').textContent = now.toLocaleDateString('en-GB', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
             showScreen('success');
         }
 
-        // ─── Play another ────────────────────────────────────────────
-        function playAnother() {
-            activeWeek = (activeWeek + 1) % WEEKS.length;
-            renderTabs();
-            renderQuestions();
-            showScreen('predict');
+        function playAnother() { week = (week + 1) % WEEKS.length; goPredict(); }
+
+        /* ─── LEADERBOARD ─── */
+        function gotoLeaderboard() {
+            lbWeek = week;
+            showScreen('leaderboard');
+            renderLbTabs();
+            renderLbList();
+            renderWCard('lb-wcard', lbWeek);
+            renderStrip('lb', lbWeek);
+            setTimeout(animBars, 100);
         }
 
-        // ─── Leaderboard ─────────────────────────────────────────────
-        const RANK_COLORS = ['#f0a242', '#b8b8b8', '#cd7f32'];
+        function renderLbTabs() {
+            const el = $('lb-tabs'); el.innerHTML = '';
+            WEEKS.forEach((w, i) => {
+                const b = document.createElement('button');
+                b.className = 'tab' + (i === lbWeek ? ' on' : '');
+                b.textContent = w;
+                b.onclick = () => {
+                    lbWeek = i; renderLbTabs(); renderLbList();
+                    renderWCard('lb-wcard', lbWeek); renderStrip('lb', lbWeek);
+                    setTimeout(animBars, 80);
+                };
+                el.appendChild(b);
+            });
+        }
 
-        function buildLeaderboard() {
-            const list = document.getElementById('lb-list');
-            list.innerHTML = '';
-            LEADERBOARD.forEach((p, i) => {
-                const initials = p.name.split(' ').map(n => n[0]).join('').slice(0, 2);
-                const pct = Math.round((p.score / MAX_SCORE) * 100);
-                const rankColor = i < 3 ? RANK_COLORS[i] : 'rgba(255,255,255,0.25)';
-
+        function renderLbList() {
+            const list = $('lb-list'); list.innerHTML = '';
+            const data = WK_DATA[lbWeek];
+            const max = data[0].sc;
+            data.forEach((p, i) => {
+                const pct = Math.round((p.sc / max) * 100);
+                const rc = i < 3 ? RC[i] : 'rgba(255,255,255,0.22)';
+                const ini = initials(p.n);
                 const row = document.createElement('div');
-                row.style.cssText = 'background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.05);border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:12px;';
+                row.className = 'lb-row' + (i === 0 ? ' top' : '');
                 row.innerHTML = `
-            <span style="width:22px;text-align:center;font-size:13px;font-weight:700;color:${rankColor};flex-shrink:0;">${i + 1}</span>
-            <div class="avatar">${initials}</div>
+            <span style="width:18px;text-align:center;font-size:12px;font-weight:700;color:${rc};flex-shrink:0;">${i + 1}</span>
+            <div class="av">${ini}</div>
             <div style="flex:1;min-width:0;">
-                <div style="font-size:13.5px;font-weight:500;color:rgba(255,255,255,0.85);margin-bottom:6px;">${p.name}</div>
-                <div class="bar-track"><div class="bar-fill" data-pct="${pct}" id="bar-${i}"></div></div>
+                <div style="font-size:13px;font-weight:500;color:rgba(255,255,255,0.85);margin-bottom:5px;">
+                    ${p.n}${i === 0 ? ` <span style="font-size:9.5px;background:rgba(240,162,66,0.13);color:var(--gold);padding:2px 7px;border-radius:20px;margin-left:4px;vertical-align:middle;">Winner</span>` : ''}
+                </div>
+                <div class="bt"><div class="bf" data-pct="${pct}" id="bar-${i}"></div></div>
             </div>
-            <span style="font-size:14px;font-weight:700;color:${i < 3 ? rankColor : 'rgba(255,255,255,0.7)'};flex-shrink:0;">${p.score}</span>
-        `;
+            <span style="font-size:13px;font-weight:700;color:${i < 3 ? rc : 'rgba(255,255,255,0.65)'};flex-shrink:0;">${p.sc}</span>`;
                 list.appendChild(row);
             });
         }
 
-        function animateBars() {
-            requestAnimationFrame(() => {
-                document.querySelectorAll('.bar-fill').forEach((bar, i) => {
-                    setTimeout(() => {
-                        bar.style.width = bar.dataset.pct + '%';
-                    }, i * 60);
-                });
-            });
+        function animBars() {
+            document.querySelectorAll('.bf').forEach((b, i) =>
+                setTimeout(() => { b.style.width = b.dataset.pct + '%'; }, i * 55));
         }
 
-        // ─── Init ────────────────────────────────────────────────────
-        renderTabs();
-        renderQuestions();
-        buildLeaderboard();
+        /* ─── WINNER CARD (sidebar) ─── */
+        function renderWCard(elId, wi) {
+            const el = $(elId);
+            const data = WK_DATA[wi];
+            const w1 = data[0], w2 = data[1];
+            const i1 = initials(w1.n), i2 = initials(w2.n);
+            el.innerHTML = `
+        <p style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);margin-bottom:14px;font-weight:600;">Week ${wi + 1} Winner</p>
+        <div class="av-lg pop">${i1}</div>
+        <p style="font-size:15px;font-weight:700;color:var(--gold);margin-bottom:3px;">${w1.n}</p>
+        <p style="font-size:11.5px;color:var(--dim);margin-bottom:4px;">Top Score</p>
+        <p style="font-size:26px;font-weight:700;color:#fff;margin-bottom:16px;">${w1.sc} <span style="font-size:12px;color:var(--dim);font-weight:400;">pts</span></p>
+        <div style="border-top:1px solid rgba(255,255,255,0.055);padding-top:13px;margin-bottom:4px;">
+            <p style="font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--dim);margin-bottom:9px;font-weight:600;">Runner Up</p>
+            <div style="display:flex;align-items:center;gap:9px;">
+                <div class="av">${i2}</div>
+                <span style="font-size:13px;font-weight:500;color:rgba(255,255,255,0.75);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${w2.n}</span>
+                <span style="font-size:13px;font-weight:700;color:#c0c0c0;flex-shrink:0;">${w2.sc}</span>
+            </div>
+        </div>
+        <button class="btn" style="margin-top:16px;font-size:13px;padding:11px 18px;" onclick="gotoLeaderboard()">View Full Leaderboard</button>`;
+        }
+
+        /* ─── MOBILE STRIP ─── */
+        function renderStrip(pfx, wi) {
+            const w1 = WK_DATA[wi][0];
+            const ini = initials(w1.n);
+            const lbl = $(pfx + '-s-lbl'), nm = $(pfx + '-s-name'), sc = $(pfx + '-s-sc'), av = $(pfx + '-s-av');
+            if (!lbl) return;
+            lbl.textContent = `Week ${wi + 1} Winner`;
+            nm.textContent = w1.n;
+            sc.textContent = w1.sc + ' pts';
+            av.textContent = ini;
+        }
+
+        /* ─── INIT ─── */
+        renderPredict();
+        renderLbTabs();
+        renderLbList();
+        renderWCard('lb-wcard', 0);
+        renderStrip('lb', 0);
     </script>
 </body>
 

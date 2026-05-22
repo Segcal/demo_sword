@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PIN Payment Flow</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --orange: #f97316;
+            --orange-dark: #ea6c0a;
+            --orange-light: #fed7aa;
+            --bg-dark: #0f0800;
+            --bg-card: #1c1007;
+            --bg-input: #2a1a08;
+            --border-c: #3d2a10;
+            --text-muted: #a07040;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg-dark);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+            background-image: radial-gradient(ellipse at 20% 50%, rgba(249, 115, 22, 0.04) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(249, 115, 22, 0.03) 0%, transparent 50%);
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-c);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 440px;
+            padding: 2rem 2.2rem 2.2rem;
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(249, 115, 22, 0.06);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.4), transparent);
+        }
+
+        .step-wrap {
+            display: none;
+            animation: fadeUp 0.35s ease forwards;
+        }
+
+        .step-wrap.active {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .progress-bar {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--border-c);
+            border: 2px solid var(--border-c);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .dot.done {
+            background: var(--orange);
+            border-color: var(--orange);
+        }
+
+        .dot.active {
+            background: var(--orange);
+            border-color: var(--orange);
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.25);
+            width: 14px;
+            height: 14px;
+        }
+
+        .connector {
+            height: 2px;
+            width: 40px;
+            background: var(--border-c);
+            transition: background 0.3s ease;
+        }
+
+        .connector.done {
+            background: var(--orange);
+        }
+
+        h1.title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 0.35rem;
+        }
+
+        p.subtitle {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 1.6rem;
+            line-height: 1.5;
+        }
+
+        label.field-label {
+            display: block;
+            font-size: 0.72rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 0.35rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"] {
+            width: 100%;
+            background: var(--bg-input);
+            border: 1px solid var(--border-c);
+            border-radius: 10px;
+            color: #fff;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.88rem;
+            padding: 0.7rem 1rem;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            margin-bottom: 1rem;
+        }
+
+        input:focus {
+            border-color: var(--orange);
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
+        }
+
+        input::placeholder {
+            color: #5a3c1a;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 0.85rem;
+            border-radius: 12px;
+            background: var(--orange);
+            color: #fff;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            letter-spacing: 0.02em;
+            transition: background 0.2s, transform 0.1s;
+            margin-top: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            background: var(--orange-dark);
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98);
+        }
+
+        .btn-secondary {
+            padding: 0.75rem 1.4rem;
+            border-radius: 12px;
+            background: transparent;
+            color: var(--text-muted);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 500;
+            border: 1px solid var(--border-c);
+            cursor: pointer;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--orange);
+            color: var(--orange);
+        }
+
+        .option-card {
+            background: var(--bg-input);
+            border: 1.5px solid var(--border-c);
+            border-radius: 14px;
+            padding: 1rem 1.1rem;
+            cursor: pointer;
+            transition: border-color 0.2s, background 0.2s;
+            margin-bottom: 0.9rem;
+            position: relative;
+        }
+
+        .option-card:hover {
+            border-color: rgba(249, 115, 22, 0.5);
+        }
+
+        .option-card.selected {
+            border-color: var(--orange);
+            background: rgba(249, 115, 22, 0.07);
+        }
+
+        .option-card .radio-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 2px solid var(--border-c);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: border-color 0.2s;
+        }
+
+        .option-card.selected .radio-dot {
+            border-color: var(--orange);
+            background: var(--orange);
+        }
+
+        .option-card.selected .radio-dot::after {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #fff;
+        }
+
+        .option-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #e8d0b0;
+        }
+
+        .option-desc {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.15rem;
+            line-height: 1.4;
+        }
+
+        .hint-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: rgba(249, 115, 22, 0.1);
+            border: 1px solid rgba(249, 115, 22, 0.25);
+            border-radius: 8px;
+            padding: 0.45rem 0.8rem;
+            font-size: 0.75rem;
+            color: #f97316;
+            margin-top: -0.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            margin-bottom: 1.5rem;
+            transition: color 0.2s;
+            border: none;
+            background: none;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .back-link:hover {
+            color: var(--orange);
+        }
+
+        .row-btns {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+        }
+
+        .row-btns .btn-primary {
+            flex: 1;
+            margin-top: 0;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.55rem 0;
+            border-bottom: 1px solid var(--border-c);
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-row .key {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .detail-row .val {
+            font-size: 0.85rem;
+            color: #e8d0b0;
+            font-weight: 500;
+        }
+
+        .amount-display {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--orange);
+            text-align: center;
+            margin: 0.3rem 0 1.2rem;
+        }
+
+        .section-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin: 1.1rem 0 0.6rem;
+        }
+
+        .phone-row {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .flag-prefix {
+            background: var(--bg-input);
+            border: 1px solid var(--border-c);
+            border-radius: 10px;
+            padding: 0.7rem 0.8rem;
+            color: #e8d0b0;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .phone-row input {
+            margin-bottom: 0;
+            flex: 1;
+        }
+
+        .success-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: rgba(249, 115, 22, 0.12);
+            border: 2px solid var(--orange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem auto 1.5rem;
+            font-size: 2rem;
+            animation: pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes pop {
+            from {
+                transform: scale(0.4);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .confetti-dot {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            animation: drift 2.5s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes drift {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(0);
+                opacity: 0;
+            }
+        }
+
+        .checkbox-wrap {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .checkbox-wrap input[type="checkbox"] {
+            width: auto;
+            margin: 0.15rem 0 0;
+            accent-color: var(--orange);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .checkbox-wrap label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card" id="mainCard">
+        <!-- Progress Bar -->
+        <div class="progress-bar" id="progressBar">
+            <div class="dot active" id="dot0"></div>
+            <div class="connector" id="con0"></div>
+            <div class="dot" id="dot1"></div>
+            <div class="connector" id="con1"></div>
+            <div class="dot" id="dot2"></div>
+            <div class="connector" id="con2"></div>
+            <div class="dot" id="dot3"></div>
+            <div class="connector" id="con3"></div>
+            <div class="dot" id="dot4"></div>
+        </div>
+
+        <!-- STEP 1: Personal Info -->
+        <div class="step-wrap active" id="step0">
+            <h1 class="title">Tell us about you</h1>
+            <p class="subtitle">We need a few details to get you started</p>
+
+            <label class="field-label">Full Name</label>
+            <input type="text" id="fullName" placeholder="Enter your full name" />
+
+            <label class="field-label">Email Address</label>
+            <input type="email" id="email" placeholder="you@example.com" />
+
+            <label class="field-label">Phone Number</label>
+            <div class="phone-row" style="margin-bottom:1rem">
+                <span class="flag-prefix">🇳🇬 +234</span>
+                <input type="tel" id="phone" placeholder="800 000 0000" style="margin-bottom:0" />
+            </div>
+
+            <div class="checkbox-wrap">
+                <input type="checkbox" id="agreeTerms" />
+                <label for="agreeTerms">I agree to the terms and conditions and privacy policy of this platform</label>
+            </div>
+
+            <button class="btn-primary" onclick="nextStep(0)">Next →</button>
+        </div>
+
+        <!-- STEP 2: PIN Type -->
+        <div class="step-wrap" id="step1">
+            <button class="back-link" onclick="prevStep(1)">← Back</button>
+            <h1 class="title">What do you want to do?</h1>
+            <p class="subtitle">Please select the type of PIN you would like to purchase</p>
+
+            <div class="option-card" id="opt-engagement" onclick="selectOption('engagement')">
+                <div style="display:flex;align-items:flex-start;gap:0.75rem">
+                    <div class="radio-dot" id="radio-engagement"></div>
+                    <div>
+                        <div class="option-title">Engagement PIN</div>
+                        <div class="option-desc">For voting, Parish &amp; PTA, Stream Play Pay</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="option-card" id="opt-registration" onclick="selectOption('registration')">
+                <div style="display:flex;align-items:flex-start;gap:0.75rem">
+                    <div class="radio-dot" id="radio-registration"></div>
+                    <div>
+                        <div class="option-title">Registration PIN</div>
+                        <div class="option-desc">For new registrations, talent competitions &amp; events</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row-btns">
+                <button class="btn-secondary" onclick="prevStep(1)">Back</button>
+                <button class="btn-primary" onclick="nextStep(1)">Next →</button>
+            </div>
+        </div>
+
+        <!-- STEP 3: PIN Amount -->
+        <div class="step-wrap" id="step2">
+            <button class="back-link" onclick="prevStep(2)">← Back</button>
+            <h1 class="title">Enter PIN Amount</h1>
+            <p class="subtitle">How many PINs do you want to buy?</p>
+
+            <label class="field-label">Number of PINs</label>
+            <input type="number" id="pinQty" placeholder="e.g. 10" min="1" oninput="calcAmount()" />
+
+            <div class="hint-badge" id="amountHint" style="display:none">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 8v4M12 16h.01" />
+                </svg>
+                <span id="hintText"></span>
+            </div>
+
+            <label class="field-label" style="margin-top:0.2rem">Unit Price</label>
+            <input type="text" id="unitPrice" value="₦5,000" readonly style="cursor:default;opacity:0.6" />
+
+            <label class="field-label">Total Amount</label>
+            <div class="amount-display" id="totalAmount">₦0</div>
+
+            <div class="row-btns">
+                <button class="btn-secondary" onclick="prevStep(2)">Back</button>
+                <button class="btn-primary" onclick="nextStep(2)">Next →</button>
+            </div>
+        </div>
+
+        <!-- STEP 4: Payment Method -->
+        <div class="step-wrap" id="step3">
+            <button class="back-link" onclick="prevStep(3)">← Back</button>
+            <h1 class="title">How would you like to pay?</h1>
+            <p class="subtitle">Choose your preferred payment method below</p>
+
+            <div class="option-card" id="opt-online" onclick="selectPayment('online')">
+                <div style="display:flex;align-items:flex-start;gap:0.75rem">
+                    <div class="radio-dot" id="radio-online"></div>
+                    <div>
+                        <div class="option-title">Online Payment</div>
+                        <div class="option-desc">Pay online for convenient &amp; instant PIN payments. Processed
+                            automatically.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="option-card" id="opt-offline" onclick="selectPayment('offline')">
+                <div style="display:flex;align-items:flex-start;gap:0.75rem">
+                    <div class="radio-dot" id="radio-offline"></div>
+                    <div>
+                        <div class="option-title">Offline Payment (Bank Transfer)</div>
+                        <div class="option-desc">Manual bank transfer. Reviewed &amp; approved by admin.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row-btns">
+                <button class="btn-secondary" onclick="prevStep(3)">Back</button>
+                <button class="btn-primary" onclick="nextStep(3)">Next →</button>
+            </div>
+        </div>
+
+        <!-- STEP 5: Make Payment -->
+        <div class="step-wrap" id="step4">
+            <button class="back-link" onclick="prevStep(4)">← Back</button>
+            <h1 class="title">Make Payment</h1>
+
+            <!-- Bank Transfer Details -->
+            <div id="bankDetails">
+                <p class="section-label">Bank Transfer Details</p>
+                <div
+                    style="background:var(--bg-input);border:1px solid var(--border-c);border-radius:14px;padding:0.9rem 1.1rem;margin-bottom:1rem">
+                    <div class="detail-row">
+                        <span class="key">Bank</span>
+                        <span class="val">First Bank</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="key">Account Name</span>
+                        <span class="val">Kiwifiner TechApp Ltd</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="key">Account Number</span>
+                        <span class="val" style="display:flex;align-items:center;gap:0.4rem">
+                            3012345678
+                            <button onclick="copyAcct()"
+                                style="background:rgba(249,115,22,0.15);border:none;border-radius:6px;padding:2px 7px;color:var(--orange);font-size:0.7rem;cursor:pointer;font-family:'DM Sans',sans-serif">Copy</button>
+                        </span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="key">Amount</span>
+                        <span class="val" id="finalAmount"
+                            style="color:var(--orange);font-family:'Syne',sans-serif;font-size:1rem">₦0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Offline confirmation -->
+            <div id="offlineSection">
+                <p class="section-label">Confirm Your Phone Number</p>
+                <p style="font-size:0.76rem;color:var(--text-muted);margin-bottom:0.7rem;line-height:1.5">Please add
+                    your phone number so we can send an alert once payment is verified &amp; matched.</p>
+
+                <label class="field-label">Phone Number</label>
+                <div class="phone-row" style="margin-bottom:1rem">
+                    <span class="flag-prefix">🇳🇬 +234</span>
+                    <input type="tel" id="confirmPhone" placeholder="800 000 0000" style="margin-bottom:0" />
+                </div>
+            </div>
+
+            <!-- Online payment iframe placeholder -->
+            <div id="onlineSection" style="display:none">
+                <p class="section-label">Secure Checkout</p>
+                <div
+                    style="background:var(--bg-input);border:1px solid var(--border-c);border-radius:14px;padding:1.2rem;text-align:center;margin-bottom:1rem">
+                    <svg width="36" height="36" fill="none" stroke="var(--orange)" stroke-width="1.5"
+                        viewBox="0 0 24 24" style="margin:0 auto 0.6rem">
+                        <rect x="2" y="5" width="20" height="14" rx="2" />
+                        <path d="M2 10h20" />
+                    </svg>
+                    <p style="font-size:0.82rem;color:var(--text-muted)">You will be redirected to a secure payment
+                        gateway to complete your purchase.</p>
+                </div>
+            </div>
+
+            <!-- After Payment -->
+            <div style="margin-bottom:1rem">
+                <p
+                    style="font-size:0.78rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.5rem">
+                    After Payment</p>
+                <p style="font-size:0.78rem;color:var(--text-muted);line-height:1.55;margin-bottom:0.7rem">Please send
+                    your proof of payment (screenshot or receipt) to:</p>
+                <div
+                    style="background:var(--bg-input);border:1px solid var(--border-c);border-radius:14px;padding:0.85rem 1.1rem;display:flex;align-items:center;gap:0.85rem">
+                    <div
+                        style="width:36px;height:36px;border-radius:50%;background:rgba(249,115,22,0.12);border:1px solid rgba(249,115,22,0.25);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div style="font-size:0.7rem;color:var(--text-muted);margin-bottom:0.15rem">WhatsApp / Phone
+                        </div>
+                        <div style="font-size:0.95rem;font-weight:600;color:#e8d0b0;letter-spacing:0.01em">+234 808 7863
+                            562</div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-primary" id="makePaymentBtn" onclick="completePayment()">Make Payment →</button>
+        </div>
+
+        <!-- STEP 6: Success -->
+        <div class="step-wrap" id="step5" style="text-align:center;padding:1rem 0 0.5rem">
+            <div id="successIcon"
+                style="width:80px;height:80px;border-radius:50%;background:rgba(249,115,22,0.18);display:flex;align-items:center;justify-content:center;margin:0.5rem auto 1.6rem;animation:pop 0.5s cubic-bezier(0.175,0.885,0.32,1.275) forwards">
+                <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+                    <polyline points="22 4 12 14.01 9 11.01" />
+                </svg>
+            </div>
+
+            <h1 class="title" style="font-size:1.5rem;margin-bottom:0.6rem">Payment Received!</h1>
+            <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.65;margin-bottom:2rem;padding:0 0.5rem">
+                We'll verify your payment and send your PIN to your email within 24 hours
+            </p>
+
+            <button class="btn-primary" onclick="resetFlow()"
+                style="border-radius:50px;padding:1rem;font-size:0.95rem">Return to Home</button>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 0;
+        let selectedPinType = null;
+        let selectedPayment = null;
+        const PIN_PRICE = 5000;
+
+        function updateProgress(step) {
+            const totalDots = 5;
+            for (let i = 0; i < totalDots; i++) {
+                const dot = document.getElementById('dot' + i);
+                if (i < step) { dot.className = 'dot done'; }
+                else if (i === step) { dot.className = 'dot active'; }
+                else { dot.className = 'dot'; }
+            }
+            for (let i = 0; i < 4; i++) {
+                const con = document.getElementById('con' + i);
+                con.className = i < step ? 'connector done' : 'connector';
+            }
+        }
+
+        function showStep(n) {
+            document.querySelectorAll('.step-wrap').forEach(s => s.classList.remove('active'));
+            document.getElementById('step' + n).classList.add('active');
+            document.getElementById('progressBar').style.display = n >= 5 ? 'none' : 'flex';
+            if (n < 5) updateProgress(n);
+            currentStep = n;
+        }
+
+        function nextStep(from) {
+            if (from === 0) {
+                const name = document.getElementById('fullName').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                if (!name) return shake('fullName');
+                if (!email || !email.includes('@')) return shake('email');
+                if (!phone) return shake('phone');
+            }
+            if (from === 1) {
+                if (!selectedPinType) { alert('Please select a PIN type.'); return; }
+            }
+            if (from === 2) {
+                const qty = parseInt(document.getElementById('pinQty').value);
+                if (!qty || qty < 1) return shake('pinQty');
+            }
+            if (from === 3) {
+                if (!selectedPayment) { alert('Please select a payment method.'); return; }
+                const total = parseInt(document.getElementById('pinQty').value) * PIN_PRICE;
+                document.getElementById('finalAmount').textContent = '₦' + total.toLocaleString();
+                if (selectedPayment === 'online') {
+                    document.getElementById('bankDetails').style.display = 'none';
+                    document.getElementById('offlineSection').style.display = 'none';
+                    document.getElementById('onlineSection').style.display = 'block';
+                } else {
+                    document.getElementById('bankDetails').style.display = 'block';
+                    document.getElementById('offlineSection').style.display = 'block';
+                    document.getElementById('onlineSection').style.display = 'none';
+                }
+            }
+            showStep(from + 1);
+        }
+
+        function prevStep(from) {
+            if (from > 0) showStep(from - 1);
+        }
+
+        function selectOption(type) {
+            selectedPinType = type;
+            document.querySelectorAll('[id^="opt-"]').forEach(el => {
+                if (!el.id.startsWith('opt-online') && !el.id.startsWith('opt-offline')) el.classList.remove('selected');
+            });
+            document.querySelectorAll('[id^="radio-"]').forEach(el => {
+                if (!el.id.startsWith('radio-online') && !el.id.startsWith('radio-offline')) el.classList.remove('selected');
+            });
+            document.getElementById('opt-' + type).classList.add('selected');
+            document.getElementById('radio-' + type).classList.add('selected');
+        }
+
+        function selectPayment(type) {
+            selectedPayment = type;
+            ['online', 'offline'].forEach(t => {
+                document.getElementById('opt-' + t).classList.remove('selected');
+                document.getElementById('radio-' + t).classList.remove('selected');
+            });
+            document.getElementById('opt-' + type).classList.add('selected');
+            document.getElementById('radio-' + type).classList.add('selected');
+        }
+
+        function calcAmount() {
+            const qty = parseInt(document.getElementById('pinQty').value) || 0;
+            const total = qty * PIN_PRICE;
+            document.getElementById('totalAmount').textContent = '₦' + total.toLocaleString();
+            const hint = document.getElementById('amountHint');
+            if (qty > 0) {
+                hint.style.display = 'inline-flex';
+                document.getElementById('hintText').textContent = qty + ' PIN' + (qty > 1 ? 's' : '') + ' × ₦' + PIN_PRICE.toLocaleString() + ' = ₦' + total.toLocaleString();
+            } else {
+                hint.style.display = 'none';
+            }
+        }
+
+        function copyAcct() {
+            navigator.clipboard.writeText('3012345678').then(() => {
+                const btn = event.target;
+                btn.textContent = 'Copied!';
+                setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+            });
+        }
+
+        function completePayment() {
+            if (selectedPayment === 'offline') {
+                const ph = document.getElementById('confirmPhone').value.trim();
+                if (!ph) return shake('confirmPhone');
+            }
+            const qty = parseInt(document.getElementById('pinQty').value);
+            const total = qty * PIN_PRICE;
+            document.getElementById('refNo').textContent = 'KWF-' + Math.random().toString(36).substr(2, 8).toUpperCase();
+            document.getElementById('summaryType').textContent = selectedPinType === 'engagement' ? 'Engagement PIN' : 'Registration PIN';
+            document.getElementById('summaryQty').textContent = qty + ' PIN' + (qty > 1 ? 's' : '');
+            document.getElementById('summaryAmount').textContent = '₦' + total.toLocaleString();
+            document.getElementById('summaryMethod').textContent = selectedPayment === 'online' ? 'Online Payment' : 'Bank Transfer';
+            showStep(5);
+            spawnConfetti();
+        }
+
+        function shake(id) {
+            const el = document.getElementById(id);
+            el.style.borderColor = '#ef4444';
+            el.style.animation = 'none';
+            setTimeout(() => {
+                el.style.animation = 'shake 0.4s ease';
+            }, 10);
+            setTimeout(() => {
+                el.style.borderColor = 'var(--border-c)';
+                el.style.animation = 'none';
+            }, 800);
+        }
+
+        function spawnConfetti() {
+            const card = document.getElementById('mainCard');
+            const colors = ['#f97316', '#fbbf24', '#fb923c', '#fdba74', '#fff'];
+            for (let i = 0; i < 18; i++) {
+                const d = document.createElement('div');
+                d.className = 'confetti-dot';
+                const angle = (i / 18) * 360;
+                const dist = 60 + Math.random() * 80;
+                const tx = Math.cos(angle * Math.PI / 180) * dist + 'px';
+                const ty = Math.sin(angle * Math.PI / 180) * dist + 'px';
+                d.style.cssText = `left:50%;top:30%;--tx:${tx};--ty:${ty};background:${colors[i % colors.length]};animation-delay:${Math.random() * 0.3}s`;
+                card.appendChild(d);
+                setTimeout(() => d.remove(), 3000);
+            }
+        }
+
+        function resetFlow() {
+            selectedPinType = null;
+            selectedPayment = null;
+            document.getElementById('fullName').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('phone').value = '';
+            document.getElementById('pinQty').value = '';
+            document.getElementById('totalAmount').textContent = '₦0';
+            document.getElementById('amountHint').style.display = 'none';
+            document.getElementById('agreeTerms').checked = false;
+            ['opt-engagement', 'opt-registration', 'opt-online', 'opt-offline'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.classList.remove('selected');
+            });
+            ['radio-engagement', 'radio-registration', 'radio-online', 'radio-offline'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.classList.remove('selected');
+            });
+            showStep(0);
+        }
+    </script>
+
+    <style>
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0)
+            }
+
+            20% {
+                transform: translateX(-6px)
+            }
+
+            40% {
+                transform: translateX(6px)
+            }
+
+            60% {
+                transform: translateX(-4px)
+            }
+
+            80% {
+                transform: translateX(4px)
+            }
+        }
+    </style>
+</body>
+
+</html>

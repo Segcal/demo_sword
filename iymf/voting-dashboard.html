@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IYMF || Voting Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background-color: #0b0c10; }
+
+        /* ── Modal overlay ── */
+        #voteModal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.75);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+        #voteModal.open { display: flex; }
+
+        /* ── Step panels ── */
+        .step-panel { display: none; }
+        .step-panel.active { display: block; }
+
+        /* ── PIN input custom look ── */
+        #pinInput {
+            background: #1e1e28;
+            border: 1px solid rgba(245,158,11,0.25);
+            border-radius: 8px;
+            color: #e5e7eb;
+            padding: 10px 14px 10px 36px;
+            width: 100%;
+            font-size: 13px;
+            outline: none;
+            transition: border 0.2s;
+        }
+        #pinInput:focus { border-color: rgba(245,158,11,0.6); }
+
+        #voteCountInput {
+            background: #1e1e28;
+            border: 1px solid rgba(245,158,11,0.25);
+            border-radius: 8px;
+            color: #e5e7eb;
+            padding: 10px 14px;
+            width: 100%;
+            font-size: 13px;
+            outline: none;
+            transition: border 0.2s;
+        }
+        #voteCountInput:focus { border-color: rgba(245,158,11,0.6); }
+
+        /* ── Shimmer on trophy icon ── */
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.85; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.08); }
+        }
+        .trophy-icon { animation: pulse-glow 2.5s ease-in-out infinite; }
+
+        /* ── Success checkmark draw ── */
+        @keyframes draw-check {
+            from { stroke-dashoffset: 60; }
+            to   { stroke-dashoffset: 0; }
+        }
+        .check-path {
+            stroke-dasharray: 60;
+            stroke-dashoffset: 60;
+            animation: draw-check 0.5s ease-out 0.2s forwards;
+        }
+
+        /* ── Slide-in modal ── */
+        @keyframes slide-up {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .modal-card { animation: slide-up 0.3s ease-out; }
+
+        /* ── Candidate card hover ── */
+        .candidate-card { transition: border-color 0.25s, transform 0.2s; }
+        .candidate-card:hover { border-color: rgba(245,158,11,0.5); transform: translateY(-2px); }
+    </style>
+</head>
+<body class="text-white font-sans min-h-screen flex flex-col justify-between">
+
+    <!-- ═══════════════ MARQUEE ═══════════════ -->
+    <div class="px-6 fixed top-0 w-full z-50 bg-black/60 backdrop-blur-xl h-14 flex items-center">
+        <marquee behavior="smooth" direction="left" class="w-full">
+            <div class="flex items-center gap-8">
+                <div class="flex items-center gap-3">
+                    <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1767317361/streamline_announcement-megaphone-solid_b59alx.png" class="w-6 h-6" alt="" />
+                    <p class="text-sm whitespace-nowrap">(i) A New Moment Begins: 100 Friends of the Bible needed. Your Partnership will transform lives across the Globe.</p>
+                    <p class="text-sm whitespace-nowrap">(i) A New Moment Begins: 100 Friends of the Bible needed. Your Partnership will transform lives across the Globe.</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <a href="#" class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition"><i class="fa-brands fa-x-twitter text-black text-sm"></i></a>
+                    <a href="#" class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition"><i class="fa-brands fa-linkedin-in text-blue-600 text-sm"></i></a>
+                    <a href="#" class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition"><i class="fa-brands fa-instagram text-pink-600 text-sm"></i></a>
+                    <a href="#" class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition"><i class="fa-brands fa-facebook-f text-blue-700 text-sm"></i></a>
+                    <a href="#" class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition"><i class="fa-brands fa-tiktok text-black text-sm"></i></a>
+                    <a href="#" class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition"><i class="fa-brands fa-youtube text-red-600 text-sm"></i></a>
+                    <a href="#" class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition"><i class="fa-brands fa-whatsapp text-green-500 text-sm"></i></a>
+                </div>
+            </div>
+        </marquee>
+    </div>
+
+    <!-- ═══════════════ NAVBAR ═══════════════ -->
+    <header class="fixed top-14 left-0 w-full z-40">
+        <div class="relative w-full bg-[#1b1b1b]/60 backdrop-blur-xl border-b border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
+            <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+                <a href="./index.html">
+                    <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766409594/sword_TV_logo_y9mnja.png" width="150" class="rounded-full" />
+                </a>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="../index.html">Home</a>
+                    <a href="../Programs.html" class="text-orange-400">Programmes</a>
+                    <a href="../Partnership.html" class="font-semibold">Partnership</a>
+                    <a href="../blog.html">Blog</a>
+                    <a href="../contact-us.html">Contact us</a>
+                </nav>
+                <a href="./soporn.html" class="hidden md:block border border-orange-500 text-orange-500 font-semibold px-6 py-2 rounded-full">Sponsorship</a>
+                <button id="openMenu" class="md:hidden text-3xl">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══════════════ MOBILE MENU ═══════════════ -->
+    <div id="mobileMenu" class="hidden fixed inset-0 bg-black/70 backdrop-blur-xl z-[9998] items-center justify-center">
+        <div class="bg-[#1b1b1b] w-72 rounded-xl p-6 relative">
+            <button id="closeMenu" class="absolute top-4 right-4">✕</button>
+            <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766409594/sword_TV_logo_y9mnja.png" width="150" class="rounded-full mx-auto mb-6" />
+            <div class="flex flex-col space-y-4 text-center">
+                <a href="../index.html">Home</a>
+                <a href="../Programs.html" class="text-orange-400">Programmes</a>
+                <a href="../Partnership.html">Partnership</a>
+                <a href="../blog.html">Blog</a>
+                <a href="../contact-us.html">Contact us</a>
+                <a href="./soporn.html" class="bg-orange-400 text-black px-5 py-2 rounded-full font-semibold mt-4">Sponsorship</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════ MAIN ═══════════════ -->
+    <main class="max-w-6xl w-full mx-auto px-4 mt-56 flex-grow">
+
+        <div class="text-center mb-10">
+            <h1 class="text-3xl md:text-4xl font-bold text-amber-500 tracking-wide uppercase">Voting Dashboard</h1>
+            <p class="text-xs text-gray-400 mt-2 tracking-widest">SELECT AN AWARD CATEGORY AND VOTE FOR YOUR FAVORITE</p>
+        </div>
+
+        <div class="flex justify-center mb-12">
+            <div class="relative w-full max-w-md">
+                <select id="categorySelect" class="w-full bg-[#1a1b23] border border-amber-500/40 text-gray-300 text-sm rounded-full px-6 py-3 appearance-none focus:outline-none focus:border-amber-500 cursor-pointer transition">
+                    <option value="">Select an Award Category</option>
+                    <option value="best-artist">Best Artist of the Year</option>
+                    <option value="next-rated">Next Rated</option>
+                    <option value="best-video">Best Music Video</option>
+                </select>
+                <div class="absolute inset-y-0 right-0 flex items-center pr-6 pointer-events-none text-amber-500 text-xs">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+
+        <div id="candidatesGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 justify-items-center"></div>
+
+        <div class="flex justify-center items-center gap-2 mt-12">
+            <button class="w-8 h-8 rounded bg-amber-500 text-black font-bold text-xs flex items-center justify-center">1</button>
+            <div class="w-6 h-[2px] bg-gray-700"></div>
+            <div class="w-6 h-[2px] bg-gray-700"></div>
+            <div class="w-6 h-[2px] bg-gray-700"></div>
+            <button class="w-8 h-8 rounded bg-zinc-800 text-gray-400 font-bold text-xs flex items-center justify-center hover:bg-zinc-700 transition">
+                <i class="fas fa-chevron-right text-[10px]"></i>
+            </button>
+        </div>
+
+    </main>
+
+    <footer class="w-full text-center py-6 border-t border-gray-950 bg-[#090a0e] text-[10px] text-gray-500 tracking-wider mt-16">
+        <p class="text-amber-500/80 mb-1">© 2026 Golden Awards Inc.</p>
+        <p>Techies Team ©. All rights reserved. Design Ecosystem.</p>
+    </footer>
+
+
+    <!-- ══════════════════════════════════════════════════════
+         VOTE MODAL  —  3-step flow
+         ══════════════════════════════════════════════════════ -->
+    <div id="voteModal" role="dialog" aria-modal="true" aria-label="Voting flow">
+
+        <!-- ── STEP 1 · Enter PIN ── -->
+        <div id="step1" class="step-panel active w-full max-w-xs mx-auto">
+            <div class="modal-card bg-[#160f08] border border-amber-900/40 rounded-2xl p-6 shadow-2xl relative">
+
+                <!-- Close -->
+                <button onclick="closeModal()" class="absolute top-3 right-4 text-gray-500 hover:text-gray-300 text-lg transition">✕</button>
+
+                <!-- Trophy -->
+                <div class="flex justify-center mb-4">
+                    <div class="w-14 h-14 rounded-full bg-amber-900/30 border border-amber-700/40 flex items-center justify-center trophy-icon">
+                        <i class="fas fa-trophy text-amber-500 text-xl"></i>
+                    </div>
+                </div>
+
+                <h2 class="text-center font-bold text-white text-base mb-1">Vote Now</h2>
+                <p class="text-center text-[11px] text-gray-400 mb-5">Enter your subscription token to vote</p>
+
+                <!-- Candidate mini-badge -->
+                <div id="s1CandidateBadge" class="flex items-center gap-3 bg-[#1e1510] border border-amber-900/30 rounded-xl px-3 py-2.5 mb-4">
+                    <img id="s1CandidateImg" src="" alt="" class="w-9 h-9 rounded-lg object-cover" />
+                    <div>
+                        <p class="text-[11px] text-gray-400 leading-none mb-0.5">Voting for</p>
+                        <p id="s1CandidateName" class="text-sm font-semibold text-white leading-none"></p>
+                    </div>
+                </div>
+
+                <!-- PIN input -->
+                <div class="relative mb-4">
+                    <i class="fas fa-lock absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-xs"></i>
+                    <input id="pinInput" type="password" placeholder="Enter your PIN" autocomplete="off" />
+                </div>
+
+                <!-- Vote Now button -->
+                <button onclick="goToStep2()" class="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold text-sm py-2.5 rounded-lg transition active:scale-95 shadow-md mb-3">
+                    Vote Now
+                </button>
+
+                <!-- Get Voting PIN link -->
+                <div class="text-center mb-4">
+                    <a href="#" class="text-[11px] text-amber-500/70 hover:text-amber-400 transition underline underline-offset-2">Get Voting PIN</a>
+                </div>
+
+                <!-- Note -->
+                <div class="bg-[#1e1510] rounded-lg px-3 py-2.5 border border-amber-900/20">
+                    <p class="text-[10px] text-amber-600/80 font-semibold mb-1">NOTE</p>
+                    <ul class="space-y-0.5">
+                        <li class="text-[10px] text-gray-400 flex items-start gap-1.5"><span class="text-amber-600 mt-0.5">•</span>Users can vote multiple times</li>
+                        <li class="text-[10px] text-gray-400 flex items-start gap-1.5"><span class="text-amber-600 mt-0.5">•</span>More votes = higher chances of winning</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ── STEP 2 · Choose vote count ── -->
+        <div id="step2" class="step-panel w-full max-w-sm mx-auto">
+            <div class="modal-card bg-[#0f0f13] border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl">
+
+                <!-- Back bar -->
+                <div class="flex items-center gap-2 px-5 py-3 border-b border-zinc-800">
+                    <button onclick="goToStep1()" class="text-gray-400 hover:text-white transition text-xs flex items-center gap-1.5">
+                        <i class="fas fa-arrow-left text-[10px]"></i> Back to Home
+                    </button>
+                </div>
+
+                <div class="p-6">
+                    <h2 class="text-white font-bold text-lg mb-5">How Many Votes Do You Want To Cast?</h2>
+
+                    <label class="block text-xs text-gray-400 mb-1.5">Enter vote number</label>
+                    <input id="voteCountInput" type="number" min="1" placeholder="0" />
+
+                    <!-- Wallet info -->
+                    <div class="flex items-center gap-2 mt-3 mb-6 bg-amber-950/30 border border-amber-800/30 rounded-lg px-3 py-2">
+                        <i class="fas fa-circle-info text-amber-500 text-xs"></i>
+                        <p class="text-[11px] text-amber-300/80">You have a total of <span id="walletCount" class="font-semibold text-amber-400">19</span> vote pins in your wallet.</p>
+                    </div>
+
+                    <!-- Next button -->
+                    <button onclick="goToStep3()" class="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold text-sm py-2.5 rounded-lg transition active:scale-95 flex items-center justify-center gap-2">
+                        Next <i class="fas fa-arrow-right text-[10px]"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ── STEP 3 · Success ── -->
+        <div id="step3" class="step-panel w-full max-w-xs mx-auto">
+            <div class="modal-card bg-[#160f08] border border-amber-900/40 rounded-2xl p-8 shadow-2xl text-center">
+
+                <!-- Animated check circle -->
+                <div class="flex justify-center mb-5">
+                    <div class="w-16 h-16 rounded-full bg-amber-900/30 border border-amber-700/40 flex items-center justify-center">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <circle cx="16" cy="16" r="14" stroke="#f59e0b" stroke-width="1.5" stroke-opacity="0.4"/>
+                            <polyline class="check-path" points="8,16 13,22 24,11" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <h2 class="text-white font-bold text-base mb-2">Vote Submitted!</h2>
+                <p class="text-[12px] text-gray-400 leading-relaxed mb-6">
+                    Your vote has been successfully added. Thank you for voting!
+                </p>
+
+                <!-- Summary pill -->
+                <div class="bg-[#1e1510] border border-amber-900/30 rounded-xl px-4 py-3 mb-6 text-left">
+                    <div class="flex justify-between items-center mb-1.5">
+                        <span class="text-[11px] text-gray-500">Candidate</span>
+                        <span id="s3CandidateName" class="text-[11px] font-semibold text-white"></span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-[11px] text-gray-500">Votes cast</span>
+                        <span id="s3VoteCount" class="text-[11px] font-semibold text-amber-400"></span>
+                    </div>
+                </div>
+
+                <button onclick="closeModal()" class="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold text-sm py-2.5 rounded-lg transition active:scale-95">
+                    Done
+                </button>
+            </div>
+        </div>
+
+    </div><!-- /voteModal -->
+
+
+    <!-- ══════════════ SCRIPTS ══════════════ -->
+    <script>
+        /* ─── Data ─── */
+    const candidatesData = [
+  {
+    id: 1,
+    name: 'Babasanya Ademide',
+    votes: 20,
+    image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1776187665/photo_1_2026-04-14_18-24-35_jy9olj.jpg'
+  },
+  {
+    id: 2,
+    name: 'Benjamin Okafor',
+    votes: 35,
+    image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1776187665/photo_2_2026-04-14_18-24-35_zv2xtm.jpg'
+  },
+  {
+    id: 3,
+    name: 'Chiwendu Jonah',
+    votes: 12,
+    image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1776187666/photo_3_2026-04-14_18-24-35_xx3dsw.jpg'
+  },
+  {
+    id: 4,
+    name: 'Funke Jibodu',
+    votes: 48,
+    image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1776187667/photo_6_2026-04-14_18-24-35_nmtcxa.jpg'
+  },
+  {
+    id: 5,
+    name: 'Olawale Adelerin',
+    votes: 27,
+    image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1776187666/photo_5_2026-04-14_18-24-35_sd0fez.jpg'
+  },
+  {
+    id: 6,
+    name: 'Olorunfemi Ayodele',
+    votes: 61,
+    image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1776187666/photo_4_2026-04-14_18-24-35_i9cllx.jpg'
+  },
+  {
+    id: 7,
+    name: 'Onyedika Nwosu',
+    votes: 19,
+    image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1776187667/photo_8_2026-04-14_18-24-35_fpszdw.jpg'
+  },
+  {
+    id: 8,
+    name: 'Pelumi Olayiwola',
+    votes: 33,
+    image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1776187665/photo_9_2026-04-14_18-24-35_hofop1.jpg'
+  },
+  {
+    id: 9,
+    name: 'Sharon Ponmile',
+    votes: 44,
+    image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1776187665/photo_10_2026-04-14_18-24-35_ocdtya.jpg'
+  },
+  {
+    id: 10,
+    name: 'Stephen Adekanbi',
+    votes: 55,
+    image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1776187665/photo_1_2026-04-14_18-24-07_r3vhro.jpg'
+  },
+  {
+    id: 11,
+    name: 'Sunday Adeniji',
+    votes: 29,
+    image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1776187665/photo_2_2026-04-14_18-24-07_ijejwk.jpg'
+  },
+  {
+    id: 12,
+    name: 'Omowunmi Oyedepo',
+    votes: 40,
+    image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1776187667/photo_7_2026-04-14_18-24-35_vo0qui.jpg'
+  }
+];
+
+
+        
+
+        const WALLET_SIZE = 19; // simulated vote pin count
+        let currentCandidate = null;
+
+        /* ─── Render Cards ─── */
+        const grid = document.getElementById('candidatesGrid');
+
+        function renderCards(data) {
+            grid.innerHTML = '';
+            data.forEach(c => {
+                grid.innerHTML += `
+                <div class="candidate-card w-full max-w-[380px] bg-[#15161e] border border-zinc-800 rounded-2xl p-4 flex flex-col items-center shadow-lg">
+                    <div class="w-full aspect-[4/5] overflow-hidden rounded-xl bg-zinc-800 mb-4">
+                        <img src="${c.image}" alt="${c.name}" class="w-full h-full object-cover grayscale contrast-125 brightness-90 hover:grayscale-0 transition duration-300">
+                    </div>
+                    <h3 class="text-sm font-semibold tracking-wide text-gray-200 mb-2">${c.name}</h3>
+                    <div class="w-full bg-[#1e202b] text-center text-xs text-gray-400 py-2 px-4 rounded-lg mb-3 border border-zinc-800">
+                        Number of votes: <span class="text-white font-medium">${c.votes}</span>
+                    </div>
+                    <button onclick="openVoteModal(${c.id})" class="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold text-xs py-2.5 rounded-lg flex items-center justify-center gap-2 transition active:scale-95 shadow-md shadow-orange-950/20">
+                        Vote <i class="fas fa-arrow-right text-[10px]"></i>
+                    </button>
+                    <button class="mt-3 text-[11px] text-amber-500/70 hover:text-amber-500 transition flex items-center gap-1.5">
+                        View entry details <i class="fas fa-arrow-right text-[8px]"></i>
+                    </button>
+                </div>`;
+            });
+        }
+
+        renderCards(candidatesData);
+
+        /* ─── Modal helpers ─── */
+        function showStep(n) {
+            document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
+            document.getElementById('step' + n).classList.add('active');
+            // Re-trigger animation
+            const card = document.querySelector('#step' + n + ' .modal-card');
+            if (card) { card.style.animation = 'none'; card.offsetHeight; card.style.animation = ''; }
+        }
+
+        function openVoteModal(id) {
+            currentCandidate = candidatesData.find(c => c.id === id);
+            if (!currentCandidate) return;
+
+            // Populate step-1 badge
+            document.getElementById('s1CandidateName').textContent = currentCandidate.name;
+            document.getElementById('s1CandidateImg').src = currentCandidate.image;
+            document.getElementById('pinInput').value = '';
+            document.getElementById('voteCountInput').value = '';
+            document.getElementById('walletCount').textContent = WALLET_SIZE;
+
+            showStep(1);
+            document.getElementById('voteModal').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('voteModal').classList.remove('open');
+            document.body.style.overflow = '';
+            showStep(1); // reset for next open
+        }
+
+        function goToStep2() {
+            const pin = document.getElementById('pinInput').value.trim();
+            if (!pin) {
+                document.getElementById('pinInput').style.borderColor = 'rgba(239,68,68,0.6)';
+                setTimeout(() => document.getElementById('pinInput').style.borderColor = '', 1500);
+                return;
+            }
+            showStep(2);
+        }
+
+        function goToStep1() { showStep(1); }
+
+        function goToStep3() {
+            const count = parseInt(document.getElementById('voteCountInput').value, 10);
+            if (!count || count < 1) {
+                document.getElementById('voteCountInput').style.borderColor = 'rgba(239,68,68,0.6)';
+                setTimeout(() => document.getElementById('voteCountInput').style.borderColor = '', 1500);
+                return;
+            }
+            if (count > WALLET_SIZE) {
+                alert(`You only have ${WALLET_SIZE} vote pins in your wallet.`);
+                return;
+            }
+
+            // Commit votes
+            currentCandidate.votes += count;
+            renderCards(candidatesData);
+
+            // Populate step-3 summary
+            document.getElementById('s3CandidateName').textContent = currentCandidate.name;
+            document.getElementById('s3VoteCount').textContent = count + (count === 1 ? ' vote' : ' votes');
+
+            showStep(3);
+        }
+
+        /* ─── Close modal on backdrop click ─── */
+        document.getElementById('voteModal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        /* ─── Mobile menu ─── */
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        function openMobileMenu() {
+            mobileMenu.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeMobileMenu() {
+            mobileMenu.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('openMenu').addEventListener('click', openMobileMenu);
+        document.getElementById('closeMenu').addEventListener('click', closeMobileMenu);
+
+        // Tap dark backdrop to close
+        mobileMenu.addEventListener('click', function(e) {
+            if (e.target === mobileMenu) closeMobileMenu();
+        });
+    </script>
+</body>
+</html>

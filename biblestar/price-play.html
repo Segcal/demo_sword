@@ -1,26 +1,911 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap"
+    rel="stylesheet" />
+  <title>SOWRO TV - Viewer's Prize Play</title>
 
-    <title>SOWRO TV - Viewer's Price-Play</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    <style type="text/tailwindcss">
-        @theme {
-          --bg-tran: #ffffff1a;
-          --color-primary: #f0a242;
-        }
-    </style>
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #0f0f0f;
+      color: white;
+    }
+
+    .screen {
+      display: none;
+      min-height: 100vh;
+    }
+
+    .screen.active {
+      display: flex;
+      flex-direction: column;
+      animation: fadeIn .4s cubic-bezier(.22, .68, 0, 1.15) both;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(16px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    @keyframes shake {
+
+      0%,
+      100% {
+        transform: translateX(0)
+      }
+
+      20%,
+      60% {
+        transform: translateX(-6px)
+      }
+
+      40%,
+      80% {
+        transform: translateX(6px)
+      }
+    }
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(.88)
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1)
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    @keyframes popIn {
+      0% {
+        transform: scale(0)
+      }
+
+      70% {
+        transform: scale(1.12)
+      }
+
+      100% {
+        transform: scale(1)
+      }
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    .shake {
+      animation: shake .4s ease;
+    }
+
+    .spin {
+      animation: spin .8s linear infinite;
+    }
+
+    .pop-in {
+      animation: popIn .5s cubic-bezier(.22, .68, 0, 1.2) .2s both;
+    }
+
+    .slide-up {
+      animation: slideUp .5s ease .1s both;
+    }
+
+    .prog-bar {
+      transition: width .6s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    /* Options */
+    .option-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid #4a2412;
+      background: #1a0c05;
+      cursor: pointer;
+      transition: all .18s;
+      user-select: none;
+    }
+
+    .option-label:hover {
+      border-color: #f0a242;
+    }
+
+    .option-label.selected {
+      border-color: #f0a242;
+      background: rgba(240, 162, 66, .08);
+    }
+
+    .custom-check {
+      width: 20px;
+      height: 20px;
+      border-radius: 5px;
+      border: 1.5px solid #4a2412;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: bold;
+      transition: all .15s;
+    }
+
+    .option-label.selected .custom-check {
+      background: #f0a242;
+      border-color: #f0a242;
+      color: #000;
+    }
+
+    /* Timer */
+    #timer-ring {
+      transition: stroke-dashoffset 1s linear;
+    }
+
+    /* Leaderboard */
+    .lb-row {
+      transition: all .25s cubic-bezier(.4, 0, .2, 1);
+    }
+
+    .lb-row:hover {
+      transform: translateX(6px);
+      background: #3f2a1e;
+    }
+
+    /* Toast */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #2b1206;
+      border: 1px solid #f0a242;
+      color: #fed7aa;
+      font-size: 13px;
+      padding: 10px 22px;
+      border-radius: 999px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s;
+      z-index: 200;
+      white-space: nowrap;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .72);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 16px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .25s;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-overlay .modal-box {
+      animation: scaleIn .3s cubic-bezier(.22, .68, 0, 1.2) both;
+    }
+
+    /* Rank circles */
+    .rank-gold {
+      background: linear-gradient(135deg, #fbbf24, #d97706);
+    }
+
+    .rank-silver {
+      background: linear-gradient(135deg, #cbd5e1, #64748b);
+    }
+
+    .rank-bronze {
+      background: linear-gradient(135deg, #c2410c, #92400e);
+    }
+
+    .title-font {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #3a1a0d;
+      border-radius: 4px;
+    }
+  </style>
 </head>
 
+<body>
 
-<body class="bg-[#0f0f0f] text-white pt-28">
-   
+  <!-- ════════════════════════════════
+     SCREEN 1 — LOGIN
+════════════════════════════════ -->
+  <div id="screen-login" class="screen active items-center justify-center pt-24 pb-16 px-4 relative">
+
+    <div class="absolute top-6 left-6 text-gray-400 text-sm cursor-pointer hover:text-white transition-colors"
+      onclick="goHome()">← Back to Home</div>
+
+    <div
+      class="bg-gradient-to-b from-[#2b1206] to-[#1a0c04] rounded-2xl p-8 w-full max-w-[400px] shadow-2xl border border-[#3a1a0d]">
+
+      <div class="flex justify-center mb-6">
+        <div class="w-14 h-14 rounded-full bg-[#4a1f0b] flex items-center justify-center">
+          <div class="w-6 h-6 rounded-full border-2 border-orange-400 flex items-center justify-center">
+            <div class="w-2 h-2 bg-orange-400 rounded-full"></div>
+          </div>
+        </div>
+      </div>
+
+      <h1 class="text-xl font-semibold text-center mb-1">Viewers Prize Play</h1>
+      <p class="text-gray-400 text-sm text-center mb-6">24/7 Bible Quiz Competition</p>
+
+      <div class="relative mb-1" id="pin-wrapper">
+        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 select-none">🔒</span>
+        <input id="pin-input" type="text" maxlength="20" placeholder="Enter your PIN or Subscription ID" class="w-full bg-transparent border border-[#4a2a1a] rounded-lg py-3 pl-10 pr-10
+               text-sm text-white placeholder-gray-600 focus:outline-none focus:border-orange-400 transition-colors"
+          oninput="clearLoginError()" onkeydown="if(event.key==='Enter') attemptLogin()" />
+        <button type="button" id="toggle-vis"
+          class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-orange-400 transition-colors text-xs"
+          onclick="toggleVis()">👁</button>
+      </div>
+
+      <p id="pin-error" class="text-red-400 text-xs pl-1 mb-3" style="min-height:16px"></p>
+
+      <button id="access-btn" onclick="attemptLogin()" class="w-full bg-[#7a3b16] hover:bg-[#94471a] active:scale-95 transition-all
+             rounded-full py-3 font-medium mb-4 flex items-center justify-center gap-2">
+        <span id="btn-text">Access Platform</span>
+        <span id="btn-spinner" class="hidden w-4 h-4 border-2 border-white/30 border-t-white rounded-full spin"></span>
+      </button>
+
+      <a href="./pin-purches.html"
+        class="text-center flex items-center justify-center text-orange-400 text-sm cursor-pointer hover:underline mb-6">Get
+        PIN / Subscribe Now</a>
+
+      <hr class="border-[#3a1a0d] mb-4" />
+
+      <div class="space-y-3 text-xs text-gray-400">
+        <div class="flex items-start gap-2"><span class="text-orange-400 mt-0.5">✨</span>
+          <p>Test your Bible knowledge with our 24/7 quiz competition.</p>
+        </div>
+        <div class="flex items-start gap-2"><span class="text-orange-400 mt-0.5">⏱️</span>
+          <p>The scoring system is by how fast and accurate you answer questions.</p>
+        </div>
+        <div class="flex items-start gap-2"><span class="text-orange-400 mt-0.5">✨</span>
+          <p>Maximum 7 attempts per week.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════
+     SCREEN 2 — DASHBOARD
+════════════════════════════════ -->
+  <div id="screen-dashboard" class="screen">
+
+    <div class="flex items-center justify-between px-6 py-4">
+      <button onclick="goToLogin()"
+        class="text-sm text-gray-300 hover:text-white flex items-center gap-2 transition-colors">← Back to Home</button>
+      <button onclick="showScreen('screen-rankings')" class="border border-orange-400 text-orange-400 px-4 py-1.5 rounded-full text-sm
+             hover:bg-orange-400 hover:text-black transition-all active:scale-95">
+        🏆 View Rankings
+      </button>
+    </div>
+
+    <div class="flex flex-1 items-center justify-center px-4 pb-10">
+      <div class="bg-[#1a0d05] border border-[#2a140a] rounded-2xl p-8 w-full max-w-lg text-center shadow-2xl">
+
+        <h1 class="text-3xl font-semibold mb-2">Welcome, <span id="user-name" class="text-orange-400"></span>!</h1>
+        <p class="text-gray-400 text-sm mb-6">to the Viewers Prize Play platform</p>
+
+        <div class="bg-[#2a140a] rounded-lg p-4 mb-6 text-left">
+          <div class="flex justify-between text-sm mb-2 text-gray-300">
+            <span>Attempts Used This Week:</span>
+            <span id="attempts-text" class="font-semibold text-white">0/7</span>
+          </div>
+          <div class="w-full bg-[#3a1d0f] rounded-full h-2">
+            <div id="attempts-bar" class="bg-orange-400 h-2 rounded-full prog-bar" style="width:0%"></div>
+          </div>
+          <p id="attempts-warning" class="text-xs text-orange-400 mt-2 hidden">⚠️ Only <span id="attempts-left"></span>
+            attempt(s) remaining this week.</p>
+          <p id="attempts-exhausted" class="text-xs text-red-400 mt-2 hidden">❌ You've used all your attempts for this
+            week. Come back next week!</p>
+        </div>
+
+        <div class="text-left mb-6">
+          <p class="text-center text-sm text-gray-400 mb-3">Quiz Rules:</p>
+          <ul class="space-y-2 text-sm text-gray-300">
+            <li class="flex items-start gap-2"><span class="text-orange-400 mt-0.5">✔</span> Each quiz has 2 questions
+            </li>
+            <li class="flex items-start gap-2"><span class="text-orange-400 mt-0.5">✔</span> Select 4 correct answers
+              for each question</li>
+            <li class="flex items-start gap-2"><span class="text-orange-400 mt-0.5">✔</span> Fastest and most accurate
+              answers win</li>
+          </ul>
+        </div>
+
+        <button id="start-btn" onclick="startQuiz()" class="bg-[#3a1d0f] border border-orange-400 text-white px-8 py-2.5 rounded-full
+               hover:bg-orange-400 hover:text-black transition-all active:scale-95 font-medium">
+          Start Quiz
+        </button>
+        <p id="start-disabled-msg" class="text-red-400 text-xs mt-3 hidden">No attempts left this week.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════
+     SCREEN 3 — QUIZ
+════════════════════════════════ -->
+  <div id="screen-quiz" class="screen bg-black">
+
+    <div class="flex justify-between items-center px-4 py-4 text-sm max-w-4xl mx-auto w-full">
+      <button onclick="confirmExit()" class="flex items-center gap-2 text-gray-300 hover:text-white transition-colors">
+        ← Back to Home
+      </button>
+      <div class="flex items-center gap-3">
+        <div class="relative w-10 h-10">
+          <svg class="w-10 h-10 -rotate-90" viewBox="0 0 36 36">
+            <circle cx="18" cy="18" r="15.9" fill="none" stroke="#3a1d0f" stroke-width="3" />
+            <circle id="timer-ring" cx="18" cy="18" r="15.9" fill="none" stroke="#f0a242" stroke-width="3"
+              stroke-dasharray="100" stroke-dashoffset="0" stroke-linecap="round" />
+          </svg>
+          <span id="timer-text"
+            class="absolute inset-0 flex items-center justify-center text-xs font-bold text-orange-400">30</span>
+        </div>
+        <button onclick="showScreen('screen-rankings')"
+          class="px-4 py-2 rounded-full bg-[#2a140a] border border-[#5a2e16] text-sm hover:bg-[#3a1c0d] transition">
+          View Rankings
+        </button>
+      </div>
+    </div>
+
+    <div class="flex-1 px-4 pb-8 max-w-4xl mx-auto w-full flex flex-col gap-4">
+
+      <!-- Progress card -->
+      <div
+        class="bg-gradient-to-r from-[#1a0c05] to-[#2b1408] border border-[#3a1c0d] rounded-xl p-4 flex justify-between items-center">
+        <div>
+          <p id="q-progress-label" class="text-sm text-gray-300">Question 1 of 2</p>
+          <p class="text-xs text-gray-400">Select 4 correct answers</p>
+        </div>
+        <div class="text-right">
+          <p class="text-xs text-gray-400">Progress</p>
+          <p id="q-progress-pct" class="text-lg font-semibold">0%</p>
+        </div>
+      </div>
+
+      <!-- Question card -->
+      <div
+        class="bg-gradient-to-b from-[#1a0c05] to-[#2b1408] border border-[#3a1c0d] rounded-2xl p-6 flex flex-col gap-5">
+
+        <div>
+          <span id="q-page-badge"
+            class="inline-block text-xs px-3 py-1 rounded-full bg-[#3a1c0d] text-orange-300 mb-3">Page 1/2</span>
+          <h2 id="q-text" class="text-xl font-semibold mb-1"></h2>
+          <p class="text-sm text-gray-400">Select exactly 4 answers to proceed</p>
+        </div>
+
+        <div id="q-options" class="space-y-3"></div>
+
+        <div class="flex justify-between items-center pt-1">
+          <div>
+            <p class="text-xs text-gray-400 mb-1">Answers Selected</p>
+            <p id="q-error" class="text-xs text-red-400" style="min-height:16px"></p>
+          </div>
+          <div class="flex items-center gap-4">
+            <span id="sel-count" class="text-sm text-gray-400">0/4</span>
+            <button onclick="nextQuestion()" class="px-5 py-2 rounded-full bg-[#3a1c0d] border border-[#5a2e16]
+                   hover:bg-[#4a2412] transition text-sm font-medium">
+              <span id="next-btn-text">Next Question</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════
+     SCREEN 4 — QUIZ SUBMITTED
+════════════════════════════════ -->
+  <div id="screen-submitted" class="screen bg-black items-center justify-center px-4 py-8 relative">
+
+    <div class="absolute top-0 left-0 right-0 flex items-center justify-between px-8 py-6 z-10">
+      <button onclick="goToDashboard()"
+        class="flex items-center gap-2 text-white hover:text-orange-400 transition-colors">
+        <i class="fa-solid fa-arrow-left text-xl"></i>
+        <span class="font-medium">Back to Home</span>
+      </button>
+      <button onclick="showScreen('screen-rankings')"
+        class="flex items-center gap-2 bg-[#3f2a1e] hover:bg-[#5c4033] px-5 py-2.5 rounded-2xl transition-all text-white font-medium">
+        <i class="fa-solid fa-trophy"></i><span class="ml-1">View Rankings</span>
+      </button>
+    </div>
+
+    <div class="max-w-md w-full mx-auto mt-16">
+      <div class="rounded-3xl p-8 relative slide-up"
+        style="background:linear-gradient(145deg,#3f2a1e,#2c2118);box-shadow:0 25px 50px -12px rgba(0,0,0,.5)">
+
+        <button onclick="goToDashboard()"
+          class="absolute top-6 right-6 text-white/70 hover:text-white transition-colors">
+          <i class="fa-solid fa-xmark text-2xl"></i>
+        </button>
+
+        <div class="flex justify-center mb-6">
+          <div
+            class="pop-in w-20 h-20 bg-orange-600 rounded-full flex items-center justify-center border-4 border-orange-500/30">
+            <i class="fa-solid fa-check text-white text-5xl"></i>
+          </div>
+        </div>
+
+        <h1 class="text-4xl font-bold text-white text-center mb-3">Quiz Submitted!</h1>
+        <p class="text-white/80 text-center mb-8 leading-relaxed text-sm">
+          Your answers have been submitted and have been evaluated.
+        </p>
+
+        <div class="bg-black/40 rounded-2xl p-5 mb-8">
+          <div class="flex items-center justify-between py-3 border-b border-white/10">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-white/10 rounded-xl flex items-center justify-center">
+                <i class="fa-solid fa-clock text-orange-400"></i>
+              </div>
+              <span class="text-white font-medium">Time Taken:</span>
+            </div>
+            <span id="sub-time" class="text-white font-semibold"></span>
+          </div>
+          <div class="flex items-center justify-between py-3 border-b border-white/10">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-white/10 rounded-xl flex items-center justify-center">
+                <i class="fa-solid fa-check-double text-green-400"></i>
+              </div>
+              <span class="text-white font-medium">Correct Answers:</span>
+            </div>
+            <span id="sub-correct" class="text-white font-semibold"></span>
+          </div>
+          <div class="flex items-center justify-between py-3 border-b border-white/10">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-white/10 rounded-xl flex items-center justify-center">
+                <i class="fa-solid fa-star text-orange-400"></i>
+              </div>
+              <span class="text-white font-medium">Score:</span>
+            </div>
+            <span id="sub-score" class="text-orange-400 font-bold text-xl"></span>
+          </div>
+          <div class="flex items-center justify-between py-3">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 bg-white/10 rounded-xl flex items-center justify-center">
+                <i class="fa-solid fa-trophy text-amber-400"></i>
+              </div>
+              <span class="text-white font-medium">Your Rank:</span>
+            </div>
+            <span id="sub-rank" class="text-amber-400 font-bold text-xl"></span>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-3">
+          <button onclick="showScreen('screen-rankings')"
+            class="w-full font-semibold py-4 rounded-2xl text-lg transition-all active:scale-95 text-white"
+            style="background:linear-gradient(to right,#ea580c,#d97706)">
+            View Leaderboard
+          </button>
+          <button id="play-again-btn" onclick="tryPlayAgain()" class="w-full border border-[#5a2e16] py-3 rounded-2xl text-sm text-gray-300
+                 hover:text-white hover:border-orange-400 transition-all">
+            Play Again
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════
+     SCREEN 5 — WINNER RANKINGS
+════════════════════════════════ -->
+  <div id="screen-rankings" class="screen bg-[#1a120b] pb-12" style="overflow-y:auto;">
+
+    <div class="flex items-center justify-between px-6 py-4 border-b border-[#3f2a1e]">
+      <button id="rankings-back-btn"
+        class="flex items-center gap-2 text-amber-200 hover:text-white transition-colors text-sm font-medium">
+        <i class="fa-solid fa-arrow-left"></i><span class="ml-1">Back to Home</span>
+      </button>
+      <button onclick="goToDashboard()"
+        class="flex items-center gap-2 bg-[#3f2a1e] hover:bg-[#4a3629] px-5 py-2 rounded-2xl text-sm font-medium transition-colors">
+        <i class="fa-solid fa-grip-horizontal mr-1"></i> Dashboard
+      </button>
+    </div>
+
+    <div class="max-w-2xl mx-auto mt-8 px-4">
+
+      <div class="flex flex-col items-center mb-10">
+        <div class="w-16 h-16 rounded-2xl flex items-center justify-center shadow-xl shadow-orange-900/50 mb-4"
+          style="background:linear-gradient(135deg,#fbbf24,#ea580c)">
+          <i class="fa-solid fa-trophy text-4xl text-white"></i>
+        </div>
+        <h1 class="title-font text-4xl font-semibold tracking-tight text-center">Winner Rankings</h1>
+        <p class="text-amber-200/70 text-center mt-1 text-sm">Top performers based on accuracy and speed</p>
+      </div>
+
+      <div class="bg-[#2a1f17] rounded-3xl overflow-hidden border border-[#4a3629] shadow-2xl" id="lb-list"></div>
+
+      <div class="mt-8 bg-[#2a1f17] rounded-3xl p-6 border border-[#4a3629]">
+        <h3 class="font-semibold text-lg mb-4 flex items-center gap-2">
+          <i class="fa-solid fa-circle-info text-amber-400"></i> Ranking Criteria
+        </h3>
+        <div class="space-y-3 text-sm">
+          <div class="flex gap-3">
+            <div class="w-5 h-5 rounded-xl flex-shrink-0 mt-0.5"
+              style="background:linear-gradient(135deg,#fbbf24,#ea580c)"></div>
+            <p class="text-amber-100 font-medium">Primary: Number of correct answers (accuracy)</p>
+          </div>
+          <div class="flex gap-3">
+            <div class="w-5 h-5 rounded-xl flex-shrink-0 mt-0.5"
+              style="background:linear-gradient(135deg,#f97316,#dc2626)"></div>
+            <p class="text-amber-100 font-medium">Secondary: Completion time (speed)</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-center text-xs text-amber-200/30 mt-8">Updated live • May 2026</p>
+    </div>
+  </div>
+
+
+  <!-- ════ MODAL — Subscribe ════ -->
+  <div id="modal-subscribe" class="modal-overlay" onclick="closeModalOutside(event,'modal-subscribe')">
+    <div
+      class="modal-box bg-gradient-to-b from-[#2b1206] to-[#1a0c04] rounded-2xl p-8 w-full max-w-sm border border-[#3a1a0d] shadow-2xl">
+      <h3 class="text-lg font-semibold mb-1 text-center">Get Your PIN</h3>
+      <p class="text-gray-400 text-sm text-center mb-6">Choose a subscription plan to receive your PIN.</p>
+      <div class="space-y-3 mb-6">
+        <div class="border border-[#4a2a1a] rounded-xl p-4 hover:border-orange-400 transition cursor-pointer"
+          onclick="selectPlan('Weekly Pass','₦500')">
+          <div class="flex justify-between items-center">
+            <div>
+              <p class="font-medium">Weekly Pass</p>
+              <p class="text-xs text-gray-400">7 attempts · Renews weekly</p>
+            </div>
+            <span class="text-orange-400 font-bold">₦500</span>
+          </div>
+        </div>
+        <div class="border border-[#4a2a1a] rounded-xl p-4 hover:border-orange-400 transition cursor-pointer"
+          onclick="selectPlan('Monthly Pass','₦1,500')">
+          <div class="flex justify-between items-center">
+            <div>
+              <p class="font-medium">Monthly Pass</p>
+              <p class="text-xs text-gray-400">28+ attempts · Best value</p>
+            </div>
+            <span class="text-orange-400 font-bold">₦1,500</span>
+          </div>
+        </div>
+      </div>
+      <button onclick="closeModal('modal-subscribe')" class="w-full border border-[#4a2a1a] rounded-full py-2.5 text-sm text-gray-400
+             hover:text-white hover:border-gray-600 transition">Close</button>
+    </div>
+  </div>
+
+
+  <!-- ════ MODAL — Exit Confirm ════ -->
+  <div id="modal-exit" class="modal-overlay">
+    <div
+      class="modal-box bg-gradient-to-b from-[#2b1206] to-[#1a0c04] rounded-2xl p-8 w-full max-w-sm border border-[#3a1a0d] shadow-2xl text-center">
+      <p class="text-4xl mb-4">⚠️</p>
+      <h3 class="text-lg font-semibold mb-2">Exit Quiz?</h3>
+      <p class="text-gray-400 text-sm mb-6">Your progress will be lost and this attempt will be counted.</p>
+      <div class="flex gap-3">
+        <button onclick="closeModal('modal-exit')"
+          class="flex-1 border border-[#4a2a1a] rounded-full py-2.5 text-sm text-gray-400 hover:text-white transition">Stay</button>
+        <button onclick="forceExit()"
+          class="flex-1 bg-red-900 hover:bg-red-800 rounded-full py-2.5 text-sm transition">Exit Anyway</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+
+  <script>
+    const S = {
+      pin: '', userName: '', attemptsUsed: 0, maxAttempts: 7,
+      currentQ: 0, selectedAnswers: [], questionStartTime: 0,
+      responseTimes: [], correctCounts: [], quizStartTime: 0
+    };
+
+    const PINS = {
+      'SOWRO123': { name: 'djj', attemptsUsed: 3 },
+      'BIBLE2024': { name: 'Grace', attemptsUsed: 6 },
+      'QUIZ001': { name: 'Daniel', attemptsUsed: 0 },
+      'PLAYER99': { name: 'Samuel', attemptsUsed: 7 },
+      'TEST': { name: 'Tester', attemptsUsed: 0 },
+    };
+
+    const QUESTIONS = [
+      {
+        text: 'Which of the following are books in the Old Testament?',
+        options: ['Genesis', 'Exodus', 'Matthew', 'Leviticus', 'Romans', 'Numbers', 'Revelation', 'Deuteronomy'],
+        correct: new Set([0, 1, 3, 5])
+      },
+      {
+        text: 'Which of the following were among the twelve apostles of Jesus?',
+        options: ['Peter', 'Barnabas', 'Andrew', 'Mark', 'John', 'Luke', 'James (son of Zebedee)', 'Paul'],
+        correct: new Set([0, 2, 4, 6])
+      }
+    ];
+
+    let LB = [
+      { name: 'Samuel O.', score: 950, correct: 8, time: '0.4s' },
+      { name: 'Miriam K.', score: 920, correct: 8, time: '0.5s' },
+      { name: 'David M.', score: 900, correct: 8, time: '0.5s' },
+      { name: 'Rebecca T.', score: 850, correct: 8, time: '0.4s' },
+      { name: 'Paul N.', score: 830, correct: 8, time: '0.4s' },
+      { name: 'Esther L.', score: 810, correct: 8, time: '0.5s' },
+      { name: 'Moses A.', score: 760, correct: 7, time: '0.4s' },
+      { name: 'Deborah S.', score: 730, correct: 8, time: '0.4s' },
+      { name: 'Joshua B.', score: 710, correct: 8, time: '0.5s' },
+      { name: 'Ruth P.', score: 650, correct: 8, time: '0.4s' },
+    ];
+
+    let pinHidden = true, timerInterval = null, timerSecs = 30;
+
+    /* ── SCREENS ── */
+    function showScreen(id) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      const el = document.getElementById(id);
+      el.classList.add('active');
+      el.scrollTop = 0;
+    }
+
+    /* ── LOGIN ── */
+    function attemptLogin() {
+      const val = document.getElementById('pin-input').value.trim();
+      if (!val) { loginErr('Please enter your PIN or Subscription ID.'); shakePin(); return; }
+      if (val.length < 3) { loginErr('PIN must be at least 3 characters.'); shakePin(); return; }
+      setLoading(true);
+      setTimeout(() => {
+        const m = PINS[val.toUpperCase()];
+        setLoading(false);
+        if (!m) { loginErr('Invalid PIN or Subscription ID. Please try again.'); shakePin(); return; }
+        S.pin = val.toUpperCase(); S.userName = m.name; S.attemptsUsed = m.attemptsUsed;
+        renderDash(); showScreen('screen-dashboard');
+      }, 900);
+    }
+    function loginErr(msg) { document.getElementById('pin-error').textContent = msg; }
+    function clearLoginError() { document.getElementById('pin-error').textContent = ''; }
+    function shakePin() { const w = document.getElementById('pin-wrapper'); w.classList.remove('shake'); void w.offsetWidth; w.classList.add('shake'); document.getElementById('pin-input').focus(); }
+    function setLoading(on) {
+      document.getElementById('btn-text').textContent = on ? 'Verifying…' : 'Access Platform';
+      document.getElementById('btn-spinner').classList.toggle('hidden', !on);
+      document.getElementById('access-btn').disabled = on;
+    }
+    function toggleVis() { pinHidden = !pinHidden; document.getElementById('pin-input').type = pinHidden ? 'text' : 'password'; document.getElementById('toggle-vis').textContent = pinHidden ? '👁' : '🙈'; }
+    function goHome() { showToast('Navigating to home…'); }
+    function goToLogin() { document.getElementById('pin-input').value = ''; clearLoginError(); showScreen('screen-login'); }
+
+    /* ── DASHBOARD ── */
+    function renderDash() {
+      const used = S.attemptsUsed, max = S.maxAttempts, left = max - used, pct = Math.round(used / max * 100);
+      document.getElementById('user-name').textContent = S.userName;
+      document.getElementById('attempts-text').textContent = `${used}/${max}`;
+      const bar = document.getElementById('attempts-bar');
+      bar.style.width = pct + '%';
+      bar.className = bar.className.replace(/\bbg-\w+-\d+\b/g, '');
+      bar.classList.add(pct >= 100 ? 'bg-red-500' : pct >= 72 ? 'bg-yellow-400' : 'bg-orange-400');
+      document.getElementById('attempts-warning').classList.toggle('hidden', left > 2 || left <= 0);
+      document.getElementById('attempts-exhausted').classList.toggle('hidden', left > 0);
+      if (left <= 2 && left > 0) document.getElementById('attempts-left').textContent = left;
+      const btn = document.getElementById('start-btn'), dis = document.getElementById('start-disabled-msg');
+      if (left <= 0) { btn.disabled = true; btn.classList.add('opacity-40', 'cursor-not-allowed'); dis.classList.remove('hidden'); }
+      else { btn.disabled = false; btn.classList.remove('opacity-40', 'cursor-not-allowed'); dis.classList.add('hidden'); }
+    }
+    function goToDashboard() { renderDash(); showScreen('screen-dashboard'); }
+
+    /* ── QUIZ ── */
+    function startQuiz() {
+      if (S.attemptsUsed >= S.maxAttempts) { showToast('No attempts left this week!'); return; }
+      S.currentQ = 0; S.responseTimes = []; S.correctCounts = []; S.quizStartTime = Date.now();
+      loadQ(); showScreen('screen-quiz');
+    }
+
+    function loadQ() {
+      const q = QUESTIONS[S.currentQ];
+      S.selectedAnswers = []; S.questionStartTime = Date.now();
+      const n = S.currentQ + 1, tot = QUESTIONS.length, pct = Math.round(S.currentQ / tot * 100);
+      document.getElementById('q-progress-label').textContent = `Question ${n} of ${tot}`;
+      document.getElementById('q-progress-pct').textContent = pct + '%';
+      document.getElementById('q-page-badge').textContent = `Page ${n}/${tot}`;
+      document.getElementById('q-text').textContent = q.text;
+      document.getElementById('q-error').textContent = '';
+      document.getElementById('sel-count').textContent = '0/4';
+      document.getElementById('next-btn-text').textContent = S.currentQ < QUESTIONS.length - 1 ? 'Next Question' : 'Submit Quiz ✓';
+      const c = document.getElementById('q-options'); c.innerHTML = '';
+      q.options.forEach((opt, i) => {
+        const lbl = document.createElement('label');
+        lbl.className = 'option-label'; lbl.id = 'lbl-' + i;
+        lbl.innerHTML = `<span class="custom-check" id="chk-${i}"></span><span>${opt}</span>`;
+        lbl.onclick = () => toggleAns(i); c.appendChild(lbl);
+      });
+      startTimer(30);
+    }
+
+    function toggleAns(i) {
+      const lbl = document.getElementById('lbl-' + i), chk = document.getElementById('chk-' + i);
+      const err = document.getElementById('q-error'), sel = S.selectedAnswers, pos = sel.indexOf(i);
+      if (pos > -1) { sel.splice(pos, 1); lbl.classList.remove('selected'); chk.textContent = ''; }
+      else {
+        if (sel.length >= 4) { err.textContent = 'You can only select 4 answers. Deselect one first.'; return; }
+        sel.push(i); lbl.classList.add('selected'); chk.textContent = '✓';
+        if (sel.length === 4) err.textContent = '';
+      }
+      document.getElementById('sel-count').textContent = `${sel.length}/4`;
+    }
+
+    function nextQuestion() {
+      const err = document.getElementById('q-error');
+      if (S.selectedAnswers.length !== 4) { err.textContent = `Please select exactly 4 answers (${S.selectedAnswers.length}/4 selected).`; return; }
+      err.textContent = '';
+      const elapsed = (Date.now() - S.questionStartTime) / 1000;
+      S.responseTimes.push(elapsed);
+      const hits = S.selectedAnswers.filter(i => QUESTIONS[S.currentQ].correct.has(i)).length;
+      S.correctCounts.push(hits);
+      clearTimer();
+      if (S.currentQ < QUESTIONS.length - 1) { S.currentQ++; loadQ(); }
+      else finishQuiz();
+    }
+
+    /* ── TIMER ── */
+    function startTimer(s) {
+      clearTimer(); timerSecs = s; updTimer(s);
+      timerInterval = setInterval(() => { timerSecs--; updTimer(timerSecs); if (timerSecs <= 0) { clearTimer(); autoSubmit(); } }, 1000);
+    }
+    function updTimer(s) {
+      document.getElementById('timer-text').textContent = s;
+      const ring = document.getElementById('timer-ring');
+      ring.style.strokeDashoffset = ((30 - s) / 30) * 100;
+      const col = s <= 10 ? '#ef4444' : '#f0a242';
+      ring.style.stroke = col; document.getElementById('timer-text').style.color = col;
+    }
+    function clearTimer() { clearInterval(timerInterval); timerInterval = null; }
+    function autoSubmit() {
+      const q = QUESTIONS[S.currentQ];
+      const rem = q.options.map((_, i) => i).filter(i => !S.selectedAnswers.includes(i));
+      while (S.selectedAnswers.length < 4 && rem.length) {
+        const r = rem.splice(Math.floor(Math.random() * rem.length), 1)[0];
+        S.selectedAnswers.push(r);
+      }
+      showToast('⏱ Time up! Auto-submitted.'); setTimeout(nextQuestion, 500);
+    }
+
+    /* ── RESULTS ── */
+    function finishQuiz() {
+      S.attemptsUsed++; if (PINS[S.pin]) PINS[S.pin].attemptsUsed = S.attemptsUsed;
+      const totalSecs = Math.round((Date.now() - S.quizStartTime) / 1000);
+      const totalCorrect = S.correctCounts.reduce((a, b) => a + b, 0);
+      const totalPoss = QUESTIONS.length * 4;
+      const avgTime = S.responseTimes.reduce((a, b) => a + b, 0) / S.responseTimes.length;
+      const speedBonus = Math.max(0, Math.round((30 - avgTime) * 12));
+      const finalScore = Math.round(totalCorrect / totalPoss * 800) + speedBonus;
+
+      const playerEntry = { name: S.userName, score: finalScore, correct: totalCorrect, time: avgTime.toFixed(1) + 's', isPlayer: true };
+      const combined = [...LB.map(x => ({ ...x })), playerEntry].sort((a, b) => b.score - a.score);
+      const rank = combined.findIndex(x => x.isPlayer) + 1;
+      LB = combined; renderLB(LB);
+
+      document.getElementById('sub-time').textContent = totalSecs + ' seconds';
+      document.getElementById('sub-correct').textContent = `${totalCorrect} / ${totalPoss}`;
+      document.getElementById('sub-score').textContent = finalScore + ' pts';
+      document.getElementById('sub-rank').textContent = ordinal(rank);
+
+      const pb = document.getElementById('play-again-btn');
+      const left = S.maxAttempts - S.attemptsUsed;
+      if (left <= 0) { pb.textContent = 'No Attempts Left'; pb.disabled = true; pb.classList.add('opacity-40', 'cursor-not-allowed'); }
+      else { pb.textContent = `Play Again (${left} left)`; pb.disabled = false; pb.classList.remove('opacity-40', 'cursor-not-allowed'); }
+
+      showScreen('screen-submitted');
+    }
+
+    function tryPlayAgain() { if (S.attemptsUsed >= S.maxAttempts) { showToast('No attempts left!'); return; } startQuiz(); }
+    function ordinal(n) { const s = ['th', 'st', 'nd', 'rd'], v = n % 100; return n + (s[(v - 20) % 10] || s[v] || s[0]); }
+
+    /* ── LEADERBOARD ── */
+    function renderLB(data) {
+      const list = document.getElementById('lb-list');
+      list.innerHTML = data.map((p, i) => {
+        const rank = i + 1, isLast = i === data.length - 1;
+        let circle = '';
+        if (rank === 1) circle = `<div class="rank-gold w-9 h-9 flex items-center justify-center rounded-2xl text-white font-bold text-xl">${rank}</div>`;
+        else if (rank === 2) circle = `<div class="rank-silver w-9 h-9 flex items-center justify-center rounded-2xl text-white font-bold text-xl">${rank}</div>`;
+        else if (rank === 3) circle = `<div class="rank-bronze w-9 h-9 flex items-center justify-center rounded-2xl text-white font-bold text-xl">${rank}</div>`;
+        else circle = `<div class="w-8 h-8 flex items-center justify-center text-lg font-semibold text-amber-200/70">${rank}</div>`;
+        const hl = p.isPlayer ? 'style="background:#3f2a1e"' : '';
+        const border = !isLast ? 'border-b border-[#3f2a1e]' : '';
+        const bigScore = rank <= 3 ? `<div class="text-2xl font-bold text-amber-400">${p.score}</div><div class="text-xs text-amber-200/40">points</div>` : `<div class="text-amber-300 font-semibold">${p.score} points</div>`;
+        const nameStyle = p.isPlayer ? 'style="color:#f0a242"' : '';
+        const badge = p.isPlayer ? '<span class="text-xs text-orange-400 ml-1">(You)</span>' : '';
+        return `<div class="lb-row flex items-center justify-between px-6 ${rank <= 3 ? 'py-5' : 'py-4'} ${border}" ${hl}>
+      <div class="flex items-center gap-5">${circle}<div>
+        <div class="${rank <= 3 ? 'font-semibold text-lg' : 'font-medium'}" ${nameStyle}>${p.name}${badge}</div>
+        <div class="text-${rank <= 3 ? 'sm' : 'xs'} text-amber-200/60">Correct ${p.correct} • ${p.time}</div>
+      </div></div>
+      <div class="text-right">${bigScore}</div>
+    </div>`;
+      }).join('');
+    }
+
+    /* ── MODALS ── */
+    function openModal(id) { document.getElementById(id).classList.add('open'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+    function closeModalOutside(e, id) { if (e.target.id === id) closeModal(id); }
+    function selectPlan(name, price) { closeModal('modal-subscribe'); showToast(`✅ Redirecting to ${name} (${price})…`); }
+
+    /* ── EXIT QUIZ ── */
+    function confirmExit() { openModal('modal-exit'); }
+    function forceExit() {
+      clearTimer(); closeModal('modal-exit');
+      S.attemptsUsed++; if (PINS[S.pin]) PINS[S.pin].attemptsUsed = S.attemptsUsed;
+      renderDash(); showScreen('screen-dashboard');
+    }
+
+    /* ── TOAST ── */
+    function showToast(msg, ms = 2800) {
+      const t = document.getElementById('toast'); t.textContent = msg; t.style.opacity = '1';
+      clearTimeout(t._t); t._t = setTimeout(() => { t.style.opacity = '0'; }, ms);
+    }
+
+    /* ── BOOT ── */
+    renderLB(LB);
+    document.getElementById('rankings-back-btn').onclick = () => {
+      if (S.pin) { renderDash(); showScreen('screen-dashboard'); } else goHome();
+    };
+    document.addEventListener('keydown', e => {
+      const a = document.querySelector('.screen.active'); if (!a) return;
+      if (e.key === 'Enter' && a.id === 'screen-quiz') nextQuestion();
+    });
+  </script>
+
 </body>
+
 </html>

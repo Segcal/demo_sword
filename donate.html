@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sword Television Donation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      background: #0a0a0a;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      overflow-x: hidden;
+    }
+
+    /* Ambient background orbs */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -20%;
+      left: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(244, 166, 59, 0.18) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -20%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(244, 166, 59, 0.10) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Glass card - white */
+    .glass-card {
+      background: #ffffff;
+      border: 1px solid rgba(244, 166, 59, 0.12);
+      box-shadow:
+        0 20px 60px rgba(0,0,0,0.4),
+        0 2px 8px rgba(0,0,0,0.15);
+      border-radius: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Inner content panel */
+    .inner-panel {
+      background: #f9f9f9;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 16px;
+    }
+
+    /* Return button */
+    .btn-return {
+      border: 1px solid rgba(244,166,59,0.6);
+      color: #F4A63B;
+      padding: 6px 20px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      background: rgba(244,166,59,0.06);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-return:hover {
+      background: rgba(244,166,59,0.15);
+    }
+
+    /* Progress bar segments */
+    .prog-seg {
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.1);
+      transition: background 0.4s ease;
+    }
+    .prog-seg.done {
+      background: #F4A63B;
+    }
+
+    /* Section badge */
+    .section-badge {
+      display: inline-block;
+      border: 1px solid rgba(0,0,0,0.12);
+      border-radius: 8px;
+      padding: 4px 14px;
+      font-size: 0.75rem;
+      color: rgba(0,0,0,0.4);
+    }
+
+    /* Heading accent */
+    .step-title {
+      font-family: 'Playfair Display', serif;
+      color: #F4A63B;
+    }
+
+    .step-subtitle {
+      color: rgba(0,0,0,0.45);
+      font-size: 0.9rem;
+      margin-top: 4px;
+    }
+
+    /* Select / Input */
+    .form-select, .form-input {
+      width: 100%;
+      background: #f7f7f7;
+      border: 1px solid rgba(244,166,59,0.4);
+      border-radius: 14px;
+      padding: 14px 18px;
+      font-size: 0.9rem;
+      color: #1a1a1a;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .form-select option {
+      background: #fff;
+      color: #1a1a1a;
+    }
+    .form-select:focus, .form-input:focus {
+      border-color: #F4A63B;
+      box-shadow: 0 0 0 3px rgba(244,166,59,0.12);
+    }
+    .form-input::placeholder { color: rgba(0,0,0,0.3); }
+    .form-label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: rgba(0,0,0,0.6);
+      margin-bottom: 8px;
+    }
+    .input-prefix {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(0,0,0,0.4);
+      font-weight: 600;
+      pointer-events: none;
+    }
+    .form-input.pl {
+      padding-left: 38px;
+    }
+
+    /* Nav buttons */
+    .btn-prev {
+      border: 1px solid rgba(244,166,59,0.5);
+      color: #F4A63B;
+      padding: 12px 32px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-prev:hover { background: rgba(244,166,59,0.08); }
+    .btn-next {
+      background: #F4A63B;
+      color: #0a0a0a;
+      padding: 12px 36px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 18px rgba(244,166,59,0.3);
+    }
+    .btn-next:hover { background: #f0971f; transform: translateY(-1px); }
+
+    /* Tab buttons */
+    .tab-btn {
+      padding: 14px 20px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.45);
+      background: transparent;
+      transition: all 0.25s;
+    }
+    .tab-btn.active {
+      background: #F4A63B;
+      color: #0a0a0a;
+      border-color: #F4A63B;
+      box-shadow: 0 4px 14px rgba(244,166,59,0.3);
+    }
+
+    /* Tab content panel */
+    .tab-panel {
+      background: linear-gradient(135deg, rgba(244,166,59,0.12) 0%, rgba(244,166,59,0.04) 100%);
+      border: 1px solid rgba(244,166,59,0.25);
+      border-radius: 20px;
+      padding: 28px 32px;
+    }
+    .tier-badge {
+      display: inline-block;
+      background: #F4A63B;
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 8px 22px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+    }
+    .tab-panel li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: rgba(0,0,0,0.7);
+      font-size: 0.88rem;
+      margin-bottom: 14px;
+    }
+    .tab-panel li .check { color: #F4A63B; font-size: 1rem; margin-top: 1px; }
+
+    /* Payment radio cards */
+    .payment-card {
+      border: 1.5px solid rgba(244,166,59,0.4);
+      border-radius: 18px;
+      padding: 22px 20px;
+      cursor: pointer;
+      background: #f9f9f9;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.25s;
+    }
+    .payment-card:hover { border-color: rgba(244,166,59,0.7); background: rgba(244,166,59,0.05); }
+    .payment-card.selected {
+      background: #F4A63B;
+      border-color: #F4A63B;
+    }
+    .payment-card.selected .card-title,
+    .payment-card.selected .card-desc { color: #fff; }
+    .card-title { font-weight: 600; color: #1a1a1a; font-size: 0.95rem; }
+    .card-desc { font-size: 0.78rem; color: rgba(0,0,0,0.45); margin-top: 3px; }
+    .radio-circle {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      border: 2px solid rgba(0,0,0,0.2);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.2s;
+    }
+    .radio-circle.checked {
+      border-color: #fff;
+      background: #fff;
+    }
+    .radio-circle.checked::after {
+      content: '';
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #F4A63B;
+    }
+
+    /* Account detail box */
+    .acct-box {
+      background: #f7f7f7;
+      border: 1px solid rgba(244,166,59,0.2);
+      border-radius: 16px;
+      padding: 20px;
+    }
+    .acct-label { font-size: 0.72rem; color: rgba(0,0,0,0.4); margin-bottom: 4px; }
+    .acct-value { font-size: 0.92rem; font-weight: 600; color: #1a1a1a; }
+    .copy-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: rgba(0,0,0,0.3);
+      transition: color 0.2s;
+      padding: 0;
+      margin-left: 6px;
+    }
+    .copy-btn:hover { color: #F4A63B; }
+
+    /* Amount display */
+    .amount-box {
+      background: rgba(244,166,59,0.07);
+      border: 1px solid rgba(244,166,59,0.2);
+      border-radius: 16px;
+      padding: 20px 24px;
+    }
+
+    /* Success card */
+    .success-card {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 32px 28px;
+      text-align: center;
+    }
+    .success-icon {
+      width: 64px; height: 64px;
+      background: linear-gradient(135deg, #F4A63B, #f0971f);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 1.6rem;
+      box-shadow: 0 8px 24px rgba(244,166,59,0.35);
+    }
+
+    /* Step transitions */
+    .step { display: none; animation: fadeUp 0.35s ease both; }
+    .step.active { display: block; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Copy toast */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #F4A63B;
+      color: #0a0a0a;
+      font-weight: 600;
+      font-size: 0.8rem;
+      padding: 10px 24px;
+      border-radius: 999px;
+      opacity: 0;
+      transition: all 0.3s;
+      z-index: 100;
+      pointer-events: none;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">Copied!</div>
+
+  <!-- Main Glass Card -->
+  <div class="glass-card w-full" style="max-width: 680px; padding: 40px 36px;">
+
+    <!-- Step 1: Select Programme -->
+    <div class="step active" id="step1">
+      <button class="btn-return" onclick="goBack()">← Return</button>
+      <div style="margin-top: 24px; margin-bottom: 32px;">
+        <div class="section-badge">Section 1 of 5</div>
+        <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; margin-top: 12px;">
+          <div class="prog-seg done"></div>
+          <div class="prog-seg"></div>
+          <div class="prog-seg"></div>
+          <div class="prog-seg"></div>
+          <div class="prog-seg"></div>
+        </div>
+      </div>
+
+      <h2 class="step-title" style="font-size: 1.9rem; margin-bottom: 4px;">Select Programme</h2>
+      <p class="step-subtitle">Which of the below programmes do you want to support?</p>
+
+      <div style="margin-top: 28px;">
+        <select class="form-select" id="programmeSelect">
+          <option value="" disabled selected>Select programme</option>
+          <option>General Donation</option>
+          <option>Bible Stars Reality Show</option>
+          <option>Ilorin Youth Mega Festival</option>
+          <option>Bible Championship Season 2</option>
+          <option>The National Bible Cup</option>
+          <option>The Church & You Talk Show</option>
+          <option>Bible Crown</option>
+          <option>Marriage Realities</option>
+        </select>
+      </div>
+
+      <div style="display:flex; justify-content: space-between; align-items:center; margin-top: 48px;">
+        <button class="btn-prev" onclick="goBack()">Previous</button>
+        <button class="btn-next" onclick="nextStep(1)">Next →</button>
+      </div>
+    </div>
+
+    <!-- Step 2: Donation Weight -->
+    <div class="step" id="step2">
+      <button class="btn-return" onclick="goStep(1)">← Return</button>
+      <div style="margin-top: 24px; margin-bottom: 32px;">
+        <div class="section-badge">Section 2 of 5</div>
+        <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; margin-top: 12px;">
+          <div class="prog-seg done"></div>
+          <div class="prog-seg done"></div>
+          <div class="prog-seg"></div>
+          <div class="prog-seg"></div>
+          <div class="prog-seg"></div>
+        </div>
+      </div>
+
+      <h2 class="step-title" style="font-size: 1.65rem; text-align:center; margin-bottom: 28px; line-height: 1.3;">
+        How much would you love to donate to support our programmes?
+      </h2>
+
+      <!-- Tab Buttons -->
+      <div style="display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 24px;">
+        <button class="tab-btn active border-gray-300 text-gray-400" id="majorBtn" onclick="showTab('major')">Major Weight</button>
+        <button class="tab-btn border border-gray-300 text-gray-400" id="mediumBtn" onclick="showTab('medium')">Medium Weight</button>
+        <button class="tab-btn border border-gray-300 text-gray-400" id="lightBtn" onclick="showTab('light')">Light Weight</button>
+      </div>
+
+      <!-- Major -->
+      <div class="tab-panel" id="major">
+        <div class="tier-badge">₦50,000,000 AND ABOVE</div>
+        <ul style="list-style:none; padding:0; margin:0;">
+          <li><span class="check">✔</span> Recognition at all major events</li>
+          <li><span class="check">✔</span> Exclusive partnership opportunities</li>
+          <li><span class="check">✔</span> VIP access to all programmes</li>
+          <li><span class="check">✔</span> Personalized impact reports</li>
+          <li><span class="check">✔</span> Special acknowledgment package</li>
+        </ul>
+      </div>
+      <!-- Medium -->
+      <div class="tab-panel" id="medium" style="display:none;">
+        <div class="tier-badge">₦20,000,000 – ₦50,000,000</div>
+        <ul style="list-style:none; padding:0; margin:0;">
+          <li><span class="check">✔</span> Recognition at selected events</li>
+          <li><span class="check">✔</span> Priority programme updates</li>
+          <li><span class="check">✔</span> Partner appreciation certificate</li>
+          <li><span class="check">✔</span> Quarterly impact reports</li>
+          <li><span class="check">✔</span> Special Mention in publications</li>
+        </ul>
+      </div>
+      <!-- Light -->
+      <div class="tab-panel" id="light" style="display:none;">
+        <div class="tier-badge">₦20,000,000 and Below</div>
+        <ul style="list-style:none; padding:0; margin:0;">
+          <li><span class="check">✔</span> Official donation recognition</li>
+          <li><span class="check">✔</span> Regular Programme Updates</li>
+          <li><span class="check">✔</span> Annual impact summary</li>
+          <li><span class="check">✔</span> Community recognition</li>
+          <li><span class="check">✔</span> Gratitude acknowledgment</li>>
+
+        </ul>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-top: 36px;">
+        <button class="btn-prev" onclick="goStep(1)">Previous</button>
+        <button class="btn-next" onclick="goStep(3)">Next →</button>
+      </div>
+    </div>
+
+    <!-- Step 3: Fill Form -->
+    <div class="step" id="step3">
+      <button class="btn-return" onclick="goStep(2)">← Return</button>
+      <div style="margin-top: 24px; margin-bottom: 32px;">
+        <div class="section-badge">Section 3 of 5</div>
+        <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; margin-top: 12px;">
+          <div class="prog-seg done"></div>
+          <div class="prog-seg done"></div>
+          <div class="prog-seg done"></div>
+          <div class="prog-seg"></div>
+          <div class="prog-seg"></div>
+        </div>
+      </div>
+
+      <h2 class="step-title" style="font-size: 1.9rem; margin-bottom: 4px;">Fill Form</h2>
+      <p class="step-subtitle">Kindly fill the form below to proceed with your donation.</p>
+
+      <div style="margin-top: 28px; display: flex; flex-direction: column; gap: 20px;">
+        <div>
+          <label class="form-label">Full Name</label>
+          <input type="text" class="form-input" id="fullName" placeholder="Enter your full name" />
+        </div>
+        <div>
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-input" id="email" placeholder="Enter your email" />
+        </div>
+        <div>
+          <label class="form-label">Phone Number</label>
+          <input type="tel" class="form-input" id="phone" placeholder="Enter your phone number" />
+        </div>
+        <div>
+          <label class="form-label">How Much Do You Wish To Donate?</label>
+          <div style="position:relative;">
+            <span class="input-prefix">₦</span>
+            <input type="number" class="form-input pl" id="amount" placeholder="Enter donation amount" />
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-top: 40px;">
+        <button class="btn-prev" onclick="goStep(2)">Previous</button>
+        <button class="btn-next" onclick="nextStep(3)">Next →</button>
+      </div>
+    </div>
+
+    <!-- Step 4: Payment Method -->
+    <div class="step" id="step4">
+      <button class="btn-return" onclick="goStep(3)">← Return</button>
+      <div style="margin-top: 24px; margin-bottom: 32px;">
+        <div class="section-badge">Section 4 of 5</div>
+        <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; margin-top: 12px;">
+          <div class="prog-seg done"></div>
+          <div class="prog-seg done"></div>
+          <div class="prog-seg done"></div>
+          <div class="prog-seg done"></div>
+          <div class="prog-seg"></div>
+        </div>
+      </div>
+
+      <h2 class="step-title" style="font-size: 1.9rem; margin-bottom: 4px;">Payment Method</h2>
+      <p class="step-subtitle">Which payment method would you prefer to use?</p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px;" id="paymentCards">
+        <div class="payment-card selected" onclick="selectPayment(this, 'online')" data-val="online">
+          <div>
+            <div class="card-title">Online Payment</div>
+            <div class="card-desc">Pay securely using card or bank transfer</div>
+          </div>
+          <div class="radio-circle checked" id="radio-online"></div>
+        </div>
+        <div class="payment-card" onclick="selectPayment(this, 'offline')" data-val="offline">
+          <div>
+            <div class="card-title">Offline Payment</div>
+            <div class="card-desc">Make payment through designated channels</div>
+          </div>
+          <div class="radio-circle" id="radio-offline"></div>
+        </div>
+      </div>
+
+      <p id="paymentError" style="color:#f87171; font-size:0.8rem; margin-top:12px; display:none;">
+        Please select a payment method.
+      </p>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-top: 40px;">
+        <button class="btn-prev" onclick="goStep(3)">Previous</button>
+        <button class="btn-next" onclick="nextStep(4)">Next →</button>
+      </div>
+    </div>
+
+    <!-- Step 5: Offline Payment / Complete -->
+    <div class="step" id="step5">
+      <button class="btn-return" onclick="goStep(4)">← Return to Partnership Page</button>
+      <div style="margin-top: 24px; margin-bottom: 32px;">
+        <div class="section-badge">Section 5 of 5</div>
+        <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; margin-top: 12px;">
+          <div class="prog-seg done"></div>
+          <div class="prog-seg done"></div>
+          <div class="prog-seg done"></div>
+          <div class="prog-seg done"></div>
+          <div class="prog-seg done"></div>
+        </div>
+      </div>
+
+      <h2 class="step-title" style="font-size: 1.9rem; margin-bottom: 20px;">Complete Your Offline Payment</h2>
+
+      <div class="amount-box" style="margin-bottom: 16px;">
+        <p style="font-size: 0.75rem; color: rgba(0,0,0,0.4); margin-bottom: 4px;">Transferable amount</p>
+        <p id="displayAmount" style="font-size: 1.6rem; font-weight: 700; color: #1a1a1a;">₦50,000,000</p>
+      </div>
+
+      <div class="acct-box">
+        <p style="font-size: 0.85rem; font-weight: 600; color: rgba(0,0,0,0.6); margin-bottom: 16px;">Account Details</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div>
+            <div class="acct-label">Bank</div>
+            <div style="display: flex; align-items:center;">
+              <span class="acct-value">First Bank</span>
+              <button class="copy-btn" onclick="copyText('First Bank')">
+                <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+              </button>
+            </div>
+          </div>
+          <div>
+            <div class="acct-label">Account Number</div>
+            <div style="display: flex; align-items:center;">
+              <span class="acct-value" style="letter-spacing: 2px;">2096184982</span>
+              <button class="copy-btn" onclick="copyText('2096184982')">
+                <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+              </button>
+            </div>
+          </div>
+          <div style="grid-column: 1 / -1;">
+            <div class="acct-label">Account Name</div>
+            <div style="display: flex; align-items:center;">
+              <span class="acct-value">Sword Television Ltd</span>
+              <button class="copy-btn" onclick="copyText('Sword Television Ltd')">
+                <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-wrap:wrap; gap: 14px; justify-content:space-between; align-items:center; margin-top: 36px;">
+        <button class="btn-next" onclick="showSuccess()" style="padding: 13px 28px; font-size: 0.82rem;">
+          I Have Made Payment
+        </button>
+        <button class="btn-prev" style="font-size: 0.82rem;">
+          Join Friends of the Bible Forum
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 6: Success -->
+    <div class="step" id="step6">
+      <div style="text-align:center; padding: 20px 0;">
+        <div class="success-icon">🎉</div>
+        <h2 class="step-title" style="font-size: 1.8rem; margin-bottom: 12px;">Donation Successful</h2>
+        <p style="color: rgba(0,0,0,0.45); font-size: 0.9rem; line-height: 1.7; max-width: 380px; margin: 0 auto;">
+          Thank you for your generous support. Your payment was received and our team will reach out to you shortly.
+        </p>
+
+        <div style="margin-top: 36px;">
+          <button class="btn-next" onclick="goStep(1)" style="padding: 14px 40px;">
+            Return to Home
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end glass-card -->
+
+  <script>
+    let selectedPayment = 'online';
+
+    function goStep(n) {
+      document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+      document.getElementById('step' + n).classList.add('active');
+    }
+
+    function nextStep(current) {
+      if (current === 1) {
+        const sel = document.getElementById('programmeSelect').value;
+        if (!sel) { alert('Please select a programme.'); return; }
+        goStep(2);
+      } else if (current === 3) {
+        const name = document.getElementById('fullName').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const amount = document.getElementById('amount').value.trim();
+        if (!name || !email || !phone || !amount) {
+          alert('Please fill in all fields.'); return;
+        }
+        const formatted = '₦' + Number(amount).toLocaleString();
+        document.getElementById('displayAmount').textContent = formatted;
+        goStep(4);
+      } else if (current === 4) {
+        if (!selectedPayment) {
+          document.getElementById('paymentError').style.display = 'block'; return;
+        }
+        document.getElementById('paymentError').style.display = 'none';
+        goStep(5);
+      }
+    }
+
+    function goBack() {
+      window.history.back();
+    }
+
+    function showTab(tab) {
+      ['major','medium','light'].forEach(t => {
+        document.getElementById(t).style.display = 'none';
+        document.getElementById(t + 'Btn').classList.remove('active');
+      });
+      document.getElementById(tab).style.display = 'block';
+      document.getElementById(tab + 'Btn').classList.add('active');
+    }
+
+    function selectPayment(el, val) {
+      selectedPayment = val;
+      document.querySelectorAll('.payment-card').forEach(c => {
+        c.classList.remove('selected');
+      });
+      document.querySelectorAll('.radio-circle').forEach(r => {
+        r.classList.remove('checked');
+      });
+      el.classList.add('selected');
+      document.getElementById('radio-' + val).classList.add('checked');
+    }
+
+    function copyText(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        const t = document.getElementById('toast');
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 2000);
+      });
+    }
+
+    function showSuccess() {
+      goStep(6);
+    }
+  </script>
+</body>
+</html>

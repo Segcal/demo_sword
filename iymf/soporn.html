@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IYMF Registration</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange: #f2ab42;
+      --orange-deep: #e8902a;
+      --orange-light: #fdf3e3;
+      --orange-border: #f5c97a;
+      --white: #ffffff;
+      --gray-50: #fafafa;
+      --gray-100: #f4f4f4;
+      --gray-200: #e8e8e8;
+      --gray-400: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-700: #374151;
+      --gray-900: #111827;
+      --card-shadow: 0 32px 80px rgba(0,0,0,0.22), 0 8px 24px rgba(0,0,0,0.12);
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Background */
+    .bg-scene {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background: 
+        linear-gradient(135deg, rgba(242,171,66,0.45) 0%, rgba(30,20,10,0.75) 60%, rgba(10,5,0,0.9) 100%),
+        url('https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=1600&q=80') center/cover no-repeat;
+      filter: blur(0px);
+    }
+    .bg-scene::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      background: rgba(20,10,0,0.25);
+    }
+
+    /* Decorative orbs */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .orb-1 { width: 500px; height: 500px; background: #f2ab42; top: -150px; right: -100px; }
+    .orb-2 { width: 400px; height: 400px; background: #e8902a; bottom: -120px; left: -80px; }
+
+    /* Wrapper */
+    .wrapper {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 680px;
+    }
+
+    /* Card */
+    .card {
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(20px);
+      border-radius: 28px;
+      padding: 44px 48px;
+      box-shadow: var(--card-shadow);
+      border: 1px solid rgba(255,255,255,0.6);
+      animation: slideUp 0.5s cubic-bezier(0.22,1,0.36,1);
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Header row */
+    .header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .btn-return {
+      border: 1.5px solid var(--orange);
+      color: var(--orange-deep);
+      background: transparent;
+      padding: 6px 18px;
+      border-radius: 999px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-return:hover { background: var(--orange-light); }
+
+    .section-label {
+      font-size: 12px;
+      color: var(--gray-500);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+
+    /* Progress dots */
+    .progress-track {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 32px;
+    }
+    .progress-dot {
+      flex: 1;
+      height: 4px;
+      border-radius: 999px;
+      background: var(--gray-200);
+      transition: background 0.4s;
+    }
+    .progress-dot.done { background: var(--orange); }
+
+    /* Titles */
+    .step-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 6px;
+    }
+    .step-subtitle {
+      font-size: 14px;
+      color: var(--gray-500);
+      margin-bottom: 28px;
+    }
+    .step-subtitle span { color: var(--orange-deep); font-weight: 600; }
+
+    /* Pass cards (step 1) */
+    .passes { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+
+    .pass-card {
+      border: 1.5px solid var(--orange-border);
+      border-radius: 16px;
+      padding: 14px 18px;
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.22,1,0.36,1);
+    }
+    .pass-card.active {
+      background: linear-gradient(135deg, #fdf3e3 0%, #fde8bc 100%);
+      border-color: var(--orange);
+      box-shadow: 0 6px 24px rgba(242,171,66,0.2);
+    }
+
+    .pass-header { display: flex; align-items: center; gap: 12px; }
+
+    .radio-ring {
+      width: 18px; height: 18px;
+      border: 2px solid #ccc;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.25s;
+    }
+    .pass-card.active .radio-ring { border-color: var(--orange-deep); }
+    .pass-card.active .radio-ring::after {
+      content: '';
+      width: 8px; height: 8px;
+      background: var(--orange-deep);
+      border-radius: 50%;
+    }
+
+    .pass-name { font-weight: 600; font-size: 15px; color: var(--gray-900); }
+
+    .pass-details {
+      max-height: 0; overflow: hidden; opacity: 0;
+      transition: all 0.4s ease;
+    }
+    .pass-card.active .pass-details {
+      max-height: 200px; opacity: 1; margin-top: 12px;
+    }
+
+    .features-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .feature-item {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 13px; color: var(--gray-700);
+    }
+    .feature-dot { color: var(--orange); font-size: 15px; flex-shrink: 0; }
+
+    /* Form fields (step 2) */
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 28px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group.full { grid-column: 1 / -1; }
+
+    label.field-label { font-size: 13px; font-weight: 600; color: var(--gray-900); }
+
+    input.field-input {
+      padding: 12px 14px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 12px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--gray-900);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background: var(--gray-50);
+    }
+    input.field-input::placeholder { color: var(--gray-400); }
+    input.field-input:focus {
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px rgba(242,171,66,0.15);
+    }
+
+    /* Checkbox/Radio option cards */
+    .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 28px; }
+    .option-card {
+      display: flex; align-items: center; gap: 12px;
+      padding: 13px 16px;
+      border: 1.5px solid #f5c97a55;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      user-select: none;
+    }
+    .option-card:hover { background: #fdf7ee; }
+    .option-card.selected { background: linear-gradient(135deg, #fdf3e3, #fde8bc); border-color: var(--orange); }
+    .option-card.full-width { grid-column: 1 / -1; }
+
+    .check-ring {
+      width: 20px; height: 20px;
+      border: 2px solid #d1d5db;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .option-card.selected .check-ring {
+      border-color: var(--orange-deep);
+      background: var(--orange);
+    }
+    .option-card.selected .check-ring::after {
+      content: '';
+      width: 7px; height: 7px;
+      background: white;
+      border-radius: 50%;
+    }
+
+    .option-text { font-size: 14px; font-weight: 500; color: var(--gray-900); }
+
+    /* Payment screen */
+    .payment-summary {
+      background: linear-gradient(135deg, #fdf3e3 0%, #fde8bc 60%);
+      border: 1.5px solid var(--orange-border);
+      border-radius: 20px;
+      padding: 22px 24px;
+      margin-bottom: 24px;
+    }
+    .payment-summary-top {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 16px;
+    }
+    .summary-pass-name { font-weight: 700; font-size: 16px; color: var(--gray-900); }
+    .summary-total {
+      background: white;
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gray-900);
+    }
+    .summary-total span { color: var(--orange-deep); }
+
+    .summary-features { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+    .summary-feature { display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--gray-700); }
+    .check-icon { color: var(--orange); font-size: 13px; font-weight: 700; }
+
+    /* Offline payment screen */
+    .offline-section { display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px; }
+    .info-box {
+      background: var(--orange-light);
+      border: 1.5px solid var(--orange-border);
+      border-radius: 16px;
+      padding: 20px 22px;
+    }
+    .info-box-label { font-size: 12px; color: var(--gray-500); margin-bottom: 4px; }
+    .info-box-value { font-size: 22px; font-weight: 700; color: var(--gray-900); }
+
+    .info-box-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .info-field label { font-size: 12px; color: var(--gray-500); margin-bottom: 4px; display: block; }
+    .info-field-val { font-size: 15px; font-weight: 600; color: var(--gray-900); display: flex; align-items: center; gap: 6px; }
+    .copy-btn {
+      background: none; border: none; cursor: pointer;
+      color: var(--gray-400); font-size: 13px; padding: 2px 4px;
+      transition: color 0.2s;
+    }
+    .copy-btn:hover { color: var(--orange-deep); }
+
+    /* Footer buttons */
+    .btn-row {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 8px;
+    }
+
+    .btn-prev {
+      border: 1.5px solid var(--orange);
+      color: var(--orange-deep);
+      background: transparent;
+      padding: 12px 32px;
+      border-radius: 999px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px; font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-prev:hover { background: var(--orange-light); }
+
+    .btn-next {
+      background: var(--orange);
+      color: white;
+      border: none;
+      padding: 12px 40px;
+      border-radius: 999px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px; font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      box-shadow: 0 4px 14px rgba(242,171,66,0.4);
+    }
+    .btn-next:hover { background: var(--orange-deep); }
+    .btn-next:active { transform: scale(0.98); }
+
+    /* Secondary button (Join Forum) */
+    .btn-secondary {
+      border: 1.5px solid var(--orange-border);
+      color: var(--orange-deep);
+      background: transparent;
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px; font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-secondary:hover { background: var(--orange-light); }
+
+    /* Payment method select */
+    .payment-methods { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px; }
+
+    /* Success overlay */
+    .success-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 100;
+      background: rgba(20,10,0,0.7);
+      backdrop-filter: blur(8px);
+      align-items: center; justify-content: center; padding: 24px;
+    }
+    .success-overlay.show { display: flex; }
+
+    .success-card {
+      background: white;
+      border-radius: 28px;
+      padding: 48px 44px;
+      max-width: 420px; width: 100%;
+      text-align: center;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.3);
+      animation: bounceIn 0.5s cubic-bezier(0.22,1,0.36,1);
+    }
+    @keyframes bounceIn {
+      from { opacity: 0; transform: scale(0.88); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    .success-icon {
+      width: 72px; height: 72px;
+      background: linear-gradient(135deg, #f2ab42, #e8902a);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 30px;
+    }
+
+    .success-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 34px; font-weight: 900;
+      color: var(--gray-900);
+      margin-bottom: 14px;
+    }
+
+    .success-body {
+      font-size: 15px; color: var(--gray-500);
+      line-height: 1.65; margin-bottom: 28px;
+    }
+    .success-body strong { color: var(--gray-900); font-weight: 600; }
+
+    .btn-home {
+      width: 100%;
+      background: var(--orange);
+      color: white; border: none;
+      padding: 14px;
+      border-radius: 999px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px; font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: 0 4px 16px rgba(242,171,66,0.4);
+    }
+    .btn-home:hover { background: var(--orange-deep); }
+
+    /* Step transitions */
+    .step { display: none; }
+    .step.active { display: block; animation: fadeStep 0.4s ease; }
+    @keyframes fadeStep {
+      from { opacity: 0; transform: translateX(12px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    /* Payment method toggle visibility */
+    .offline-block { display: none; }
+    .offline-block.show { display: block; }
+
+    @media (max-width: 560px) {
+      .card { padding: 28px 22px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .options-grid { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr; }
+      .summary-features { grid-template-columns: 1fr 1fr; }
+      .payment-methods { grid-template-columns: 1fr; }
+      .option-card.full-width { grid-column: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background -->
+  <div class="bg-scene"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <div class="wrapper">
+    <div class="card">
+
+      <!-- ═══════════════════════════════════════════
+           STEP 1 — CHOOSE YOUR FESTIVAL PASS
+      ════════════════════════════════════════════ -->
+      <div class="step active" id="step-1">
+        <div class="header-row">
+          <a href="./index.html" class="btn-return">← Return</a>
+          <span class="section-label">Section 1 of 6</span>
+        </div>
+
+        <div class="progress-track" id="prog-1">
+          <!-- filled by JS -->
+        </div>
+
+        <h1 class="step-title">Choose Your Festival Pass</h1>
+        <p class="step-subtitle">Select how you want to experience the festival.</p>
+
+        <div class="passes" id="passContainer">
+
+          <div class="pass-card" data-pass="Regular Pass — ₦3,000" data-feats='["General festival access","Main stage activities","Open seating","Community experience"]'>
+            <div class="pass-header"><div class="radio-ring"></div><span class="pass-name">Regular Pass — ₦3,000</span></div>
+            <div class="pass-details"><div class="features-grid">
+              <div class="feature-item"><span class="feature-dot">◎</span>General festival access</div>
+              <div class="feature-item"><span class="feature-dot">◎</span>Main stage activities</div>
+              <div class="feature-item"><span class="feature-dot">◎</span>Open seating access</div>
+              <div class="feature-item"><span class="feature-dot">◎</span>Community experience</div>
+            </div></div>
+          </div>
+
+          <div class="pass-card" data-pass="Bronze Pass — ₦7,500" data-feats='["General festival access","Main stage activities","Open seating","Community experience"]'>
+            <div class="pass-header"><div class="radio-ring"></div><span class="pass-name">Bronze Pass — ₦7,500</span></div>
+            <div class="pass-details"><div class="features-grid">
+              <div class="feature-item"><span class="feature-dot">◎</span>General festival access</div>
+              <div class="feature-item"><span class="feature-dot">◎</span>Main stage activities</div>
+              <div class="feature-item"><span class="feature-dot">◎</span>Open seating access</div>
+              <div class="feature-item"><span class="feature-dot">◎</span>Community experience</div>
+            </div></div>
+          </div>
+
+          <div class="pass-card" data-pass="Silver Pass — ₦15,000" data-feats='["General festival access","Main stage activities","Open seating","Community experience"]'>
+            <div class="pass-header"><div class="radio-ring"></div><span class="pass-name">Silver Pass — ₦15,000</span></div>
+            <div class="pass-details"><div class="features-grid">
+              <div class="feature-item"><span class="feature-dot">◎</span>General festival access</div>
+              <div class="feature-item"><span class="feature-dot">◎</span>Main stage activities</div>
+              <div class="feature-item"><span class="feature-dot">◎</span>Open seating access</div>
+              <div class="feature-item"><span class="feature-dot">◎</span>Community experience</div>
+            </div></div>
+          </div>
+
+          <div class="pass-card" data-pass="Gold Pass — ₦35,000" data-feats='["General festival access","Main stage activities","Open seating","Community experience"]'>
+            <div class="pass-header"><div class="radio-ring"></div><span class="pass-name">Gold Pass — ₦35,000</span></div>
+            <div class="pass-details"><div class="features-grid">
+              <div class="feature-item"><span class="feature-dot">◎</span>General festival access</div>
+              <div class="feature-item"><span class="feature-dot">◎</span>Main stage activities</div>
+              <div class="feature-item"><span class="feature-dot">◎</span>Open seating access</div>
+              <div class="feature-item"><span class="feature-dot">◎</span>Community experience</div>
+            </div></div>
+          </div>
+
+          <div class="pass-card" data-pass="Platinum Pass — ₦100,000" data-feats='["General festival access","Main stage activities","Open seating","Community experience"]'>
+            <div class="pass-header"><div class="radio-ring"></div><span class="pass-name">Platinum Pass — ₦100,000</span></div>
+            <div class="pass-details"><div class="features-grid">
+              <div class="feature-item"><span class="feature-dot">◎</span>General festival access</div>
+              <div class="feature-item"><span class="feature-dot">◎</span>Main stage activities</div>
+              <div class="feature-item"><span class="feature-dot">◎</span>Open seating access</div>
+              <div class="feature-item"><span class="feature-dot">◎</span>Community experience</div>
+            </div></div>
+          </div>
+
+          <div class="pass-card" data-pass="VIP Pass — ₦250,000" data-feats='["Premium seating access","Exclusive VIP lounge","Priority entry","Refreshments included"]'>
+            <div class="pass-header"><div class="radio-ring"></div><span class="pass-name">VIP Pass — ₦250,000</span></div>
+            <div class="pass-details"><div class="features-grid">
+              <div class="feature-item"><span class="feature-dot">◎</span>Premium seating access</div>
+              <div class="feature-item"><span class="feature-dot">◎</span>Exclusive VIP lounge</div>
+              <div class="feature-item"><span class="feature-dot">◎</span>Priority entry</div>
+              <div class="feature-item"><span class="feature-dot">◎</span>Refreshments included</div>
+            </div></div>
+          </div>
+
+          <div class="pass-card" data-pass="VVIP Pass — ₦600,000" data-feats='["Front row reserved seating","Private hospitality","Backstage networking","Premium food & drinks"]'>
+            <div class="pass-header"><div class="radio-ring"></div><span class="pass-name">VVIP Pass — ₦600,000</span></div>
+            <div class="pass-details"><div class="features-grid">
+              <div class="feature-item"><span class="feature-dot">◎</span>Front row reserved seating</div>
+              <div class="feature-item"><span class="feature-dot">◎</span>Private hospitality</div>
+              <div class="feature-item"><span class="feature-dot">◎</span>Backstage networking</div>
+              <div class="feature-item"><span class="feature-dot">◎</span>Premium food & drinks</div>
+            </div></div>
+          </div>
+
+          <div class="pass-card" data-pass="Diamond Pass — ₦1,000,000" data-feats='["Ultimate luxury seating","Personal concierge","Meet & greet opportunities","Exclusive gift package"]'>
+            <div class="pass-header"><div class="radio-ring"></div><span class="pass-name">Diamond Pass — ₦1,000,000</span></div>
+            <div class="pass-details"><div class="features-grid">
+              <div class="feature-item"><span class="feature-dot">◎</span>Ultimate luxury seating</div>
+              <div class="feature-item"><span class="feature-dot">◎</span>Personal concierge</div>
+              <div class="feature-item"><span class="feature-dot">◎</span>Meet & greet opportunities</div>
+              <div class="feature-item"><span class="feature-dot">◎</span>Exclusive gift package</div>
+            </div></div>
+          </div>
+
+          <div class="pass-card" data-pass="Exhibitor Pass — from ₦100,000" data-feats='["Business exhibition space","Brand visibility","Direct audience engagement","Vendor support services"]'>
+            <div class="pass-header"><div class="radio-ring"></div><span class="pass-name">Exhibitor Pass — from ₦100,000</span></div>
+            <div class="pass-details"><div class="features-grid">
+              <div class="feature-item"><span class="feature-dot">◎</span>Business exhibition space</div>
+              <div class="feature-item"><span class="feature-dot">◎</span>Brand visibility</div>
+              <div class="feature-item"><span class="feature-dot">◎</span>Direct audience engagement</div>
+              <div class="feature-item"><span class="feature-dot">◎</span>Vendor support services</div>
+            </div></div>
+          </div>
+
+        </div>
+
+        <div class="btn-row">
+          <button class="btn-prev" onclick="goTo(0)">Previous</button>
+          <button class="btn-next" onclick="goTo(2)">Next</button>
+        </div>
+      </div>
+
+
+      <!-- ═══════════════════════════════════════════
+           STEP 2 — PERSONAL INFORMATION
+      ════════════════════════════════════════════ -->
+      <div class="step" id="step-2">
+        <div class="header-row">
+          <button class="btn-return" onclick="goTo(1)">← Return</button>
+          <span class="section-label">Section 2 of 6</span>
+        </div>
+        <div class="progress-track" id="prog-2"></div>
+
+        <h1 class="step-title">Personal Information</h1>
+        <p class="step-subtitle">Tell us a bit about yourself.</p>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="field-label" for="fname">First Name</label>
+            <input class="field-input" type="text" id="fname" placeholder="Enter your first name">
+          </div>
+          <div class="form-group">
+            <label class="field-label" for="lname">Last Name</label>
+            <input class="field-input" type="text" id="lname" placeholder="Enter your last name">
+          </div>
+          <div class="form-group">
+            <label class="field-label" for="phone">Phone Number</label>
+            <input class="field-input" type="tel" id="phone" value="+234 ">
+          </div>
+          <div class="form-group">
+            <label class="field-label" for="email">Email Address</label>
+            <input class="field-input" type="email" id="email" placeholder="Enter email address">
+          </div>
+          <div class="form-group">
+            <label class="field-label" for="city">City / State</label>
+            <input class="field-input" type="text" id="city" placeholder="Enter your city and state">
+          </div>
+          <div class="form-group">
+            <label class="field-label" for="age">Age Range <span style="color:var(--gray-400);font-weight:400">(Optional)</span></label>
+            <input class="field-input" type="text" id="age" placeholder="e.g. 25–34">
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn-prev" onclick="goTo(1)">Previous</button>
+          <button class="btn-next" onclick="goTo(3)">Next</button>
+        </div>
+      </div>
+
+
+      <!-- ═══════════════════════════════════════════
+           STEP 3 — WHAT DO YOU WANT TO EXPERIENCE?
+      ════════════════════════════════════════════ -->
+      <div class="step" id="step-3">
+        <div class="header-row">
+          <button class="btn-return" onclick="goTo(2)">← Return</button>
+          <span class="section-label">Section 3 of 6</span>
+        </div>
+        <div class="progress-track" id="prog-3"></div>
+
+        <h1 class="step-title">What Do You Want to Experience?</h1>
+        <p class="step-subtitle">Help us design the festival around what matters to you <span>(you can select more than one)</span></p>
+
+        <div class="options-grid" id="exp-grid">
+          <div class="option-card" data-val="live-music" onclick="toggleCheck(this)">
+            <div class="check-ring"></div><span class="option-text">Live Music Performances</span>
+          </div>
+          <div class="option-card" data-val="dance" onclick="toggleCheck(this)">
+            <div class="check-ring"></div><span class="option-text">Dance & Entertainment</span>
+          </div>
+          <div class="option-card" data-val="comedy" onclick="toggleCheck(this)">
+            <div class="check-ring"></div><span class="option-text">Comedy Shows</span>
+          </div>
+          <div class="option-card" data-val="business" onclick="toggleCheck(this)">
+            <div class="check-ring"></div><span class="option-text">Business & Networking</span>
+          </div>
+          <div class="option-card" data-val="tech" onclick="toggleCheck(this)">
+            <div class="check-ring"></div><span class="option-text">Tech & Innovation</span>
+          </div>
+          <div class="option-card" data-val="fashion" onclick="toggleCheck(this)">
+            <div class="check-ring"></div><span class="option-text">Fashion & Lifestyle</span>
+          </div>
+          <div class="option-card" data-val="sports" onclick="toggleCheck(this)">
+            <div class="check-ring"></div><span class="option-text">Sports & Games</span>
+          </div>
+          <div class="option-card" data-val="arts" onclick="toggleCheck(this)">
+            <div class="check-ring"></div><span class="option-text">Creative Arts</span>
+          </div>
+          <div class="option-card full-width" data-val="shopping" onclick="toggleCheck(this)">
+            <div class="check-ring"></div><span class="option-text">Exhibitions & Shopping</span>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn-prev" onclick="goTo(2)">Previous</button>
+          <button class="btn-next" onclick="goTo(4)">Next</button>
+        </div>
+      </div>
+
+
+      <!-- ═══════════════════════════════════════════
+           STEP 4 — HOW DO YOU WANT TO PARTICIPATE?
+      ════════════════════════════════════════════ -->
+      <div class="step" id="step-4">
+        <div class="header-row">
+          <button class="btn-return" onclick="goTo(3)">← Return</button>
+          <span class="section-label">Section 4 of 6</span>
+        </div>
+        <div class="progress-track" id="prog-4"></div>
+
+        <h1 class="step-title">How Do You Want to Participate?</h1>
+        <p class="step-subtitle">Select your role at the festival.</p>
+
+        <div class="options-grid" id="part-grid">
+          <div class="option-card radio-opt" data-val="attend" onclick="selectRadio(this,'part-grid')">
+            <div class="check-ring"></div><span class="option-text">Attend Only</span>
+          </div>
+          <div class="option-card radio-opt" data-val="perform" onclick="selectRadio(this,'part-grid')">
+            <div class="check-ring"></div><span class="option-text">Perform <span style="color:var(--gray-400);font-size:12px">(Subject to approval)</span></span>
+          </div>
+          <div class="option-card radio-opt" data-val="exhibit" onclick="selectRadio(this,'part-grid')">
+            <div class="check-ring"></div><span class="option-text">Exhibit <span style="color:var(--gray-400);font-size:12px">(Requires exhibitor pass)</span></span>
+          </div>
+          <div class="option-card radio-opt" data-val="compete" onclick="selectRadio(this,'part-grid')">
+            <div class="check-ring"></div><span class="option-text">Compete <span style="color:var(--gray-400);font-size:12px">(Subject to qualification)</span></span>
+          </div>
+          <div class="option-card radio-opt full-width" data-val="contest" onclick="selectRadio(this,'part-grid')">
+            <div class="check-ring"></div><span class="option-text">Contest for Awards <span style="color:var(--gray-400);font-size:12px">(Winners by highest votes)</span></span>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn-prev" onclick="goTo(3)">Previous</button>
+          <button class="btn-next" onclick="goTo(5)">Next</button>
+        </div>
+      </div>
+
+
+      <!-- ═══════════════════════════════════════════
+           STEP 5 — COMPLETE YOUR PAYMENT
+      ════════════════════════════════════════════ -->
+      <div class="step" id="step-5">
+        <div class="header-row">
+          <button class="btn-return" onclick="goTo(4)">← Return</button>
+          <span class="section-label">Section 5 of 6</span>
+        </div>
+        <div class="progress-track" id="prog-5"></div>
+
+        <h1 class="step-title">Complete Your Payment</h1>
+
+        <div class="payment-summary">
+          <div class="payment-summary-top">
+            <span class="summary-pass-name" id="summary-pass-name">Regular Pass — ₦3,000</span>
+            <div class="summary-total">Total: <span id="summary-total-val">₦3,000</span></div>
+          </div>
+          <div class="summary-features" id="summary-feats">
+            <div class="summary-feature"><span class="check-icon">✓</span> General festival access</div>
+            <div class="summary-feature"><span class="check-icon">✓</span> Main stage activities</div>
+            <div class="summary-feature"><span class="check-icon">✓</span> Open seating</div>
+            <div class="summary-feature"><span class="check-icon">✓</span> Community experience</div>
+          </div>
+        </div>
+
+        <p style="font-size:13px;font-weight:600;color:var(--gray-700);margin-bottom:12px;">Which payment method would you prefer?</p>
+
+        <div class="payment-methods" id="pay-grid">
+          <div class="option-card radio-opt" data-val="online" onclick="selectRadio(this,'pay-grid'); showOffline(false)">
+            <div class="check-ring"></div><span class="option-text">Online Payment</span>
+          </div>
+          <div class="option-card radio-opt" data-val="offline" onclick="selectRadio(this,'pay-grid'); showOffline(true)">
+            <div class="check-ring"></div><span class="option-text">Offline Payment</span>
+          </div>
+        </div>
+
+        <!-- Offline block -->
+        <div class="offline-block" id="offline-block">
+          <h2 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--orange-deep);margin-bottom:14px;">Complete Your Offline Payment</h2>
+          <div class="offline-section">
+            <div class="info-box">
+              <div class="info-box-label">Amount You Want To Donate</div>
+              <div style="font-size:11px;color:var(--gray-400);margin-bottom:6px;">Transferable amount</div>
+              <div class="info-box-value" id="offline-amount">₦3,000</div>
+            </div>
+            <div class="info-box">
+              <div class="info-box-label" style="font-size:13px;font-weight:600;color:var(--gray-900);margin-bottom:14px;">Account Details</div>
+              <div class="info-box-grid">
+                <div class="info-field">
+                  <label>Bank:</label>
+                  <div class="info-field-val">First Bank <button class="copy-btn" onclick="copyText('First Bank')" title="Copy">⧉</button></div>
+                </div>
+                <div class="info-field">
+                  <label>Account Number:</label>
+                  <div class="info-field-val">2096184982 <button class="copy-btn" onclick="copyText('2096184982')" title="Copy">⧉</button></div>
+                </div>
+                <div class="info-field" style="grid-column:1/-1">
+                  <label>Account Name:</label>
+                  <div class="info-field-val">Sword Television Ltd <button class="copy-btn" onclick="copyText('Sword Television Ltd')" title="Copy">⧉</button></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+       <div class="flex justify-between ">
+        <div class="flex  gap-12">
+            <button class="btn-next" onclick="showSuccess()" style="margin-left:auto;">I Have Made Payment</button>
+          <button class="btn-secondary">Join Friends of the Bible Forum</button>
+        </div>
+       </div>
+      </div>
+
+
+      <!-- ═══════════════════════════════════════════
+           STEP 6 — CONFIRMATION (placeholder step)
+      ════════════════════════════════════════════ -->
+      <div class="step" id="step-6">
+        <div class="header-row">
+          <button class="btn-return" onclick="goTo(5)">← Return</button>
+          <span class="section-label">Section 6 of 6</span>
+        </div>
+        <div class="progress-track" id="prog-6"></div>
+        <h1 class="step-title">All Done!</h1>
+        <p class="step-subtitle">Your registration is complete. Check your email for confirmation details.</p>
+        <div style="text-align:center;padding:40px 0;">
+          <div style="font-size:60px;margin-bottom:12px;">🎉</div>
+          <p style="color:var(--gray-500);font-size:14px;">Thank you for registering for the festival.</p>
+        </div>
+      </div>
+
+    </div><!-- /card -->
+  </div><!-- /wrapper -->
+
+
+  <!-- ═══════════════════════════════════════════
+       SUCCESS OVERLAY
+  ════════════════════════════════════════════ -->
+  <div class="success-overlay" id="successOverlay">
+    <div class="success-card">
+      <div class="success-icon">🎊</div>
+      <h2 class="success-title">You're In!</h2>
+      <p class="success-body">
+        Your registration is confirmed. We have received your payment and your details have been sent to
+        <strong id="confirm-email">"your@email.com"</strong>.
+      </p>
+      <button class="btn-home" onclick="closeSuccess()">Return to Home</button>
+    </div>
+  </div>
+
+
+  <script>
+    /* ───── State ───── */
+    const TOTAL_STEPS = 6;
+    let currentStep = 1;
+    let selectedPass = null;
+
+    /* ───── Progress bars ───── */
+    function renderProgress(step) {
+      for (let s = 1; s <= TOTAL_STEPS; s++) {
+        const el = document.getElementById('prog-' + s);
+        if (!el) continue;
+        el.innerHTML = '';
+        for (let i = 1; i <= TOTAL_STEPS; i++) {
+          const dot = document.createElement('div');
+          dot.className = 'progress-dot' + (i <= s ? ' done' : '');
+          el.appendChild(dot);
+        }
+      }
+    }
+
+    /* ───── Navigation ───── */
+    function goTo(step) {
+      if (step < 1) return;
+      document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+      const target = document.getElementById('step-' + step);
+      if (target) { target.classList.add('active'); currentStep = step; }
+      renderProgress(step);
+      window.scrollTo(0, 0);
+    }
+
+    /* ───── Pass selection ───── */
+    document.querySelectorAll('.pass-card').forEach(card => {
+      card.addEventListener('click', () => {
+        document.querySelectorAll('.pass-card').forEach(c => c.classList.remove('active'));
+        card.classList.toggle('active');
+        if (card.classList.contains('active')) {
+          selectedPass = { name: card.dataset.pass, feats: JSON.parse(card.dataset.feats) };
+          updateSummary();
+        }
+      });
+    });
+
+    function updateSummary() {
+      if (!selectedPass) return;
+      document.getElementById('summary-pass-name').textContent = selectedPass.name;
+      // extract price
+      const priceMatch = selectedPass.name.match(/₦[\d,]+/);
+      const price = priceMatch ? priceMatch[0] : '';
+      document.getElementById('summary-total-val').textContent = price;
+      document.getElementById('offline-amount').textContent = price;
+      // features
+      const featsEl = document.getElementById('summary-feats');
+      featsEl.innerHTML = selectedPass.feats.map(f =>
+        `<div class="summary-feature"><span class="check-icon">✓</span> ${f}</div>`
+      ).join('');
+    }
+
+    /* ───── Checkbox toggle ───── */
+    function toggleCheck(el) { el.classList.toggle('selected'); }
+
+    /* ───── Radio select ───── */
+    function selectRadio(el, gridId) {
+      document.querySelectorAll('#' + gridId + ' .option-card').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+    }
+
+    /* ───── Offline payment reveal ───── */
+    function showOffline(show) {
+      const block = document.getElementById('offline-block');
+      if (show) block.classList.add('show');
+      else block.classList.remove('show');
+    }
+
+    /* ───── Copy to clipboard ───── */
+    function copyText(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        const old = event.target.textContent;
+        event.target.textContent = '✓';
+        setTimeout(() => { event.target.textContent = old; }, 1200);
+      });
+    }
+
+    /* ───── Success modal ───── */
+    function showSuccess() {
+      const emailEl = document.getElementById('email');
+      const emailVal = emailEl ? emailEl.value.trim() : '';
+      if (emailVal) document.getElementById('confirm-email').textContent = '"' + emailVal + '"';
+      document.getElementById('successOverlay').classList.add('show');
+    }
+    function closeSuccess() {
+      document.getElementById('successOverlay').classList.remove('show');
+      goTo(1);
+    }
+
+    /* ───── Init ───── */
+    renderProgress(1);
+    goTo(1);
+  </script>
+</body>
+</html>

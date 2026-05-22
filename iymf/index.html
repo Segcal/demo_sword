@@ -6,7 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
+   <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+    rel="stylesheet"
+  />
   <link rel="stylesheet" href="./assets/styles/styles.css" />
   <link rel="stylesheet" href="./assets/styles.css">
   <link rel="stylesheet" href="./assets/styles/blog.css">
@@ -278,10 +281,10 @@
           <a href="../contact-us.html">Contact us</a>
         </nav>
 
-        <button
-          class="open-partner-modal hidden md:block bg-orange-500 text-black font-semibold px-6 py-2 rounded-full">
-          Partner with Us
-        </button>
+        <a href="./soporn.html"
+          class=" hidden md:block border border-orange-500 text-orange-500 font-semibold px-6 py-2 rounded-full">
+          Sponsorship
+        </a>
 
         <button id="openMenu" class="md:hidden text-3xl">☰</button>
       </div>
@@ -303,9 +306,9 @@
         <a href="../blog.html">Blog</a>
         <a href="../contact-us.html">Contact us</a>
 
-        <button class="open-partner-modal bg-orange-400 text-black px-5 py-2 rounded-full font-semibold mt-4">
-          Partner with Us
-        </button>
+        <a href="./soporn.html" class=" bg-orange-400 text-black px-5 py-2 rounded-full font-semibold mt-4">
+          Sponsorship
+        </a>
       </div>
     </div>
   </div>
@@ -402,7 +405,7 @@
           <div class="flex text-center items-center   gap-8 flex-col md:flex-row mt-8">
             <a href="../Partnership.html"
               class=" bg-orange-500 text-center hover:bg-orange-600 text-white px-8 py-4 rounded-full font-semibold flex items-center gap-3 transition">
-              Paticipate
+              Register for the Event
               <i class="fa-solid fa-arrow-right"></i>
             </a>
 
@@ -632,6 +635,94 @@ AWARD SECTION
       </div>
     </div>
   </section>
+
+   <section
+  class="relative w-[95%] max-w-6xl mx-auto overflow-hidden rounded-2xl bg-[#070707] py-20 px-6"
+>
+
+  <!-- Background Glow -->
+  <div class="absolute inset-0">
+    <div class="absolute top-0 left-0 w-72 h-72 bg-orange-500/10 blur-3xl rounded-full"></div>
+    <div class="absolute bottom-0 right-0 w-80 h-80 bg-blue-500/10 blur-3xl rounded-full"></div>
+  </div>
+
+  <!-- Decorative Shapes -->
+  <div class="absolute top-0 left-0 w-44 h-44 bg-gradient-to-b from-gray-700/30 to-transparent rounded-full blur-2xl"></div>
+
+  <div class="absolute bottom-0 right-0 w-52 h-52 bg-gradient-to-t from-gray-700/30 to-transparent rounded-full blur-2xl"></div>
+
+  <!-- Content -->
+  <div class="relative z-10">
+
+    <!-- Heading -->
+    <h2 class="text-center text-3xl md:text-5xl font-medium leading-tight text-[#f4a63c]">
+      Participate in various for contest <br />
+      or vote for your favourite <br />
+      contestant.
+    </h2>
+
+    <!-- Cards -->
+    <div class="mt-14 flex flex-wrap items-center justify-center gap-6">
+
+      <!-- Card 1 -->
+      <a href="./join-the-race.html"
+        class="w-[250px] bg-[#2a170d]/70 border border-orange-300/20 rounded-2xl p-8 text-center backdrop-blur-md hover:scale-105 transition duration-300"
+      >
+        <div
+          class="w-14 h-14 mx-auto rounded-full border border-white/20 flex items-center justify-center text-white text-2xl"
+        >
+          <i class="ri-star-line"></i>
+        </div>
+
+        <h3 class="mt-5 text-white font-semibold text-lg">
+          JOIN THE RACE
+        </h3>
+
+        <p class="mt-2 text-gray-400 text-sm">
+          Compete for Glory
+        </p>
+      </a>
+
+      <!-- Card 2 -->
+      <a href="./voting-dashboard.html"
+        class="w-[250px] bg-[#2a170d]/70 border border-orange-300/20 rounded-2xl p-8 text-center backdrop-blur-md hover:scale-105 transition duration-300"
+      >
+        <div
+          class="w-14 h-14 mx-auto rounded-full border border-white/20 flex items-center justify-center text-white text-2xl"
+        >
+          <i class="ri-trophy-line"></i>
+        </div>
+
+        <h3 class="mt-5 text-white font-semibold text-lg">
+          VOTE NOW
+        </h3>
+
+        <p class="mt-2 text-gray-400 text-sm">
+          Support Your Favorite
+        </p>
+      </a>
+
+      <!-- Card 3 -->
+      <a href="./quiz.html"
+        class="w-[250px] bg-[#2a170d]/70 border border-orange-300/20 rounded-2xl p-8 text-center backdrop-blur-md hover:scale-105 transition duration-300"
+      >
+        <div
+          class="w-14 h-14 mx-auto rounded-full border border-white/20 flex items-center justify-center text-white text-2xl"
+        >
+          <i class="ri-medal-line"></i>
+        </div>
+
+        <h3 class="mt-5 text-white font-semibold text-lg">
+          START QUIZ
+        </h3>
+
+        <p class="mt-2 text-gray-400 text-sm">
+          Test Your Knowledge
+        </p>
+      </a>
+    </div>
+  </div>
+</section>
 
 
   <!-- GOLD DIVIDER -->
@@ -1467,20 +1558,20 @@ window.addEventListener("scroll", () => {
     /* ─── FAQ DATA ─── */
     const faqs = [
       {
-        q: "How do I participate in the Bible Championship?",
-        a: "Participation requires a Registration PIN. Each participant must register individually, provide personal details, select a preferred team, and submit their online audition. The top three scorers per team form the official team for that team in the competition."
+        q: "How do I register to participate?",
+        a: "Visit the registration section, select your participation type (competitor, performer, exhibitor, spectator, or sponsor), fill out the required form, and complete payment if applicable. You will receive a confirmation once registration is successful."
       },
       {
-        q: "Can I register more than once?",
-        a: "Yes. Participants can register multiple times, but each registration must have a unique Registration PIN."
+        q: "Can I attend as a spectator without competing?",
+        a: "Yes! Spectators are welcome to attend the festival in person or view the live stream online. You can enjoy performances, exhibitions, and workshops even if you are not competing."
       },
       {
-        q: "How are teams structured?",
-        a: "Each team has 3 members. Participants compete individually against their corresponding member from the opposing team (A vs A, B vs B, C vs C). Points from all three members are added together to determine the winning team."
+        q: "Are there sponsorship opportunities?",
+        a: "Yes. Individuals and organizations can sponsor the festival, specific awards, or program sections. Sponsorships can include brand visibility, recognition during live events, and participation in festival activities."
       },
       {
-        q: "How is the winner determined?",
-        a: "The team with the highest cumulative points after all rounds of a face-off wins. Out of 12 teams per season, 6 champion teams emerge."
+        q: "What are the entry requirements for each award?",
+        a: "Face of Nigeria: A clear, natural photo (no AI, makeup, or glasses). Indigenous hairstyles only for ladies.\n\nMost Indigenous Nigerian Traditional Attire: Dress in traditional attire from your ethnic group or another Nigerian ethnic group, with a two-minute video showcasing your display.\n\nMost Creative: A two-minute video showing your creative process and final work.\n\nMost Intelligent: Video or documentation demonstrating skills, knowledge, or innovation."
       },
       {
         q: "What types of tasks are included?",

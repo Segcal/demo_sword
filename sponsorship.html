@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Donation Flow</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background: #0a0a0a;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+            overflow-x: hidden;
+        }
+
+        /* Ambient background orbs */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -20%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(244, 166, 59, 0.18) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -20%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(244, 166, 59, 0.10) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Glass card - white */
+        .glass-card {
+            background: #ffffff;
+            border: 1px solid rgba(244, 166, 59, 0.12);
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                0 2px 8px rgba(0, 0, 0, 0.15);
+            border-radius: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Return button */
+        .btn-return {
+            border: 1px solid rgba(244, 166, 59, 0.6);
+            color: #F4A63B;
+            padding: 6px 20px;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            background: rgba(244, 166, 59, 0.06);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-return:hover {
+            background: rgba(244, 166, 59, 0.15);
+        }
+
+        /* Progress bar segments */
+        .prog-seg {
+            height: 6px;
+            border-radius: 999px;
+            background: rgba(0, 0, 0, 0.1);
+            transition: background 0.4s ease;
+        }
+
+        .prog-seg.done {
+            background: #F4A63B;
+        }
+
+        /* Section badge */
+        .section-badge {
+            display: inline-block;
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            border-radius: 8px;
+            padding: 4px 14px;
+            font-size: 0.75rem;
+            color: rgba(0, 0, 0, 0.4);
+        }
+
+        /* Heading accent */
+        .step-title {
+            font-family: 'Playfair Display', serif;
+            color: #F4A63B;
+        }
+
+        .step-subtitle {
+            color: rgba(0, 0, 0, 0.45);
+            font-size: 0.9rem;
+            margin-top: 4px;
+        }
+
+        /* Select / Input */
+        .form-select,
+        .form-input {
+            width: 100%;
+            background: #f7f7f7;
+            border: 1px solid rgba(244, 166, 59, 0.4);
+            border-radius: 14px;
+            padding: 14px 18px;
+            font-size: 0.9rem;
+            color: #1a1a1a;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .form-select option {
+            background: #fff;
+            color: #1a1a1a;
+        }
+
+        .form-select:focus,
+        .form-input:focus {
+            border-color: #F4A63B;
+            box-shadow: 0 0 0 3px rgba(244, 166, 59, 0.12);
+        }
+
+        .form-input::placeholder {
+            color: rgba(0, 0, 0, 0.3);
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: rgba(0, 0, 0, 0.6);
+            margin-bottom: 8px;
+        }
+
+        .input-prefix {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(0, 0, 0, 0.4);
+            font-weight: 600;
+            pointer-events: none;
+        }
+
+        .form-input.pl {
+            padding-left: 38px;
+        }
+
+        /* Nav buttons */
+        .btn-prev {
+            border: 1px solid rgba(244, 166, 59, 0.5);
+            color: #F4A63B;
+            padding: 12px 32px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-prev:hover {
+            background: rgba(244, 166, 59, 0.08);
+        }
+
+        .btn-next {
+            background: #F4A63B;
+            color: #0a0a0a;
+            padding: 12px 36px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 18px rgba(244, 166, 59, 0.3);
+        }
+
+        .btn-next:hover {
+            background: #f0971f;
+            transform: translateY(-1px);
+        }
+
+        /* Success card */
+        .success-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #F4A63B, #f0971f);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.6rem;
+            box-shadow: 0 8px 24px rgba(244, 166, 59, 0.35);
+        }
+
+        /* Step transitions */
+        .step {
+            display: none;
+            animation: fadeUp 0.35s ease both;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="glass-card w-full" style="max-width: 680px; padding: 40px 36px;">
+
+        <div class="step active" id="step1">
+            <button class="btn-return" onclick="goBack()">← Return</button>
+            <div style="margin-top: 24px; margin-bottom: 32px;">
+                <div class="section-badge">Step 1 of 3</div>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-top: 12px;">
+                    <div class="prog-seg done"></div>
+                    <div class="prog-seg"></div>
+                    <div class="prog-seg"></div>
+                </div>
+            </div>
+
+            <h2 class="step-title" style="font-size: 1.9rem; margin-bottom: 4px;">Select Programme</h2>
+            <p class="step-subtitle">Which of the below programmes do you want to support?</p>
+
+            <div style="margin-top: 28px;">
+                <select class="form-select" id="programmeSelect">
+                    <option value="" disabled selected>Select programme</option>
+                    <option>General Donation</option>
+                    <option>Bible Stars Reality Show</option>
+                    <option>Ilorin Youth Mega Festival</option>
+                    <option>Bible Championship Season 2</option>
+                    <option>The National Bible Cup</option>
+                    <option>The Church & You Talk Show</option>
+                    <option>Bible Crown</option>
+                    <option>Marriage Realities</option>
+                </select>
+            </div>
+
+            <div style="display:flex; justify-content: space-between; align-items:center; margin-top: 48px;">
+                <button class="btn-prev" onclick="goBack()">Previous</button>
+                <button class="btn-next" onclick="validateAndGoToStep2()">Next →</button>
+            </div>
+        </div>
+
+        <div class="step" id="step2">
+            <button class="btn-return" onclick="goStep(1)">← Return</button>
+            <div style="margin-top: 24px; margin-bottom: 32px;">
+                <div class="section-badge">Step 2 of 3</div>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-top: 12px;">
+                    <div class="prog-seg done"></div>
+                    <div class="prog-seg done"></div>
+                    <div class="prog-seg"></div>
+                </div>
+            </div>
+
+            <h2 class="step-title" style="font-size: 1.9rem; margin-bottom: 4px;">Fill Form</h2>
+            <p class="step-subtitle">Kindly fill the form below to proceed with your donation.</p>
+
+            <div style="margin-top: 28px; display: flex; flex-direction: column; gap: 20px;">
+                <div>
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-input" id="fullName" placeholder="Enter your full name" />
+                </div>
+                <div>
+                    <label class="form-label">Email Address</label>
+                    <input type="email" class="form-input" id="email" placeholder="Enter your email" />
+                </div>
+                <div>
+                    <label class="form-label">Phone Number</label>
+                    <input type="tel" class="form-input" id="phone" placeholder="Enter your phone number" />
+                </div>
+                <div>
+                    <label class="form-label">How Much Do You Wish To Donate?</label>
+                    <div style="position:relative;">
+                        <span class="input-prefix">₦</span>
+                        <input type="number" class="form-input pl" id="amount" placeholder="Enter donation amount" />
+                    </div>
+                </div>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top: 40px;">
+                <button class="btn-prev" onclick="goStep(1)">Previous</button>
+                <button class="btn-next" onclick="validateAndSubmit()">Submit Donation →</button>
+            </div>
+        </div>
+
+        <div class="step" id="step3">
+            <div style="text-align:center; padding: 20px 0;">
+                <div class="success-icon">🎉</div>
+                <h2 class="step-title" style="font-size: 1.8rem; margin-bottom: 12px;">Sponsorship Interest Recieved!
+                </h2>
+                <p
+                    style="color: rgba(0,0,0,0.45); font-size: 0.9rem; line-height: 1.7; max-width: 380px; margin: 0 auto;">
+                    Thank you for your interest in sponsoring our program. We have recieved your message and our team
+                    will reach out, shortly.
+                </p>
+
+                <div style="margin-top: 36px;">
+                    <button class="btn-next" onclick="resetForm()" style="padding: 14px 40px;">
+                        Return to Home
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        function goStep(n) {
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            document.getElementById('step' + n).classList.add('active');
+        }
+
+        function validateAndGoToStep2() {
+            const sel = document.getElementById('programmeSelect').value;
+            if (!sel) {
+                alert('Please select a programme.');
+                return;
+            }
+            goStep(2);
+        }
+
+        function validateAndSubmit() {
+            const name = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const amount = document.getElementById('amount').value.trim();
+
+            if (!name || !email || !phone || !amount) {
+                alert('Please fill in all fields.');
+                return;
+            }
+
+            // Since the summary/payment step was removed, it jumps straight to success page
+            goStep(3);
+        }
+
+        function resetForm() {
+            // Clear out inputs
+            document.getElementById('programmeSelect').selectedIndex = 0;
+            document.getElementById('fullName').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('phone').value = '';
+            document.getElementById('amount').value = '';
+
+            // Go back to step 1
+            goStep(1);
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+
+</html>

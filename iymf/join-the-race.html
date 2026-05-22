@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Join The Race</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange: #ff842f;
+      --orange-dark: #7a3d12;
+      --orange-border: #d8a27d;
+      --card-bg: #140500;
+      --card-border: #3b1b0f;
+      --hero-bg: #1a0700;
+      --input-bg: #2b140b;
+      --input-border: #4b2a1d;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #000;
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    h1, h2, h3, h4 { font-family: 'Sora', sans-serif; }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(27,27,27,0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 24px;
+    }
+    .nav-logo img { display: block; }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 14px;
+      font-family: 'Sora', sans-serif;
+      font-weight: 500;
+      transition: color .2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: #fff; }
+    .nav-links a.orange { color: var(--orange); }
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .nav-cta a {
+      border: 1px solid var(--orange);
+      color: var(--orange);
+      font-family: 'Sora', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 9px 24px;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: background .2s, color .2s;
+    }
+    .nav-cta a:hover { background: var(--orange); color: #fff; }
+
+    /* hamburger */
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: transform .3s, opacity .3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* mobile drawer */
+    .mobile-drawer {
+      position: fixed;
+      inset: 0;
+      z-index: 99;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-end;
+      pointer-events: none;
+    }
+    .drawer-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0);
+      transition: background .35s;
+    }
+    .drawer-panel {
+      position: relative;
+      width: 280px;
+      height: 100%;
+      background: #111;
+      border-left: 1px solid rgba(255,255,255,0.08);
+      padding: 80px 28px 40px;
+      transform: translateX(100%);
+      transition: transform .35s cubic-bezier(.4,0,.2,1);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .mobile-drawer.open { pointer-events: all; }
+    .mobile-drawer.open .drawer-overlay { background: rgba(0,0,0,0.6); }
+    .mobile-drawer.open .drawer-panel { transform: translateX(0); }
+
+    .drawer-panel a {
+      display: block;
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-family: 'Sora', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      transition: color .2s;
+    }
+    .drawer-panel a:hover { color: #fff; }
+    .drawer-panel a.orange { color: var(--orange); }
+    .drawer-cta {
+      margin-top: 24px;
+      display: block;
+      text-align: center;
+      background: var(--orange);
+      color: #fff !important;
+      border-radius: 999px;
+      padding: 14px 0;
+      font-size: 15px !important;
+      border: none !important;
+    }
+
+    /* ── PAGE SHELL ── */
+    .page {
+      display: none;
+      min-height: 100vh;
+      padding-top: 68px;
+    }
+    .page.active { display: block; }
+
+    /* ── GLOWS ── */
+    .side-glow-left, .side-glow-right {
+      position: absolute;
+      top: 0; width: 60px; height: 100%;
+      pointer-events: none;
+    }
+    .side-glow-left { left: 0; background: linear-gradient(to right, rgba(30,58,138,0.15), transparent); }
+    .side-glow-right { right: 0; background: linear-gradient(to left, rgba(30,58,138,0.15), transparent); }
+
+    /* ── HERO BANNER ── */
+    .hero-banner {
+      background: var(--hero-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 40px 24px;
+      text-align: center;
+    }
+    .hero-banner h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; }
+    .hero-banner p { color: rgba(255,255,255,0.5); margin-top: 10px; font-size: 15px; }
+
+    /* ── BACK LINK ── */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.7);
+      font-size: 14px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color .2s;
+    }
+    .back-link:hover { color: #fff; }
+
+    /* ── FORM CARD ── */
+    .form-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: 0 0 40px rgba(255,94,0,0.06);
+    }
+
+    /* ── INPUT ── */
+    .input-wrap { position: relative; }
+    .input-wrap .icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: rgba(255,255,255,0.4);
+      font-size: 15px;
+    }
+    .field-input {
+      width: 100%;
+      height: 56px;
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: 16px;
+      padding: 0 16px 0 48px;
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      transition: border-color .25s, box-shadow .25s;
+      outline: none;
+      -webkit-appearance: none;
+    }
+    .field-input::placeholder { color: rgba(255,255,255,0.3); }
+    .field-input:focus {
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px rgba(255,130,47,0.15);
+    }
+
+    /* ── UPLOAD BOX ── */
+    .upload-box {
+      border: 1px dashed rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.02);
+      border-radius: 16px;
+      padding: 28px 20px;
+      text-align: center;
+      transition: border-color .25s, background .25s;
+    }
+    .upload-box:hover {
+      border-color: var(--orange);
+      background: rgba(255,130,47,0.04);
+    }
+    .upload-box .upload-icon { font-size: 32px; color: rgba(255,255,255,0.5); margin-bottom: 10px; }
+    .upload-box p { color: rgba(255,255,255,0.65); font-size: 14px; margin-bottom: 4px; }
+    .upload-box small { color: rgba(255,255,255,0.35); font-size: 12px; display: block; margin-bottom: 16px; }
+    .choose-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 24px;
+      border: 1px solid rgba(255,200,150,0.5);
+      border-radius: 999px;
+      color: #fff;
+      font-family: 'Sora', sans-serif;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .choose-btn:hover { background: var(--orange); border-color: var(--orange); }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+      width: 100%;
+      height: 54px;
+      background: var(--orange-dark);
+      border: 1px solid var(--orange-border);
+      border-radius: 999px;
+      color: #fff;
+      font-family: 'Sora', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background .25s, transform .15s;
+    }
+    .btn-primary:hover { background: #914816; }
+    .btn-primary:active { transform: scale(.98); }
+
+    .btn-orange {
+      background: var(--orange);
+      border: none;
+      border-radius: 999px;
+      color: #fff;
+      font-family: 'Sora', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background .25s, transform .15s;
+    }
+    .btn-orange:hover { background: #ff943f; }
+    .btn-orange:active { transform: scale(.98); }
+
+    .btn-ghost-orange {
+      background: var(--orange-dark);
+      border: 1px solid rgba(255,200,150,0.4);
+      border-radius: 999px;
+      color: #fff;
+      font-family: 'Sora', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background .25s, transform .15s;
+    }
+    .btn-ghost-orange:hover { background: var(--orange); }
+    .btn-ghost-orange:active { transform: scale(.98); }
+
+    /* ── RADIO CARD ── */
+    .radio-card {
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 18px;
+      padding: 20px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      cursor: pointer;
+      transition: border-color .25s, background .25s;
+    }
+    .radio-card:hover { border-color: rgba(255,130,47,0.5); background: rgba(255,130,47,0.04); }
+    .radio-card.selected { border-color: var(--orange); background: rgba(255,130,47,0.06); }
+
+    .radio-dot {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.3);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: border-color .25s;
+    }
+    .radio-card.selected .radio-dot { border-color: var(--orange); }
+    .radio-dot-inner {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--orange);
+      display: none;
+    }
+    .radio-card.selected .radio-dot-inner { display: block; }
+
+    /* ── SUCCESS ── */
+    .success-card {
+      background: linear-gradient(180deg, rgba(40,12,0,0.98) 0%, rgba(24,6,0,1) 100%);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 0 30px rgba(255,115,0,0.08);
+      border-radius: 28px;
+    }
+    .glow-ring {
+      background: rgba(255,132,0,0.15);
+      border: 1px solid rgba(255,132,0,0.25);
+      border-radius: 50%;
+      width: 80px; height: 80px;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 28px;
+    }
+    .check-circle {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      border: 3px solid var(--orange);
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ── LABEL ── */
+    .field-label {
+      display: block;
+      font-size: 13px;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 10px;
+      font-family: 'Sora', sans-serif;
+      font-weight: 500;
+    }
+
+    /* ── PAGE TRANSITION ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .page.active .page-content { animation: fadeUp .4s ease both; }
+
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .form-card { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════ NAVBAR ═══════════════ -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">
+      <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766409594/sword_TV_logo_y9mnja.png" width="130" alt="Sword TV" />
+    </a>
+
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#" class="orange active">Programmes</a>
+      <a href="#">Partnership</a>
+      <a href="#">Blog</a>
+      <a href="#">Contact us</a>
+    </div>
+
+    <div class="nav-cta">
+      <a href="#">Sponsorship</a>
+    </div>
+
+    <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══════════════ MOBILE DRAWER ═══════════════ -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <div class="drawer-panel" id="drawerPanel">
+    <a href="#">Home</a>
+    <a href="#" class="orange">Programmes</a>
+    <a href="#">Partnership</a>
+    <a href="#">Blog</a>
+    <a href="#">Contact us</a>
+    <a href="#" class="drawer-cta">Sponsorship</a>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     PAGE 1 · Pass ID
+═══════════════════════════════════════ -->
+<div class="page active" id="page1">
+  <div class="page-content" style="position:relative; overflow:hidden; min-height:calc(100vh - 68px); display:flex; flex-direction:column; align-items:center; padding:40px 16px 60px;">
+
+    <div class="side-glow-left"></div>
+    <div class="side-glow-right"></div>
+
+    <!-- Back -->
+    <div style="width:100%; max-width:900px; margin-bottom:28px;">
+      <span class="back-link">
+        <i class="fa-solid fa-arrow-left" style="font-size:13px;"></i>
+        Back to Home
+      </span>
+    </div>
+
+    <!-- Hero -->
+    <div style="width:100%; max-width:900px;" class="hero-banner">
+      <h1>Join The Race</h1>
+      <p>Compete for glory and recognition</p>
+    </div>
+
+    <!-- Card -->
+    <div style="width:100%; max-width:480px; margin-top:40px;" class="form-card">
+
+      <div class="input-wrap">
+        <span class="icon"><i class="fa-solid fa-lock"></i></span>
+        <input id="passInput" type="text" placeholder="Enter your festival pass ID" class="field-input" />
+      </div>
+
+      <button onclick="goTo(2)" class="btn-primary" style="margin-top:20px;">
+        Access Platform
+      </button>
+
+      <p style="text-align:center; font-size:13px; color:rgba(255,255,255,0.4); margin-top:24px;">
+        Don't have one?
+        <a href="#" style="color:var(--orange); text-decoration:none; transition:color .2s;" onmouseover="this.style.color='#ff943f'" onmouseout="this.style.color='var(--orange)'">Get Pass ID</a>
+      </p>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     PAGE 2 · Category
+═══════════════════════════════════════ -->
+<div class="page" id="page2">
+  <div class="page-content" style="position:relative; overflow:hidden; min-height:calc(100vh - 68px); padding:40px 16px 60px;">
+
+    <div class="side-glow-left"></div>
+    <div class="side-glow-right"></div>
+
+    <div style="max-width:1100px; margin:0 auto;">
+
+      <!-- Back -->
+      <div style="margin-bottom:28px;">
+        <span class="back-link" onclick="goTo(1)">
+          <i class="fa-solid fa-arrow-left" style="font-size:13px;"></i>
+          Back
+        </span>
+      </div>
+
+      <!-- Hero -->
+      <div class="hero-banner" style="margin-bottom:32px;">
+        <h1>Join The Race</h1>
+        <p>Compete for glory and recognition</p>
+      </div>
+
+      <!-- Title -->
+      <h2 style="text-align:center; font-size:clamp(1.3rem,3vw,1.9rem); font-weight:600; margin-bottom:28px;">
+        Select Competition Category
+      </h2>
+
+      <!-- Categories grid -->
+      <div id="categoryGrid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px;">
+
+        <div class="radio-card" onclick="selectCategory(this, 'Face of Nigeria (Male)')">
+          <div class="radio-dot"><div class="radio-dot-inner"></div></div>
+          <span style="font-family:'Sora',sans-serif; font-weight:600; font-size:16px;">Face of Nigeria (Male)</span>
+        </div>
+
+        <div class="radio-card" onclick="selectCategory(this, 'Face of Nigeria (Female)')">
+          <div class="radio-dot"><div class="radio-dot-inner"></div></div>
+          <span style="font-family:'Sora',sans-serif; font-weight:600; font-size:16px;">Face of Nigeria (Female)</span>
+        </div>
+
+        <div class="radio-card" onclick="selectCategory(this, 'Most Indigenous (Male)')">
+          <div class="radio-dot"><div class="radio-dot-inner"></div></div>
+          <span style="font-family:'Sora',sans-serif; font-weight:600; font-size:16px;">Most Indigenous (Male)</span>
+        </div>
+
+        <div class="radio-card" onclick="selectCategory(this, 'Most Indigenous (Female)')">
+          <div class="radio-dot"><div class="radio-dot-inner"></div></div>
+          <span style="font-family:'Sora',sans-serif; font-weight:600; font-size:16px;">Most Indigenous (Female)</span>
+        </div>
+
+        <div class="radio-card" onclick="selectCategory(this, 'Most Creative (Female)')">
+          <div class="radio-dot"><div class="radio-dot-inner"></div></div>
+          <span style="font-family:'Sora',sans-serif; font-weight:600; font-size:16px;">Most Creative (Female)</span>
+        </div>
+
+        <div class="radio-card" onclick="selectCategory(this, 'Most Creative (Male)')">
+          <div class="radio-dot"><div class="radio-dot-inner"></div></div>
+          <span style="font-family:'Sora',sans-serif; font-weight:600; font-size:16px;">Most Creative (Male)</span>
+        </div>
+
+        <div class="radio-card" onclick="selectCategory(this, 'Most Intelligent (Male)')">
+          <div class="radio-dot"><div class="radio-dot-inner"></div></div>
+          <span style="font-family:'Sora',sans-serif; font-weight:600; font-size:16px;">Most Intelligent (Male)</span>
+        </div>
+
+        <div class="radio-card" onclick="selectCategory(this, 'Most Intelligent (Female)')">
+          <div class="radio-dot"><div class="radio-dot-inner"></div></div>
+          <span style="font-family:'Sora',sans-serif; font-weight:600; font-size:16px;">Most Intelligent (Female)</span>
+        </div>
+
+      </div>
+
+      <!-- Next -->
+      <div style="display:flex; justify-content:center; margin-top:40px;">
+        <button onclick="goToForm()" class="btn-orange" style="padding:0 60px; height:54px;">
+          Next
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     PAGE 3 · Form
+═══════════════════════════════════════ -->
+<div class="page" id="page3">
+  <div class="page-content" style="min-height:calc(100vh - 68px); display:flex; align-items:flex-start; justify-content:center; padding:40px 16px 60px;">
+
+    <div style="width:100%; max-width:860px;">
+
+      <!-- Back -->
+      <div style="margin-bottom:28px;">
+        <span class="back-link" onclick="goTo(2)">
+          <i class="fa-solid fa-arrow-left" style="font-size:13px;"></i>
+          Back
+        </span>
+      </div>
+
+      <div class="form-card">
+
+        <h1 id="formTitle" style="font-size:clamp(1.6rem,4vw,2.2rem); font-weight:700; margin-bottom:32px;">
+          Face of Nigeria (Male)
+        </h1>
+
+        <div style="display:flex; flex-direction:column; gap:22px;">
+
+          <!-- Full Name -->
+          <div>
+            <label class="field-label">Full Name</label>
+            <div class="input-wrap">
+              <span class="icon"><i class="fa-regular fa-user"></i></span>
+              <input type="text" placeholder="Enter your full name" class="field-input" />
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div>
+            <label class="field-label">Email Address</label>
+            <div class="input-wrap">
+              <span class="icon"><i class="fa-regular fa-envelope"></i></span>
+              <input type="email" placeholder="your.email@example.com" class="field-input" />
+            </div>
+          </div>
+
+          <!-- Phone -->
+          <div>
+            <label class="field-label">Phone Number</label>
+            <div class="input-wrap">
+              <span class="icon"><i class="fa-solid fa-phone"></i></span>
+              <input type="tel" placeholder="+234 800 000 0000" class="field-input" />
+            </div>
+          </div>
+
+          <!-- Upload Grid -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px;">
+
+            <!-- Photos -->
+            <div>
+              <label class="field-label">Upload Photos</label>
+              <div class="upload-box">
+                <div class="upload-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                <p>Click to upload or drag and drop</p>
+                <small>PNG, JPG (max. 10MB each)</small>
+                <input type="file" id="photoUpload" class="hidden" multiple accept="image/*" style="display:none;" />
+                <label for="photoUpload" class="choose-btn">Choose Files</label>
+              </div>
+            </div>
+
+            <!-- Video -->
+            <div>
+              <label class="field-label">Upload Video</label>
+              <div class="upload-box">
+                <div class="upload-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                <p>Click to upload or drag and drop</p>
+                <small>Video (max. 50MB)</small>
+                <input type="file" id="videoUpload" class="hidden" accept="video/*" style="display:none;" />
+                <label for="videoUpload" class="choose-btn">Choose Files</label>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Submit -->
+          <button onclick="goTo(4)" class="btn-primary" style="margin-top:8px;">
+            Submit Entry
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     PAGE 4 · Success
+═══════════════════════════════════════ -->
+<div class="page" id="page4">
+  <div class="page-content" style="min-height:calc(100vh - 68px); display:flex; align-items:center; justify-content:center; padding:40px 16px;">
+
+    <div class="success-card" style="width:100%; max-width:620px; padding:60px 40px; text-align:center;">
+
+      <!-- Icon -->
+      <div class="glow-ring">
+        <div class="check-circle">
+          <i class="fa-solid fa-check" style="color:var(--orange); font-size:20px;"></i>
+        </div>
+      </div>
+
+      <h1 style="font-size:clamp(1.8rem,5vw,2.8rem); font-weight:700; line-height:1.2; margin-bottom:20px;">
+        Entry Submitted<br>Successfully!
+      </h1>
+
+      <p style="color:rgba(255,255,255,0.65); font-size:15px; line-height:1.8; max-width:480px; margin:0 auto 36px;">
+        Thank you for joining the race! Your entry for
+        <span id="successCategory" style="color:var(--orange); font-weight:600;">Face of Nigeria (Male)</span>
+        has been received and will be reviewed shortly. You will be contacted soon.
+      </p>
+
+      <button class="btn-ghost-orange" style="width:100%; max-width:380px; height:54px;" onclick="goTo(1); resetFlow();">
+        Start campaigning for votes
+      </button>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════ SCRIPT ═══════════════ -->
+<script>
+  /* ── Mobile Drawer ── */
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const mobileDrawer = document.getElementById('mobileDrawer');
+  const drawerOverlay = document.getElementById('drawerOverlay');
+
+  hamburgerBtn.addEventListener('click', () => {
+    const isOpen = mobileDrawer.classList.toggle('open');
+    hamburgerBtn.classList.toggle('open', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+
+  drawerOverlay.addEventListener('click', closeDrawer);
+
+  function closeDrawer() {
+    mobileDrawer.classList.remove('open');
+    hamburgerBtn.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  /* ── Page Flow ── */
+  let selectedCategory = 'Face of Nigeria (Male)';
+
+  function goTo(num) {
+    if (num === 4) {
+      document.getElementById('successCategory').textContent = selectedCategory;
+    }
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const target = document.getElementById('page' + num);
+    target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function selectCategory(el, name) {
+    document.querySelectorAll('.radio-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedCategory = name;
+  }
+
+  function goToForm() {
+    document.getElementById('formTitle').textContent = selectedCategory;
+    goTo(3);
+  }
+
+  function resetFlow() {
+    document.querySelectorAll('.radio-card').forEach(c => c.classList.remove('selected'));
+    selectedCategory = 'Face of Nigeria (Male)';
+  }
+</script>
+
+</body>
+</html>
