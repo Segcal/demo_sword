@@ -117,10 +117,10 @@
                     <a href="../contact-us.html">Contact us</a>
                 </nav>
 
-                <a href="../Partnership.html"
+                <button id="openGuestModalMobile"
                     class="open-partner-modal hidden md:block bg-orange-500 text-black font-semibold px-6 py-2 rounded-full">
                     Partner with Us
-                </a>
+                </button>
 
                 <button id="openMenu" class="md:hidden text-3xl">☰</button>
             </div>
@@ -143,7 +143,7 @@
                 <a href="../blog.html">Blog</a>
                 <a href="../contact-us.html">Contact us</a>
 
-                <button class="open-partner-modal bg-orange-400 text-black px-5 py-2 rounded-full font-semibold mt-4">
+                <button id="openGuestModalMobileMenu" class=" bg-orange-400 text-black px-5 py-2 rounded-full font-semibold mt-4">
                     Partner with Us
                 </button>
             </div>
@@ -724,420 +724,473 @@
         </div>
     </section>
 
-    <!-- PARTNER MODAL -->
-    <div id="partnerModal" class="fixed inset-0 z-[999] hidden
-         flex items-center justify-center
-         bg-black/60 backdrop-blur-lg
-         px-4 py-6 overflow-y-auto">
+     <!-- ================= GUEST REGISTRATION MODAL ================= -->
+    <div id="guestModal" class="fixed inset-0 z-[999] hidden flex items-center justify-center bg-black/60 backdrop-blur-lg px-4 py-6 overflow-y-auto">
 
         <!-- MODAL CARD -->
-        <div class="bg-white w-full max-w-3xl
-           rounded-2xl p-6 sm:p-8
-           shadow-2xl relative
-           my-auto">
+        <div class="bg-white w-full max-w-3xl rounded-2xl p-6 sm:p-10 shadow-2xl relative my-auto">
 
             <!-- CLOSE BUTTON -->
-            <button id="closePartnerModal" class="absolute top-4 right-4
-             text-gray-400 hover:text-black
-             text-xl">
+            <button id="closeGuestModal" class="absolute top-4 right-4 text-gray-400 hover:text-black text-xl transition">
                 ✕
             </button>
 
             <!-- RETURN BUTTON -->
-            <button class="text-orange-500 text-xs sm:text-sm
-             border border-orange-400
-             px-4 py-1.5 rounded-full mb-6">
-                Return to Partnership Page
+            <button id="returnHomeBtn" class="text-orange-500 text-xs sm:text-sm border border-orange-400 px-4 py-1.5 rounded-full mb-6 hover:bg-orange-50 transition">
+                Return Home
             </button>
 
             <!-- STEP INDICATOR -->
             <p class="text-xs text-gray-500 mb-2">
-                Section <span id="stepNumber">1</span> of 6
+                Section <span id="currentStep">1</span> of 7
             </p>
 
             <!-- PROGRESS BAR -->
             <div class="w-full h-2 bg-gray-200 rounded-full mb-8">
-                <div id="progressBar" class="h-2 bg-orange-400 rounded-full
-               transition-all duration-300" style="width:16.66%">
+                <div id="progressBar" class="h-2 bg-orange-400 rounded-full transition-all duration-300" style="width:14.28%">
                 </div>
             </div>
 
             <!-- STEPS CONTAINER -->
-            <div class="space-y-6 max-h-[60vh] overflow-y-auto pr-1">
+            <div class="space-y-6 max-h-[60vh] overflow-y-auto pr-2">
 
-                <!-- STEP 1 -->
-                <div class="step">
-                    <h2 class="text-orange-500 text-xl font-semibold mb-2">
-                        Select Programme
+                <!-- STEP 1: Participation Type -->
+                <div class="step active">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">
+                        How would you like to participate?
                     </h2>
 
-                    <p class="text-sm text-gray-600 mb-5">
-                        Which of the below programme do you want to support?
-                    </p>
-
-                    <!-- PROGRAMME OPTIONS -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-
-                        <!-- OPTION -->
-                        <label class="border border-orange-300 rounded-xl p-4
-                  flex gap-3 items-start cursor-pointer
-                  hover:bg-orange-50 transition">
-                            <input type="radio" name="programme" class="mt-1">
-                            <span class="font-medium text-sm text-gray-900">
-                                Bible Stars Reality Show
-                            </span>
-                        </label>
-
-                        <label class="border border-orange-300 rounded-xl p-4
-                  flex gap-3 items-start cursor-pointer
-                  hover:bg-orange-50 transition">
-                            <input type="radio" name="programme" class="mt-1">
-                            <span class="font-medium text-sm text-gray-900">
-                                Ilorin Youth Mega Festival
-                            </span>
-                        </label>
-
-                        <label class="border border-orange-300 rounded-xl p-4
-                  flex gap-3 items-start cursor-pointer
-                  hover:bg-orange-50 transition">
-                            <input type="radio" name="programme" class="mt-1">
-                            <span class="font-medium text-sm text-gray-900">
-                                Bible Championship Season 2
-                            </span>
-                        </label>
-
-                        <label class="border border-orange-300 rounded-xl p-4
-                  flex gap-3 items-start cursor-pointer
-                  hover:bg-orange-50 transition">
-                            <input type="radio" name="programme" class="mt-1">
-                            <span class="font-medium text-sm text-gray-900">
-                                The Noah’s Ark Show
-                            </span>
-                        </label>
-
-                        <label class="border border-orange-300 rounded-xl p-4
-                  flex gap-3 items-start cursor-pointer
-                  hover:bg-orange-50 transition">
-                            <input type="radio" name="programme" class="mt-1">
-                            <span class="font-medium text-sm text-gray-900">
-                                The National Bible Cup
-                            </span>
-                        </label>
-
-                        <label class="border border-orange-300 rounded-xl p-4
-                  flex gap-3 items-start cursor-pointer
-                  hover:bg-orange-50 transition">
-                            <input type="radio" name="programme" class="mt-1">
-                            <span class="font-medium text-sm text-gray-900">
-                                The Church & You Talk Show
-                            </span>
-                        </label>
-
-                        <label class="border border-orange-300 rounded-xl p-4
-                  flex gap-3 items-start cursor-pointer
-                  hover:bg-orange-50 transition sm:col-span-2">
-                            <input type="radio" name="programme" class="mt-1">
-                            <span class="font-medium text-sm text-gray-900">
-                                Marriage Realities Show
-                            </span>
-                        </label>
-
+                    <div class="relative">
+                        <select id="participationType" class="w-full px-4 py-3.5 bg-white border border-gray-300 rounded-lg text-gray-600 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 cursor-pointer pr-10">
+                            <option value="" disabled selected>Select participation category</option>
+                            <option value="share-relationship">Share My Relationship/Marriage Experience (Live on Stage)</option>
+                            <option value="submit-story">Submit My Story (To Be Read)</option>
+                            <option value="live-audience">Join Live Audience</option>
+                            <option value="connect-virtually">Connect Virtually</option>
+                            <option value="sponsor-partner">Sponsor / Partner</option>
+                            <option value="volunteer">Volunteer</option>
+                        </select>
+                        
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                            <svg class="h-5 w-5 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+                                <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
                     </div>
                 </div>
-                <!--  -->
 
-
-                <!-- PLACEHOLDER STEPS -->
-                <!-- STEP 2 -->
-
+                <!-- STEP 2: Personal Information -->
                 <div class="step hidden">
-                    <h2 class="text-orange-500 text-xl font-semibold mb-2">
-                        Select Category
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">
+                        Personal Information
                     </h2>
 
-                    <p class="text-sm text-gray-600 mb-4">
-                        Which of the below categories do you want to donate for?
-                    </p>
-
-                    <!-- OPTION -->
-                    <label class="block border border-orange-300 rounded-xl
-                 p-4 sm:p-5 mb-3
-                 flex gap-3 items-start cursor-pointer">
-                        <input type="radio" name="category" class="mt-1">
-                        <div>
-                            <span class="font-medium">Major Weight</span><br>
-                            <span class="text-sm text-gray-600">
-                                ₦50,000,000 and above
-                            </span>
+                    <form class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
+                        
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-medium text-gray-700">Full Name <span class="text-red-500">*</span></label>
+                            <input type="text" id="guestFullName" placeholder="Enter your full name" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 transition-shadow text-sm" required />
                         </div>
-                    </label>
 
-                    <!-- OPTION -->
-                    <label class="block border border-orange-300 rounded-xl
-                 p-4 sm:p-5 mb-3
-                 flex gap-3 items-start cursor-pointer">
-                        <input type="radio" name="category" class="mt-1">
-                        <div>
-                            <span class="font-medium">Medium Weight</span><br>
-                            <span class="text-sm text-gray-600">
-                                ₦20,000,000 to ₦50,000,000
-                            </span>
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-medium text-gray-700">Phone Number <span class="text-red-500">*</span></label>
+                            <input type="tel" id="guestPhone" placeholder="+234..." class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 transition-shadow text-sm" required />
                         </div>
-                    </label>
 
-                    <!-- OPTION -->
-                    <label class="block border border-orange-300 rounded-xl
-                 p-4 sm:p-5
-                 flex gap-3 items-start cursor-pointer">
-                        <input type="radio" name="category" class="mt-1">
-                        <div>
-                            <span class="font-medium">Light Weight</span><br>
-                            <span class="text-sm text-gray-600">
-                                ₦20,000,000 and below
-                            </span>
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-medium text-gray-700">Email Address <span class="text-red-500">*</span></label>
+                            <input type="email" id="guestEmail" placeholder="Enter email address" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 transition-shadow text-sm" required />
                         </div>
-                    </label>
+
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-medium text-gray-700">Gender</label>
+                            <div class="relative">
+                                <select id="guestGender" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 cursor-pointer transition-shadow text-sm pr-10">
+                                    <option value="" disabled selected>Select your gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                                    <svg class="h-4 w-4 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+                                        <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-medium text-gray-700">Age Range</label>
+                            <div class="relative">
+                                <select id="guestAgeRange" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 cursor-pointer transition-shadow text-sm pr-10">
+                                    <option value="" disabled selected>Select age range</option>
+                                    <option value="under-18">Under 18</option>
+                                    <option value="18-24">18 - 24</option>
+                                    <option value="25-34">25 - 34</option>
+                                    <option value="35-plus">35+</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                                    <svg class="h-4 w-4 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+                                        <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-medium text-gray-700">State</label>
+                            <div class="relative">
+                                <select id="guestState" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 cursor-pointer transition-shadow text-sm pr-10">
+                                    <option value="" disabled selected>Select your state</option>
+                                    <option value="lagos">Lagos</option>
+                                    <option value="fct">Abuja (FCT)</option>
+                                    <option value="oyo">Oyo</option>
+                                    <option value="kwara">Kwara</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                                    <svg class="h-4 w-4 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+                                        <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-medium text-gray-700">Country</label>
+                            <div class="relative">
+                                <select id="guestCountry" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 cursor-pointer transition-shadow text-sm pr-10">
+                                    <option value="" disabled selected>Select your country</option>
+                                    <option value="ng">Nigeria</option>
+                                    <option value="gh">Ghana</option>
+                                    <option value="uk">United Kingdom</option>
+                                    <option value="us">United States</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                                    <svg class="h-4 w-4 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+                                        <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-medium text-gray-700">Accommodation Needed?</label>
+                            <div class="relative">
+                                <select id="guestAccommodation" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 cursor-pointer transition-shadow text-sm pr-10">
+                                    <option value="" disabled selected>Select an option</option>
+                                    <option value="yes">Yes, I need accommodation</option>
+                                    <option value="no">No, I don't need accommodation</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                                    <svg class="h-4 w-4 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+                                        <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-medium text-gray-700">Marital Status</label>
+                            <div class="relative">
+                                <select id="guestMaritalStatus" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 cursor-pointer transition-shadow text-sm pr-10">
+                                    <option value="" disabled selected>Select marital status</option>
+                                    <option value="single-no-relationship">Single (Not in a Relationship)</option>
+                                    <option value="single-relationship">Single (In a Relationship)</option>
+                                    <option value="engaged">Engaged</option>
+                                    <option value="married">Married</option>
+                                    <option value="cohabiting">Cohabiting</option>
+                                    <option value="separated">Separated</option>
+                                    <option value="divorced">Divorced</option>
+                                    <option value="remarried">Remarried</option>
+                                    <option value="widowed">Widowed</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                                    <svg class="h-4 w-4 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+                                        <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
                 </div>
-                <!-- STEP 3 -->
 
-                <div class="step hidden" id="step3">
-                    <h2 class="text-orange-500 text-xl font-semibold mb-2">
-                        Fill form
+                <!-- STEP 3: Experience Type -->
+                <div class="step hidden">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">
+                        Experience Type
                     </h2>
 
-                    <p class="text-sm text-gray-800 mb-6">
-                        Kindly fill the below form to proceed with your donation.
-                    </p>
-
-                    <div class="space-y-5">
-
-                        <div>
-                            <label class="block text-gray-700 text-sm font-medium mb-1">Full name</label>
-                            <input id="fullName" type="text" placeholder="Enter your full name"
-                                class="w-full rounded border border-gray-400 px-4 py-3" />
+                    <div class="space-y-1.5">
+                        <label class="block text-sm font-medium text-gray-700">
+                            What kind of experience are you sharing?
+                        </label>
+                        <div class="relative w-full">
+                            <select id="guestExperienceType" class="w-full px-4 py-3.5 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 cursor-pointer transition-shadow text-sm pr-10">
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="positive-healthy">Positive / Healthy Relationship or Marriage</option>
+                                <option value="challenging-difficult">Challenging / Difficult Experience</option>
+                                <option value="broken-painful">Broken / Painful Experience</option>
+                                <option value="lessons-growth">Lessons, Growth & Wisdom</option>
+                            </select>
+                            
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                                <svg class="h-4 w-4 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+                                    <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
                         </div>
+                    </div>
+                </div>
 
-                        <div>
-                            <label class="block text-gray-700 text-sm font-medium mb-1">Email Address</label>
-                            <input id="email" type="email" placeholder="Enter your email address"
-                                class="w-full rounded border border-gray-400 px-4 py-3" />
-                        </div>
+                <!-- STEP 4: Story Section -->
+                <div class="step hidden">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">
+                        Story Section
+                    </h2>
 
-                        <div>
-                            <label class="block text-gray-700 text-sm font-medium mb-1">Phone Number</label>
-                            <input id="phone" type="tel" placeholder="Enter your phone number"
-                                class="w-full rounded border border-gray-400 px-4 py-3" />
-                        </div>
-
-                        <div>
-                            <label class="block text-gray-700 text-sm font-medium mb-1">
-                                How much do you wish to donate?
+                    <form class="space-y-5">
+                        
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-medium text-gray-700">
+                                Tell us your story:
                             </label>
-                            <input id="amount" type="number" placeholder="0"
-                                class="w-full rounded border border-gray-400 px-4 py-3" />
+                            <textarea 
+                                id="guestStory"
+                                rows="5"
+                                placeholder="Enter your story here..." 
+                                class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 transition-shadow text-sm resize-none"
+                            ></textarea>
                         </div>
 
-                    </div>
-                </div>
-
-                <!-- step 4 -->
-                <div class="step hidden">
-                    <h2 class="text-orange-500 text-xl font-semibold mb-2">
-                        Payment Method
-                    </h2>
-
-                    <p class="text-sm text-gray-600 mb-5">
-                        Which payment method would you prefer to use?
-                    </p>
-
-                    <!-- PROGRAMME OPTIONS -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-
-                        <!-- OPTION -->
-                        <label class="border border-orange-300 rounded-xl p-4
-                  flex gap-3 items-start cursor-pointer
-                  hover:bg-orange-50 transition">
-                            <input type="radio" name="programme" class="mt-1">
-                            <span class="font-medium text-sm text-gray-900">
-                                Online Payment
-                            </span>
-                        </label>
-
-                        <label class="border border-orange-300 rounded-xl p-4
-                  flex gap-3 items-start cursor-pointer
-                  hover:bg-orange-50 transition">
-                            <input type="radio" name="programme" class="mt-1">
-                            <span class="font-medium text-sm text-gray-900">
-                                Offline Payment
-                            </span>
-                        </label>
-
-
-
-                    </div>
-                </div>
-                <!-- STEP 5 -->
-                <div class="step hidden">
-                    <h2 class="text-orange-500 text-xl font-semibold mb-6">
-                        Complete Your Offline Payment
-                    </h2>
-
-                    <!-- Amount Card -->
-                    <div class="bg-orange-50 rounded-2xl p-5 sm:p-6 mb-6 shadow-sm">
-                        <h3 class="font-medium text-gray-900 mb-2">
-                            Amount You Want To Donate
-                        </h3>
-
-                        <p class="text-sm text-gray-600 mb-1">
-                            Transferable amount
-                        </p>
-
-                        <p class="text-xl font-semibold text-gray-900">
-                            ₦50,000,000
-                        </p>
-                    </div>
-
-                    <!-- Account Details Card -->
-                    <div class="bg-orange-50 rounded-2xl p-5 sm:p-6 shadow-sm">
-                        <h3 class="font-medium text-gray-900 mb-4">
-                            Account Details
-                        </h3>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-
-                            <!-- Bank -->
-                            <div>
-                                <p class="text-sm text-gray-600 mb-1">Bank:</p>
-                                <div class="flex items-center gap-2">
-                                    <span class="font-medium text-gray-900">First Bank</span>
-                                    <button class="text-gray-500 hover:text-gray-800">
-                                        📋
-                                    </button>
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-medium text-gray-700">
+                                Are you open to speaking live on stage?
+                            </label>
+                            <div class="relative">
+                                <select id="guestLiveStage" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 cursor-pointer transition-shadow text-sm pr-10">
+                                    <option value="" disabled selected>Select an option</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="no">No</option>
+                                    <option value="private-recording">Prefer private recording</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                                    <svg class="h-4 w-4 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+                                        <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
                                 </div>
                             </div>
-
-                            <!-- Account Number -->
-                            <div>
-                                <p class="text-sm text-gray-600 mb-1">Account Number:</p>
-                                <div class="flex items-center gap-2">
-                                    <span class="font-medium text-gray-900">2096184982</span>
-                                    <button class="text-gray-500 hover:text-gray-800">
-                                        📋
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- Account Name -->
-                            <div>
-                                <p class="text-sm text-gray-600 mb-1">Account Name:</p>
-                                <div class="flex items-center gap-2">
-                                    <span class="font-medium text-gray-900">
-                                        Sword Television Ltd
-                                    </span>
-                                    <button class="text-gray-500 hover:text-gray-800">
-                                        📋
-                                    </button>
-                                </div>
-                            </div>
-
                         </div>
-                    </div>
 
-                    <!-- ACTION BUTTONS -->
-                    <div class="flex flex-col sm:flex-row justify-between mt-10">
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-medium text-gray-700">
+                                Interested in live interaction with the host?
+                            </label>
+                            <div class="relative">
+                                <select id="guestHotSeat" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 cursor-pointer transition-shadow text-sm pr-10">
+                                    <option value="" disabled selected>Select an option</option>
+                                    <option value="yes">Yes (Hot Seat)</option>
+                                    <option value="no">No</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                                    <svg class="h-4 w-4 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+                                        <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
 
-                        <button id="paymentConfirmed" class="w-full sm:w-auto bg-orange-500 text-white
-             px-6 py-3 rounded-full font-medium">
-                            I Have Made Payment
-                        </button>
-
-                        <button class="w-full sm:w-auto border border-orange-400
-             text-orange-500 px-6 py-3 rounded-full font-medium">
-                            Join Friends of the Bible Forum
-                        </button>
-
-                    </div>
+                    </form>
                 </div>
 
+                <!-- STEP 5: Virtual Participation -->
                 <div class="step hidden">
-                    <h2 class="text-orange-500 text-xl font-semibold mb-6">
-                        Which Of Our Forum Are You Interested In?
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">
+                        Virtual Participation
                     </h2>
 
-                    <div class="space-y-4">
-
-                        <label class="block border border-orange-300 rounded-xl
-           p-4 sm:p-5
-           cursor-pointer
-           transition
-           hover:bg-orange-50
-           has-[:checked]:border-orange-500
-           has-[:checked]:bg-orange-100">
-
-                            <div class="flex items-center gap-3">
-                                <input type="radio" name="forum" class="accent-orange-500">
-                                <span class="font-medium text-gray-900">
-                                    Friends of the Bible International Meetings
-                                </span>
+                    <form class="space-y-5">
+                        
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-medium text-gray-700">
+                                Would you like to submit a question or story online?
+                            </label>
+                            <div class="relative w-full">
+                                <select id="guestVirtualParticipation" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 cursor-pointer transition-shadow text-sm pr-10">
+                                    <option value="" disabled selected>Select an option</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="no">No</option>
+                                </select>
+                                
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                                    <svg class="h-4 w-4 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+                                        <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
                             </div>
-                        </label>
+                        </div>
 
-                        <label class="block border border-orange-300 rounded-xl
-           p-4 sm:p-5
-           cursor-pointer
-           transition
-           hover:bg-orange-50
-           has-[:checked]:border-orange-500
-           has-[:checked]:bg-orange-100">
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-medium text-gray-700">
+                                Share details below:
+                            </label>
+                            <textarea 
+                                id="guestVirtualDetails"
+                                rows="5"
+                                placeholder="Enter here..." 
+                                class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 transition-shadow text-sm resize-none"
+                            ></textarea>
+                        </div>
 
-                            <div class="flex items-center gap-3">
-                                <input type="radio" name="forum" class="accent-orange-500">
-                                <span class="font-medium text-gray-900">
-                                    Consultation Session
-                                </span>
-                            </div>
-                        </label>
-
-                        <label class="block border border-orange-300 rounded-xl
-           p-4 sm:p-5
-           cursor-pointer
-           transition
-           hover:bg-orange-50
-           has-[:checked]:border-orange-500
-           has-[:checked]:bg-orange-100">
-
-                            <div class="flex items-center gap-3">
-                                <input type="radio" name="forum" class="accent-orange-500">
-                                <span class="font-medium text-gray-900">
-                                    Prayer Session
-                                </span>
-                            </div>
-                        </label>
-
-                    </div>
-
-
+                    </form>
                 </div>
 
+                <!-- STEP 6: Sponsorship -->
+                <div class="step hidden">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">
+                        Sponsorship/Partnership
+                    </h2>
+
+                    <form class="space-y-6">
+                        
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-medium text-gray-700">
+                                Are you interested in sponsoring or partnering?
+                            </label>
+                            <div class="relative w-full">
+                                <select id="guestSponsorshipInterest" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 cursor-pointer transition-shadow text-sm pr-10">
+                                    <option value="" disabled selected>Select an option</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="no">No</option>
+                                </select>
+                                
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                                    <svg class="h-4 w-4 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+                                        <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="guestSponsorshipDetails" class="hidden space-y-4">
+                            <div class="text-sm font-medium text-orange-500">
+                                If Yes:
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div class="space-y-1.5">
+                                    <label class="block text-sm font-medium text-gray-700">Organization / Brand Name:</label>
+                                    <input 
+                                        id="guestBrandName"
+                                        type="text" 
+                                        placeholder="Enter here" 
+                                        class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 transition-shadow text-sm" 
+                                    />
+                                </div>
+
+                                <div class="space-y-1.5">
+                                    <label class="block text-sm font-medium text-gray-700">Sponsorship Type:</label>
+                                    <div class="relative">
+                                        <select id="guestSponsorshipType" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 cursor-pointer transition-shadow text-sm pr-10">
+                                            <option value="" disabled selected>Select an option</option>
+                                            <option value="financial">Financial</option>
+                                            <option value="product-placement">Product placement</option>
+                                            <option value="media-support">Media support</option>
+                                        </select>
+                                        
+                                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                                            <svg class="h-4 w-4 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+                                                <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+                <!-- STEP 7: Volunteer & Consent -->
+                <div class="step hidden">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">
+                        Final Details
+                    </h2>
+
+                    <form class="space-y-6">
+                        
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-medium text-gray-700">Would you like to volunteer?</label>
+                            <div class="relative">
+                                <select id="guestVolunteerInterest" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 cursor-pointer transition-shadow text-sm pr-10">
+                                    <option value="" disabled selected>Select an option</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="no">No</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="guestVolunteerArea" class="hidden space-y-1.5">
+                            <label class="block text-sm font-medium text-gray-700">Preferred Area:</label>
+                            <div class="relative">
+                                <select id="guestVolunteerType" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 cursor-pointer transition-shadow text-sm pr-10">
+                                    <option value="" disabled selected>Select an option</option>
+                                    <option value="event-management">Event management</option>
+                                    <option value="guest-handling">Guest handling</option>
+                                    <option value="media-coverage">Media/coverage</option>
+                                    <option value="logistics">Logistics</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3 border-t pt-4">
+                            <div class="space-y-1.5">
+                                <label class="block text-sm font-medium text-gray-700">Do you consent to your story being shared?</label>
+                                <div class="relative">
+                                    <select id="guestConsent" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 cursor-pointer transition-shadow text-sm pr-10">
+                                        <option value="" disabled selected>Select an option</option>
+                                        <option value="yes">Yes, I consent</option>
+                                        <option value="no">No, I do not consent</option>
+                                    </select>
+                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="space-y-1.5">
+                                <label class="block text-sm font-medium text-gray-700">Signature (Type Name) <span class="text-red-500">*</span></label>
+                                <input 
+                                    type="text" 
+                                    id="guestSignature"
+                                    placeholder="Enter your name" 
+                                    class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-800 placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400"
+                                    required
+                                />
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
 
             </div>
 
             <!-- FOOTER BUTTONS -->
-            <div class="flex flex-col sm:flex-row
-             gap-4 sm:justify-between
-             items-center mt-10">
+            <div class="flex flex-col sm:flex-row gap-4 sm:justify-between items-center mt-10 pt-6 border-t border-gray-100">
 
-                <button id="prevStep" class="w-full sm:w-auto
-               border border-orange-400
-               text-orange-500
-               px-6 py-3 rounded-full">
+                <button id="prevStepBtn" class="w-full sm:w-auto border border-orange-400 text-orange-500 px-8 py-3 rounded-full font-medium hover:bg-orange-50 transition" disabled>
                     Previous
                 </button>
 
-                <button id="nextStep" class="w-full sm:w-auto
-               bg-orange-400 text-white
-               px-8 py-3 rounded-full
-               disabled:opacity-40" disabled>
+                <button id="nextStepBtn" class="w-full sm:w-auto bg-orange-400 text-white px-8 py-3 rounded-full font-medium hover:bg-orange-500 transition">
                     Next
                 </button>
 
@@ -1146,10 +1199,291 @@
         </div>
     </div>
 
+    <!-- Success Message Modal -->
+    <div id="successModal" class="fixed inset-0 z-[1000] hidden flex items-center justify-center bg-black/60 backdrop-blur-lg px-4">
+        <div class="w-full max-w-md bg-white rounded-2xl shadow-2xl p-6 relative flex flex-col items-center text-center">
+            
+            <button id="closeSuccessModal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+
+            <div class="mt-6 mb-8">
+                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+                
+                <h3 class="text-xl font-bold text-gray-800 mb-4">
+                    Thank You!
+                </h3>
+                <p class="text-sm text-gray-500 leading-relaxed max-w-xs mx-auto">
+                    Your registration has been successfully submitted. We have received your details and will get in touch with you shortly.
+                </p>
+            </div>
+
+            <button id="returnHomeSuccess" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 px-6 rounded-full shadow-md shadow-orange-500/20 hover:shadow-lg transition duration-200 text-sm">
+                Return to Home
+            </button>
+
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // ==================== MODAL STATE ====================
+        let currentStep = 1;
+        const totalSteps = 7;
+        const guestModal = document.getElementById('guestModal');
+        const successModal = document.getElementById('successModal');
+
+        // Form data storage
+        const formData = {};
+
+        // ==================== MODAL OPEN/CLOSE ====================
+        function openGuestModal() {
+            guestModal.classList.remove('hidden');
+            currentStep = 1;
+            updateStep();
+        }
+
+        function closeGuestModal() {
+            guestModal.classList.add('hidden');
+            resetForm();
+        }
+
+        function resetForm() {
+            currentStep = 1;
+            document.querySelectorAll('.step').forEach(step => step.classList.add('hidden'));
+            document.querySelectorAll('.step')[0].classList.remove('hidden');
+            document.getElementById('nextStepBtn').disabled = false;
+            document.getElementById('prevStepBtn').disabled = true;
+        }
+
+        // Open modal buttons
+        const openGuestBtn = document.getElementById('openGuestModal');
+        const openGuestMobileBtn = document.getElementById('openGuestModalMobile');
+        const openGuestModalMobileMenuBtn = document.getElementById('openGuestModalMobileMenu');
+        const becomeGuestBtn = document.getElementById('becomeGuestBtn');
+
+        if (openGuestBtn) {
+            openGuestBtn.addEventListener('click', openGuestModal);
+        }
+
+        if (openGuestMobileBtn) {
+            openGuestMobileBtn.addEventListener('click', () => {
+                const mobileMenu = document.getElementById('mobileMenu');
+                if (mobileMenu) {
+                    mobileMenu.classList.add('hidden');
+                }
+                openGuestModal();
+            });
+        }
+
+        if (openGuestModalMobileMenuBtn) {
+            openGuestModalMobileMenuBtn.addEventListener('click', () => {
+                const mobileMenu = document.getElementById('mobileMenu');
+                if (mobileMenu) {
+                    mobileMenu.classList.add('hidden');
+                }
+                openGuestModal();
+            });
+        }
+
+        if (becomeGuestBtn) {
+            becomeGuestBtn.addEventListener('click', openGuestModal);
+        }
+
+        // Close modal buttons
+        document.getElementById('closeGuestModal').addEventListener('click', closeGuestModal);
+        document.getElementById('returnHomeBtn').addEventListener('click', closeGuestModal);
+        document.getElementById('closeSuccessModal').addEventListener('click', () => {
+            successModal.classList.add('hidden');
+        });
+        document.getElementById('returnHomeSuccess').addEventListener('click', () => {
+            successModal.classList.add('hidden');
+            closeGuestModal();
+        });
+
+        // ==================== STEP NAVIGATION ====================
+        function updateStep() {
+            // Hide all steps
+            document.querySelectorAll('.step').forEach(step => step.classList.add('hidden'));
+            
+            // Show current step
+            const steps = document.querySelectorAll('.step');
+            steps[currentStep - 1].classList.remove('hidden');
+
+            // Update progress bar
+            const progress = (currentStep / totalSteps) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            
+            // Update step counter
+            document.getElementById('currentStep').textContent = currentStep;
+
+            // Update button states
+            document.getElementById('prevStepBtn').disabled = currentStep === 1;
+            const nextBtn = document.getElementById('nextStepBtn');
+            nextBtn.textContent = currentStep === totalSteps ? 'Submit' : 'Next';
+            nextBtn.disabled = false;
+
+            // Show sponsorship details if needed
+            if (currentStep === 6) {
+                const sponsorshipSelect = document.getElementById('guestSponsorshipInterest');
+                const detailsDiv = document.getElementById('guestSponsorshipDetails');
+                if (sponsorshipSelect.value === 'yes') {
+                    detailsDiv.classList.remove('hidden');
+                }
+            }
+
+            // Show volunteer area if needed
+            if (currentStep === 7) {
+                const volunteerSelect = document.getElementById('guestVolunteerInterest');
+                const areaDiv = document.getElementById('guestVolunteerArea');
+                if (volunteerSelect && volunteerSelect.value === 'yes') {
+                    areaDiv.classList.remove('hidden');
+                }
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        document.getElementById('prevStepBtn').addEventListener('click', () => {
+            if (currentStep > 1) {
+                currentStep--;
+                updateStep();
+            }
+        });
+
+        document.getElementById('nextStepBtn').addEventListener('click', () => {
+            // Validate current step
+            if (validateStep(currentStep)) {
+                if (currentStep < totalSteps) {
+                    currentStep++;
+                    updateStep();
+                } else {
+                    submitForm();
+                }
+            }
+        });
+
+        // ==================== FORM VALIDATION ====================
+        function validateStep(step) {
+            const fields = {
+                1: ['participationType'],
+                2: ['guestFullName', 'guestPhone', 'guestEmail', 'guestGender', 'guestAgeRange', 'guestState', 'guestCountry', 'guestAccommodation', 'guestMaritalStatus'],
+                3: ['guestExperienceType'],
+                4: ['guestStory', 'guestLiveStage', 'guestHotSeat'],
+                5: ['guestVirtualParticipation'],
+                6: [],
+                7: ['guestSignature', 'guestConsent']
+            };
+
+            for (let fieldId of fields[step]) {
+                const field = document.getElementById(fieldId);
+                if (!field || !field.value) {
+                    alert(`Please fill in all required fields on this step.`);
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        // ==================== SPONSORSHIP TOGGLE ====================
+        document.getElementById('guestSponsorshipInterest').addEventListener('change', (e) => {
+            const detailsDiv = document.getElementById('guestSponsorshipDetails');
+            if (e.target.value === 'yes') {
+                detailsDiv.classList.remove('hidden');
+            } else {
+                detailsDiv.classList.add('hidden');
+            }
+        });
+
+        // ==================== VOLUNTEER TOGGLE ====================
+        document.getElementById('guestVolunteerInterest').addEventListener('change', (e) => {
+            const areaDiv = document.getElementById('guestVolunteerArea');
+            if (e.target.value === 'yes') {
+                areaDiv.classList.remove('hidden');
+            } else {
+                areaDiv.classList.add('hidden');
+            }
+        });
+
+        // ==================== FORM SUBMISSION ====================
+        function submitForm() {
+            // Collect form data
+            const data = {
+                participationType: document.getElementById('participationType').value,
+                fullName: document.getElementById('guestFullName').value,
+                phone: document.getElementById('guestPhone').value,
+                email: document.getElementById('guestEmail').value,
+                gender: document.getElementById('guestGender').value,
+                ageRange: document.getElementById('guestAgeRange').value,
+                state: document.getElementById('guestState').value,
+                country: document.getElementById('guestCountry').value,
+                accommodation: document.getElementById('guestAccommodation').value,
+                maritalStatus: document.getElementById('guestMaritalStatus').value,
+                experienceType: document.getElementById('guestExperienceType').value,
+                story: document.getElementById('guestStory').value,
+                liveStage: document.getElementById('guestLiveStage').value,
+                hotSeat: document.getElementById('guestHotSeat').value,
+                virtualParticipation: document.getElementById('guestVirtualParticipation').value,
+                virtualDetails: document.getElementById('guestVirtualDetails').value,
+                sponsorshipInterest: document.getElementById('guestSponsorshipInterest').value,
+                brandName: document.getElementById('guestBrandName').value,
+                sponsorshipType: document.getElementById('guestSponsorshipType').value,
+                volunteerInterest: document.getElementById('guestVolunteerInterest').value,
+                volunteerType: document.getElementById('guestVolunteerType').value,
+                consent: document.getElementById('guestConsent').value,
+                signature: document.getElementById('guestSignature').value,
+                submittedAt: new Date().toISOString()
+            };
+
+            // Log form data (in production, send to server)
+            console.log('Form submitted:', data);
+
+            // Show success modal
+            successModal.classList.remove('hidden');
+            
+            // Reset form
+            setTimeout(() => {
+                resetForm();
+            }, 1000);
+        }
+
+        // ==================== MOBILE MENU ====================
+        document.getElementById('openMenu').addEventListener('click', () => {
+            document.getElementById('mobileMenu').classList.remove('hidden');
+            document.getElementById('mobileMenu').classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        });
+
+        document.getElementById('closeMenu').addEventListener('click', () => {
+            document.getElementById('mobileMenu').classList.add('hidden');
+            document.getElementById('mobileMenu').classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        });
+
+        document.getElementById('mobileMenu').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('mobileMenu')) {
+                document.getElementById('mobileMenu').classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Initialize
+        resetForm();
+    </script>
+
+
+
 
     <script src="../the-church-and-you/assets/script.js"></script>
     <script src="./assets/script.js"></script>
-    <script src="../assets/js/script.js"></script>
+    <!-- <script src="../assets/js/script.js"></script> -->
     <script>
         /* =============================
    NAVIGATION MENU FUNCTIONALITY

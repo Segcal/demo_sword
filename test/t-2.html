@@ -1,81 +1,990 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome to the Quiz</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+
+    <title>SOWRO TV - Marriage Reality Show</title>
+
+    <style type="text/tailwindcss">
+        @theme {
+          --bg-tran: #ffffff1a;
+          --color-primary: #f0a242;
+        }
+
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+
+        .bg-img-hero{
+            background-image: url("https://res.cloudinary.com/dtrqikle5/image/upload/v1766799314/6479557_26565_2_1_qjxypt.png");
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+        }
+
+        /* Modal Step Animations */
+        .step {
+          animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        /* Smooth transitions */
+        .transition-all {
+          transition: all 0.3s ease;
+        }
+    </style>
 </head>
-<body class="bg-black text-white min-h-screen font-sans flex flex-col justify-center items-center relative p-4 select-none">
 
-  <div class="absolute top-6 left-6 right-6 flex justify-between items-center z-10">
-    <button class="flex items-center text-gray-400 hover:text-white transition duration-200 text-sm font-medium">
-      <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-      </svg>
-      Back to Home
-    </button>
 
-    <button class="flex items-center bg-[#25140b] border border-[#402313] hover:bg-[#341d10] text-gray-300 hover:text-white px-4 py-2 rounded-full transition duration-200 text-sm font-medium">
-      <svg class="w-4 h-4 mr-2 text-[#ca6b24]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-      </svg>
-      View Rankings
-    </button>
-  </div>
+<body class="bg-[#0f0f0f] text-white pt-28">
 
-  <div class="w-full max-w-2xl bg-[#130b06] border border-[#23150c] rounded-3xl p-8 md:p-12 text-center shadow-2xl flex flex-col items-center mt-12 md:mt-0">
-    
-    <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-white mb-8">
-      Welcome, djj!
-    </h1>
+    <!-- ================= MARQUEE ================= -->
+    <div class="px-6 fixed top-0 w-full z-50 bg-black/60 backdrop-blur-xl h-14 flex items-center">
+        <marquee behavior="smooth" direction="left" class="w-full">
+            <div class="flex items-center gap-8">
 
-    <div class="w-full bg-[#1b1008] border border-[#2a1a0f] rounded-2xl p-6 md:p-8 text-left mb-8 max-w-xl">
-      <p class="text-gray-400 text-sm md:text-base mb-6 leading-relaxed">
-        Test your knowledge with a time-based quiz focussed on Nigeria, covering:
-      </p>
+                <!-- Text + Icon -->
+                <div class="flex items-center gap-3">
+                    <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1767317361/streamline_announcement-megaphone-solid_b59alx.png"
+                        class="w-6 h-6" alt="" />
+                    <p class="text-sm whitespace-nowrap">
+                        (i) A New Moment Begins: 100 Friends of the Bible needed. Your Partnership will transform lives
+                        across the Globe.
+                    </p>
+                    <p class="text-sm whitespace-nowrap">
+                        (i) A New Moment Begins: 100 Friends of the Bible needed. Your Partnership will transform lives
+                        across the Globe.
+                    </p>
+                </div>
 
-      <ul class="space-y-4">
-        <li class="flex items-start text-gray-300 text-sm md:text-base">
-          <span class="text-[#ca6b24] mr-3 mt-0.5 flex-shrink-0">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-          </span>
-          Cultural and traditional knowledge
-        </li>
-        <li class="flex items-start text-gray-300 text-sm md:text-base">
-          <span class="text-[#ca6b24] mr-3 mt-0.5 flex-shrink-0">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-          </span>
-          Nigerian history and heritage
-        </li>
-        <li class="flex items-start text-gray-300 text-sm md:text-base">
-          <span class="text-[#ca6b24] mr-3 mt-0.5 flex-shrink-0">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-          </span>
-          Civic knowledge and governance
-        </li>
-        <li class="flex items-start text-gray-300 text-sm md:text-base">
-          <span class="text-[#ca6b24] mr-3 mt-0.5 flex-shrink-0">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-          </span>
-          Scoring based on accuracy AND speed
-        </li>
-      </ul>
+                <!-- Social Icons -->
+                <div class="flex items-center gap-3">
+                    <a href="#"
+                        class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition">
+                        <i class="fa-brands fa-x-twitter text-black text-sm"></i>
+                    </a>
+
+                    <a href="#"
+                        class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition">
+                        <i class="fa-brands fa-linkedin-in text-blue-600 text-sm"></i>
+                    </a>
+
+                    <a href="#"
+                        class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition">
+                        <i class="fa-brands fa-instagram text-pink-600 text-sm"></i>
+                    </a>
+
+                    <a href="#"
+                        class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition">
+                        <i class="fa-brands fa-facebook-f text-blue-700 text-sm"></i>
+                    </a>
+
+                    <a href="#"
+                        class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition">
+                        <i class="fa-brands fa-tiktok text-black text-sm"></i>
+                    </a>
+
+                    <a href="#"
+                        class="w-8 h-8 bg-white rounded-full flex items-center justify-center hover:scale-110 transition">
+                        <i class="fa-brands fa-youtube text-red-600 text-sm"></i>
+                    </a>
+                </div>
+
+            </div>
+        </marquee>
     </div>
 
-    <button class="px-10 py-3 bg-[#5c2e14] border border-[#85421c] text-white font-medium rounded-full hover:bg-[#6e3718] active:scale-[0.98] transition-all duration-200">
-      Start Quiz
-    </button>
 
-  </div>
+    <header class="fixed top-14 left-0 w-full z-40">
+        <div
+            class="relative w-full bg-[#1b1b1b]/60 backdrop-blur-xl border-b border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
+            <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+                <a href="./">
+                    <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766409594/sword_TV_logo_y9mnja.png"
+                        width="150" class="rounded-full" />
+                </a>
+
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#">Home</a>
+                    <a href="#" class="text-orange-400">Programmes</a>
+                    <a href="#" class="font-semibold">Partnership</a>
+                    <a href="#">Blog</a>
+                    <a href="#">Contact us</a>
+                </nav>
+
+                <button id="openGuestModal"
+                    class="hidden md:block bg-orange-500 text-black font-semibold px-6 py-2 rounded-full hover:bg-orange-600 transition">
+                    Become a Guest
+                </button>
+
+                <button id="openMenu" class="md:hidden text-3xl">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= MOBILE MENU ================= -->
+    <div id="mobileMenu" class="fixed inset-0 bg-black/70 backdrop-blur-lg z-50 hidden items-center justify-center">
+
+        <div class="bg-[#1b1b1b] w-72 rounded-xl p-6 relative">
+            <button id="closeMenu" class="absolute top-4 right-4 text-xl">✕</button>
+
+            <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766409594/sword_TV_logo_y9mnja.png"
+                width="150" class="rounded-full mx-auto mb-6" />
+
+            <div class="flex flex-col space-y-4 text-center">
+                <a href="#">Home</a>
+                <a href="#" class="text-orange-400">Programmes</a>
+                <a href="#">Partnership</a>
+                <a href="#">Blog</a>
+                <a href="#">Contact us</a>
+
+                <button id="openGuestModalMobile" class="bg-orange-400 text-black px-5 py-2 rounded-full font-semibold mt-4">
+                    Become a Guest
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- blog content -->
+
+
+    <section class="">
+        <div class="lg:px-56 md:px-32 px-10 py-24">
+            <img src="https://via.placeholder.com/800x400" alt="Marriage Reality Show">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 py-10 w-full">
+            <div class="grid lg:grid-cols-3 gap-10 items-start">
+                <!-- LEFT SIDE -->
+                <div class="lg:col-span-2">
+                    <!-- Badge -->
+                    <div class="flex items-center gap-3 mb-6">
+                        <span
+                            class="bg-orange-500/20 border border-orange-400 text-orange-300 px-4 py-2 rounded-full text-sm flex items-center gap-2">
+                            <i class="fa-regular fa-calendar"></i>
+                            -
+                        </span>
+                    </div>
+
+                    <!-- Title -->
+                    <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+                        Marriage Realities Show
+                    </h1>
+
+                    <!-- Tag -->
+                    <span class="border border-orange-400 text-white px-4 py-1 rounded-full text-sm">
+                        Overview
+                    </span>
+
+                    <!-- Description -->
+                    <p class="text-gray-300 mt-6 text-xl max-w-xl">
+                        Pre-marriage issues. Happy marriages. Struggling marriages. Divorce and remarriage. Life
+                        experiences of older couples.
+                    </p>
+
+                    <!-- About -->
+                    <h2 class="text-3xl font-bold text-white mt-10 mb-4">
+                        About the Show
+                    </h2>
+
+                    <p class="text-gray-300 text-xl mb-4">
+                        The Marriage Realities Show is a premium, audience-based talk show that explores all aspects of
+                        marriage and family life. It provides a safe platform for participants to express their
+                        experiences, share stories, and seek guidance.
+                    </p>
+
+                    <!-- Button -->
+                    <div class="flex text-center items-center gap-8 flex-col md:flex-row mt-8">
+                        <button id="becomeGuestBtn"
+                            class="bg-orange-500 text-center hover:bg-orange-600 text-white px-8 py-4 rounded-full font-semibold flex items-center gap-3 transition">
+                            Become a Guest
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                        <a href="#"
+                            class="bg-transparent border border-orange-500 hover:bg-orange-500 text-white px-8 py-4 rounded-full font-semibold flex items-center gap-3 transition">
+                            Share Your Story
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                </div>
+
+                <!-- RIGHT SIDE SHARE -->
+                <div class="lg:text-right">
+                    <h3 class="text-white text-lg font-semibold mb-4">Share Show</h3>
+
+                    <div class="flex lg:justify-end gap-4">
+                        <button class="bg-white/10 hover:bg-orange-500 w-10 h-10 rounded-full text-white transition">
+                            <i class="fab fa-tiktok"></i>
+                        </button>
+
+                        <button class="bg-white/10 hover:bg-orange-500 w-10 h-10 rounded-full text-white transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </button>
+
+                        <button class="bg-white/10 hover:bg-orange-500 w-10 h-10 rounded-full text-white transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </button>
+
+                        <button class="bg-white/10 hover:bg-orange-500 w-10 h-10 rounded-full text-white transition">
+                            <i class="fab fa-x-twitter"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= GUEST REGISTRATION MODAL ================= -->
+    <div id="guestModal" class="fixed inset-0 z-[999] hidden flex items-center justify-center bg-black/60 backdrop-blur-lg px-4 py-6 overflow-y-auto">
+
+        <!-- MODAL CARD -->
+        <div class="bg-white w-full max-w-3xl rounded-2xl p-6 sm:p-10 shadow-2xl relative my-auto">
+
+            <!-- CLOSE BUTTON -->
+            <button id="closeGuestModal" class="absolute top-4 right-4 text-gray-400 hover:text-black text-xl transition">
+                ✕
+            </button>
+
+            <!-- RETURN BUTTON -->
+            <button id="returnHomeBtn" class="text-orange-500 text-xs sm:text-sm border border-orange-400 px-4 py-1.5 rounded-full mb-6 hover:bg-orange-50 transition">
+                Return Home
+            </button>
+
+            <!-- STEP INDICATOR -->
+            <p class="text-xs text-gray-500 mb-2">
+                Section <span id="currentStep">1</span> of 7
+            </p>
+
+            <!-- PROGRESS BAR -->
+            <div class="w-full h-2 bg-gray-200 rounded-full mb-8">
+                <div id="progressBar" class="h-2 bg-orange-400 rounded-full transition-all duration-300" style="width:14.28%">
+                </div>
+            </div>
+
+            <!-- STEPS CONTAINER -->
+            <div class="space-y-6 max-h-[60vh] overflow-y-auto pr-2">
+
+                <!-- STEP 1: Participation Type -->
+                <div class="step active">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">
+                        How would you like to participate?
+                    </h2>
+
+                    <div class="relative">
+                        <select id="participationType" class="w-full px-4 py-3.5 bg-white border border-gray-300 rounded-lg text-gray-600 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 cursor-pointer pr-10">
+                            <option value="" disabled selected>Select participation category</option>
+                            <option value="share-relationship">Share My Relationship/Marriage Experience (Live on Stage)</option>
+                            <option value="submit-story">Submit My Story (To Be Read)</option>
+                            <option value="live-audience">Join Live Audience</option>
+                            <option value="connect-virtually">Connect Virtually</option>
+                            <option value="sponsor-partner">Sponsor / Partner</option>
+                            <option value="volunteer">Volunteer</option>
+                        </select>
+                        
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                            <svg class="h-5 w-5 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+                                <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 2: Personal Information -->
+                <div class="step hidden">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">
+                        Personal Information
+                    </h2>
+
+                    <form class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
+                        
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-medium text-gray-700">Full Name <span class="text-red-500">*</span></label>
+                            <input type="text" id="fullName" placeholder="Enter your full name" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 transition-shadow text-sm" required />
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-medium text-gray-700">Phone Number <span class="text-red-500">*</span></label>
+                            <input type="tel" id="phone" placeholder="+234..." class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 transition-shadow text-sm" required />
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-medium text-gray-700">Email Address <span class="text-red-500">*</span></label>
+                            <input type="email" id="email" placeholder="Enter email address" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 transition-shadow text-sm" required />
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-medium text-gray-700">Gender</label>
+                            <div class="relative">
+                                <select id="gender" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 cursor-pointer transition-shadow text-sm pr-10">
+                                    <option value="" disabled selected>Select your gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                                    <svg class="h-4 w-4 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+                                        <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-medium text-gray-700">Age Range</label>
+                            <div class="relative">
+                                <select id="ageRange" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 cursor-pointer transition-shadow text-sm pr-10">
+                                    <option value="" disabled selected>Select age range</option>
+                                    <option value="under-18">Under 18</option>
+                                    <option value="18-24">18 - 24</option>
+                                    <option value="25-34">25 - 34</option>
+                                    <option value="35-plus">35+</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                                    <svg class="h-4 w-4 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+                                        <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-medium text-gray-700">State</label>
+                            <div class="relative">
+                                <select id="state" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 cursor-pointer transition-shadow text-sm pr-10">
+                                    <option value="" disabled selected>Select your state</option>
+                                    <option value="lagos">Lagos</option>
+                                    <option value="fct">Abuja (FCT)</option>
+                                    <option value="oyo">Oyo</option>
+                                    <option value="kwara">Kwara</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                                    <svg class="h-4 w-4 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+                                        <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-medium text-gray-700">Country</label>
+                            <div class="relative">
+                                <select id="country" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 cursor-pointer transition-shadow text-sm pr-10">
+                                    <option value="" disabled selected>Select your country</option>
+                                    <option value="ng">Nigeria</option>
+                                    <option value="gh">Ghana</option>
+                                    <option value="uk">United Kingdom</option>
+                                    <option value="us">United States</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                                    <svg class="h-4 w-4 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+                                        <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-medium text-gray-700">Accommodation Needed?</label>
+                            <div class="relative">
+                                <select id="accommodation" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 cursor-pointer transition-shadow text-sm pr-10">
+                                    <option value="" disabled selected>Select an option</option>
+                                    <option value="yes">Yes, I need accommodation</option>
+                                    <option value="no">No, I don't need accommodation</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                                    <svg class="h-4 w-4 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+                                        <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-medium text-gray-700">Marital Status</label>
+                            <div class="relative">
+                                <select id="maritalStatus" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 cursor-pointer transition-shadow text-sm pr-10">
+                                    <option value="" disabled selected>Select marital status</option>
+                                    <option value="single-no-relationship">Single (Not in a Relationship)</option>
+                                    <option value="single-relationship">Single (In a Relationship)</option>
+                                    <option value="engaged">Engaged</option>
+                                    <option value="married">Married</option>
+                                    <option value="cohabiting">Cohabiting</option>
+                                    <option value="separated">Separated</option>
+                                    <option value="divorced">Divorced</option>
+                                    <option value="remarried">Remarried</option>
+                                    <option value="widowed">Widowed</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                                    <svg class="h-4 w-4 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+                                        <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+                <!-- STEP 3: Experience Type -->
+                <div class="step hidden">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">
+                        Experience Type
+                    </h2>
+
+                    <div class="space-y-1.5">
+                        <label class="block text-sm font-medium text-gray-700">
+                            What kind of experience are you sharing?
+                        </label>
+                        <div class="relative w-full">
+                            <select id="experienceType" class="w-full px-4 py-3.5 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 cursor-pointer transition-shadow text-sm pr-10">
+                                <option value="" disabled selected>Select an option</option>
+                                <option value="positive-healthy">Positive / Healthy Relationship or Marriage</option>
+                                <option value="challenging-difficult">Challenging / Difficult Experience</option>
+                                <option value="broken-painful">Broken / Painful Experience</option>
+                                <option value="lessons-growth">Lessons, Growth & Wisdom</option>
+                            </select>
+                            
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                                <svg class="h-4 w-4 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+                                    <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 4: Story Section -->
+                <div class="step hidden">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">
+                        Story Section
+                    </h2>
+
+                    <form class="space-y-5">
+                        
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-medium text-gray-700">
+                                Tell us your story:
+                            </label>
+                            <textarea 
+                                id="story"
+                                rows="5"
+                                placeholder="Enter your story here..." 
+                                class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 transition-shadow text-sm resize-none"
+                            ></textarea>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-medium text-gray-700">
+                                Are you open to speaking live on stage?
+                            </label>
+                            <div class="relative">
+                                <select id="liveStage" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 cursor-pointer transition-shadow text-sm pr-10">
+                                    <option value="" disabled selected>Select an option</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="no">No</option>
+                                    <option value="private-recording">Prefer private recording</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                                    <svg class="h-4 w-4 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+                                        <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-medium text-gray-700">
+                                Interested in live interaction with the host?
+                            </label>
+                            <div class="relative">
+                                <select id="hotSeat" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 cursor-pointer transition-shadow text-sm pr-10">
+                                    <option value="" disabled selected>Select an option</option>
+                                    <option value="yes">Yes (Hot Seat)</option>
+                                    <option value="no">No</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                                    <svg class="h-4 w-4 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+                                        <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+                <!-- STEP 5: Virtual Participation -->
+                <div class="step hidden">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">
+                        Virtual Participation
+                    </h2>
+
+                    <form class="space-y-5">
+                        
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-medium text-gray-700">
+                                Would you like to submit a question or story online?
+                            </label>
+                            <div class="relative w-full">
+                                <select id="virtualParticipation" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 cursor-pointer transition-shadow text-sm pr-10">
+                                    <option value="" disabled selected>Select an option</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="no">No</option>
+                                </select>
+                                
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                                    <svg class="h-4 w-4 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+                                        <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-medium text-gray-700">
+                                Share details below:
+                            </label>
+                            <textarea 
+                                id="virtualDetails"
+                                rows="5"
+                                placeholder="Enter here..." 
+                                class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 transition-shadow text-sm resize-none"
+                            ></textarea>
+                        </div>
+
+                    </form>
+                </div>
+
+                <!-- STEP 6: Sponsorship -->
+                <div class="step hidden">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">
+                        Sponsorship/Partnership
+                    </h2>
+
+                    <form class="space-y-6">
+                        
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-medium text-gray-700">
+                                Are you interested in sponsoring or partnering?
+                            </label>
+                            <div class="relative w-full">
+                                <select id="sponsorshipInterest" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 cursor-pointer transition-shadow text-sm pr-10">
+                                    <option value="" disabled selected>Select an option</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="no">No</option>
+                                </select>
+                                
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                                    <svg class="h-4 w-4 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+                                        <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="sponsorshipDetails" class="hidden space-y-4">
+                            <div class="text-sm font-medium text-orange-500">
+                                If Yes:
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div class="space-y-1.5">
+                                    <label class="block text-sm font-medium text-gray-700">Organization / Brand Name:</label>
+                                    <input 
+                                        id="brandName"
+                                        type="text" 
+                                        placeholder="Enter here" 
+                                        class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 transition-shadow text-sm" 
+                                    />
+                                </div>
+
+                                <div class="space-y-1.5">
+                                    <label class="block text-sm font-medium text-gray-700">Sponsorship Type:</label>
+                                    <div class="relative">
+                                        <select id="sponsorshipType" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 cursor-pointer transition-shadow text-sm pr-10">
+                                            <option value="" disabled selected>Select an option</option>
+                                            <option value="financial">Financial</option>
+                                            <option value="product-placement">Product placement</option>
+                                            <option value="media-support">Media support</option>
+                                        </select>
+                                        
+                                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                                            <svg class="h-4 w-4 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
+                                                <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+                <!-- STEP 7: Volunteer & Consent -->
+                <div class="step hidden">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">
+                        Final Details
+                    </h2>
+
+                    <form class="space-y-6">
+                        
+                        <div class="space-y-1.5">
+                            <label class="block text-sm font-medium text-gray-700">Would you like to volunteer?</label>
+                            <div class="relative">
+                                <select id="volunteerInterest" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 cursor-pointer transition-shadow text-sm pr-10">
+                                    <option value="" disabled selected>Select an option</option>
+                                    <option value="yes">Yes</option>
+                                    <option value="no">No</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="volunteerArea" class="hidden space-y-1.5">
+                            <label class="block text-sm font-medium text-gray-700">Preferred Area:</label>
+                            <div class="relative">
+                                <select id="volunteerType" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 cursor-pointer transition-shadow text-sm pr-10">
+                                    <option value="" disabled selected>Select an option</option>
+                                    <option value="event-management">Event management</option>
+                                    <option value="guest-handling">Guest handling</option>
+                                    <option value="media-coverage">Media/coverage</option>
+                                    <option value="logistics">Logistics</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3 border-t pt-4">
+                            <div class="space-y-1.5">
+                                <label class="block text-sm font-medium text-gray-700">Do you consent to your story being shared?</label>
+                                <div class="relative">
+                                    <select id="consent" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 cursor-pointer transition-shadow text-sm pr-10">
+                                        <option value="" disabled selected>Select an option</option>
+                                        <option value="yes">Yes, I consent</option>
+                                        <option value="no">No, I do not consent</option>
+                                    </select>
+                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="space-y-1.5">
+                                <label class="block text-sm font-medium text-gray-700">Signature (Type Name) <span class="text-red-500">*</span></label>
+                                <input 
+                                    type="text" 
+                                    id="signature"
+                                    placeholder="Enter your name" 
+                                    class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-800 placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400"
+                                    required
+                                />
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- FOOTER BUTTONS -->
+            <div class="flex flex-col sm:flex-row gap-4 sm:justify-between items-center mt-10 pt-6 border-t border-gray-100">
+
+                <button id="prevStepBtn" class="w-full sm:w-auto border border-orange-400 text-orange-500 px-8 py-3 rounded-full font-medium hover:bg-orange-50 transition" disabled>
+                    Previous
+                </button>
+
+                <button id="nextStepBtn" class="w-full sm:w-auto bg-orange-400 text-white px-8 py-3 rounded-full font-medium hover:bg-orange-500 transition">
+                    Next
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Success Message Modal -->
+    <div id="successModal" class="fixed inset-0 z-[1000] hidden flex items-center justify-center bg-black/60 backdrop-blur-lg px-4">
+        <div class="w-full max-w-md bg-white rounded-2xl shadow-2xl p-6 relative flex flex-col items-center text-center">
+            
+            <button id="closeSuccessModal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+
+            <div class="mt-6 mb-8">
+                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+                
+                <h3 class="text-xl font-bold text-gray-800 mb-4">
+                    Thank You!
+                </h3>
+                <p class="text-sm text-gray-500 leading-relaxed max-w-xs mx-auto">
+                    Your registration has been successfully submitted. We have received your details and will get in touch with you shortly.
+                </p>
+            </div>
+
+            <button id="returnHomeSuccess" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 px-6 rounded-full shadow-md shadow-orange-500/20 hover:shadow-lg transition duration-200 text-sm">
+                Return to Home
+            </button>
+
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // ==================== MODAL STATE ====================
+        let currentStep = 1;
+        const totalSteps = 7;
+        const guestModal = document.getElementById('guestModal');
+        const successModal = document.getElementById('successModal');
+
+        // Form data storage
+        const formData = {};
+
+        // ==================== MODAL OPEN/CLOSE ====================
+        function openGuestModal() {
+            guestModal.classList.remove('hidden');
+            currentStep = 1;
+            updateStep();
+        }
+
+        function closeGuestModal() {
+            guestModal.classList.add('hidden');
+            resetForm();
+        }
+
+        function resetForm() {
+            currentStep = 1;
+            document.querySelectorAll('.step').forEach(step => step.classList.add('hidden'));
+            document.querySelectorAll('.step')[0].classList.remove('hidden');
+            document.getElementById('nextStepBtn').disabled = false;
+            document.getElementById('prevStepBtn').disabled = true;
+        }
+
+        // Open modal buttons
+        document.getElementById('openGuestModal').addEventListener('click', openGuestModal);
+        document.getElementById('openGuestModalMobile').addEventListener('click', () => {
+            document.getElementById('mobileMenu').classList.add('hidden');
+            openGuestModal();
+        });
+        document.getElementById('becomeGuestBtn').addEventListener('click', openGuestModal);
+
+        // Close modal buttons
+        document.getElementById('closeGuestModal').addEventListener('click', closeGuestModal);
+        document.getElementById('returnHomeBtn').addEventListener('click', closeGuestModal);
+        document.getElementById('closeSuccessModal').addEventListener('click', () => {
+            successModal.classList.add('hidden');
+        });
+        document.getElementById('returnHomeSuccess').addEventListener('click', () => {
+            successModal.classList.add('hidden');
+            closeGuestModal();
+        });
+
+        // ==================== STEP NAVIGATION ====================
+        function updateStep() {
+            // Hide all steps
+            document.querySelectorAll('.step').forEach(step => step.classList.add('hidden'));
+            
+            // Show current step
+            const steps = document.querySelectorAll('.step');
+            steps[currentStep - 1].classList.remove('hidden');
+
+            // Update progress bar
+            const progress = (currentStep / totalSteps) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            
+            // Update step counter
+            document.getElementById('currentStep').textContent = currentStep;
+
+            // Update button states
+            document.getElementById('prevStepBtn').disabled = currentStep === 1;
+            const nextBtn = document.getElementById('nextStepBtn');
+            nextBtn.textContent = currentStep === totalSteps ? 'Submit' : 'Next';
+            nextBtn.disabled = false;
+
+            // Show sponsorship details if needed
+            if (currentStep === 6) {
+                const sponsorshipSelect = document.getElementById('sponsorshipInterest');
+                const detailsDiv = document.getElementById('sponsorshipDetails');
+                if (sponsorshipSelect.value === 'yes') {
+                    detailsDiv.classList.remove('hidden');
+                }
+            }
+
+            // Show volunteer area if needed
+            if (currentStep === 7) {
+                const volunteerSelect = document.getElementById('volunteerInterest');
+                const areaDiv = document.getElementById('volunteerArea');
+                if (volunteerSelect && volunteerSelect.value === 'yes') {
+                    areaDiv.classList.remove('hidden');
+                }
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        document.getElementById('prevStepBtn').addEventListener('click', () => {
+            if (currentStep > 1) {
+                currentStep--;
+                updateStep();
+            }
+        });
+
+        document.getElementById('nextStepBtn').addEventListener('click', () => {
+            // Validate current step
+            if (validateStep(currentStep)) {
+                if (currentStep < totalSteps) {
+                    currentStep++;
+                    updateStep();
+                } else {
+                    submitForm();
+                }
+            }
+        });
+
+        // ==================== FORM VALIDATION ====================
+        function validateStep(step) {
+            const fields = {
+                1: ['participationType'],
+                2: ['fullName', 'phone', 'email', 'gender', 'ageRange', 'state', 'country', 'accommodation', 'maritalStatus'],
+                3: ['experienceType'],
+                4: ['story', 'liveStage', 'hotSeat'],
+                5: ['virtualParticipation'],
+                6: [],
+                7: ['signature', 'consent']
+            };
+
+            for (let fieldId of fields[step]) {
+                const field = document.getElementById(fieldId);
+                if (!field.value) {
+                    alert(`Please fill in all required fields on this step.`);
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        // ==================== SPONSORSHIP TOGGLE ====================
+        document.getElementById('sponsorshipInterest').addEventListener('change', (e) => {
+            const detailsDiv = document.getElementById('sponsorshipDetails');
+            if (e.target.value === 'yes') {
+                detailsDiv.classList.remove('hidden');
+            } else {
+                detailsDiv.classList.add('hidden');
+            }
+        });
+
+        // ==================== VOLUNTEER TOGGLE ====================
+        document.getElementById('volunteerInterest').addEventListener('change', (e) => {
+            const areaDiv = document.getElementById('volunteerArea');
+            if (e.target.value === 'yes') {
+                areaDiv.classList.remove('hidden');
+            } else {
+                areaDiv.classList.add('hidden');
+            }
+        });
+
+        // ==================== FORM SUBMISSION ====================
+        function submitForm() {
+            // Collect form data
+            const data = {
+                participationType: document.getElementById('participationType').value,
+                fullName: document.getElementById('fullName').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                gender: document.getElementById('gender').value,
+                ageRange: document.getElementById('ageRange').value,
+                state: document.getElementById('state').value,
+                country: document.getElementById('country').value,
+                accommodation: document.getElementById('accommodation').value,
+                maritalStatus: document.getElementById('maritalStatus').value,
+                experienceType: document.getElementById('experienceType').value,
+                story: document.getElementById('story').value,
+                liveStage: document.getElementById('liveStage').value,
+                hotSeat: document.getElementById('hotSeat').value,
+                virtualParticipation: document.getElementById('virtualParticipation').value,
+                virtualDetails: document.getElementById('virtualDetails').value,
+                sponsorshipInterest: document.getElementById('sponsorshipInterest').value,
+                brandName: document.getElementById('brandName').value,
+                sponsorshipType: document.getElementById('sponsorshipType').value,
+                volunteerInterest: document.getElementById('volunteerInterest').value,
+                volunteerType: document.getElementById('volunteerType').value,
+                consent: document.getElementById('consent').value,
+                signature: document.getElementById('signature').value,
+                submittedAt: new Date().toISOString()
+            };
+
+            // Log form data (in production, send to server)
+            console.log('Form submitted:', data);
+
+            // Show success modal
+            successModal.classList.remove('hidden');
+            
+            // Reset form
+            setTimeout(() => {
+                resetForm();
+            }, 1000);
+        }
+
+        // ==================== MOBILE MENU ====================
+        document.getElementById('openMenu').addEventListener('click', () => {
+            document.getElementById('mobileMenu').classList.remove('hidden');
+            document.getElementById('mobileMenu').classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        });
+
+        document.getElementById('closeMenu').addEventListener('click', () => {
+            document.getElementById('mobileMenu').classList.add('hidden');
+            document.getElementById('mobileMenu').classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        });
+
+        document.getElementById('mobileMenu').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('mobileMenu')) {
+                document.getElementById('mobileMenu').classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Initialize
+        resetForm();
+    </script>
 
 </body>
+
 </html>
