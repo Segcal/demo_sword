@@ -3,88 +3,97 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quiz Interface - IYMF</title>
+  <title>Prizes Section</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-black text-white min-h-screen font-sans p-4 md:p-8 flex flex-col items-center select-none">
+<div class="bg-neutral-950 text-white font-sans min-h-screen flex items-center justify-center p-4 md:p-8">
 
-  <div class="w-full max-w-5xl flex justify-between items-center mb-4">
-    <button class="flex items-center text-gray-400 hover:text-white transition duration-200 text-sm font-medium">
-      <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-      </svg>
-      Back to Home
-    </button>
-
-    <button class="flex items-center bg-[#25140b] border border-[#402313] hover:bg-[#341d10] text-gray-300 hover:text-white px-4 py-2 rounded-full transition duration-200 text-sm font-medium">
-      <svg class="w-4 h-4 mr-2 text-[#ca6b24]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-      </svg>
-      View Rankings
-    </button>
-  </div>
-
-  <div class="bg-[#24130a] border border-[#422211] px-6 py-2.5 rounded-full flex items-center gap-4 mb-6 shadow-md">
-    <div class="text-center">
-      <span class="text-xl md:text-2xl font-bold block tracking-wider leading-none">43</span>
-      <span class="text-[10px] text-gray-400 uppercase tracking-wider">Minutes</span>
-    </div>
-    <span class="text-xl md:text-2xl font-bold text-gray-400 leading-none mb-4">:</span>
-    <div class="text-center">
-      <span class="text-xl md:text-2xl font-bold block tracking-wider leading-none">12</span>
-      <span class="text-[10px] text-gray-400 uppercase tracking-wider">Seconds</span>
-    </div>
-  </div>
-
-  <div class="w-full max-w-5xl space-y-4">
+  <div class="max-w-6xl w-full mx-auto space-y-16">
     
-    <div class="w-full bg-[#140b06] border border-[#24150c] rounded-xl p-5">
-      <h3 class="text-base md:text-lg font-semibold tracking-wide text-gray-200">
-        Question 1 of 20
-      </h3>
-    </div>
-
-    <div class="w-full bg-[#140b06] border border-[#24150c] rounded-3xl p-6 md:p-10 flex flex-col">
-      
-      <h2 class="text-xl md:text-2xl font-semibold tracking-wide text-white mb-1">
-        What is the meaning of 'Omoluabi' in Yoruba culture?
+    <section class="text-center">
+      <h2 class="text-3xl md:text-5xl font-extrabold text-amber-500 tracking-wide mb-10 drop-shadow-md">
+        Grand Prize
       </h2>
-      <p class="text-xs md:text-sm text-gray-500 mb-8">
-        Select the correct answer
-      </p>
-
-      <div class="space-y-4 flex-1">
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
         
-        <label class="flex items-center bg-[#190e07] border border-[#2a170b] rounded-xl p-4 cursor-pointer hover:bg-[#201209] transition duration-150 group">
-          <input type="radio" name="quiz-option" class="accent-[#ca6b24] w-5 h-5 bg-transparent border-gray-600 border-2 rounded-full mr-4 checked:bg-[#ca6b24]" />
-          <span class="text-sm md:text-base text-gray-300 group-hover:text-white transition">Genesis</span>
-        </label>
+        <div class="group relative bg-gradient-to-b from-amber-950/40 to-neutral-900 border border-amber-900/50 rounded-2xl p-6 overflow-hidden transition-all duration-300 hover:scale-[1.03] hover:border-amber-500/50 flex flex-col justify-between min-h-[380px] shadow-xl">
+          <div class="absolute top-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-amber-500 flex items-center justify-center shadow-lg border border-amber-300">
+            <span class="text-xs text-neutral-950">🏆</span>
+          </div>
+          <div class="mt-8 flex-grow flex items-center justify-center">
+            <img src="https://via.placeholder.com/250x250/301505/FFFFFF?text=Medal+Placeholder" alt="Bible Personality Medal" class="max-h-52 object-contain rounded-xl">
+          </div>
+          <h3 class="text-lg font-black tracking-wider uppercase text-white mt-4">
+            Bible Personality <br> <span class="text-amber-400">Of The Year</span>
+          </h3>
+        </div>
 
-        <label class="flex items-center bg-[#190e07] border border-[#2a170b] rounded-xl p-4 cursor-pointer hover:bg-[#201209] transition duration-150 group">
-          <input type="radio" name="quiz-option" class="accent-[#ca6b24] w-5 h-5 bg-transparent border-gray-600 border-2 rounded-full mr-4" />
-          <span class="text-sm md:text-base text-gray-300 group-hover:text-white transition">Exodus</span>
-        </label>
+        <div class="group relative bg-gradient-to-b from-amber-900/60 to-neutral-900 border-2 border-amber-500/80 rounded-2xl p-6 overflow-hidden transition-all duration-300 hover:scale-[1.03] flex flex-col justify-between min-h-[380px] shadow-2xl shadow-amber-950/50">
+          <div class="absolute top-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-amber-500 flex items-center justify-center shadow-lg border border-amber-300">
+            <span class="text-xs text-neutral-950">👑</span>
+          </div>
+          <div class="mt-8 flex-grow flex items-center justify-center">
+            <img src="https://via.placeholder.com/300x180/402005/FFFFFF?text=White+SUV+Placeholder" alt="Brand New SUV" class="max-h-52 object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.6)]">
+          </div>
+          <h3 class="text-xl font-black tracking-wider uppercase text-amber-400 mt-4">
+            Brand New SUV
+          </h3>
+        </div>
 
-        <label class="flex items-center bg-[#190e07] border border-[#2a170b] rounded-xl p-4 cursor-pointer hover:bg-[#201209] transition duration-150 group">
-          <input type="radio" name="quiz-option" class="accent-[#ca6b24] w-5 h-5 bg-transparent border-gray-600 border-2 rounded-full mr-4" />
-          <span class="text-sm md:text-base text-gray-300 group-hover:text-white transition">Matthew</span>
-        </label>
-
-        <label class="flex items-center bg-[#190e07] border border-[#2a170b] rounded-xl p-4 cursor-pointer hover:bg-[#201209] transition duration-150 group">
-          <input type="radio" name="quiz-option" class="accent-[#ca6b24] w-5 h-5 bg-transparent border-gray-600 border-2 rounded-full mr-4" />
-          <span class="text-sm md:text-base text-gray-300 group-hover:text-white transition">Revelation</span>
-        </label>
+        <div class="group relative bg-gradient-to-b from-amber-950/40 to-neutral-900 border border-amber-900/50 rounded-2xl p-6 overflow-hidden transition-all duration-300 hover:scale-[1.03] hover:border-amber-500/50 flex flex-col justify-between min-h-[380px] shadow-xl">
+          <div class="absolute top-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-amber-500 flex items-center justify-center shadow-lg border border-amber-300">
+            <span class="text-xs text-neutral-950">✨</span>
+          </div>
+          <div class="mt-8 flex-grow flex items-center justify-center">
+            <img src="https://via.placeholder.com/250x200/301505/FFFFFF?text=Cash+Stack+Placeholder" alt="Cash Prize" class="max-h-52 object-contain">
+          </div>
+          <h3 class="text-xl font-black tracking-wider uppercase text-white mt-4">
+            N10 Million <br> <span class="text-amber-400">Cash Prize</span>
+          </h3>
+        </div>
 
       </div>
+    </section>
 
-      <div class="flex justify-end mt-8">
-        <button class="px-8 py-2.5 bg-[#5c2e14] border border-[#85421c] text-white text-sm font-medium rounded-full hover:bg-[#6e3718] active:scale-[0.98] transition-all duration-200">
-          Next Question
-        </button>
+    <section class="text-center">
+      <h2 class="text-3xl md:text-5xl font-extrabold text-amber-500/90 tracking-wide mb-10 drop-shadow-md">
+        Other Prizes
+      </h2>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 lg:gap-8">
+        
+        <div class="group bg-gradient-to-b from-indigo-950/60 to-neutral-900 border border-indigo-900/50 rounded-2xl p-6 transition-all duration-300 hover:scale-[1.02] hover:border-indigo-500/40 flex flex-col justify-between min-h-[320px] shadow-lg">
+          <div class="flex-grow flex items-center justify-center">
+            <img src="https://via.placeholder.com/220x180/201040/FFFFFF?text=Cash+Gift+Box" alt="1st Runner Up Prize" class="max-h-44 object-contain">
+          </div>
+          <h4 class="text-lg font-black tracking-wider uppercase text-indigo-300 mt-4">
+            1st Runner Up
+          </h4>
+        </div>
+
+        <div class="group bg-gradient-to-b from-amber-950/40 to-neutral-900 border border-amber-900/40 rounded-2xl p-6 transition-all duration-300 hover:scale-[1.02] hover:border-amber-500/40 flex flex-col justify-between min-h-[320px] shadow-lg">
+          <div class="flex-grow flex items-center justify-center">
+            <img src="https://via.placeholder.com/220x180/301505/FFFFFF?text=Cash+Pile" alt="2nd Runner Up Prize" class="max-h-44 object-contain">
+          </div>
+          <h4 class="text-lg font-black tracking-wider uppercase text-amber-400 mt-4">
+            2nd Runner Up
+          </h4>
+        </div>
+
+        <div class="group bg-gradient-to-b from-rose-950/40 to-neutral-900 border border-rose-900/40 rounded-2xl p-6 transition-all duration-300 hover:scale-[1.02] hover:border-rose-500/40 flex flex-col justify-between min-h-[320px] shadow-lg sm:col-span-2 md:col-span-1">
+          <div class="flex-grow flex items-center justify-center">
+            <img src="https://via.placeholder.com/220x180/401015/FFFFFF?text=Smaller+Cash+Pile" alt="Other Housemates Prize" class="max-h-44 object-contain">
+          </div>
+          <h4 class="text-lg font-black tracking-wider uppercase text-rose-400 mt-4">
+            Other Housemates
+          </h4>
+        </div>
+
       </div>
+    </section>
 
-    </div>
   </div>
 
-</body>
+</div>
 </html>
