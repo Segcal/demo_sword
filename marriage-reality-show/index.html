@@ -248,9 +248,12 @@
 
     <section class="w-full py-16 bg-section-overlay glass-container">
         <div class="max-w-6xl mx-auto px-4 text-center">
-
+ <h1 class="text-center text-orange-500 text-2xl md:text-6xl mb-6">Key Highlights</h1>
             <!-- Cards Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
+
+
+               
 
                 <!-- Card 1 -->
                 <div
@@ -491,83 +494,97 @@
         <div class="relative z-10 text-center mb-8 sm:mb-10 px-4">
             <h1 style="font-family:'Bebas Neue',sans-serif; letter-spacing:0.06em;"
                 class="text-5xl sm:text-6xl lg:text-7xl text-orange-400 mb-3">
-                Sword TV Form
+                Marriage Realities Show Invitation Form
             </h1>
             <p class="text-white/55 text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
-                Submit your questions, experiences, feedback, suggestions, or share short video testimonies or evidence
+               Submit questions, share stories, and participate in the show.
             </p>
         </div>
 
         <!-- Form Card -->
         <div class="form-card relative z-10 w-full max-w-2xl p-6 sm:p-8 lg:p-10">
 
-            <form id="swordForm" novalidate>
+           <form id="swordForm" novalidate class="bg-[#fdf8f4] border border-[#f5ebe1] rounded-3xl p-6 md:p-8 max-w-4xl mx-auto shadow-sm">
 
-                <!-- Row 1: Name + Email -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-5">
-                    <div>
-                        <label class="field-label" for="name">Name<span class="required">*</span></label>
-                        <input class="form-input" id="name" name="name" type="text"
-                            placeholder="Type your full name here..." required />
-                        <p class="text-red-500 text-xs mt-1 hidden" id="nameErr">Name is required</p>
-                    </div>
-                    <div>
-                        <label class="field-label" for="email">Email<span class="required">*</span></label>
-                        <input class="form-input" id="email" name="email" type="email"
-                            placeholder="Type your email address here..." required />
-                        <p class="text-red-500 text-xs mt-1 hidden" id="emailErr">Valid email is required</p>
-                    </div>
-                </div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-5">
+    <div>
+      <label class="block text-gray-800 font-medium text-sm mb-2" for="name">Name<span class="text-red-500 ml-0.5">*</span></label>
+      <input class="w-full bg-white border border-gray-200/80 rounded-xl px-4 py-3 text-gray-700 placeholder-gray-400 text-sm focus:outline-none focus:border-[#f97316] transition" 
+        id="name" name="name" type="text" placeholder="Type your full name here..." required />
+      <p class="text-red-500 text-xs mt-1 hidden" id="nameErr">Name is required</p>
+    </div>
+    <div>
+      <label class="block text-gray-800 font-medium text-sm mb-2" for="email">Email<span class="text-red-500 ml-0.5">*</span></label>
+      <input class="w-full bg-white border border-gray-200/80 rounded-xl px-4 py-3 text-gray-700 placeholder-gray-400 text-sm focus:outline-none focus:border-[#f97316] transition" 
+        id="email" name="email" type="email" placeholder="Type your email address here..." required />
+      <p class="text-red-500 text-xs mt-1 hidden" id="emailErr">Valid email is required</p>
+    </div>
+  </div>
 
-                <!-- Row 2: Phone + File -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-5">
-                    <div>
-                        <label class="field-label" for="phone">Phone Number</label>
-                        <input class="form-input" id="phone" name="phone" type="tel"
-                            placeholder="Type your phone number here..." />
-                    </div>
-                    <div>
-                        <label class="field-label">Attach images or video here</label>
-                        <label class="file-upload-label" id="fileLabel" for="fileInput">
-                            <span id="fileNames">Click to attach images or video</span>
-                            <svg class="w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor"
-                                stroke-width="2" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828L18 9.828a4 4 0 00-5.656-5.656l-6.586 6.586a6 6 0 108.486 8.486L19 13" />
-                            </svg>
-                        </label>
-                        <input type="file" id="fileInput" name="files" multiple accept="image/*,video/*"
-                            class="sr-only" />
-                    </div>
-                </div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-5">
+    <div>
+      <label class="block text-gray-800 font-medium text-sm mb-2" for="phone">Phone Number</label>
+      <input class="w-full bg-white border border-gray-200/80 rounded-xl px-4 py-3 text-gray-700 placeholder-gray-400 text-sm focus:outline-none focus:border-[#f97316] transition" 
+        id="phone" name="phone" type="tel" placeholder="Type your phone number here..." />
+    </div>
+    <div>
+      <label class="block text-gray-800 font-medium text-sm mb-2" for="maritalStatus">Marital Status</label>
+      <div class="relative">
+        <select class="w-full bg-white border border-gray-200/80 rounded-xl px-4 py-3 text-gray-400 text-sm appearance-none focus:outline-none focus:border-[#f97316] transition cursor-pointer" 
+          id="maritalStatus" name="maritalStatus">
+          <option value="" disabled selected>Select your marital status</option>
+          <option value="single" class="text-gray-700">Single</option>
+          <option value="married" class="text-gray-700">Married</option>
+          <option value="other" class="text-gray-700">Other</option>
+        </select>
+        <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-gray-400 text-xs">
+          ▼
+        </div>
+      </div>
+    </div>
+  </div>
 
-                <!-- Subject -->
-                <div class="mb-5">
-                    <label class="field-label" for="subject">Subject<span class="required">*</span></label>
-                    <input class="form-input" id="subject" name="subject" type="text"
-                        placeholder="Enter your subject..." required />
-                    <p class="text-red-500 text-xs mt-1 hidden" id="subjectErr">Subject is required</p>
-                </div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-5">
+    <div>
+      <label class="block text-gray-800 font-medium text-sm mb-2" for="wishToDo">What do you wish to do?</label>
+      <input class="w-full bg-white border border-gray-200/80 rounded-xl px-4 py-3 text-gray-700 placeholder-gray-400 text-sm focus:outline-none focus:border-[#f97316] transition" 
+        id="wishToDo" name="wishToDo" type="text" placeholder="" />
+    </div>
+    <div>
+      <label class="block text-gray-800 font-medium text-sm mb-2" for="subject">Subject<span class="text-red-500 ml-0.5">*</span></label>
+      <div class="relative">
+        <select class="w-full bg-white border border-gray-200/80 rounded-xl px-4 py-3 text-gray-700 text-sm appearance-none focus:outline-none focus:border-[#f97316] transition cursor-pointer" 
+          id="subject" name="subject" required>
+          <option value="" disabled selected class="text-gray-400">Select a subject...</option>
+          <option value="sponsor">I want to sponsor</option>
+          <option value="testifier">I'm a testifier (for those with real stories)</option>
+          <option value="participate_online">I want to participate online</option>
+          <option value="volunteer">I want to volunteer</option>
+          <option value="other">Other</option>
+        </select>
+        <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-gray-400 text-xs">
+          ▼
+        </div>
+      </div>
+      <p class="text-red-500 text-xs mt-1 hidden" id="subjectErr">Subject is required</p>
+    </div>
+  </div>
 
-                <!-- Message -->
-                <div class="mb-7">
-                    <label class="field-label" for="message">Message<span class="required">*</span></label>
-                    <textarea class="form-input" id="message" name="message" placeholder="Type your message here..."
-                        required></textarea>
-                    <p class="text-red-500 text-xs mt-1 hidden" id="messageErr">Message is required</p>
-                </div>
+  <div class="mb-6">
+    <label class="block text-gray-800 font-medium text-sm mb-2" for="message">Message<span class="text-red-500 ml-0.5">*</span></label>
+    <textarea class="w-full bg-white border border-gray-200/80 rounded-xl px-4 py-3 text-gray-700 placeholder-gray-400 text-sm h-36 resize-none focus:outline-none focus:border-[#f97316] transition" 
+      id="message" name="message" placeholder="" required></textarea>
+    <p class="text-red-500 text-xs mt-1 hidden" id="messageErr">Message is required</p>
+  </div>
 
-                <!-- Submit -->
-                <button type="submit" class="submit-btn" id="submitBtn">
-                    <!-- Send / paper plane icon -->
-                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z" />
-                    </svg>
-                    Send Message
-                </button>
+  <button type="submit" class="w-full bg-[#ee9f3f] hover:bg-[#df8e2e] text-white font-medium py-3.5 px-6 rounded-full transition duration-200 flex items-center justify-center gap-2 shadow-sm" id="submitBtn">
+    <svg class="w-4 h-4 transform rotate-45 -mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z" />
+    </svg>
+    Send Message
+  </button>
 
-            </form>
+</form>
 
         </div>
 
