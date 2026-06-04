@@ -1,4 +1,4 @@
- const episodes = [
+const episodes = [
     // Season 3
     { season: 3, ep: 12, title: 'The Grand Finale: Last Man Standing',   date: 'Feb 14, 2026', duration: '48:22', color: 'from-orange-900/40', accent: 'text-orange-400/60',  youtube: 'dQw4w9WgXcQ' },
     { season: 3, ep: 11, title: 'Clash of Champions — Semi-Finals',       date: 'Feb 7, 2026',  duration: '52:07', color: 'from-red-900/40',    accent: 'text-red-400/60',     youtube: 'dQw4w9WgXcQ' },
@@ -184,7 +184,7 @@
   let autoTimer = null;
   let touchStartX = 0;
 
-  // ─── Build DOM ────────────────────────────────────────────────────────────
+  // ─── Build DOM ────────────────────────────────────────────────────────
   const track   = document.getElementById('carouselTrack');
   const dotBar  = document.getElementById('dotBar');
   const counter = document.getElementById('counter');
@@ -358,95 +358,6 @@
   window.addEventListener('resize', () => updateLayout());
 
   
-  document.getElementById('fileInput').addEventListener('change', function() {
-    const label = document.getElementById('fileLabel');
-    const span  = document.getElementById('fileNames');
-    if (this.files.length === 0) {
-      span.textContent = 'Click to attach images or video';
-      label.classList.remove('has-file');
-    } else if (this.files.length === 1) {
-      span.textContent = this.files[0].name;
-      label.classList.add('has-file');
-    } else {
-      span.textContent = `${this.files.length} files attached`;
-      label.classList.add('has-file');
-    }
-  });
-
-  // ── Form validation & submit ────────────────────────────────────────────────
-  document.getElementById('swordForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    let valid = true;
-
-    // Helpers
-    function setError(fieldId, errId, condition) {
-      const field = document.getElementById(fieldId);
-      const err   = document.getElementById(errId);
-      if (condition) {
-        field.style.borderColor = '#ef4444';
-        err.classList.remove('hidden');
-        valid = false;
-      } else {
-        field.style.borderColor = '';
-        err.classList.add('hidden');
-      }
-    }
-
-    const name    = document.getElementById('name').value.trim();
-    const email   = document.getElementById('email').value.trim();
-    const subject = document.getElementById('subject').value.trim();
-    const message = document.getElementById('message').value.trim();
-    const emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    setError('name',    'nameErr',    name === '');
-    setError('email',   'emailErr',   email === '' || !emailRx.test(email));
-    setError('subject', 'subjectErr', subject === '');
-    setError('message', 'messageErr', message === '');
-
-    if (!valid) return;
-
-    // Simulate send
-    const btn = document.getElementById('submitBtn');
-    btn.disabled = true;
-    btn.innerHTML = `
-      <svg class="w-5 h-5 animate-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
-      </svg>
-      Sending…`;
-
-    setTimeout(() => {
-      // Reset form
-      document.getElementById('swordForm').reset();
-      document.getElementById('fileNames').textContent = 'Click to attach images or video';
-      document.getElementById('fileLabel').classList.remove('has-file');
-
-      btn.disabled = false;
-      btn.innerHTML = `<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg> Send Message`;
-
-      // Toast
-      const toast = document.getElementById('toast');
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 3500);
-    }, 1800);
-  });
-
-  // ── Inline validation on blur ───────────────────────────────────────────────
-  ['name','subject','message'].forEach(id => {
-    document.getElementById(id).addEventListener('blur', function() {
-      const empty = this.value.trim() === '';
-      this.style.borderColor = empty ? '#ef4444' : '';
-      document.getElementById(id + 'Err').classList.toggle('hidden', !empty);
-    });
-  });
-
-  document.getElementById('email').addEventListener('blur', function() {
-    const emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const bad = this.value.trim() === '' || !emailRx.test(this.value.trim());
-    this.style.borderColor = bad ? '#ef4444' : '';
-    document.getElementById('emailErr').classList.toggle('hidden', !bad);
-  });
-
   const faqs = [
     {
       q: 'How can I share my experience about my church?',
@@ -562,3 +473,142 @@ function toggleDropdown() {
       document.getElementById('dropdownMenu').classList.remove('open');
     }
   });
+
+// ─── Mobile Menu ────────────────────────────────────────────────────────────
+const openMenuBtn = document.getElementById('openMenu');
+const closeMenuBtn = document.getElementById('closeMenu');
+const mobileMenu = document.getElementById('mobileMenu');
+
+openMenuBtn.addEventListener('click', () => {
+  mobileMenu.classList.remove('hidden');
+});
+
+closeMenuBtn.addEventListener('click', () => {
+  mobileMenu.classList.add('hidden');
+});
+
+// Close menu when clicking outside
+mobileMenu.addEventListener('click', (e) => {
+  if (e.target === mobileMenu) {
+    mobileMenu.classList.add('hidden');
+  }
+});
+
+// Close menu when clicking on a link
+const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+mobileMenuLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    mobileMenu.classList.add('hidden');
+  });
+});
+
+// ─── Partner Modal ────────────────────────────────────────────────────────────
+const partnerModal = document.getElementById('partnerModal');
+const openPartnerBtns = document.querySelectorAll('.open-partner-modal');
+const closePartnerBtn = document.getElementById('closePartnerModal');
+
+let currentStep = 1;
+const totalSteps = 6;
+
+openPartnerBtns.forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    partnerModal.classList.remove('hidden');
+    mobileMenu.classList.add('hidden');
+  });
+});
+
+closePartnerBtn.addEventListener('click', () => {
+  partnerModal.classList.add('hidden');
+});
+
+partnerModal.addEventListener('click', (e) => {
+  if (e.target === partnerModal) {
+    partnerModal.classList.add('hidden');
+  }
+});
+
+// ─── Step Navigation ─────────────────────────────────────────────────────────
+const nextStepBtn = document.getElementById('nextStep');
+const prevStepBtn = document.getElementById('prevStep');
+const steps = document.querySelectorAll('.step');
+const stepNumber = document.getElementById('stepNumber');
+const progressBar = document.getElementById('progressBar');
+const participationSelect = document.getElementById('participationCategory');
+
+function updateStep() {
+  steps.forEach((step, index) => {
+    if (index === currentStep - 1) {
+      step.classList.remove('hidden');
+    } else {
+      step.classList.add('hidden');
+    }
+  });
+
+  stepNumber.textContent = currentStep;
+  const progress = (currentStep / totalSteps) * 100;
+  progressBar.style.width = progress + '%';
+
+  prevStepBtn.style.display = currentStep === 1 ? 'none' : 'block';
+  
+  if (currentStep === totalSteps) {
+    nextStepBtn.textContent = 'Submit';
+    nextStepBtn.type = 'button';
+  } else {
+    nextStepBtn.textContent = 'Next';
+    nextStepBtn.type = 'button';
+  }
+
+  nextStepBtn.disabled = false;
+}
+
+// Handle conditional step 3 display based on participation category
+participationSelect.addEventListener('change', () => {
+  const value = participationSelect.value;
+  
+  // Hide all step 3 variations
+  document.querySelectorAll('[class*="step-3-"]').forEach(el => {
+    el.classList.add('hidden');
+  });
+
+  // Show the appropriate one based on selection
+  if (value === 'share-story' || value === 'submit-experience') {
+    document.querySelector('.step-3-story').classList.remove('hidden');
+  } else if (value === 'connect-virtually' || value === 'live-audience') {
+    document.querySelector('.step-3-virtual').classList.remove('hidden');
+  } else if (value === 'sponsor-partner') {
+    document.querySelector('.step-3-sponsor').classList.remove('hidden');
+  } else if (value === 'volunteer') {
+    document.querySelector('.step-3-volunteer').classList.remove('hidden');
+  }
+});
+
+nextStepBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  if (currentStep < totalSteps) {
+    currentStep++;
+    updateStep();
+  } else if (currentStep === totalSteps) {
+    // Show success modal
+    showSuccessModal();
+  }
+});
+
+prevStepBtn.addEventListener('click', () => {
+  if (currentStep > 1) {
+    currentStep--;
+    updateStep();
+  }
+});
+
+function showSuccessModal() {
+  // Hide the form modal
+  partnerModal.classList.add('hidden');
+  // Show success modal
+  const successModal = document.getElementById('successModal');
+  if (successModal) {
+    successModal.classList.remove('hidden');
+  }
+}
+
+updateStep();
