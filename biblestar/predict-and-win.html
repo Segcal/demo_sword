@@ -365,9 +365,13 @@
             color: var(--dim);
             transition: all .2s;
             flex-shrink: 0;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
-        .tab:hover:not(.on) {
+        .tab:hover:not(.on):not(.locked) {
             color: var(--gold);
             background: var(--gold-dim);
         }
@@ -377,6 +381,31 @@
             color: #1a0d00;
             font-weight: 700;
             box-shadow: 0 2px 12px var(--gold-glow);
+        }
+
+        .tab.locked {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .tab.locked:hover {
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--dim);
+        }
+
+        .lock-icon {
+            font-size: 10px;
+        }
+
+        .countdown-badge {
+            font-size: 9px;
+            background: rgba(240, 162, 66, 0.15);
+            color: var(--gold);
+            padding: 1px 6px;
+            border-radius: 10px;
+            white-space: nowrap;
+            margin-left: auto;
         }
 
         /* AVATAR */
@@ -558,6 +587,33 @@
             background: rgba(240, 162, 66, 0.05);
             border-color: rgba(240, 162, 66, 0.15);
         }
+
+        /* LOCKED WEEK NOTICE */
+        .locked-notice {
+            background: rgba(240, 162, 66, 0.08);
+            border: 1px solid rgba(240, 162, 66, 0.2);
+            border-radius: 13px;
+            padding: 18px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .locked-notice-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .locked-notice h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .locked-notice p {
+            font-size: 12.5px;
+            color: var(--dim);
+        }
     </style>
 </head>
 
@@ -661,7 +717,7 @@
                                 <div class="cb"><svg width="9" height="9" fill="none" stroke="var(--gold)"
                                         stroke-width="3" viewBox="0 0 24 24">
                                         <path d="M20 6L9 17l-5-5" />
-                                    </svg></div><span style="font-size:13.5px;color:var(--mid);">Attempt predict and win every win to win amzing prizes.</span>
+                                    </svg></div><span style="font-size:13.5px;color:var(--mid);">Attempt predict and win every week to win amzing prizes.</span>
                             </div>
                         </div>
                     </div>
@@ -676,7 +732,7 @@
      SCREEN 3 — PREDICT
 ══════════════════════════════════════ -->
     <div id="screen-predict" class="screen">
-        <div class="page" style="padding-top:74px;">
+        <div class="page" style="padding-top:74px; margin-top:74px;">
             <div class="w-lg">
 
                 <!-- header -->
@@ -702,6 +758,13 @@
                 <div class="split">
                     <!-- main -->
                     <div class="s-main">
+                        <!-- locked notice -->
+                        <div id="locked-notice" class="locked-notice" style="display:none;">
+                            <div class="locked-notice-icon">🔒</div>
+                            <h3>This week is not yet available</h3>
+                            <p id="locked-text">Check back soon!</p>
+                        </div>
+
                         <!-- mobile winner strip -->
                         <div class="w-strip" id="pred-strip">
                             <div class="av" id="pred-s-av"></div>
@@ -833,6 +896,13 @@
     <script>
         /* ─── DATA ─── */
         const WEEKS = ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8'];
+        
+        // Duration in days for each week: 7, 12, 7, 12, 7, 12, 7, 12
+        const WEEK_DURATIONS = [7, 12, 7, 12, 7, 12, 7, 12];
+        
+        // Set Week 1 start date to TODAY - Change this to adjust start date
+        const WEEK_1_START = new Date();
+        WEEK_1_START.setHours(0, 0, 0, 0);
 
         const QS = [
             { label: 'Who will be at double count?', opts: ['Michael', 'Amara', 'Daniel', 'Sofia', 'Kevin', 'Lily', 'James', 'Chloe'] },
@@ -863,6 +933,60 @@
         const $ = id => document.getElementById(id);
         const initials = n => n.split(' ').map(x => x[0]).join('').slice(0, 2);
 
+        // ═══════════════════════════════════════════════════════════════
+        // TIME-LOCKING LOGIC
+        // ═══════════════════════════════════════════════════════════════
+        
+        function getWeekDates(weekIndex) {
+            const startDate = new Date(WEEK_1_START);
+            let daysOffset = 0;
+            
+            // Calculate offset by summing durations of previous weeks
+            for (let i = 0; i < weekIndex; i++) {
+                daysOffset += WEEK_DURATIONS[i];
+            }
+            
+            startDate.setDate(startDate.getDate() + daysOffset);
+            const endDate = new Date(startDate);
+            endDate.setDate(endDate.getDate() + WEEK_DURATIONS[weekIndex] - 1);
+            
+            return { start: startDate, end: endDate };
+        }
+
+        function isWeekAvailable(weekIndex) {
+            const now = new Date();
+            now.setHours(0, 0, 0, 0);
+            const dates = getWeekDates(weekIndex);
+            return now >= dates.start && now <= dates.end;
+        }
+
+        function isWeekLocked(weekIndex) {
+            const now = new Date();
+            now.setHours(0, 0, 0, 0);
+            const dates = getWeekDates(weekIndex);
+            return now < dates.start;
+        }
+
+        function getCurrentWeek() {
+            for (let i = 0; i < WEEKS.length; i++) {
+                if (isWeekAvailable(i)) return i;
+            }
+            return 0; // Default to week 0
+        }
+
+        function formatDate(date) {
+            return date.toLocaleDateString('en-GB', { month: 'short', day: 'numeric' });
+        }
+
+        function getDaysUntilAvailable(weekIndex) {
+            const now = new Date();
+            now.setHours(0, 0, 0, 0);
+            const dates = getWeekDates(weekIndex);
+            const diffTime = dates.start - now;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            return diffDays;
+        }
+
         function showScreen(name) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
             $('screen-' + name).classList.add('active');
@@ -886,25 +1010,49 @@
         }
 
         /* ─── WELCOME → PREDICT ─── */
-        function goPredict() { showScreen('predict'); renderPredict(); }
+        function goPredict() { 
+            week = getCurrentWeek();
+            showScreen('predict'); 
+            renderPredict(); 
+        }
 
         /* ─── PREDICT ─── */
         function renderPredict() {
             renderPredTabs();
-            renderQs();
+            if (isWeekLocked(week)) {
+                renderLockedWeek();
+            } else {
+                renderQs();
+            }
             renderWCard('pred-wcard', week);
             renderStrip('pred', week);
         }
 
         function renderPredTabs() {
-            const el = $('pred-tabs'); el.innerHTML = '';
+            const el = $('pred-tabs'); 
+            el.innerHTML = '';
+            
             WEEKS.forEach((w, i) => {
                 const b = document.createElement('button');
-                b.className = 'tab' + (i === week ? ' on' : '');
-                b.textContent = w;
-                b.onclick = () => { week = i; renderPredTabs(); renderQs(); renderWCard('pred-wcard', week); renderStrip('pred', week); };
+                const isLocked = isWeekLocked(i);
+                const isActive = isWeekAvailable(i);
+                
+                b.className = 'tab' + (i === week ? ' on' : '') + (isLocked ? ' locked' : '');
+                
+                if (isLocked) {
+                    const daysUntil = getDaysUntilAvailable(i);
+                    const dates = getWeekDates(i);
+                    b.innerHTML = `<span>${w}</span><span class="lock-icon">🔒</span>`;
+                    b.title = `Available on ${formatDate(dates.start)}`;
+                    b.onclick = () => { }; // Do nothing when locked
+                } else {
+                    b.innerHTML = `<span>${w}</span>`;
+                    b.onclick = () => { week = i; renderPredict(); };
+                }
+                
                 el.appendChild(b);
             });
+            
             // user avatar dot
             const d = document.createElement('div');
             d.style.cssText = 'width:27px;height:27px;border-radius:50%;background:linear-gradient(135deg,rgba(240,162,66,0.2),rgba(139,78,10,0.28));border:1px solid rgba(240,162,66,0.2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--gold);flex-shrink:0;margin-left:4px;';
@@ -912,7 +1060,26 @@
             el.appendChild(d);
         }
 
+        function renderLockedWeek() {
+            const notice = $('locked-notice');
+            const dates = getWeekDates(week);
+            const daysUntil = getDaysUntilAvailable(week);
+            
+            let countdownText = `This week opens on ${formatDate(dates.start)}`;
+            if (daysUntil === 1) {
+                countdownText = 'This week opens tomorrow!';
+            } else if (daysUntil > 1 && daysUntil <= 7) {
+                countdownText = `Opens in ${daysUntil} days`;
+            }
+            
+            $('locked-text').textContent = countdownText;
+            notice.style.display = 'block';
+            $('q-list').innerHTML = '';
+            $('match-hdg').textContent = `Week ${week + 1} — Locked`;
+        }
+
         function renderQs() {
+            $('locked-notice').style.display = 'none';
             $('match-hdg').textContent = `Match ${week + 1} — Predictions`;
             const list = $('q-list'); list.innerHTML = '';
             QS.forEach((q, i) => {
@@ -924,6 +1091,8 @@
         }
 
         function submitPredictions() {
+            if (isWeekLocked(week)) return;
+            
             let ok = true;
             QS.forEach((_, i) => {
                 const el = $('q' + i);
@@ -939,7 +1108,14 @@
             showScreen('success');
         }
 
-        function playAnother() { week = (week + 1) % WEEKS.length; goPredict(); }
+        function playAnother() { 
+            week = (week + 1) % WEEKS.length;
+            // If next week is locked, find the first available one
+            while (isWeekLocked(week) && week < WEEKS.length) {
+                week = (week + 1) % WEEKS.length;
+            }
+            goPredict(); 
+        }
 
         /* ─── LEADERBOARD ─── */
         function gotoLeaderboard() {
@@ -956,13 +1132,23 @@
             const el = $('lb-tabs'); el.innerHTML = '';
             WEEKS.forEach((w, i) => {
                 const b = document.createElement('button');
-                b.className = 'tab' + (i === lbWeek ? ' on' : '');
-                b.textContent = w;
-                b.onclick = () => {
-                    lbWeek = i; renderLbTabs(); renderLbList();
-                    renderWCard('lb-wcard', lbWeek); renderStrip('lb', lbWeek);
-                    setTimeout(animBars, 80);
-                };
+                const isLocked = isWeekLocked(i);
+                
+                b.className = 'tab' + (i === lbWeek ? ' on' : '') + (isLocked ? ' locked' : '');
+                
+                if (isLocked) {
+                    const dates = getWeekDates(i);
+                    b.innerHTML = `<span>${w}</span><span class="lock-icon">🔒</span>`;
+                    b.title = `Available on ${formatDate(dates.start)}`;
+                    b.onclick = () => { }; // Do nothing when locked
+                } else {
+                    b.innerHTML = `<span>${w}</span>`;
+                    b.onclick = () => {
+                        lbWeek = i; renderLbTabs(); renderLbList();
+                        renderWCard('lb-wcard', lbWeek); renderStrip('lb', lbWeek);
+                        setTimeout(animBars, 80);
+                    };
+                }
                 el.appendChild(b);
             });
         }
