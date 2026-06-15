@@ -224,10 +224,10 @@
                     <a href="../contact-us.html">Contact us</a>
                 </nav>
 
-                <button
-                    class="open-partner-modal hidden md:block bg-orange-500 text-black font-semibold px-6 py-2 rounded-full">
-                    Get started
-                </button>
+                <a href="./pin-purches.html"
+                    class="text-xl hidden md:block bg-orange-500 text-black font-semibold px-6 py-2 rounded-full">
+                    Get PIN
+                </a>
 
                 <button id="openMenu" class="md:hidden text-3xl">☰</button>
             </div>
@@ -250,9 +250,9 @@
                 <a href="../blog.html">Blog</a>
                 <a href="../contact-us.html">Contact us</a>
 
-                <button class="open-partner-modal bg-orange-400 text-black px-5 py-2 rounded-full font-semibold mt-4">
-                    Get started
-                </button>
+                <a href="./pin-purches.html" class="text-xl bg-orange-400 text-black px-5 py-2 rounded-full font-semibold mt-4">
+                    Get PIN
+                </a>
             </div>
         </div>
     </div>
@@ -266,14 +266,14 @@
             <div class="max-w-lg sm:max-w-xl">
                 <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl
                font-bold leading-tight text-white">
-                    Bible Personality Of <br class="hidden sm:block" />
-                    the Year title
+                   Who would you vote as the Bible Personality Of <br class="hidden sm:block" />
+                    the Year ?
                 </h1>
 
                 <p class="mt-4 sm:mt-5 md:mt-6
-               text-sm sm:text-base md:text-lg
+               text-sm sm:text-base md:text-2xl
                text-white/80 leading-relaxed">
-                    Support your favourite housemate and help them stay in the competition.
+                    Support your favourite housemate and help them win the title.
                 </p>
             </div>
         </div>
@@ -295,9 +295,9 @@
                 <button class="close-btn" onclick="closeAllModals()">×</button>
                 <div class="p-8">
                     <h2 class="text-2xl font-bold text-gray-800 mb-4">Cast Your Vote</h2>
-                    <p class="text-gray-600 mb-6">Hi there! Select in the drop-down to proceed with your vote.</p>
+                    <p class="text-gray-600 mb-6">Are You sure you want to vote ?</p>
                     <div class="mb-6">
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Select housemate</label>
+                        <label class="block text-sm font-medium text-gray-700 mb-2"></label>
                         <select id="housemateSelect"
                             class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-gray-900">
                             <option>Select</option>
@@ -327,8 +327,9 @@
                         <label class="block text-sm font-medium text-gray-700 mb-2">Enter your pin</label>
                         <input type="text" id="votingPin" placeholder="Enter PIN"
                             class="text-gray-900 w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500">
-                        <p class="text-sm text-gray-500 mt-2">Don't have a PIN? <button onclick="openPurchasePinModal()"
-                                class="text-orange-600 font-semibold hover:text-orange-700">Purchase here</button></p>
+                        <p class="text-sm text-gray-500 mt-2">Don't have a PIN?  <a href="./pin-purches.html" class="text-orange-600 font-semibold hover:text-orange-700">Purchase here</a> </p>
+                        <!-- <button onclick="openPurchasePinModal()"
+                                class="text-orange-600 font-semibold hover:text-orange-700">Purchase here</button> -->
                     </div>
                     <div class="flex gap-3">
                         <button onclick="goToVoteNumber()"
@@ -383,8 +384,8 @@
                         <h3 id="confirmName" class="text-xl font-bold text-gray-800 mb-4"></h3>
                         <div class="w-full space-y-3 text-sm">
                             <div class="flex justify-between py-2 border-b">
-                                <span class="text-gray-600">ID</span>
-                                <span id="confirmId" class="font-medium text-gray-900">N2N300</span>
+                                <span class="text-gray-600">Price Per Vote</span>
+                                <span id="confirmId" class="font-medium text-gray-900">N200</span>
                             </div>
                             <div class="flex justify-between py-2 border-b">
                                 <span class="text-gray-600">Housemate</span>
@@ -436,7 +437,7 @@
                             </div>
                             <div class="flex justify-between py-2 border-b">
                                 <span class="text-gray-600">Your vote count for this housemate</span>
-                                <span id="successTotalVotes" class="font-medium text-gray-900">N2,20</span>
+                                <span id="successTotalVotes" class="font-medium text-gray-900">N200</span>
                             </div>
                         </div>
                     </div>
@@ -628,12 +629,16 @@
                             <span id="profileVotes" class="font-medium text-gray-900"></span>
                         </div>
                         <div class="flex justify-between py-2 border-b">
-                            <span class="text-gray-600">ID</span>
-                            <span id="profileId" class="font-medium text-gray-900">N2N300</span>
+                            <span class="text-gray-600">Price Per Vote</span>
+                            <span id="profileId" class="font-medium text-gray-900">N200</span>
                         </div>
                         <div class="flex justify-between py-2 border-b">
                             <span class="text-gray-600">Total Vote</span>
-                            <span id="profileTotalVotes" class="font-medium text-gray-900">N2N300,000</span>
+                            <span id="profileTotalVotes" class="font-medium text-gray-900">100</span>
+                        </div>
+                        <div class="flex justify-between py-2 border-b">
+                            <span class="text-gray-600">Total cost</span>
+                            <span id="profileTotalVotes" class="font-medium text-gray-900">10,000</span>
                         </div>
                     </div>
                     <div class="flex gap-3">
@@ -827,6 +832,7 @@ function generateCards() {
                 <div class="text-center mb-4">
                     <h3 class="text-xl font-semibold text-white mb-2">${housemate.name}</h3>
                 </div>
+                <div>
                 <div class="flex gap-3">
                     <button onclick='openVoteModal(${JSON.stringify(housemate)})' 
                             class="vote-button flex-1 py-3 px-4 rounded-full text-white font-semibold text-sm">
@@ -836,6 +842,10 @@ function generateCards() {
                             class="profile-button py-3 px-4 rounded-full text-white font-medium text-sm">
                         View Profile →
                     </button>
+                </div>
+                 <div>
+                        <a>Watch Performance</a>
+                    </div>
                 </div>
             </div>
         `;

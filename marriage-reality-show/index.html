@@ -35,8 +35,226 @@
             background-position: center;
             height: 100vh;
         }
-        
-  
+
+        /* Gallery Lightbox */
+        #lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            pointer-events: none;
+        }
+
+        #lightbox.active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        #lightbox img {
+            max-width: 90%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 12px;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        #lightbox button {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+            pointer-events: auto !important;
+            flex-shrink: 0;
+        }
+
+        #lightbox button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: scale(1.1);
+        }
+
+        #lightbox button:active {
+            transform: scale(0.95);
+        }
+
+        #lbClose {
+            top: 24px;
+            right: 24px;
+            z-index: 10000;
+        }
+
+        .lb-nav {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        #lbPrev {
+            left: 24px;
+        }
+
+        #lbNext {
+            right: 24px;
+        }
+
+        #lbCaption {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+            font-weight: 500;
+            text-align: center;
+            max-width: 80%;
+            pointer-events: none;
+        }
+
+        /* Carousel Styles */
+        #carouselTrack {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .section-panel {
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .section-panel.hidden-panel {
+            display: none !important;
+        }
+
+        .section-panel.entering {
+            display: block !important;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .active-filter {
+            background: linear-gradient(135deg, #f97316, #fb923c) !important;
+            color: white !important;
+            border: none !important;
+        }
+
+        .toggle-pill {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .toggle-indicator {
+            position: absolute;
+            height: 100%;
+            width: 50%;
+            background: rgba(249, 115, 22, 0.2);
+            border-radius: 9999px;
+            transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            left: 0;
+            z-index: 0;
+        }
+
+        .toggle-btn {
+            position: relative;
+            z-index: 10;
+            color: rgba(255, 255, 255, 0.6);
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .toggle-btn.active {
+            color: white;
+            font-weight: 500;
+        }
+
+        .nav-btn {
+            @apply bg-white/10 hover:bg-orange-500 text-white w-10 h-10 rounded-full flex items-center justify-center transition duration-200;
+        }
+
+        .dot {
+            @apply transition duration-300;
+        }
+
+        /* FAQ Accordion Styles */
+        .faq-item {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active {
+            background: rgba(249, 115, 22, 0.1);
+            border-color: rgba(249, 115, 22, 0.3);
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            color: white;
+            transition: color 0.3s ease;
+        }
+
+        .faq-item.active .faq-question {
+            color: #f97316;
+        }
+
+        .faq-question:hover {
+            color: #fb923c;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+            font-size: 20px;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 20px;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 20px 20px 20px;
+        }
+
+        .faq-answer p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            font-size: 14px;
+        }
     </style>
 </head>
 
@@ -117,9 +335,9 @@
                     <a href="../contact-us.html">Contact us</a>
                 </nav>
 
-                <button id="openGuestModalMobile"
-                    class="open-partner-modal hidden md:block bg-orange-500 text-black font-semibold px-6 py-2 rounded-full">
-                    Partner with Us
+                <button id="openPartnerModal"
+                    class="hidden md:block bg-orange-500 text-black font-semibold px-6 py-2 rounded-full hover:bg-orange-600 transition">
+                    Partner With Us
                 </button>
 
                 <button id="openMenu" class="md:hidden text-3xl">☰</button>
@@ -143,8 +361,8 @@
                 <a href="../blog.html">Blog</a>
                 <a href="../contact-us.html">Contact us</a>
 
-                <button id="openGuestModalMobileMenu" class=" bg-orange-400 text-black px-5 py-2 rounded-full font-semibold mt-4">
-                    Partner with Us
+                <button id="openPartnerModalMobile" class=" bg-orange-400 text-black px-5 py-2 rounded-full font-semibold mt-4 hover:bg-orange-500 transition">
+                    Partner With Us
                 </button>
             </div>
         </div>
@@ -202,14 +420,14 @@
 
                     <!-- Button -->
                     <div class="flex text-center items-center  gap-8 flex-col md:flex-row mt-8">
-                        <a href="#contact-form"
+                        <button onclick="openGuestModal()"
                             class=" bg-orange-500 text-center hover:bg-orange-600 text-white px-8 py-4 rounded-full font-semibold flex items-center gap-3 transition">
-                            Beacome a Guest
+                            Join the Show
                             <i class="fa-solid fa-arrow-right"></i>
-                        </a>
+                        </button>
                         <a href="#share-story"
                             class=" bg-transparent border border-orange-500 hover:bg-orange-500 text-white px-8 py-4 rounded-full font-semibold flex items-center gap-3 transition">
-                            Share Your Story
+                            JOIN AS VIP
                             <i class="fa-solid fa-arrow-right"></i>
                         </a>
                     </div>
@@ -247,77 +465,86 @@
     </section>
 
     <section class="w-full py-16 bg-section-overlay glass-container">
-        <div class="max-w-6xl mx-auto px-4 text-center">
- <h1 class="text-center text-orange-500 text-2xl md:text-6xl mb-6">Key Highlights</h1>
-            <!-- Cards Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+        <h1 class="text-center text-orange-500 text-2xl md:text-6xl mb-6">Key Highlights</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
 
-
-               
-
-                <!-- Card 1 -->
-                <div
-                    class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:scale-105 transition duration-300">
-                    <div class="flex justify-center mb-4">
-                        <img src="../assets/images/img-1.png" class="w-40 h-20 object-contain">
-                    </div>
-                    <h3 class="text-white font-semibold text-lg mb-2">
-                        Audience-Based Podcast
-                    </h3>
-                    <p class="text-gray-300 text-sm">
-                        Live and virtual participants.
-                    </p>
+            <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:scale-105 transition duration-300">
+                <div class="flex justify-center mb-4">
+                    <img src="../assets/images/img-1.png" class="w-40 h-20 object-contain">
                 </div>
-
-                <!-- Card 2 -->
-                <div
-                    class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:scale-105 transition duration-300">
-                    <div class="flex justify-center mb-4">
-                        <img src="../assets/images/img-1.png" class="w-40 h-20 object-contain">
-                    </div>
-                    <h3 class="text-white font-semibold text-lg mb-2">
-                        Question & Answer Sessions
-                    </h3>
-                    <p class="text-gray-300 text-sm">
-                        Viewers submit questions or concerns before or during the show.
-                    </p>
-                </div>
-
-                <!-- Card 3 -->
-                <div
-                    class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:scale-105 transition duration-300">
-                    <div class="flex justify-center mb-4">
-                        <img src="../assets/images/img-1.png" class="w-40 h-20 object-contain">
-                    </div>
-                    <h3 class="text-white font-semibold text-lg mb-2">
-                        Experience Sharing
-                    </h3>
-                    <p class="text-gray-300 text-sm">
-                        Users share stories, bitter experiences, and positive insights.
-                    </p>
-                </div>
-
-                <!-- Card 4 -->
-                <div
-                    class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:scale-105 transition duration-300">
-                    <div class="flex justify-center mb-4">
-                        <img src="../assets/images/img-1.png" class="w-40 h-20 object-contain">
-                    </div>
-                    <h3 class="text-white font-semibold text-lg mb-2">
-                        Evidence Submission
-                    </h3>
-                    <p class="text-gray-300 text-sm">
-                        Pictures, documents, or short videos as evidence of personal experiences.
-                    </p>
-                </div>
+                <h3 class="text-white font-semibold text-lg mb-2">
+                    Audience-Based Podcast
+                </h3>
+                <p class="text-gray-300 text-sm">
+                    Live and virtual participants.
+                </p>
             </div>
+
+            <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:scale-105 transition duration-300">
+                <div class="flex justify-center mb-4">
+                    <img src="../assets/images/img-1.png" class="w-40 h-20 object-contain">
+                </div>
+                <h3 class="text-white font-semibold text-lg mb-2">
+                    Question & Answer Sessions
+                </h3>
+                <p class="text-gray-300 text-sm">
+                    Viewers submit questions or concerns before or during the show.
+                </p>
+            </div>
+
+            <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:scale-105 transition duration-300">
+                <div class="flex justify-center mb-4">
+                    <img src="../assets/images/img-1.png" class="w-40 h-20 object-contain">
+                </div>
+                <h3 class="text-white font-semibold text-lg mb-2">
+                    Experience Sharing
+                </h3>
+                <p class="text-gray-300 text-sm">
+                    Users share stories, bitter experiences, and positive insights.
+                </p>
+            </div>
+
+            <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:scale-105 transition duration-300">
+                <div class="flex justify-center mb-4">
+                    <img src="../assets/images/img-1.png" class="w-40 h-20 object-contain">
+                </div>
+                <h3 class="text-white font-semibold text-lg mb-2">
+                    Evidence Submission
+                </h3>
+                <p class="text-gray-300 text-sm">
+                    Pictures, documents, or short videos as evidence of personal experiences.
+                </p>
+            </div>
+
+            <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:scale-105 transition duration-300">
+                <div class="flex justify-center mb-4">
+                    <img src="../assets/images/img-1.png" class="w-40 h-20 object-contain">
+                </div>
+                <h3 class="text-white font-semibold text-lg mb-2">
+                    Expert Panel Discussions
+                </h3>
+                <p class="text-gray-300 text-sm">
+                    Relationship and marriage experts provide practical insights.
+                </p>
+            </div>
+
+            <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 hover:scale-105 transition duration-300">
+                <div class="flex justify-center mb-4">
+                    <img src="../assets/images/img-1.png" class="w-40 h-20 object-contain">
+                </div>
+                <h3 class="text-white font-semibold text-lg mb-2">
+                    Live Counseling & Advice
+                </h3>
+                <p class="text-gray-300 text-sm">
+                    Selected participants receive real-time guidance on relationship or marital issues.
+                </p>
+            </div>
+
         </div>
-    </section>
-
-
-
-    <!--  -->
-
+    </div>
+</section>
 
     <section class="section-bg min-h-screen py-16 px-4 sm:px-6 lg:px-8" id="share-story">
         <div class="crowd-silhouette"></div>
@@ -355,17 +582,12 @@
                     <!-- Fake video bg gradient -->
                     <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-950"></div>
 
-
-
-
-
                     <!-- Play button -->
                     <button class="play-btn rounded-full flex items-center justify-center relative z-10">
                         <svg class="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M8 5v14l11-7z" />
                         </svg>
                     </button>
-
 
                 </div>
 
@@ -411,8 +633,6 @@
 
         </div>
     </section>
-
-
 
     <section class="gallery-section py-16 px-4 sm:px-6 lg:px-8 min-h-screen flex flex-col justify-center">
 
@@ -479,125 +699,6 @@
         </button>
         <div id="lbCaption"></div>
     </div>
-    <!-- gallary end -->
-
-
-
-    <section class="form-section flex flex-col items-center justify-center px-4 py-20 sm:py-16 relative"
-        id="contact-form">
-
-        <!-- Glow blobs -->
-        <div class="glow-left"></div>
-        <div class="glow-right"></div>
-
-        <!-- Header text -->
-        <div class="relative z-10 text-center mb-8 sm:mb-10 px-4">
-            <h1 style="font-family:'Bebas Neue',sans-serif; letter-spacing:0.06em;"
-                class="text-5xl sm:text-6xl lg:text-7xl text-orange-400 mb-3">
-                Marriage Realities Show Invitation Form
-            </h1>
-            <p class="text-white/55 text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
-               Submit questions, share stories, and participate in the show.
-            </p>
-        </div>
-
-        <!-- Form Card -->
-        <div class="form-card relative z-10 w-full max-w-2xl p-6 sm:p-8 lg:p-10">
-
-           <form id="swordForm" novalidate class="bg-[#fdf8f4] border border-[#f5ebe1] rounded-3xl p-6 md:p-8 max-w-4xl mx-auto shadow-sm">
-
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-5">
-    <div>
-      <label class="block text-gray-800 font-medium text-sm mb-2" for="name">Name<span class="text-red-500 ml-0.5">*</span></label>
-      <input class="w-full bg-white border border-gray-200/80 rounded-xl px-4 py-3 text-gray-700 placeholder-gray-400 text-sm focus:outline-none focus:border-[#f97316] transition" 
-        id="name" name="name" type="text" placeholder="Type your full name here..." required />
-      <p class="text-red-500 text-xs mt-1 hidden" id="nameErr">Name is required</p>
-    </div>
-    <div>
-      <label class="block text-gray-800 font-medium text-sm mb-2" for="email">Email<span class="text-red-500 ml-0.5">*</span></label>
-      <input class="w-full bg-white border border-gray-200/80 rounded-xl px-4 py-3 text-gray-700 placeholder-gray-400 text-sm focus:outline-none focus:border-[#f97316] transition" 
-        id="email" name="email" type="email" placeholder="Type your email address here..." required />
-      <p class="text-red-500 text-xs mt-1 hidden" id="emailErr">Valid email is required</p>
-    </div>
-  </div>
-
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-5">
-    <div>
-      <label class="block text-gray-800 font-medium text-sm mb-2" for="phone">Phone Number</label>
-      <input class="w-full bg-white border border-gray-200/80 rounded-xl px-4 py-3 text-gray-700 placeholder-gray-400 text-sm focus:outline-none focus:border-[#f97316] transition" 
-        id="phone" name="phone" type="tel" placeholder="Type your phone number here..." />
-    </div>
-    <div>
-      <label class="block text-gray-800 font-medium text-sm mb-2" for="maritalStatus">Marital Status</label>
-      <div class="relative">
-        <select class="w-full bg-white border border-gray-200/80 rounded-xl px-4 py-3 text-gray-400 text-sm appearance-none focus:outline-none focus:border-[#f97316] transition cursor-pointer" 
-          id="maritalStatus" name="maritalStatus">
-          <option value="" disabled selected>Select your marital status</option>
-          <option value="single" class="text-gray-700">Single</option>
-          <option value="married" class="text-gray-700">Married</option>
-          <option value="other" class="text-gray-700">Other</option>
-        </select>
-        <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-gray-400 text-xs">
-          ▼
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-5">
-    <div>
-      <label class="block text-gray-800 font-medium text-sm mb-2" for="wishToDo">What do you wish to do?</label>
-      <input class="w-full bg-white border border-gray-200/80 rounded-xl px-4 py-3 text-gray-700 placeholder-gray-400 text-sm focus:outline-none focus:border-[#f97316] transition" 
-        id="wishToDo" name="wishToDo" type="text" placeholder="" />
-    </div>
-    <div>
-      <label class="block text-gray-800 font-medium text-sm mb-2" for="subject">Subject<span class="text-red-500 ml-0.5">*</span></label>
-      <div class="relative">
-        <select class="w-full bg-white border border-gray-200/80 rounded-xl px-4 py-3 text-gray-700 text-sm appearance-none focus:outline-none focus:border-[#f97316] transition cursor-pointer" 
-          id="subject" name="subject" required>
-          <option value="" disabled selected class="text-gray-400">Select a subject...</option>
-          <option value="sponsor">I want to sponsor</option>
-          <option value="testifier">I'm a testifier (for those with real stories)</option>
-          <option value="participate_online">I want to participate online</option>
-          <option value="volunteer">I want to volunteer</option>
-          <option value="other">Other</option>
-        </select>
-        <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-gray-400 text-xs">
-          ▼
-        </div>
-      </div>
-      <p class="text-red-500 text-xs mt-1 hidden" id="subjectErr">Subject is required</p>
-    </div>
-  </div>
-
-  <div class="mb-6">
-    <label class="block text-gray-800 font-medium text-sm mb-2" for="message">Message<span class="text-red-500 ml-0.5">*</span></label>
-    <textarea class="w-full bg-white border border-gray-200/80 rounded-xl px-4 py-3 text-gray-700 placeholder-gray-400 text-sm h-36 resize-none focus:outline-none focus:border-[#f97316] transition" 
-      id="message" name="message" placeholder="" required></textarea>
-    <p class="text-red-500 text-xs mt-1 hidden" id="messageErr">Message is required</p>
-  </div>
-
-  <button type="submit" class="w-full bg-[#ee9f3f] hover:bg-[#df8e2e] text-white font-medium py-3.5 px-6 rounded-full transition duration-200 flex items-center justify-center gap-2 shadow-sm" id="submitBtn">
-    <svg class="w-4 h-4 transform rotate-45 -mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z" />
-    </svg>
-    Send Message
-  </button>
-
-</form>
-
-        </div>
-
-    </section>
-
-    <!-- Toast notification -->
-    <div id="toast">
-        <div class="dot"></div>
-        Message sent successfully!
-    </div>
-
-    <!-- form ends -->
-
 
     <section class="faq-section px-4 sm:px-6 lg:px-8 py-20 sm:py-28 relative">
         <div class="glow-l"></div>
@@ -615,9 +716,7 @@
 
             <!-- ── FAQ Accordion (left / 2 cols) ── -->
             <div class="lg:col-span-2 flex flex-col gap-3" id="faqListWrap">
-
                 <!-- Items injected by JS -->
-
             </div>
 
             <!-- ── Side card (right / 1 col) ── -->
@@ -639,14 +738,14 @@
 
     <!-- footer main section -->
     <section class="w-full py-16">
-        <div class="flex flex-col items-center justify-center p-4"> <!-- Newsletter Card -->
+        <div class="flex flex-col items-center justify-center p-4">
             <div class="bg-white rounded-3xl shadow-2xl max-w-4xl w-full p-12 mb-8">
-                <div class="grid md:grid-cols-2 gap-8 items-center"> <!-- Left Column -->
+                <div class="grid md:grid-cols-2 gap-8 items-center">
                     <div>
                         <h2 class="text-4xl font-bold text-gray-900 mb-4"> Stay Connected! </h2>
                         <p class="text-gray-600 text-sm leading-relaxed"> Receive updates on upcoming events, new
                             programmes, auditions, competitions, and ministry opportunities. </p>
-                    </div> <!-- Right Column -->
+                    </div>
                     <div>
                         <p class="text-sm text-gray-900 mb-4"> Subscribe and be the first to know — and never miss a
                             moment of impact. </p>
@@ -659,9 +758,9 @@
                         </div>
                     </div>
                 </div>
-            </div> <!-- Footer -->
+            </div>
             <footer class="w-full max-w-6xl">
-                <div class="grid md:grid-cols-2 gap-12 mb-8"> <!-- Left Section -->
+                <div class="grid md:grid-cols-2 gap-12 mb-8">
                     <div> <a href="./index.html" class="text-orange-500 text-xl font-bold mb-6"> <img
                                 src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766409594/sword_TV_logo_y9mnja.png"
                                 width="150" class="rounded-full" /> </a>
@@ -674,7 +773,7 @@
                             <div class="flex items-center gap-2"> <i class="fas fa-map-marker-alt"></i> <span>Suite 8,
                                     Dabic Shopping Complex, Behind M & M Super Market yoruba road Ilorin, Kwara State,
                                     Nigeria.</span> </div>
-                        </div> <!-- Social Icons -->
+                        </div>
                         <div class="flex gap-4 mt-6">
                             <a href="https://www.facebook.com/share/1Efwj5eVHv/"
                                 class="w-8 h-8  rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
@@ -706,7 +805,7 @@
                             </a>
 
                         </div>
-                    </div> <!-- Right Section - Navigation -->
+                    </div>
                     <div class="grid grid-cols-2 gap-8">
                         <div>
                             <ul class="space-y-3 text-gray-300 text-sm">
@@ -733,7 +832,7 @@
                             </ul>
                         </div>
                     </div>
-                </div> <!-- Copyright -->
+                </div>
                 <div class="border-t border-gray-800 pt-6 text-center text-gray-500 text-sm">
                     <p>Sword Television © 2025 | All rights reserved.</p>
                 </div>
@@ -857,13 +956,46 @@
                         <div class="space-y-1.5">
                             <label class="block text-sm font-medium text-gray-700">State</label>
                             <div class="relative">
-                                <select id="guestState" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 cursor-pointer transition-shadow text-sm pr-10">
-                                    <option value="" disabled selected>Select your state</option>
-                                    <option value="lagos">Lagos</option>
-                                    <option value="fct">Abuja (FCT)</option>
-                                    <option value="oyo">Oyo</option>
-                                    <option value="kwara">Kwara</option>
-                                </select>
+                               <select id="guestState" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-[#f3a03c] focus:border-[#f3a03c] cursor-pointer transition-shadow text-sm pr-10">
+  <option value="" disabled selected hidden>Select your state</option>
+  <option value="abia">Abia</option>
+  <option value="adamawa">Adamawa</option>
+  <option value="akwa-ibom">Akwa Ibom</option>
+  <option value="anambra">Anambra</option>
+  <option value="bauchi">Bauchi</option>
+  <option value="bayelsa">Bayelsa</option>
+  <option value="benue">Benue</option>
+  <option value="borno">Borno</option>
+  <option value="cross-river">Cross River</option>
+  <option value="delta">Delta</option>
+  <option value="ebonyi">Ebonyi</option>
+  <option value="edo">Edo</option>
+  <option value="ekiti">Ekiti</option>
+  <option value="enugu">Enugu</option>
+  <option value="fct">Federal Capital Territory (FCT)</option>
+  <option value="gombe">Gombe</option>
+  <option value="imo">Imo</option>
+  <option value="jigawa">Jigawa</option>
+  <option value="kaduna">Kaduna</option>
+  <option value="kano">Kano</option>
+  <option value="katsina">Katsina</option>
+  <option value="kebbi">Kebbi</option>
+  <option value="kogi">Kogi</option>
+  <option value="kwara">Kwara</option>
+  <option value="lagos">Lagos</option>
+  <option value="nasarawa">Nasarawa</option>
+  <option value="niger">Niger</option>
+  <option value="ogun">Ogun</option>
+  <option value="ondo">Ondo</option>
+  <option value="osun">Osun</option>
+  <option value="oyo">Oyo</option>
+  <option value="plateau">Plateau</option>
+  <option value="rivers">Rivers</option>
+  <option value="sokoto">Sokoto</option>
+  <option value="taraba">Taraba</option>
+  <option value="yobe">Yobe</option>
+  <option value="zamfara">Zamfara</option>
+</select>
                                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
                                     <svg class="h-4 w-4 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
                                         <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
@@ -875,13 +1007,39 @@
                         <div class="space-y-1.5">
                             <label class="block text-sm font-medium text-gray-700">Country</label>
                             <div class="relative">
-                                <select id="guestCountry" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-orange-400 cursor-pointer transition-shadow text-sm pr-10">
-                                    <option value="" disabled selected>Select your country</option>
-                                    <option value="ng">Nigeria</option>
-                                    <option value="gh">Ghana</option>
-                                    <option value="uk">United Kingdom</option>
-                                    <option value="us">United States</option>
-                                </select>
+                               <select id="guestCountry" class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-[#f3a03c] focus:border-[#f3a03c] cursor-pointer transition-shadow text-sm pr-10">
+  <option value="" disabled selected hidden>Select your country</option>
+  <option value="nigeria">Nigeria</option>
+  <option value="ghana">Ghana</option>
+  <option value="south-africa">South Africa</option>
+  <option value="kenya">Kenya</option>
+  <option value="cameroon">Cameroon</option>
+  <option value="uganda">Uganda</option>
+  <option value="tanzania">Tanzania</option>
+  <option value="zimbabwe">Zimbabwe</option>
+  <option value="zambia">Zambia</option>
+  <option value="botswana">Botswana</option>
+  <option value="namibia">Namibia</option>
+  <option value="eswatini">Eswatini</option>
+  <option value="lesotho">Lesotho</option>
+  <option value="malawi">Malawi</option>
+  <option value="mozambique">Mozambique</option>
+  <option value="mauritius">Mauritius</option>
+  <option value="seychelles">Seychelles</option>
+  <option value="benin">Benin</option>
+  <option value="burkina-faso">Burkina Faso</option>
+  <option value="mali">Mali</option>
+  <option value="senegal">Senegal</option>
+  <option value="ivory-coast">Ivory Coast</option>
+  <option value="sierra-leone">Sierra Leone</option>
+  <option value="liberia">Liberia</option>
+  <option value="guinea">Guinea</option>
+  <option value="togo">Togo</option>
+  <option value="congo">Congo</option>
+  <option value="drc">Democratic Republic of Congo</option>
+  <option value="ethiopia">Ethiopia</option>
+  <option value="other">Other Country</option>
+</select>
                                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
                                     <svg class="h-4 w-4 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
                                         <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
@@ -948,7 +1106,7 @@
                                 <option value="positive-healthy">Positive / Healthy Relationship or Marriage</option>
                                 <option value="challenging-difficult">Challenging / Difficult Experience</option>
                                 <option value="broken-painful">Broken / Painful Experience</option>
-                                <option value="lessons-growth">Lessons, Growth & Wisdom</option>
+                                <option value="lessons-growth">Useful Suggestions/advice</option>
                             </select>
                             
                             <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
@@ -1216,6 +1374,359 @@
         </div>
     </div>
 
+    <!-- ================= PARTNER MODAL ================= -->
+    <div id="partnerModal" class="fixed inset-0 z-[999] hidden flex items-center justify-center bg-black/60 backdrop-blur-lg px-4 py-6 overflow-y-auto">
+
+        <!-- MODAL CARD -->
+        <div class="bg-white w-full max-w-3xl rounded-2xl p-6 sm:p-10 shadow-2xl relative my-auto">
+
+            <!-- CLOSE BUTTON -->
+            <button id="closePartnerModal" class="absolute top-4 right-4 text-gray-400 hover:text-black text-xl transition">
+                ✕
+            </button>
+
+            <!-- RETURN BUTTON -->
+            <button id="returnPartnerBtn" class="text-orange-500 text-xs sm:text-sm border border-orange-400 px-4 py-1.5 rounded-full mb-6 hover:bg-orange-50 transition">
+                Return to Previous
+            </button>
+
+            <!-- STEP INDICATOR -->
+            <p class="text-xs text-gray-500 mb-2">
+                Section <span id="partnerStep">1</span> of 6
+            </p>
+
+            <!-- PROGRESS BAR -->
+            <div class="w-full h-2 bg-gray-200 rounded-full mb-8">
+                <div id="partnerProgressBar" class="h-2 bg-orange-400 rounded-full transition-all duration-300" style="width:16.66%">
+                </div>
+            </div>
+
+            <!-- STEPS CONTAINER -->
+            <div class="space-y-6 max-h-[60vh] overflow-y-auto pr-2">
+
+                <!-- STEP 1 -->
+                <div class="partner-step">
+                    <h2 class="text-orange-500 text-xl font-semibold mb-2">
+                        Select Programme
+                    </h2>
+
+                    <p class="text-sm text-gray-600 mb-5">
+                        Which of the below programmes do you want to support?
+                    </p>
+
+                    <!-- PROGRAMME OPTIONS -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+                        <!-- OPTION -->
+                        <label class="border border-orange-300 rounded-xl p-4 flex gap-3 items-start cursor-pointer hover:bg-orange-50 transition">
+                            <input type="radio" name="partner_programme" value="bible-stars" class="mt-1">
+                            <span class="font-medium text-sm text-gray-900">
+                                Bible Stars Reality Show
+                            </span>
+                        </label>
+
+                        <label class="border border-orange-300 rounded-xl p-4 flex gap-3 items-start cursor-pointer hover:bg-orange-50 transition">
+                            <input type="radio" name="partner_programme" value="youth-festival" class="mt-1">
+                            <span class="font-medium text-sm text-gray-900">
+                                Ilorin Youth Mega Festival
+                            </span>
+                        </label>
+
+                        <label class="border border-orange-300 rounded-xl p-4 flex gap-3 items-start cursor-pointer hover:bg-orange-50 transition">
+                            <input type="radio" name="partner_programme" value="bible-championship" class="mt-1">
+                            <span class="font-medium text-sm text-gray-900">
+                                Bible Championship Season 2
+                            </span>
+                        </label>
+
+                        <label class="border border-orange-300 rounded-xl p-4 flex gap-3 items-start cursor-pointer hover:bg-orange-50 transition">
+                            <input type="radio" name="partner_programme" value="noahs-ark" class="mt-1">
+                            <span class="font-medium text-sm text-gray-900">
+                                The Noah's Ark Show
+                            </span>
+                        </label>
+
+                        <label class="border border-orange-300 rounded-xl p-4 flex gap-3 items-start cursor-pointer hover:bg-orange-50 transition">
+                            <input type="radio" name="partner_programme" value="bible-cup" class="mt-1">
+                            <span class="font-medium text-sm text-gray-900">
+                                The National Bible Cup
+                            </span>
+                        </label>
+
+                        <label class="border border-orange-300 rounded-xl p-4 flex gap-3 items-start cursor-pointer hover:bg-orange-50 transition">
+                            <input type="radio" name="partner_programme" value="church-you" class="mt-1">
+                            <span class="font-medium text-sm text-gray-900">
+                                The Church & You Talk Show
+                            </span>
+                        </label>
+
+                        <label class="border border-orange-300 rounded-xl p-4 flex gap-3 items-start cursor-pointer hover:bg-orange-50 transition sm:col-span-2">
+                            <input type="radio" name="partner_programme" value="marriage-realities" class="mt-1">
+                            <span class="font-medium text-sm text-gray-900">
+                                Marriage Realities Show
+                            </span>
+                        </label>
+
+                    </div>
+                </div>
+
+                <!-- STEP 2 -->
+                <div class="partner-step hidden">
+                    <h2 class="text-orange-500 text-xl font-semibold mb-2">
+                        Select Category
+                    </h2>
+
+                    <p class="text-sm text-gray-600 mb-4">
+                        Which category do you want to support?
+                    </p>
+
+                    <!-- OPTION -->
+                    <label class="block border border-orange-300 rounded-xl p-4 sm:p-5 mb-3 flex gap-3 items-start cursor-pointer hover:bg-orange-50 transition">
+                        <input type="radio" name="partner_category" value="major" class="mt-1">
+                        <div>
+                            <span class="font-medium">Major Weight</span><br>
+                            <span class="text-sm text-gray-600">
+                                ₦50,000,000 and above
+                            </span>
+                        </div>
+                    </label>
+
+                    <!-- OPTION -->
+                    <label class="block border border-orange-300 rounded-xl p-4 sm:p-5 mb-3 flex gap-3 items-start cursor-pointer hover:bg-orange-50 transition">
+                        <input type="radio" name="partner_category" value="medium" class="mt-1">
+                        <div>
+                            <span class="font-medium">Medium Weight</span><br>
+                            <span class="text-sm text-gray-600">
+                                ₦20,000,000 to ₦50,000,000
+                            </span>
+                        </div>
+                    </label>
+
+                    <!-- OPTION -->
+                    <label class="block border border-orange-300 rounded-xl p-4 sm:p-5 flex gap-3 items-start cursor-pointer hover:bg-orange-50 transition">
+                        <input type="radio" name="partner_category" value="light" class="mt-1">
+                        <div>
+                            <span class="font-medium">Light Weight</span><br>
+                            <span class="text-sm text-gray-600">
+                                ₦20,000,000 and below
+                            </span>
+                        </div>
+                    </label>
+                </div>
+
+                <!-- STEP 3 -->
+                <div class="partner-step hidden">
+                    <h2 class="text-orange-500 text-xl font-semibold mb-2">
+                        Fill Form
+                    </h2>
+
+                    <p class="text-sm text-gray-800 mb-6">
+                        Please fill in your details to proceed.
+                    </p>
+
+                    <div class="space-y-5">
+
+                        <div>
+                            <label class="block text-gray-700 text-sm font-medium mb-1">Full Name</label>
+                            <input id="partnerFullName" type="text" placeholder="Enter your full name"
+                                class="w-full rounded border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-400" />
+                        </div>
+
+                        <div>
+                            <label class="block text-gray-700 text-sm font-medium mb-1">Email Address</label>
+                            <input id="partnerEmail" type="email" placeholder="Enter your email address"
+                                class="w-full rounded border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-400" />
+                        </div>
+
+                        <div>
+                            <label class="block text-gray-700 text-sm font-medium mb-1">Phone Number</label>
+                            <input id="partnerPhone" type="tel" placeholder="Enter your phone number"
+                                class="w-full rounded border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-400" />
+                        </div>
+
+                        <div>
+                            <label class="block text-gray-700 text-sm font-medium mb-1">
+                                Partnership Amount
+                            </label>
+                            <input id="partnerAmount" type="number" placeholder="0"
+                                class="w-full rounded border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-400" />
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- STEP 4 -->
+                <div class="partner-step hidden">
+                    <h2 class="text-orange-500 text-xl font-semibold mb-2">
+                        Payment Method
+                    </h2>
+
+                    <p class="text-sm text-gray-600 mb-5">
+                        Which payment method would you prefer?
+                    </p>
+
+                    <!-- PROGRAMME OPTIONS -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+                        <!-- OPTION -->
+                        <label class="border border-orange-300 rounded-xl p-4 flex gap-3 items-start cursor-pointer hover:bg-orange-50 transition">
+                            <input type="radio" name="partner_payment" value="online" class="mt-1">
+                            <span class="font-medium text-sm text-gray-900">
+                                Online Payment
+                            </span>
+                        </label>
+
+                        <label class="border border-orange-300 rounded-xl p-4 flex gap-3 items-start cursor-pointer hover:bg-orange-50 transition">
+                            <input type="radio" name="partner_payment" value="offline" class="mt-1">
+                            <span class="font-medium text-sm text-gray-900">
+                                Offline Payment
+                            </span>
+                        </label>
+
+                    </div>
+                </div>
+
+                <!-- STEP 5 -->
+                <div class="partner-step hidden">
+                    <h2 class="text-orange-500 text-xl font-semibold mb-6">
+                        Complete Your Payment
+                    </h2>
+
+                    <!-- Amount Card -->
+                    <div class="bg-orange-50 rounded-2xl p-5 sm:p-6 mb-6 shadow-sm">
+                        <h3 class="font-medium text-gray-900 mb-2">
+                            Partnership Amount
+                        </h3>
+
+                        <p class="text-sm text-gray-600 mb-1">
+                            Amount to Transfer
+                        </p>
+
+                        <p class="text-xl font-semibold text-gray-900" id="displayAmount">
+                            ₦0
+                        </p>
+                    </div>
+
+                    <!-- Account Details Card -->
+                    <div class="bg-orange-50 rounded-2xl p-5 sm:p-6 shadow-sm">
+                        <h3 class="font-medium text-gray-900 mb-4">
+                            Account Details
+                        </h3>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+                            <!-- Bank -->
+                            <div>
+                                <p class="text-sm text-gray-600 mb-1">Bank:</p>
+                                <div class="flex items-center gap-2">
+                                    <span class="font-medium text-gray-900">First Bank</span>
+                                    <button class="text-gray-500 hover:text-gray-800" onclick="copyToClipboard('First Bank')">
+                                        📋
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Account Number -->
+                            <div>
+                                <p class="text-sm text-gray-600 mb-1">Account Number:</p>
+                                <div class="flex items-center gap-2">
+                                    <span class="font-medium text-gray-900">2096184982</span>
+                                    <button class="text-gray-500 hover:text-gray-800" onclick="copyToClipboard('2096184982')">
+                                        📋
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Account Name -->
+                            <div class="sm:col-span-2">
+                                <p class="text-sm text-gray-600 mb-1">Account Name:</p>
+                                <div class="flex items-center gap-2">
+                                    <span class="font-medium text-gray-900">
+                                        Sword Television Ltd
+                                    </span>
+                                    <button class="text-gray-500 hover:text-gray-800" onclick="copyToClipboard('Sword Television Ltd')">
+                                        📋
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- ACTION BUTTONS -->
+                    <div class="flex flex-col sm:flex-row justify-between mt-10 gap-4">
+
+                        <button id="partnerPaymentConfirmed" class="w-full sm:w-auto bg-orange-500 text-white px-6 py-3 rounded-full font-medium hover:bg-orange-600 transition">
+                            I Have Made Payment
+                        </button>
+
+                        <button class="w-full sm:w-auto border border-orange-400 text-orange-500 px-6 py-3 rounded-full font-medium hover:bg-orange-50 transition">
+                            Join Friends of the Bible
+                        </button>
+
+                    </div>
+                </div>
+
+                <!-- STEP 6 -->
+                <div class="partner-step hidden">
+                    <h2 class="text-orange-500 text-xl font-semibold mb-6">
+                        Which Forum Are You Interested In?
+                    </h2>
+
+                    <div class="space-y-4">
+
+                        <label class="block border border-orange-300 rounded-xl p-4 sm:p-5 cursor-pointer transition hover:bg-orange-50 has-[:checked]:border-orange-500 has-[:checked]:bg-orange-100">
+
+                            <div class="flex items-center gap-3">
+                                <input type="radio" name="partner_forum" value="bible-intl" class="accent-orange-500">
+                                <span class="font-medium text-gray-900">
+                                    Friends of the Bible International Meetings
+                                </span>
+                            </div>
+                        </label>
+
+                        <label class="block border border-orange-300 rounded-xl p-4 sm:p-5 cursor-pointer transition hover:bg-orange-50 has-[:checked]:border-orange-500 has-[:checked]:bg-orange-100">
+
+                            <div class="flex items-center gap-3">
+                                <input type="radio" name="partner_forum" value="consultation" class="accent-orange-500">
+                                <span class="font-medium text-gray-900">
+                                    Consultation Session
+                                </span>
+                            </div>
+                        </label>
+
+                        <label class="block border border-orange-300 rounded-xl p-4 sm:p-5 cursor-pointer transition hover:bg-orange-50 has-[:checked]:border-orange-500 has-[:checked]:bg-orange-100">
+
+                            <div class="flex items-center gap-3">
+                                <input type="radio" name="partner_forum" value="prayer" class="accent-orange-500">
+                                <span class="font-medium text-gray-900">
+                                    Prayer Session
+                                </span>
+                            </div>
+                        </label>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- FOOTER BUTTONS -->
+            <div class="flex flex-col sm:flex-row gap-4 sm:justify-between items-center mt-10 pt-6 border-t border-gray-100">
+
+                <button id="partnerPrevBtn" class="w-full sm:w-auto border border-orange-400 text-orange-500 px-8 py-3 rounded-full font-medium hover:bg-orange-50 transition" disabled>
+                    Previous
+                </button>
+
+                <button id="partnerNextBtn" class="w-full sm:w-auto bg-orange-400 text-white px-8 py-3 rounded-full font-medium hover:bg-orange-500 transition">
+                    Next
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+
     <!-- Success Message Modal -->
     <div id="successModal" class="fixed inset-0 z-[1000] hidden flex items-center justify-center bg-black/60 backdrop-blur-lg px-4">
         <div class="w-full max-w-md bg-white rounded-2xl shadow-2xl p-6 relative flex flex-col items-center text-center">
@@ -1248,18 +1759,119 @@
         </div>
     </div>
 
-    <!-- SCRIPTS -->
+    <script src="./assets/c.js"></script>
+
+    <!-- MAIN SCRIPTS -->
     <script>
-        // ==================== MODAL STATE ====================
+        // ==================== PARTNER MODAL STATE ====================
+        let partnerCurrentStep = 1;
+        const partnerTotalSteps = 6;
+        const partnerModal = document.getElementById('partnerModal');
+
+        // ==================== MODAL OPEN/CLOSE ====================
+        function openPartnerModal() {
+            partnerModal.classList.remove('hidden');
+            partnerCurrentStep = 1;
+            updatePartnerStep();
+        }
+
+        function closePartnerModal() {
+            partnerModal.classList.add('hidden');
+            resetPartnerForm();
+        }
+
+        function resetPartnerForm() {
+            partnerCurrentStep = 1;
+            document.querySelectorAll('.partner-step').forEach(step => step.classList.add('hidden'));
+            document.querySelectorAll('.partner-step')[0].classList.remove('hidden');
+            document.getElementById('partnerNextBtn').disabled = false;
+            document.getElementById('partnerPrevBtn').disabled = true;
+        }
+
+        // Open modal buttons
+        document.getElementById('openPartnerModal').addEventListener('click', openPartnerModal);
+        document.getElementById('openPartnerModalMobile').addEventListener('click', () => {
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (mobileMenu) {
+                mobileMenu.classList.add('hidden');
+            }
+            openPartnerModal();
+        });
+
+        // Close modal buttons
+        document.getElementById('closePartnerModal').addEventListener('click', closePartnerModal);
+        document.getElementById('returnPartnerBtn').addEventListener('click', closePartnerModal);
+
+        // ==================== STEP NAVIGATION ====================
+        function updatePartnerStep() {
+            // Hide all steps
+            document.querySelectorAll('.partner-step').forEach(step => step.classList.add('hidden'));
+            
+            // Show current step
+            const steps = document.querySelectorAll('.partner-step');
+            steps[partnerCurrentStep - 1].classList.remove('hidden');
+
+            // Update progress bar
+            const progress = (partnerCurrentStep / partnerTotalSteps) * 100;
+            document.getElementById('partnerProgressBar').style.width = progress + '%';
+            
+            // Update step counter
+            document.getElementById('partnerStep').textContent = partnerCurrentStep;
+
+            // Update button states
+            document.getElementById('partnerPrevBtn').disabled = partnerCurrentStep === 1;
+            const nextBtn = document.getElementById('partnerNextBtn');
+            nextBtn.textContent = partnerCurrentStep === partnerTotalSteps ? 'Submit' : 'Next';
+            nextBtn.disabled = false;
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        document.getElementById('partnerPrevBtn').addEventListener('click', () => {
+            if (partnerCurrentStep > 1) {
+                partnerCurrentStep--;
+                updatePartnerStep();
+            }
+        });
+
+        document.getElementById('partnerNextBtn').addEventListener('click', () => {
+            if (partnerCurrentStep < partnerTotalSteps) {
+                partnerCurrentStep++;
+                updatePartnerStep();
+            } else {
+                submitPartnerForm();
+            }
+        });
+
+        // ==================== PARTNER FORM SUBMISSION ====================
+        function submitPartnerForm() {
+            const data = {
+                programme: document.querySelector('input[name="partner_programme"]:checked')?.value,
+                category: document.querySelector('input[name="partner_category"]:checked')?.value,
+                fullName: document.getElementById('partnerFullName').value,
+                email: document.getElementById('partnerEmail').value,
+                phone: document.getElementById('partnerPhone').value,
+                amount: document.getElementById('partnerAmount').value,
+                paymentMethod: document.querySelector('input[name="partner_payment"]:checked')?.value,
+                forum: document.querySelector('input[name="partner_forum"]:checked')?.value,
+                submittedAt: new Date().toISOString()
+            };
+
+            console.log('Partner form submitted:', data);
+            document.getElementById('successModal').classList.remove('hidden');
+            
+            setTimeout(() => {
+                resetPartnerForm();
+            }, 1000);
+        }
+
+        // ==================== GUEST MODAL (Keep original) ====================
         let currentStep = 1;
         const totalSteps = 7;
         const guestModal = document.getElementById('guestModal');
         const successModal = document.getElementById('successModal');
-
-        // Form data storage
         const formData = {};
 
-        // ==================== MODAL OPEN/CLOSE ====================
         function openGuestModal() {
             guestModal.classList.remove('hidden');
             currentStep = 1;
@@ -1279,41 +1891,6 @@
             document.getElementById('prevStepBtn').disabled = true;
         }
 
-        // Open modal buttons
-        const openGuestBtn = document.getElementById('openGuestModal');
-        const openGuestMobileBtn = document.getElementById('openGuestModalMobile');
-        const openGuestModalMobileMenuBtn = document.getElementById('openGuestModalMobileMenu');
-        const becomeGuestBtn = document.getElementById('becomeGuestBtn');
-
-        if (openGuestBtn) {
-            openGuestBtn.addEventListener('click', openGuestModal);
-        }
-
-        if (openGuestMobileBtn) {
-            openGuestMobileBtn.addEventListener('click', () => {
-                const mobileMenu = document.getElementById('mobileMenu');
-                if (mobileMenu) {
-                    mobileMenu.classList.add('hidden');
-                }
-                openGuestModal();
-            });
-        }
-
-        if (openGuestModalMobileMenuBtn) {
-            openGuestModalMobileMenuBtn.addEventListener('click', () => {
-                const mobileMenu = document.getElementById('mobileMenu');
-                if (mobileMenu) {
-                    mobileMenu.classList.add('hidden');
-                }
-                openGuestModal();
-            });
-        }
-
-        if (becomeGuestBtn) {
-            becomeGuestBtn.addEventListener('click', openGuestModal);
-        }
-
-        // Close modal buttons
         document.getElementById('closeGuestModal').addEventListener('click', closeGuestModal);
         document.getElementById('returnHomeBtn').addEventListener('click', closeGuestModal);
         document.getElementById('closeSuccessModal').addEventListener('click', () => {
@@ -1324,29 +1901,21 @@
             closeGuestModal();
         });
 
-        // ==================== STEP NAVIGATION ====================
+        // ==================== GUEST STEP NAVIGATION ====================
         function updateStep() {
-            // Hide all steps
             document.querySelectorAll('.step').forEach(step => step.classList.add('hidden'));
-            
-            // Show current step
             const steps = document.querySelectorAll('.step');
             steps[currentStep - 1].classList.remove('hidden');
 
-            // Update progress bar
             const progress = (currentStep / totalSteps) * 100;
             document.getElementById('progressBar').style.width = progress + '%';
-            
-            // Update step counter
             document.getElementById('currentStep').textContent = currentStep;
 
-            // Update button states
             document.getElementById('prevStepBtn').disabled = currentStep === 1;
             const nextBtn = document.getElementById('nextStepBtn');
             nextBtn.textContent = currentStep === totalSteps ? 'Submit' : 'Next';
             nextBtn.disabled = false;
 
-            // Show sponsorship details if needed
             if (currentStep === 6) {
                 const sponsorshipSelect = document.getElementById('guestSponsorshipInterest');
                 const detailsDiv = document.getElementById('guestSponsorshipDetails');
@@ -1355,7 +1924,6 @@
                 }
             }
 
-            // Show volunteer area if needed
             if (currentStep === 7) {
                 const volunteerSelect = document.getElementById('guestVolunteerInterest');
                 const areaDiv = document.getElementById('guestVolunteerArea');
@@ -1375,7 +1943,6 @@
         });
 
         document.getElementById('nextStepBtn').addEventListener('click', () => {
-            // Validate current step
             if (validateStep(currentStep)) {
                 if (currentStep < totalSteps) {
                     currentStep++;
@@ -1388,22 +1955,168 @@
 
         // ==================== FORM VALIDATION ====================
         function validateStep(step) {
-            const fields = {
-                1: ['participationType'],
-                2: ['guestFullName', 'guestPhone', 'guestEmail', 'guestGender', 'guestAgeRange', 'guestState', 'guestCountry', 'guestAccommodation', 'guestMaritalStatus'],
-                3: ['guestExperienceType'],
-                4: ['guestStory', 'guestLiveStage', 'guestHotSeat'],
-                5: ['guestVirtualParticipation'],
-                6: [],
-                7: ['guestSignature', 'guestConsent']
-            };
-
-            for (let fieldId of fields[step]) {
-                const field = document.getElementById(fieldId);
-                if (!field || !field.value) {
-                    alert(`Please fill in all required fields on this step.`);
+            // Step 1: Participation Type
+            if (step === 1) {
+                const participationType = document.getElementById('participationType').value;
+                if (!participationType) {
+                    alert('Please select a participation category.');
                     return false;
                 }
+                return true;
+            }
+
+            // Step 2: Personal Information
+            if (step === 2) {
+                const fullName = document.getElementById('guestFullName').value.trim();
+                const phone = document.getElementById('guestPhone').value.trim();
+                const email = document.getElementById('guestEmail').value.trim();
+                const gender = document.getElementById('guestGender').value;
+                const ageRange = document.getElementById('guestAgeRange').value;
+                const state = document.getElementById('guestState').value;
+                const country = document.getElementById('guestCountry').value;
+                const accommodation = document.getElementById('guestAccommodation').value;
+                const maritalStatus = document.getElementById('guestMaritalStatus').value;
+
+                if (!fullName) {
+                    alert('Please enter your full name.');
+                    return false;
+                }
+                if (!phone) {
+                    alert('Please enter your phone number.');
+                    return false;
+                }
+                if (!email || !email.includes('@')) {
+                    alert('Please enter a valid email address.');
+                    return false;
+                }
+                if (!gender) {
+                    alert('Please select your gender.');
+                    return false;
+                }
+                if (!ageRange) {
+                    alert('Please select your age range.');
+                    return false;
+                }
+                if (!state) {
+                    alert('Please select your state.');
+                    return false;
+                }
+                if (!country) {
+                    alert('Please select your country.');
+                    return false;
+                }
+                if (!accommodation) {
+                    alert('Please select accommodation preference.');
+                    return false;
+                }
+                if (!maritalStatus) {
+                    alert('Please select your marital status.');
+                    return false;
+                }
+                return true;
+            }
+
+            // Step 3: Experience Type
+            if (step === 3) {
+                const experienceType = document.getElementById('guestExperienceType').value;
+                if (!experienceType || experienceType === 'none') {
+                    alert('Please select an experience type.');
+                    return false;
+                }
+                return true;
+            }
+
+            // Step 4: Story Section
+            if (step === 4) {
+                const story = document.getElementById('guestStory').value.trim();
+                const liveStage = document.getElementById('guestLiveStage').value;
+                const hotSeat = document.getElementById('guestHotSeat').value;
+
+                if (!story || story.length < 20) {
+                    alert('Please enter a story (at least 20 characters).');
+                    return false;
+                }
+                if (!liveStage) {
+                    alert('Please select whether you\'re open to speaking live on stage.');
+                    return false;
+                }
+                if (!hotSeat) {
+                    alert('Please select your preference for live interaction with the host.');
+                    return false;
+                }
+                return true;
+            }
+
+            // Step 5: Virtual Participation
+            if (step === 5) {
+                const virtualParticipation = document.getElementById('guestVirtualParticipation').value;
+                const virtualDetails = document.getElementById('guestVirtualDetails').value.trim();
+
+                if (!virtualParticipation) {
+                    alert('Please select whether you\'d like to submit a question or story online.');
+                    return false;
+                }
+                if (virtualParticipation === 'yes' && (!virtualDetails || virtualDetails.length < 10)) {
+                    alert('Please provide details about your question or story (at least 10 characters).');
+                    return false;
+                }
+                return true;
+            }
+
+            // Step 6: Sponsorship
+            if (step === 6) {
+                const sponsorshipInterest = document.getElementById('guestSponsorshipInterest').value;
+                if (!sponsorshipInterest) {
+                    alert('Please select whether you\'re interested in sponsoring or partnering.');
+                    return false;
+                }
+
+                // If yes, validate sponsorship details
+                if (sponsorshipInterest === 'yes') {
+                    const brandName = document.getElementById('guestBrandName').value.trim();
+                    const sponsorshipType = document.getElementById('guestSponsorshipType').value;
+
+                    if (!brandName) {
+                        alert('Please enter your organization/brand name.');
+                        return false;
+                    }
+                    if (!sponsorshipType) {
+                        alert('Please select a sponsorship type.');
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            // Step 7: Volunteer & Consent
+            if (step === 7) {
+                const volunteerInterest = document.getElementById('guestVolunteerInterest').value;
+                const consent = document.getElementById('guestConsent').value;
+                const signature = document.getElementById('guestSignature').value.trim();
+
+                if (!volunteerInterest) {
+                    alert('Please select whether you\'d like to volunteer.');
+                    return false;
+                }
+
+                // If volunteering, check preferred area
+                if (volunteerInterest === 'yes') {
+                    const volunteerType = document.getElementById('guestVolunteerType').value;
+                    if (!volunteerType) {
+                        alert('Please select your preferred volunteer area.');
+                        return false;
+                    }
+                }
+
+                if (!consent) {
+                    alert('Please select your consent preference.');
+                    return false;
+                }
+                if (!signature) {
+                    alert('Please enter your signature (name).');
+                    return false;
+                }
+                return true;
             }
 
             return true;
@@ -1431,7 +2144,6 @@
 
         // ==================== FORM SUBMISSION ====================
         function submitForm() {
-            // Collect form data
             const data = {
                 participationType: document.getElementById('participationType').value,
                 fullName: document.getElementById('guestFullName').value,
@@ -1459,13 +2171,9 @@
                 submittedAt: new Date().toISOString()
             };
 
-            // Log form data (in production, send to server)
             console.log('Form submitted:', data);
-
-            // Show success modal
             successModal.classList.remove('hidden');
             
-            // Reset form
             setTimeout(() => {
                 resetForm();
             }, 1000);
@@ -1495,49 +2203,337 @@
         resetForm();
     </script>
 
-
-
-
-    <script src="../the-church-and-you/assets/script.js"></script>
-    <script src="./assets/script.js"></script>
-    <!-- <script src="../assets/js/script.js"></script> -->
     <script>
-        /* =============================
-   NAVIGATION MENU FUNCTIONALITY
-============================= */
+        // ==================== WATCH & ENGAGE SECTION ====================
+        const episodesData = {
+            all: [
+                { id: 1, season: 1, title: "Love & Trust", thumbnail: "https://via.placeholder.com/400x225?text=Episode+1", duration: "45:30" },
+                { id: 2, season: 1, title: "Communication Matters", thumbnail: "https://via.placeholder.com/400x225?text=Episode+2", duration: "52:15" },
+                { id: 3, season: 2, title: "Conflict Resolution", thumbnail: "https://via.placeholder.com/400x225?text=Episode+3", duration: "48:00" },
+                { id: 4, season: 2, title: "Financial Planning", thumbnail: "https://via.placeholder.com/400x225?text=Episode+4", duration: "55:45" },
+                { id: 5, season: 3, title: "Parenting Together", thumbnail: "https://via.placeholder.com/400x225?text=Episode+5", duration: "50:20" },
+                { id: 6, season: 3, title: "Rebuilding Trust", thumbnail: "https://via.placeholder.com/400x225?text=Episode+6", duration: "59:10" }
+            ]
+        };
 
-        document.addEventListener("DOMContentLoaded", () => {
+        let currentSeason = 'all';
+        let displayedEpisodes = 0;
 
-            const openMenuBtn = document.getElementById("openMenu");
-            const closeMenuBtn = document.getElementById("closeMenu");
-            const mobileMenu = document.getElementById("mobileMenu");
+        function switchTab(tab) {
+            document.getElementById('panelLive').classList.add('hidden-panel');
+            document.getElementById('panelLive').classList.remove('entering');
+            document.getElementById('panelPast').classList.add('hidden-panel');
+            document.getElementById('panelPast').classList.remove('entering');
 
-            // OPEN MENU
-            openMenuBtn.addEventListener("click", () => {
-                mobileMenu.classList.remove("hidden");
-                mobileMenu.classList.add("flex");
-                document.body.style.overflow = "hidden";
+            if (tab === 'live') {
+                document.getElementById('panelLive').classList.remove('hidden-panel');
+                document.getElementById('panelLive').classList.add('entering');
+                document.getElementById('btnLive').classList.add('active');
+                document.getElementById('btnPast').classList.remove('active');
+                document.getElementById('toggleIndicator').style.left = '0';
+            } else {
+                document.getElementById('panelPast').classList.remove('hidden-panel');
+                document.getElementById('panelPast').classList.add('entering');
+                document.getElementById('btnPast').classList.add('active');
+                document.getElementById('btnLive').classList.remove('active');
+                document.getElementById('toggleIndicator').style.left = '50%';
+                renderEpisodes(currentSeason);
+            }
+        }
+
+        function renderEpisodes(season) {
+            const grid = document.getElementById('episodesGrid');
+            const emptyState = document.getElementById('emptyState');
+            let filtered = episodesData.all;
+
+            if (season !== 'all') {
+                filtered = episodesData.all.filter(ep => ep.season === parseInt(season));
+            }
+
+            grid.innerHTML = '';
+
+            if (filtered.length === 0) {
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+
+            filtered.forEach(episode => {
+                const card = document.createElement('div');
+                card.className = 'bg-white/5 backdrop-blur-md border border-white/10 rounded-xl overflow-hidden hover:border-orange-500/50 transition group cursor-pointer';
+                card.innerHTML = `
+                    <div class="relative overflow-hidden aspect-video bg-gradient-to-br from-gray-900 to-black">
+                        <img src="${episode.thumbnail}" alt="${episode.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                        <div class="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/20 transition">
+                            <button class="w-12 h-12 rounded-full bg-orange-500 flex items-center justify-center hover:bg-orange-600 transition transform group-hover:scale-110">
+                                <svg class="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>
+                            </button>
+                        </div>
+                        <span class="absolute top-3 right-3 text-xs font-semibold bg-black/60 px-2 py-1 rounded text-white">${episode.duration}</span>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-white font-semibold text-sm line-clamp-2">${episode.title}</h3>
+                        <p class="text-white/40 text-xs mt-2">Season ${episode.season}</p>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterSeason(season) {
+            currentSeason = season;
+            
+            document.querySelectorAll('.season-filter-btn').forEach(btn => {
+                btn.classList.remove('active-filter');
+                btn.classList.add('bg-white/5', 'border', 'border-white/10', 'text-white/50');
             });
 
-            // CLOSE MENU
-            closeMenuBtn.addEventListener("click", () => {
-                mobileMenu.classList.add("hidden");
-                mobileMenu.classList.remove("flex");
-                document.body.style.overflow = "auto";
+            const activeBtn = document.querySelector(`[data-season="${season}"]`);
+            if (activeBtn) {
+                activeBtn.classList.add('active-filter');
+                activeBtn.classList.remove('bg-white/5', 'border', 'border-white/10', 'text-white/50');
+            }
+
+            renderEpisodes(season);
+        }
+
+        // ==================== GALLERY & CAROUSEL ====================
+        const galleryImages = [
+            { src: "https://res.cloudinary.com/dtrqikle5/image/upload/v1781177266/photo_2026-06-11_12-21-27_gqwtvj.jpg", caption: "Marriage Realities Show - Episode 1" },
+            { src: "https://res.cloudinary.com/dtrqikle5/image/upload/v1776187667/photo_2026-04-09_04-44-21_rlnxst.jpg", caption: "Behind the scenes" },
+            { src: "https://res.cloudinary.com/dtrqikle5/image/upload/v1775704554/photo_21_2026-04-09_04-13-26_nalomq.jpg", caption: "Guest testimonials" },
+            { src: "https://res.cloudinary.com/dtrqikle5/image/upload/v1775704553/photo_19_2026-04-09_04-13-26_arwxvg.jpg", caption: "Live audience" },
+            { src: "https://res.cloudinary.com/dtrqikle5/image/upload/v1775704553/photo_13_2026-04-09_04-13-26_jfxdwn.jpg", caption: "Studio setup" },
+            { src: "https://res.cloudinary.com/dtrqikle5/image/upload/v1775704552/photo_15_2026-04-09_04-13-26_ol7qhb.jpg", caption: "Team moment" },
+            { src: "https://res.cloudinary.com/dtrqikle5/image/upload/v1775704552/photo_9_2026-04-09_04-13-26_kfau8o.jpg", caption: "Interview session" },
+            { src: "https://res.cloudinary.com/dtrqikle5/image/upload/v1775704550/photo_1_2026-04-09_04-13-26_vpyja0.jpg", caption: "Event closure" }
+        ];
+
+        let currentImageIndex = 0;
+        const slideWidth = 300;
+
+        function initCarousel() {
+            const track = document.getElementById('carouselTrack');
+            const dotBar = document.getElementById('dotBar');
+
+            galleryImages.forEach((img, index) => {
+                const slide = document.createElement('div');
+                slide.className = 'flex-shrink-0 cursor-pointer';
+                slide.style.width = slideWidth + 'px';
+                slide.innerHTML = `
+                    <img src="${img.src}" alt="${img.caption}" class="w-full h-64 object-cover rounded-lg hover:opacity-80 transition" onclick="openLightbox(${index})" />
+                `;
+                track.appendChild(slide);
             });
 
-            // CLOSE WHEN CLICKING OUTSIDE
-            mobileMenu.addEventListener("click", (e) => {
-                if (e.target === mobileMenu) {
-                    mobileMenu.classList.add("hidden");
-                    mobileMenu.classList.remove("flex");
-                    document.body.style.overflow = "auto";
+            galleryImages.forEach((_, index) => {
+                const dot = document.createElement('button');
+                dot.className = `dot w-2 h-2 rounded-full transition ${index === 0 ? 'bg-orange-500' : 'bg-white/30'}`;
+                dot.onclick = () => goToSlide(index);
+                dotBar.appendChild(dot);
+            });
+
+            updateCounter();
+        }
+
+        function updateCounter() {
+            document.getElementById('counter').textContent = `${currentImageIndex + 1} / ${galleryImages.length}`;
+            updateDots();
+        }
+
+        function updateDots() {
+            document.querySelectorAll('.dot').forEach((dot, index) => {
+                if (index === currentImageIndex) {
+                    dot.classList.add('bg-orange-500');
+                    dot.classList.remove('bg-white/30');
+                } else {
+                    dot.classList.remove('bg-orange-500');
+                    dot.classList.add('bg-white/30');
                 }
             });
+        }
 
+        function goToSlide(index) {
+            currentImageIndex = index;
+            const track = document.getElementById('carouselTrack');
+            const offset = -index * slideWidth;
+            track.style.transform = `translateX(${offset}px)`;
+            updateCounter();
+        }
+
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+            goToSlide(currentImageIndex);
         });
-    </script>
 
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+            goToSlide(currentImageIndex);
+        });
+
+        // ==================== LIGHTBOX ====================
+        function openLightbox(index) {
+            currentImageIndex = index;
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lbImg');
+            const caption = document.getElementById('lbCaption');
+
+            if (lightbox && img && caption) {
+                img.src = galleryImages[index].src;
+                caption.textContent = galleryImages[index].caption;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            if (lightbox) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function setupLightboxListeners() {
+            const lbClose = document.getElementById('lbClose');
+            const lbPrev = document.getElementById('lbPrev');
+            const lbNext = document.getElementById('lbNext');
+            const lightbox = document.getElementById('lightbox');
+
+            if (lbClose) {
+                lbClose.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    closeLightbox();
+                });
+            }
+
+            if (lbPrev) {
+                lbPrev.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+                    const img = document.getElementById('lbImg');
+                    const caption = document.getElementById('lbCaption');
+                    img.src = galleryImages[currentImageIndex].src;
+                    caption.textContent = galleryImages[currentImageIndex].caption;
+                });
+            }
+
+            if (lbNext) {
+                lbNext.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+                    const img = document.getElementById('lbImg');
+                    const caption = document.getElementById('lbCaption');
+                    img.src = galleryImages[currentImageIndex].src;
+                    caption.textContent = galleryImages[currentImageIndex].caption;
+                });
+            }
+
+            if (lightbox) {
+                lightbox.addEventListener('click', (e) => {
+                    if (e.target === lightbox) {
+                        closeLightbox();
+                    }
+                });
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            const lightbox = document.getElementById('lightbox');
+            if (!lightbox || !lightbox.classList.contains('active')) return;
+
+            if (e.key === 'ArrowLeft') {
+                const lbPrev = document.getElementById('lbPrev');
+                if (lbPrev) lbPrev.click();
+            } else if (e.key === 'ArrowRight') {
+                const lbNext = document.getElementById('lbNext');
+                if (lbNext) lbNext.click();
+            }
+        });
+
+        // ==================== FAQ SECTION ====================
+        const faqData = [
+            {
+                question: "What is the Marriage Realities Show?",
+                answer: "The Marriage Realities Show is a premium, audience-based talk show that explores all aspects of marriage and family life. It provides a safe platform for participants to express their experiences, share stories, and seek guidance from experts."
+            },
+            {
+                question: "How can I participate in the show?",
+                answer: "You can participate in several ways: share your story live on stage, submit a story to be read, join the live audience, connect virtually, or sponsor/partner with us. Click the 'Join the Show' button to apply."
+            },
+            {
+                question: "Do I need to be married to participate?",
+                answer: "No, we welcome participants at all stages of relationships - single, dating, engaged, married, divorced, or remarried. Anyone with relevant experiences and insights is welcome to participate."
+            },
+            {
+                question: "Is there a participation fee?",
+                answer: "Participation is free for guests who join the show. However, sponsorship and partnership opportunities are available for those interested in supporting the program."
+            },
+            {
+                question: "Can I share my story anonymously?",
+                answer: "While you'll need to provide basic information for registration, we respect privacy concerns. Discuss confidentiality requirements with our team during the registration process."
+            },
+            {
+                question: "What topics does the show cover?",
+                answer: "We cover a wide range of topics including pre-marriage issues, communication, conflict resolution, financial planning, trust, parenting, divorce and remarriage, and life experiences of couples at different stages."
+            }
+        ];
+
+        function initializeFAQs() {
+            const faqListWrap = document.getElementById('faqListWrap');
+            
+            faqData.forEach((faq, index) => {
+                const faqItem = document.createElement('div');
+                faqItem.className = 'faq-item';
+                faqItem.innerHTML = `
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>${faq.question}</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>${faq.answer}</p>
+                    </div>
+                `;
+                faqListWrap.appendChild(faqItem);
+            });
+        }
+
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            faqItem.classList.toggle('active');
+        }
+
+        // ==================== COPY TO CLIPBOARD ====================
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Copied to clipboard!');
+            });
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            initCarousel();
+            setupLightboxListeners();
+            initializeFAQs();
+        });
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                setupLightboxListeners();
+            });
+        } else {
+            setupLightboxListeners();
+        }
+    </script>
 
 </body>
 
