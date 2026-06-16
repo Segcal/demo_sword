@@ -35,21 +35,38 @@
         }
 
         .bi {
-            background: linear-gradient(135deg, #0a192f 0%, #1a365d 50%, #2c5282 100%);
+            background: linear-gradient(135deg, #0a0e27 0%, #141828 50%, #1a2847 100%);
             min-height: 100vh;
+            position: relative;
+        }
+
+        .bi::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 150, 200, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
         }
         
         .glass-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(20, 24, 40, 0.6);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(100, 200, 255, 0.2);
             transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
         }
         
         .glass-card:hover {
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateY(-5px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(20, 24, 40, 0.8);
+            transform: translateY(-8px);
+            border: 1px solid rgba(100, 200, 255, 0.4);
+            box-shadow: 0 0 30px rgba(0, 150, 200, 0.3);
         }
         
         .vote-button {
@@ -63,13 +80,28 @@
         }
         
         .profile-button {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(100, 200, 255, 0.1);
+            border: 1px solid rgba(100, 200, 255, 0.4);
+            color: rgba(100, 200, 255, 0.8);
             transition: all 0.3s ease;
         }
         
         .profile-button:hover {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(100, 200, 255, 0.2);
+            color: rgba(100, 200, 255, 1);
+        }
+
+        .watch-perf-link {
+            color: rgba(100, 200, 255, 0.9);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .watch-perf-link:hover {
+            color: rgba(100, 200, 255, 1);
         }
 
         .modal {
@@ -281,7 +313,7 @@
     <!--   -->
 
     <section class="p-6 md:p-12 bi">
-        <div class="max-w-7xl mx-auto">
+        <div class="max-w-7xl mx-auto relative z-10">
             <h1 class="text-4xl md:text-5xl font-bold text-white text-center mb-12">Housemates</h1>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8" id="housematesGrid">
@@ -291,27 +323,20 @@
 
         <!-- Step 1: Cast Your Vote Modal -->
         <div id="castVoteModal" class="modal">
-            <div class="modal-content">
+            <div class="modal-content max-w-sm">
                 <button class="close-btn" onclick="closeAllModals()">×</button>
                 <div class="p-8">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Cast Your Vote</h2>
-                    <p class="text-gray-600 mb-6">Are You sure you want to vote ?</p>
-                    <div class="mb-6">
-                        <label class="block text-sm font-medium text-gray-700 mb-2"></label>
-                        <select id="housemateSelect"
-                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-gray-900">
-                            <option>Select</option>
-                        </select>
-                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Cast your vote</h2>
+                    <p class="text-sm text-gray-600 mb-8">Choose the way of the below options to proceed with your vote.</p>
                     <div class="flex gap-3">
                         <button onclick="goToVotingPin()"
                             class="vote-button flex-1 py-3 px-6 rounded-full text-white font-semibold">
-                            Proceed
+                            I have voting pin
                         </button>
-                        <button onclick="closeAllModals()"
-                            class="py-3 px-6 rounded-full text-gray-600 font-medium border border-gray-300 hover:bg-gray-50">
-                            Cancel
-                        </button>
+                        <a href="./pin-purches.html"
+                            class="py-3 px-6 rounded-full text-gray-600 font-medium border border-gray-300 hover:bg-gray-50 text-center flex-1 no-underline inline-block">
+                            Buy voting pin
+                        </a>
                     </div>
                 </div>
             </div>
@@ -322,14 +347,12 @@
             <div class="modal-content">
                 <button class="close-btn" onclick="closeAllModals()">×</button>
                 <div class="p-8">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Enter Your Voting PIN</h2>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Voting Pin</h2>
+                    <p class="text-sm text-gray-600 mb-6">Your PIN will be debited based on the total number of votes made.</p>
                     <div class="mb-6">
                         <label class="block text-sm font-medium text-gray-700 mb-2">Enter your pin</label>
-                        <input type="text" id="votingPin" placeholder="Enter PIN"
+                        <input type="text" id="votingPin" placeholder="5"
                             class="text-gray-900 w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500">
-                        <p class="text-sm text-gray-500 mt-2">Don't have a PIN?  <a href="./pin-purches.html" class="text-orange-600 font-semibold hover:text-orange-700">Purchase here</a> </p>
-                        <!-- <button onclick="openPurchasePinModal()"
-                                class="text-orange-600 font-semibold hover:text-orange-700">Purchase here</button> -->
                     </div>
                     <div class="flex gap-3">
                         <button onclick="goToVoteNumber()"
@@ -338,7 +361,7 @@
                         </button>
                         <button onclick="goBack('castVoteModal')"
                             class="py-3 px-6 rounded-full text-gray-600 font-medium border border-gray-300 hover:bg-gray-50">
-                            Back
+                            Go back
                         </button>
                     </div>
                 </div>
@@ -347,13 +370,13 @@
 
         <!-- Step 3: Enter Number of Votes Modal -->
         <div id="voteNumberModal" class="modal">
-            <div class="modal-content">
+            <div class="modal-content max-w-sm">
                 <button class="close-btn" onclick="closeAllModals()">×</button>
                 <div class="p-8">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Enter Number of Votes</h2>
-                    <p class="text-gray-600 mb-6">Input how many votes you want to use here</p>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Vote number</h2>
+                    <p class="text-sm text-gray-600 mb-6">Instruction text: Each vote costs #150</p>
                     <div class="mb-6">
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Number of votes</label>
+                        <p class="text-xs text-gray-500 mb-3">Enter how many votes you want to cast below</p>
                         <input type="number" id="numberOfVotes" placeholder="0"
                             class="w-full text-gray-900 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500">
                     </div>
@@ -364,7 +387,7 @@
                         </button>
                         <button onclick="goBack('votingPinModal')"
                             class="py-3 px-6 rounded-full text-gray-600 font-medium border border-gray-300 hover:bg-gray-50">
-                            Back
+                            Go back
                         </button>
                     </div>
                 </div>
@@ -373,38 +396,42 @@
 
         <!-- Step 4: Confirm Your Vote Modal -->
         <div id="confirmVoteModal" class="modal">
-            <div class="modal-content">
+            <div class="modal-content max-w-md">
                 <button class="close-btn" onclick="closeAllModals()">×</button>
                 <div class="p-8">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Confirm Your Vote</h2>
-                    <div class="flex flex-col items-center mb-6">
-                        <div class="w-32 h-32 rounded-full overflow-hidden mb-4">
-                            <img id="confirmImage" src="" alt="" class="w-full h-full object-cover">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Confirm vote</h2>
+                    <div class="flex gap-6 mb-6">
+                        <div class="flex-1">
+                            <div class="space-y-4 text-sm">
+                                <div>
+                                    <p class="text-gray-600 text-xs mb-1">Number of vote:</p>
+                                    <p id="confirmVoteCount" class="font-bold text-gray-800 text-lg">0</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-600 text-xs mb-1">Cost per vote:</p>
+                                    <p class="font-bold text-gray-800">N150</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-600 text-xs mb-1">Total cost:</p>
+                                    <p id="confirmTotalCost" class="font-bold text-gray-800 text-lg">N0</p>
+                                </div>
+                            </div>
                         </div>
-                        <h3 id="confirmName" class="text-xl font-bold text-gray-800 mb-4"></h3>
-                        <div class="w-full space-y-3 text-sm">
-                            <div class="flex justify-between py-2 border-b">
-                                <span class="text-gray-600">Price Per Vote</span>
-                                <span id="confirmId" class="font-medium text-gray-900">N200</span>
+                        <div class="flex-shrink-0">
+                            <div class="w-24 h-32 rounded-lg overflow-hidden">
+                                <img id="confirmImage" src="" alt="" class="w-full h-full object-cover">
                             </div>
-                            <div class="flex justify-between py-2 border-b">
-                                <span class="text-gray-600">Housemate</span>
-                                <span id="confirmHousemate" class="font-medium text-gray-900"></span>
-                            </div>
-                            <div class="flex justify-between py-2 border-b">
-                                <span class="text-gray-600">Number of vote</span>
-                                <span id="confirmVoteCount" class="font-medium text-gray-900">0</span>
-                            </div>
+                            <p id="confirmName" class="text-center text-xs font-semibold text-gray-800 mt-2"></p>
                         </div>
                     </div>
                     <div class="flex gap-3">
                         <button onclick="submitVote()"
-                            class="vote-button flex-1 py-3 px-6 rounded-full text-white font-semibold">
-                            Confirm
+                            class="vote-button flex-1 py-3 px-6 rounded-full text-white font-semibold text-sm">
+                            Cast vote
                         </button>
                         <button onclick="goBack('voteNumberModal')"
-                            class="py-3 px-6 rounded-full text-gray-600 font-medium border border-gray-300 hover:bg-gray-50">
-                            Back
+                            class="py-3 px-6 rounded-full text-gray-600 font-medium border border-gray-300 hover:bg-gray-50 text-sm">
+                            Go back
                         </button>
                     </div>
                 </div>
@@ -413,188 +440,33 @@
 
         <!-- Step 5: Vote Successful Modal -->
         <div id="successModal" class="modal">
-            <div class="modal-content">
+            <div class="modal-content max-w-md">
                 <button class="close-btn" onclick="closeAllModals()">×</button>
                 <div class="p-8">
-                    <div class="text-center mb-6">
-                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7"></path>
-                            </svg>
-                        </div>
-                        <h2 class="text-2xl font-bold text-gray-800 mb-4">Vote Cast Successfully!</h2>
-                    </div>
-                    <div class="flex flex-col items-center mb-6">
-                        <div class="w-32 h-32 rounded-full overflow-hidden mb-4">
-                            <img id="successImage" src="" alt="" class="w-full h-full object-cover">
-                        </div>
-                        <h3 id="successName" class="text-xl font-bold text-gray-800 mb-4"></h3>
-                        <div class="w-full space-y-3 text-sm">
-                            <div class="flex justify-between py-2 border-b">
-                                <span class="text-gray-600">Number of new vote</span>
-                                <span id="successNewVotes" class="font-medium text-gray-900">30</span>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Vote Cast Successfully!</h2>
+                    <div class="flex gap-6 mb-6">
+                        <div class="flex-1">
+                            <div class="space-y-4 text-sm">
+                                <div>
+                                    <p class="text-gray-600 text-xs mb-1">Number of vote cast:</p>
+                                    <p id="successNewVotes" class="font-bold text-gray-800 text-lg">30</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-600 text-xs mb-1">Your vote count for the housemate:</p>
+                                    <p id="successTotalVotes" class="font-bold text-gray-800 text-lg">N200</p>
+                                </div>
                             </div>
-                            <div class="flex justify-between py-2 border-b">
-                                <span class="text-gray-600">Your vote count for this housemate</span>
-                                <span id="successTotalVotes" class="font-medium text-gray-900">N200</span>
+                        </div>
+                        <div class="flex-shrink-0">
+                            <div class="w-24 h-32 rounded-lg overflow-hidden">
+                                <img id="successImage" src="" alt="" class="w-full h-full object-cover">
                             </div>
+                            <p id="successName" class="text-center text-xs font-semibold text-gray-800 mt-2"></p>
                         </div>
                     </div>
                     <button onclick="closeAllModals()"
                         class="vote-button w-full py-3 px-6 rounded-full text-white font-semibold">
-                        Done
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Purchase PIN Modal -->
-        <div id="purchasePinModal" class="modal">
-            <div class="modal-content">
-                <button class="close-btn" onclick="closeAllModals()">×</button>
-                <div class="p-8">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Purchase Voting Pin</h2>
-                    <p class="text-gray-600 mb-6">Fill in the details to purchase voting PIN</p>
-                    <div class="space-y-4 mb-6">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
-                            <input type="text" id="firstName" placeholder="Enter Name"
-                                class="w-full text-gray-900 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-                            <input type="email" id="emailAddress" placeholder="Email Address"
-                                class="w-full text-gray-900 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-                            <input type="tel" id="phoneNumber" placeholder="Phone Number"
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Number of PINs</label>
-                            <input type="number" id="pinQuantity" placeholder="How many voting pins?"
-                                class="w-full text-gray-900 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500">
-                        </div>
-                        <div>
-                            <p class="text-sm font-medium text-gray-700 mb-3">Payment Method</p>
-                            <div class="flex gap-4">
-                                <label class="flex items-center cursor-pointer">
-                                    <input type="radio" name="payment" value="online"
-                                        class="mr-2 w-4 h-4 text-orange-600">
-                                    <span class="text-sm text-gray-900">Online payment</span>
-                                </label>
-                                <label class="flex items-center cursor-pointer">
-                                    <input type="radio" name="payment" value="bank"
-                                        class="mr-2 w-4 h-4 text-orange-600">
-                                    <span class="text-sm text-gray-900">Bank Transfer</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex gap-3">
-                        <button onclick="processPinPurchase()"
-                            class="vote-button flex-1 py-3 px-6 rounded-full text-white font-semibold">
-                            Purchase Voting PIN
-                        </button>
-                        <button onclick="closeAllModals()"
-                            class="py-3 px-6 rounded-full text-gray-600 font-medium border border-gray-300 hover:bg-gray-50">
-                            Cancel
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Account Details Modal (Bank Transfer) -->
-        <div id="accountDetailsModal" class="modal">
-            <div class="modal-content">
-                <button class="close-btn" onclick="closeAllModals()">×</button>
-                <div class="p-8">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Complete Your Payment</h2>
-                    <p class="text-gray-600 mb-6">Fund into Nanavoty</p>
-                    <div class="space-y-3 mb-6">
-                        <div class="flex justify-between py-3 border-b">
-                            <span class="text-gray-600">Account Details</span>
-                            <span class="font-medium text-gray-900">Transfer Details</span>
-                        </div>
-                        <div class="flex justify-between py-3 border-b">
-                            <span class="text-gray-600">ID</span>
-                            <span class="font-medium text-gray-900">30</span>
-                        </div>
-                        <div class="flex justify-between py-3 border-b">
-                            <span class="text-gray-600">Bank Name</span>
-                            <span class="font-medium text-gray-900 flex items-center gap-2">
-                                First Bank
-                                <button onclick="copyToClipboard('First Bank')"
-                                    class="text-orange-600 text-xs">📋</button>
-                            </span>
-                        </div>
-                        <div class="flex justify-between py-3 border-b">
-                            <span class="text-gray-600">Account Number</span>
-                            <span class="font-medium flex text-gray-900 items-center gap-2">
-                                5049106692
-                                <button onclick="copyToClipboard('5049106692')"
-                                    class="text-orange-600 text-xs">📋</button>
-                            </span>
-                        </div>
-                        <div class="flex justify-between py-3 border-b">
-                            <span class="text-gray-600">Account Name</span>
-                            <span class="font-medium text-gray-900 flex items-center gap-2">
-                                Social Television Ltd
-                                <button onclick="copyToClipboard('Social Television Ltd')"
-                                    class="text-orange-600 text-xs">📋</button>
-                            </span>
-                        </div>
-                        <div class="flex justify-between py-3 border-b">
-                            <span class="text-gray-600">Total PINs</span>
-                            <span id="totalPins" class="font-medium text-gray-900">1</span>
-                        </div>
-                        <div class="flex justify-between py-3">
-                            <span class="text-gray-600 font-semibold">Total Amount</span>
-                            <span id="totalAmount" class="font-semibold text-orange-600">₦49,000</span>
-                        </div>
-                    </div>
-                    <div class="flex gap-3">
-                        <button onclick="goToPaymentSuccess()"
-                            class="vote-button flex-1 py-3 px-6 rounded-full text-white font-semibold">
-                            I have transferred
-                        </button>
-                        <button onclick="goBack('purchasePinModal')"
-                            class="py-3 px-6 rounded-full text-gray-600 font-medium border border-gray-300 hover:bg-gray-50">
-                            Back
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Payment Successful Modal -->
-        <div id="paymentSuccessModal" class="modal">
-            <div class="modal-content">
-                <button class="close-btn" onclick="closeAllModals()">×</button>
-                <div class="p-8 text-center">
-                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
-                            </path>
-                        </svg>
-                    </div>
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Payment Successful!</h2>
-                    <p class="text-gray-600 mb-6">Your voting pin has been generated and sent to your email</p>
-                    <div class="bg-gray-50 p-6 rounded-lg mb-6">
-                        <p class="text-sm text-gray-600 mb-2">Your Voting PIN:</p>
-                        <p class="text-3xl font-bold text-gray-800 mb-3" id="generatedPin">ABCD1234XYZ</p>
-                        <button onclick="copyToClipboard(document.getElementById('generatedPin').textContent)"
-                            class="text-orange-600 text-sm font-semibold hover:text-orange-700">
-                            📋 Copy PIN
-                        </button>
-                    </div>
-                    <p class="text-sm text-gray-500 mb-6">Save this PIN to use for voting</p>
-                    <button onclick="closeAllModals()"
-                        class="vote-button w-full py-3 px-6 rounded-full text-white font-semibold">
-                        Done
+                        Close
                     </button>
                 </div>
             </div>
@@ -602,43 +474,46 @@
 
         <!-- Housemate Profile Modal -->
         <div id="profileModal" class="modal">
-            <div class="modal-content">
+            <div class="modal-content max-w-2xl">
                 <button class="close-btn" onclick="closeAllModals()">×</button>
                 <div class="p-8">
                     <h2 class="text-2xl font-bold text-gray-800 mb-6">Housemate Profile</h2>
                     <div class="flex flex-col md:flex-row gap-6 mb-6">
-                        <div class="w-32 h-32 rounded-lg overflow-hidden flex-shrink-0 mx-auto md:mx-0">
-                            <img id="profileImage" src="" alt="" class="w-full h-full object-cover">
+                        <div class="md:w-48 flex-shrink-0">
+                            <div class="w-48 h-48 rounded-lg overflow-hidden">
+                                <img id="profileImage" src="" alt="" class="w-full h-full object-cover">
+                            </div>
                         </div>
                         <div class="flex-1">
-                            <h3 id="profileName" class="text-xl font-bold text-gray-800 mb-4"></h3>
-                            <div class="space-y-2 text-sm">
-                                <p class="text-gray-600">Bio:</p>
-                                <p class="text-gray-800">I enjoy exploring new ideas and love to travel. I believe in
-                                    kindness and creating positive vibes.</p>
-                                <p class="text-gray-600 mt-3">State:</p>
-                                <p class="text-gray-800">Lagos State</p>
-                                <p class="text-gray-600 mt-3">Country:</p>
-                                <p class="text-gray-800">The Nanavoty's Children Church of God</p>
+                            <h3 id="profileName" class="text-2xl font-bold text-gray-800 mb-4"></h3>
+                            <div class="space-y-4 text-sm">
+                                <div>
+                                    <p class="text-gray-600 font-semibold mb-1">Bio:</p>
+                                    <p id="profileBio" class="text-gray-800">I enjoy exploring new ideas and love to travel. I believe in kindness and creating positive vibes.</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-600 font-semibold mb-1">State:</p>
+                                    <p id="profileState" class="text-gray-800">Lagos State</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-600 font-semibold mb-1">Church:</p>
+                                    <p id="profileChurch" class="text-gray-800">The Redeemed Christian Church of God</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="space-y-3 mb-6">
-                        <div class="flex justify-between py-2 border-b">
-                            <span class="text-gray-600">Ranking</span>
-                            <span id="profileVotes" class="font-medium text-gray-900"></span>
+                    <div class="space-y-3 mb-6 bg-gray-50 p-4 rounded-lg">
+                        <div class="flex justify-between py-2">
+                            <span class="text-gray-600">Number of vote:</span>
+                            <span id="profileVotes" class="font-medium text-gray-900 text-lg"></span>
                         </div>
-                        <div class="flex justify-between py-2 border-b">
-                            <span class="text-gray-600">Price Per Vote</span>
-                            <span id="profileId" class="font-medium text-gray-900">N200</span>
+                        <div class="flex justify-between py-2 border-t">
+                            <span class="text-gray-600">Cost per vote:</span>
+                            <span class="font-medium text-gray-900">N200</span>
                         </div>
-                        <div class="flex justify-between py-2 border-b">
-                            <span class="text-gray-600">Total Vote</span>
-                            <span id="profileTotalVotes" class="font-medium text-gray-900">100</span>
-                        </div>
-                        <div class="flex justify-between py-2 border-b">
-                            <span class="text-gray-600">Total cost</span>
-                            <span id="profileTotalVotes" class="font-medium text-gray-900">10,000</span>
+                        <div class="flex justify-between py-2 border-t">
+                            <span class="text-gray-600">Total cost:</span>
+                            <span id="profileTotalCost" class="font-medium text-gray-900 text-lg"></span>
                         </div>
                     </div>
                     <div class="flex gap-3">
@@ -646,10 +521,26 @@
                             class="vote-button flex-1 py-3 px-6 rounded-full text-white font-semibold">
                             Vote
                         </button>
-                        <button onclick="closeAllModals()"
-                            class="py-3 px-6 rounded-full text-gray-600 font-medium border border-gray-300 hover:bg-gray-50">
-                            Close Profile
+                        <button onclick="openWatchPerformances()"
+                            class="profile-button flex-1 py-3 px-6 rounded-full text-center font-semibold">
+                            Watch Performances
                         </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Watch Performances Modal -->
+        <div id="watchPerformancesModal" class="modal">
+            <div class="modal-content max-w-4xl">
+                <button class="close-btn" onclick="closeAllModals()">×</button>
+                <div class="p-8">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800" id="performanceTitle">Watch Performances</h2>
+                        <img id="performanceImage" src="" alt="" class="w-16 h-16 rounded-full object-cover">
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="videosGrid">
+                        <!-- Videos will be generated here -->
                     </div>
                 </div>
             </div>
@@ -797,22 +688,98 @@
     <script>
         // Housemate data
       const housemates = [
-    { name: 'Babasanya Ademide', image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1776187665/photo_1_2026-04-14_18-24-35_jy9olj.jpg', id: 'N2N001', bg: 'from-gray-700 to-gray-900' },
-    { name: 'Benjamin Okafor', image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1776187665/photo_2_2026-04-14_18-24-35_zv2xtm.jpg', id: 'N2N002', bg: 'from-rose-400 to-rose-600' },
-    { name: 'Chiwendu Jonah', image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1776187666/photo_3_2026-04-14_18-24-35_xx3dsw.jpg', id: 'N2N003', bg: 'from-amber-700 to-amber-900' },
+    { name: 'Babasanya Ademide', image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1776187665/photo_1_2026-04-14_18-24-35_jy9olj.jpg', id: 'N2N001', votes: 30, bg: 'from-gray-700 to-gray-900' },
+    { name: 'Benjamin Okafor', image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1776187665/photo_2_2026-04-14_18-24-35_zv2xtm.jpg', id: 'N2N002', votes: 30, bg: 'from-rose-400 to-rose-600' },
+    { name: 'Chiwendu Jonah', image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1776187666/photo_3_2026-04-14_18-24-35_xx3dsw.jpg', id: 'N2N003', votes: 30, bg: 'from-amber-700 to-amber-900' },
 
-    { name: 'Funke Jibodu', image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1776187667/photo_6_2026-04-14_18-24-35_nmtcxa.jpg', id: 'N2N004', bg: 'from-blue-500 to-indigo-700' },
-    { name: 'Olawale Adelerin', image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1776187666/photo_5_2026-04-14_18-24-35_sd0fez.jpg', id: 'N2N005', bg: 'from-pink-400 to-pink-600' },
-    { name: 'Olorunfemi Ayodele', image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1776187666/photo_4_2026-04-14_18-24-35_i9cllx.jpg', id: 'N2N006', bg: 'from-green-500 to-emerald-700' },
+    { name: 'Funke Jibodu', image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1776187667/photo_6_2026-04-14_18-24-35_nmtcxa.jpg', id: 'N2N004', votes: 30, bg: 'from-blue-500 to-indigo-700' },
+    { name: 'Olawale Adelerin', image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1776187666/photo_5_2026-04-14_18-24-35_sd0fez.jpg', id: 'N2N005', votes: 30, bg: 'from-pink-400 to-pink-600' },
+    { name: 'Olorunfemi Ayodele', image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1776187666/photo_4_2026-04-14_18-24-35_i9cllx.jpg', id: 'N2N006', votes: 30, bg: 'from-green-500 to-emerald-700' },
 
-    { name: 'Onyedika Nwosu', image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1776187667/photo_8_2026-04-14_18-24-35_fpszdw.jpg', id: 'N2N007', bg: 'from-purple-500 to-purple-700' },
-    { name: 'Pelumi Olayiwola', image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1776187665/photo_9_2026-04-14_18-24-35_hofop1.jpg', id: 'N2N008', bg: 'from-yellow-500 to-yellow-700' },
-    { name: 'Sharon Ponmile', image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1776187665/photo_10_2026-04-14_18-24-35_ocdtya.jpg', id: 'N2N009', bg: 'from-red-400 to-red-600' },
+    { name: 'Onyedika Nwosu', image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1776187667/photo_8_2026-04-14_18-24-35_fpszdw.jpg', id: 'N2N007', votes: 30, bg: 'from-purple-500 to-purple-700' },
+    { name: 'Pelumi Olayiwola', image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1776187665/photo_9_2026-04-14_18-24-35_hofop1.jpg', id: 'N2N008', votes: 30, bg: 'from-yellow-500 to-yellow-700' },
+    { name: 'Sharon Ponmile', image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1776187665/photo_10_2026-04-14_18-24-35_ocdtya.jpg', id: 'N2N009', votes: 30, bg: 'from-red-400 to-red-600' },
 
-    { name: 'Stephen Adekanbi', image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1776187665/photo_1_2026-04-14_18-24-07_r3vhro.jpg', id: 'N2N010', bg: 'from-cyan-500 to-blue-700' },
-    { name: 'Sunday Adeniji', image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1776187665/photo_2_2026-04-14_18-24-07_ijejwk.jpg', id: 'N2N011', bg: 'from-teal-500 to-teal-700' },
-    { name: 'Omowunmi Oyedepo', image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1776187667/photo_7_2026-04-14_18-24-35_vo0qui.jpg', id: 'N2N012', bg: 'from-orange-500 to-orange-700' }
+    { name: 'Stephen Adekanbi', image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1776187665/photo_1_2026-04-14_18-24-07_r3vhro.jpg', id: 'N2N010', votes: 30, bg: 'from-cyan-500 to-blue-700' },
+    { name: 'Sunday Adeniji', image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1776187665/photo_2_2026-04-14_18-24-07_ijejwk.jpg', id: 'N2N011', votes: 30, bg: 'from-teal-500 to-teal-700' },
+    { name: 'Omowunmi Oyedepo', image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1776187667/photo_7_2026-04-14_18-24-35_vo0qui.jpg', id: 'N2N012', votes: 30, bg: 'from-orange-500 to-orange-700' }
 ];
+
+        // Videos for each housemate
+        const housemateVideos = {
+            'Babasanya Ademide': [
+                { title: 'Performance 1', videoId: 'dQw4w9WgXcQ' },
+                { title: 'Performance 2', videoId: 'jNQXAC9IVRw' },
+                { title: 'Performance 3', videoId: '9bZkp7q19f0' },
+                { title: 'Performance 4', videoId: 'kJQDL93pIWw' }
+            ],
+            'Benjamin Okafor': [
+                { title: 'Performance 1', videoId: 'dQw4w9WgXcQ' },
+                { title: 'Performance 2', videoId: 'jNQXAC9IVRw' },
+                { title: 'Performance 3', videoId: '9bZkp7q19f0' },
+                { title: 'Performance 4', videoId: 'kJQDL93pIWw' }
+            ],
+            'Chiwendu Jonah': [
+                { title: 'Performance 1', videoId: 'dQw4w9WgXcQ' },
+                { title: 'Performance 2', videoId: 'jNQXAC9IVRw' },
+                { title: 'Performance 3', videoId: '9bZkp7q19f0' },
+                { title: 'Performance 4', videoId: 'kJQDL93pIWw' }
+            ],
+            'Funke Jibodu': [
+                { title: 'Performance 1', videoId: 'dQw4w9WgXcQ' },
+                { title: 'Performance 2', videoId: 'jNQXAC9IVRw' },
+                { title: 'Performance 3', videoId: '9bZkp7q19f0' },
+                { title: 'Performance 4', videoId: 'kJQDL93pIWw' }
+            ],
+            'Olawale Adelerin': [
+                { title: 'Performance 1', videoId: 'dQw4w9WgXcQ' },
+                { title: 'Performance 2', videoId: 'jNQXAC9IVRw' },
+                { title: 'Performance 3', videoId: '9bZkp7q19f0' },
+                { title: 'Performance 4', videoId: 'kJQDL93pIWw' }
+            ],
+            'Olorunfemi Ayodele': [
+                { title: 'Performance 1', videoId: 'dQw4w9WgXcQ' },
+                { title: 'Performance 2', videoId: 'jNQXAC9IVRw' },
+                { title: 'Performance 3', videoId: '9bZkp7q19f0' },
+                { title: 'Performance 4', videoId: 'kJQDL93pIWw' }
+            ],
+            'Onyedika Nwosu': [
+                { title: 'Performance 1', videoId: 'dQw4w9WgXcQ' },
+                { title: 'Performance 2', videoId: 'jNQXAC9IVRw' },
+                { title: 'Performance 3', videoId: '9bZkp7q19f0' },
+                { title: 'Performance 4', videoId: 'kJQDL93pIWw' }
+            ],
+            'Pelumi Olayiwola': [
+                { title: 'Performance 1', videoId: 'dQw4w9WgXcQ' },
+                { title: 'Performance 2', videoId: 'jNQXAC9IVRw' },
+                { title: 'Performance 3', videoId: '9bZkp7q19f0' },
+                { title: 'Performance 4', videoId: 'kJQDL93pIWw' }
+            ],
+            'Sharon Ponmile': [
+                { title: 'Performance 1', videoId: 'dQw4w9WgXcQ' },
+                { title: 'Performance 2', videoId: 'jNQXAC9IVRw' },
+                { title: 'Performance 3', videoId: '9bZkp7q19f0' },
+                { title: 'Performance 4', videoId: 'kJQDL93pIWw' }
+            ],
+            'Stephen Adekanbi': [
+                { title: 'Performance 1', videoId: 'dQw4w9WgXcQ' },
+                { title: 'Performance 2', videoId: 'jNQXAC9IVRw' },
+                { title: 'Performance 3', videoId: '9bZkp7q19f0' },
+                { title: 'Performance 4', videoId: 'kJQDL93pIWw' }
+            ],
+            'Sunday Adeniji': [
+                { title: 'Performance 1', videoId: 'dQw4w9WgXcQ' },
+                { title: 'Performance 2', videoId: 'jNQXAC9IVRw' },
+                { title: 'Performance 3', videoId: '9bZkp7q19f0' },
+                { title: 'Performance 4', videoId: 'kJQDL93pIWw' }
+            ],
+            'Omowunmi Oyedepo': [
+                { title: 'Performance 1', videoId: 'dQw4w9WgXcQ' },
+                { title: 'Performance 2', videoId: 'jNQXAC9IVRw' },
+                { title: 'Performance 3', videoId: '9bZkp7q19f0' },
+                { title: 'Performance 4', videoId: 'kJQDL93pIWw' }
+            ]
+        };
 
         let currentHousemate = {};
 
@@ -830,22 +797,24 @@ function generateCards() {
                          class="w-full h-full object-cover">
                 </div>
                 <div class="text-center mb-4">
-                    <h3 class="text-xl font-semibold text-white mb-2">${housemate.name}</h3>
+                    <h3 class="text-lg font-semibold text-white mb-3">${housemate.name}</h3>
+                    <p class="text-sm text-gray-300 mb-4">Number of vote: <span class="font-bold">${housemate.votes}</span></p>
                 </div>
-                <div>
-                <div class="flex gap-3">
-                    <button onclick='openVoteModal(${JSON.stringify(housemate)})' 
-                            class="vote-button flex-1 py-3 px-4 rounded-full text-white font-semibold text-sm">
-                        Vote
-                    </button>
-                    <button onclick='openProfileModal(${JSON.stringify(housemate)})' 
-                            class="profile-button py-3 px-4 rounded-full text-white font-medium text-sm">
-                        View Profile →
-                    </button>
-                </div>
-                 <div>
-                        <a>Watch Performance</a>
+                <div class="space-y-3">
+                    <div class="flex gap-3">
+                        <button onclick='openVoteModal(${JSON.stringify(housemate)})' 
+                                class="vote-button flex-1 py-2 px-4 rounded-full text-white font-semibold text-sm">
+                            Vote → 
+                        </button>
+                        <button onclick='openProfileModal(${JSON.stringify(housemate)})' 
+                                class="profile-button flex-1 py-2 px-4 rounded-full font-medium text-sm">
+                            View Profile →
+                        </button>
                     </div>
+                    <button onclick='openWatchPerformanceModal(${JSON.stringify(housemate)})' class="watch-perf-link justify-center w-full py-2">
+                        <i class="fas fa-play text-xs"></i>
+                        Watch Performances
+                    </button>
                 </div>
             </div>
         `;
@@ -855,10 +824,6 @@ function generateCards() {
 
         function openVoteModal(housemate) {
             currentHousemate = housemate;
-            document.getElementById('housemateSelect').innerHTML = `
-                <option>Select</option>
-                <option selected>${housemate.name}</option>
-            `;
             openModal('castVoteModal');
         }
 
@@ -867,14 +832,50 @@ function generateCards() {
             document.getElementById('profileImage').src = housemate.image;
             document.getElementById('profileName').textContent = housemate.name;
             document.getElementById('profileVotes').textContent = housemate.votes;
-            document.getElementById('profileId').textContent = housemate.id;
-            document.getElementById('profileTotalVotes').textContent = housemate.totalVotes;
+            document.getElementById('profileTotalCost').textContent = '₦' + (housemate.votes * 200).toLocaleString();
             openModal('profileModal');
         }
 
         function openVoteFromProfile() {
             closeAllModals();
             openVoteModal(currentHousemate);
+        }
+
+        function openWatchPerformanceModal(housemate) {
+            currentHousemate = housemate;
+            document.getElementById('performanceTitle').textContent = housemate.name;
+            document.getElementById('performanceImage').src = housemate.image;
+            openWatchPerformances();
+        }
+
+        function openWatchPerformances() {
+            const videos = housemateVideos[currentHousemate.name] || [];
+            const videosGrid = document.getElementById('videosGrid');
+            videosGrid.innerHTML = '';
+
+            videos.forEach((video, index) => {
+                const videoCard = `
+                    <div class="bg-gray-100 rounded-lg overflow-hidden shadow-lg">
+                        <div class="w-full h-48 bg-black flex items-center justify-center">
+                            <iframe width="100%" height="100%" 
+                                src="https://www.youtube.com/embed/${video.videoId}" 
+                                title="${video.title}"
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="p-4">
+                            <p class="font-semibold text-gray-800">${video.title}</p>
+                            <p class="text-sm text-gray-600">${currentHousemate.name}</p>
+                        </div>
+                    </div>
+                `;
+                videosGrid.innerHTML += videoCard;
+            });
+
+            closeAllModals();
+            openModal('watchPerformancesModal');
         }
 
         function goToVotingPin() {
@@ -900,9 +901,8 @@ function generateCards() {
             }
             document.getElementById('confirmImage').src = currentHousemate.image;
             document.getElementById('confirmName').textContent = currentHousemate.name;
-            document.getElementById('confirmId').textContent = currentHousemate.id;
-            document.getElementById('confirmHousemate').textContent = currentHousemate.name;
             document.getElementById('confirmVoteCount').textContent = votes;
+            document.getElementById('confirmTotalCost').textContent = '₦' + (votes * 150).toLocaleString();
             closeAllModals();
             openModal('confirmVoteModal');
         }
@@ -912,51 +912,9 @@ function generateCards() {
             document.getElementById('successImage').src = currentHousemate.image;
             document.getElementById('successName').textContent = currentHousemate.name;
             document.getElementById('successNewVotes').textContent = votes;
-            document.getElementById('successTotalVotes').textContent = parseInt(currentHousemate.votes) + parseInt(votes);
+            document.getElementById('successTotalVotes').textContent = (parseInt(currentHousemate.votes) + parseInt(votes)).toString();
             closeAllModals();
             openModal('successModal');
-        }
-
-        function openPurchasePinModal() {
-            closeAllModals();
-            openModal('purchasePinModal');
-        }
-
-        function processPinPurchase() {
-            const firstName = document.getElementById('firstName').value;
-            const email = document.getElementById('emailAddress').value;
-            const phone = document.getElementById('phoneNumber').value;
-            const quantity = document.getElementById('pinQuantity').value;
-            const paymentMethod = document.querySelector('input[name="payment"]:checked');
-
-            if (!firstName || !email || !phone || !quantity) {
-                alert('Please fill in all fields');
-                return;
-            }
-
-            if (!paymentMethod) {
-                alert('Please select a payment method');
-                return;
-            }
-
-            if (paymentMethod.value === 'bank') {
-                // Show bank transfer details
-                document.getElementById('totalPins').textContent = quantity;
-                document.getElementById('totalAmount').textContent = '₦' + (quantity * 49000).toLocaleString();
-                closeAllModals();
-                openModal('accountDetailsModal');
-            } else {
-                // Process online payment (simulate)
-                goToPaymentSuccess();
-            }
-        }
-
-        function goToPaymentSuccess() {
-            // Generate random PIN
-            const pin = 'PIN' + Math.random().toString(36).substring(2, 11).toUpperCase();
-            document.getElementById('generatedPin').textContent = pin;
-            closeAllModals();
-            openModal('paymentSuccessModal');
         }
 
         function copyToClipboard(text) {
@@ -991,6 +949,15 @@ function generateCards() {
                     closeAllModals();
                 }
             });
+        });
+
+        // Mobile menu toggle
+        document.getElementById('openMenu').addEventListener('click', function() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+
+        document.getElementById('closeMenu').addEventListener('click', function() {
+            document.getElementById('mobileMenu').classList.add('hidden');
         });
 
         // Initialize

@@ -116,8 +116,9 @@
           <a href="../contact-us.html">Contact us</a>
         </nav>
 
-        <button
-          class="open-partner-modal hidden md:block bg-orange-500 text-black font-semibold px-6 py-2 rounded-full hover:bg-orange-600 transition">
+        <!-- FIXED: Partner with Us opens partnership modal -->
+        <button onclick="openPartnershipModal()"
+          class="hidden md:block bg-orange-500 text-black font-semibold px-6 py-2 rounded-full hover:bg-orange-600 transition">
           Partner with Us
         </button>
 
@@ -141,8 +142,9 @@
         <a href="../blog.html" class="text-orange-400">Blog</a>
         <a href="../contact-us.html" class="hover:text-orange-400 transition">Contact us</a>
 
-        <button
-          class="open-partner-modal bg-orange-400 text-black px-5 py-2 rounded-full font-semibold mt-4 w-full hover:bg-orange-500 transition">
+        <!-- FIXED: Partner with Us opens partnership modal -->
+        <button onclick="openPartnershipModal()"
+          class=" bg-orange-400 text-black px-5 py-2 rounded-full font-semibold mt-4 w-full hover:bg-orange-500 transition">
           Partner with Us
         </button>
       </div>
@@ -210,9 +212,9 @@
             <li> Provide constructive feedback to pastors and church leadership</li>
           </ul>
 
-          <!-- Button -->
-          <button
-            class="open-partner-modal mt-8 bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-full font-semibold flex items-center gap-3 transition text-xl">
+          <!-- FIXED: Join The Show opens show modal -->
+          <button onclick="openShowModal()"
+            class="mt-8 bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-full font-semibold flex items-center gap-3 transition text-xl">
             Join The Show
             <i class="fa-solid fa-arrow-right"></i>
           </button>
@@ -416,17 +418,12 @@
           <!-- Fake video bg gradient -->
           <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-950"></div>
 
-
-
-
-
           <!-- Play button -->
           <button class="play-btn rounded-full flex items-center justify-center relative z-10">
             <svg class="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
               <path d="M8 5v14l11-7z" />
             </svg>
           </button>
-
 
         </div>
 
@@ -682,22 +679,359 @@
     </div>
   </section>
 
-  <!-- PARTNER MODAL - PARTICIPATION FORM -->
-  <div id="partnerModal" class="fixed inset-0 z-[999] hidden
-         flex items-center justify-center
-         bg-black/60 backdrop-blur-lg
-         px-4 py-6 overflow-y-auto">
+  <!-- ========================================
+       MODAL 1: PARTNERSHIP MODAL (Partner with Us)
+       ======================================== -->
+  <div id="partnershipModal" class="fixed inset-0 z-[999] hidden flex items-center justify-center bg-black/60 backdrop-blur-lg px-4 py-6 overflow-y-auto">
 
     <!-- MODAL CARD -->
-    <div class="bg-white w-full max-w-3xl
-             rounded-2xl p-6 sm:p-10
-             shadow-2xl relative
-             my-auto flex flex-col justify-between min-h-[500px]">
+    <div class="bg-white w-full max-w-3xl rounded-2xl p-6 sm:p-10 shadow-2xl relative my-auto">
 
       <!-- CLOSE BUTTON -->
-      <button id="closePartnerModal" class="absolute top-4 right-4
-               text-gray-400 hover:text-black
-               text-2xl focus:outline-none transition">
+      <button id="closePartnershipModal" class="absolute top-4 right-4 text-gray-400 hover:text-black text-xl transition">
+        ✕
+      </button>
+
+      <!-- RETURN BUTTON -->
+      <button id="returnPartnerBtn" class="text-orange-500 text-xs sm:text-sm border border-orange-400 px-4 py-1.5 rounded-full mb-6 hover:bg-orange-50 transition">
+        Return to Previous
+      </button>
+
+      <!-- STEP INDICATOR -->
+      <p class="text-xs text-gray-500 mb-2">
+        Section <span id="partnerStep">1</span> of 6
+      </p>
+
+      <!-- PROGRESS BAR -->
+      <div class="w-full h-2 bg-gray-200 rounded-full mb-8">
+        <div id="partnerProgressBar" class="h-2 bg-orange-400 rounded-full transition-all duration-300" style="width:16.66%">
+        </div>
+      </div>
+
+      <!-- STEPS CONTAINER -->
+      <div class="space-y-6 max-h-[60vh] overflow-y-auto pr-2">
+
+        <!-- STEP 1: SELECT PROGRAMME -->
+        <div class="partner-step">
+          <h2 class="text-orange-500 text-xl font-semibold mb-2">
+            Select Programme
+          </h2>
+
+          <p class="text-sm text-gray-600 mb-5">
+            Which of the below programmes do you want to support?
+          </p>
+
+          <!-- PROGRAMME OPTIONS -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+            <label class="border border-orange-300 rounded-xl p-4 flex gap-3 items-start cursor-pointer hover:bg-orange-50 transition">
+              <input type="radio" name="partner_programme" value="bible-stars" class="mt-1">
+              <span class="font-medium text-sm text-gray-900">
+                Bible Stars Reality Show
+              </span>
+            </label>
+
+            <label class="border border-orange-300 rounded-xl p-4 flex gap-3 items-start cursor-pointer hover:bg-orange-50 transition">
+              <input type="radio" name="partner_programme" value="youth-festival" class="mt-1">
+              <span class="font-medium text-sm text-gray-900">
+                Ilorin Youth Mega Festival
+              </span>
+            </label>
+
+            <label class="border border-orange-300 rounded-xl p-4 flex gap-3 items-start cursor-pointer hover:bg-orange-50 transition">
+              <input type="radio" name="partner_programme" value="bible-championship" class="mt-1">
+              <span class="font-medium text-sm text-gray-900">
+                Bible Championship Season 2
+              </span>
+            </label>
+
+            <label class="border border-orange-300 rounded-xl p-4 flex gap-3 items-start cursor-pointer hover:bg-orange-50 transition">
+              <input type="radio" name="partner_programme" value="noahs-ark" class="mt-1">
+              <span class="font-medium text-sm text-gray-900">
+                The Noah's Ark Show
+              </span>
+            </label>
+
+            <label class="border border-orange-300 rounded-xl p-4 flex gap-3 items-start cursor-pointer hover:bg-orange-50 transition">
+              <input type="radio" name="partner_programme" value="bible-cup" class="mt-1">
+              <span class="font-medium text-sm text-gray-900">
+                The National Bible Cup
+              </span>
+            </label>
+
+            <label class="border border-orange-300 rounded-xl p-4 flex gap-3 items-start cursor-pointer hover:bg-orange-50 transition">
+              <input type="radio" name="partner_programme" value="church-you" class="mt-1">
+              <span class="font-medium text-sm text-gray-900">
+                The Church & You Talk Show
+              </span>
+            </label>
+
+            <label class="border border-orange-300 rounded-xl p-4 flex gap-3 items-start cursor-pointer hover:bg-orange-50 transition sm:col-span-2">
+              <input type="radio" name="partner_programme" value="marriage-realities" class="mt-1">
+              <span class="font-medium text-sm text-gray-900">
+                Marriage Realities Show
+              </span>
+            </label>
+
+          </div>
+        </div>
+
+        <!-- STEP 2: SELECT CATEGORY -->
+        <div class="partner-step hidden">
+          <h2 class="text-orange-500 text-xl font-semibold mb-2">
+            Select Category
+          </h2>
+
+          <p class="text-sm text-gray-600 mb-4">
+            Which category do you want to support?
+          </p>
+
+          <label class="block border border-orange-300 rounded-xl p-4 sm:p-5 mb-3 flex gap-3 items-start cursor-pointer hover:bg-orange-50 transition">
+            <input type="radio" name="partner_category" value="major" class="mt-1">
+            <div>
+              <span class="font-medium">Major Weight</span><br>
+              <span class="text-sm text-gray-600">
+                ₦50,000,000 and above
+              </span>
+            </div>
+          </label>
+
+          <label class="block border border-orange-300 rounded-xl p-4 sm:p-5 mb-3 flex gap-3 items-start cursor-pointer hover:bg-orange-50 transition">
+            <input type="radio" name="partner_category" value="medium" class="mt-1">
+            <div>
+              <span class="font-medium">Medium Weight</span><br>
+              <span class="text-sm text-gray-600">
+                ₦20,000,000 to ₦50,000,000
+              </span>
+            </div>
+          </label>
+
+          <label class="block border border-orange-300 rounded-xl p-4 sm:p-5 flex gap-3 items-start cursor-pointer hover:bg-orange-50 transition">
+            <input type="radio" name="partner_category" value="light" class="mt-1">
+            <div>
+              <span class="font-medium">Light Weight</span><br>
+              <span class="text-sm text-gray-600">
+                ₦20,000,000 and below
+              </span>
+            </div>
+          </label>
+        </div>
+
+        <!-- STEP 3: FILL FORM -->
+        <div class="partner-step hidden">
+          <h2 class="text-orange-500 text-xl font-semibold mb-2">
+            Fill Form
+          </h2>
+
+          <p class="text-sm text-gray-800 mb-6">
+            Please fill in your details to proceed.
+          </p>
+
+          <div class="space-y-5">
+
+            <div>
+              <label class="block text-gray-700 text-sm font-medium mb-1">Full Name</label>
+              <input id="partnerFullName" type="text" placeholder="Enter your full name"
+                class="w-full rounded border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-400" />
+            </div>
+
+            <div>
+              <label class="block text-gray-700 text-sm font-medium mb-1">Email Address</label>
+              <input id="partnerEmail" type="email" placeholder="Enter your email address"
+                class="w-full rounded border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-400" />
+            </div>
+
+            <div>
+              <label class="block text-gray-700 text-sm font-medium mb-1">Phone Number</label>
+              <input id="partnerPhone" type="tel" placeholder="Enter your phone number"
+                class="w-full rounded border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-400" />
+            </div>
+
+            <div>
+              <label class="block text-gray-700 text-sm font-medium mb-1">
+                Partnership Amount
+              </label>
+              <input id="partnerAmount" type="number" placeholder="0"
+                class="w-full rounded border text-black border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-400" />
+            </div>
+
+          </div>
+        </div>
+
+        <!-- STEP 4: PAYMENT METHOD -->
+        <div class="partner-step hidden">
+          <h2 class="text-orange-500 text-xl font-semibold mb-2">
+            Payment Method
+          </h2>
+
+          <p class="text-sm text-gray-600 mb-5">
+            Which payment method would you prefer?
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+            <label class="border border-orange-300 rounded-xl p-4 flex gap-3 items-start cursor-pointer hover:bg-orange-50 transition">
+              <input type="radio" name="partner_payment" value="online" class="mt-1">
+              <span class="font-medium text-sm text-gray-900">
+                Online Payment
+              </span>
+            </label>
+
+            <label class="border border-orange-300 rounded-xl p-4 flex gap-3 items-start cursor-pointer hover:bg-orange-50 transition">
+              <input type="radio" name="partner_payment" value="offline" class="mt-1">
+              <span class="font-medium text-sm text-gray-900">
+                Offline Payment
+              </span>
+            </label>
+
+          </div>
+        </div>
+
+        <!-- STEP 5: PAYMENT DETAILS -->
+        <div class="partner-step hidden">
+          <h2 class="text-orange-500 text-xl font-semibold mb-6">
+            Complete Your Payment
+          </h2>
+
+          <div class="bg-orange-50 rounded-2xl p-5 sm:p-6 mb-6 shadow-sm">
+            <h3 class="font-medium text-gray-900 mb-2">
+              Partnership Amount
+            </h3>
+
+            <p class="text-sm text-gray-600 mb-1">
+              Amount to Transfer
+            </p>
+
+            <p class="text-xl font-semibold text-gray-900" id="displayAmount">
+              ₦0
+            </p>
+          </div>
+
+          <div class="bg-orange-50 rounded-2xl p-5 sm:p-6 shadow-sm">
+            <h3 class="font-medium text-gray-900 mb-4">
+              Account Details
+            </h3>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+              <div>
+                <p class="text-sm text-gray-600 mb-1">Bank:</p>
+                <div class="flex items-center gap-2">
+                  <span class="font-medium text-gray-900">First Bank</span>
+                  <button class="text-gray-500 hover:text-gray-800" onclick="copyToClipboard('First Bank')">
+                    📋
+                  </button>
+                </div>
+              </div>
+
+              <div>
+                <p class="text-sm text-gray-600 mb-1">Account Number:</p>
+                <div class="flex items-center gap-2">
+                  <span class="font-medium text-gray-900">2096184982</span>
+                  <button class="text-gray-500 hover:text-gray-800" onclick="copyToClipboard('2096184982')">
+                    📋
+                  </button>
+                </div>
+              </div>
+
+              <div class="sm:col-span-2">
+                <p class="text-sm text-gray-600 mb-1">Account Name:</p>
+                <div class="flex items-center gap-2">
+                  <span class="font-medium text-gray-900">
+                    Sword Television Ltd
+                  </span>
+                  <button class="text-gray-500 hover:text-gray-800" onclick="copyToClipboard('Sword Television Ltd')">
+                    📋
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row justify-between mt-10 gap-4">
+
+            <button id="partnerPaymentConfirmed" class="w-full sm:w-auto bg-orange-500 text-white px-6 py-3 rounded-full font-medium hover:bg-orange-600 transition">
+              I Have Made Payment
+            </button>
+
+            <button class="w-full sm:w-auto border border-orange-400 text-orange-500 px-6 py-3 rounded-full font-medium hover:bg-orange-50 transition">
+              Join Friends of the Bible
+            </button>
+
+          </div>
+        </div>
+
+        <!-- STEP 6: FORUM INTEREST -->
+        <div class="partner-step hidden">
+          <h2 class="text-orange-500 text-xl font-semibold mb-6">
+            Which Forum Are You Interested In?
+          </h2>
+
+          <div class="space-y-4">
+
+            <label class="block border border-orange-300 rounded-xl p-4 sm:p-5 cursor-pointer transition hover:bg-orange-50 has-[:checked]:border-orange-500 has-[:checked]:bg-orange-100">
+
+              <div class="flex items-center gap-3">
+                <input type="radio" name="partner_forum" value="bible-intl" class="accent-orange-500">
+                <span class="font-medium text-gray-900">
+                  Friends of the Bible International Meetings
+                </span>
+              </div>
+            </label>
+
+            <label class="block border border-orange-300 rounded-xl p-4 sm:p-5 cursor-pointer transition hover:bg-orange-50 has-[:checked]:border-orange-500 has-[:checked]:bg-orange-100">
+
+              <div class="flex items-center gap-3">
+                <input type="radio" name="partner_forum" value="consultation" class="accent-orange-500">
+                <span class="font-medium text-gray-900">
+                  Consultation Session
+                </span>
+              </div>
+            </label>
+
+            <label class="block border border-orange-300 rounded-xl p-4 sm:p-5 cursor-pointer transition hover:bg-orange-50 has-[:checked]:border-orange-500 has-[:checked]:bg-orange-100">
+
+              <div class="flex items-center gap-3">
+                <input type="radio" name="partner_forum" value="prayer" class="accent-orange-500">
+                <span class="font-medium text-gray-900">
+                  Prayer Session
+                </span>
+              </div>
+            </label>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- FOOTER BUTTONS -->
+      <div class="flex flex-col sm:flex-row gap-4 sm:justify-between items-center mt-10 pt-6 border-t border-gray-100">
+
+        <button id="partnerPrevBtn" class="w-full sm:w-auto border border-orange-400 text-orange-500 px-8 py-3 rounded-full font-medium hover:bg-orange-50 transition" disabled>
+          Previous
+        </button>
+
+        <button id="partnerNextBtn" class="w-full sm:w-auto bg-orange-400 text-white px-8 py-3 rounded-full font-medium hover:bg-orange-500 transition">
+          Next
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================
+       MODAL 2: SHOW PARTICIPATION MODAL (Join The Show)
+       ======================================== -->
+  <div id="showModal" class="fixed inset-0 z-[999] hidden flex items-center justify-center bg-black/60 backdrop-blur-lg px-4 py-6 overflow-y-auto">
+
+    <!-- MODAL CARD -->
+    <div class="bg-white w-full max-w-3xl rounded-2xl p-6 sm:p-10 shadow-2xl relative my-auto flex flex-col justify-between min-h-[500px]">
+
+      <!-- CLOSE BUTTON -->
+      <button id="closeShowModal" class="absolute top-4 right-4 text-gray-400 hover:text-black text-2xl focus:outline-none transition">
         ✕
       </button>
 
@@ -711,12 +1045,12 @@
 
         <!-- Step Indicator -->
         <p class="text-xs text-gray-500">
-          Section <span id="stepNumber">1</span> of 6
+          Section <span id="showStepNumber">1</span> of 6
         </p>
 
         <!-- Progress Bar -->
         <div class="w-full h-2 bg-gray-200 rounded-full">
-          <div id="progressBar" class="h-2 bg-[#f3a03c] rounded-full transition-all duration-300" style="width:25%">
+          <div id="showProgressBar" class="h-2 bg-[#f3a03c] rounded-full transition-all duration-300" style="width:25%">
           </div>
         </div>
       </div>
@@ -725,7 +1059,7 @@
       <div class="flex-1 py-6 overflow-y-auto">
 
         <!-- STEP 1: PARTICIPATION CATEGORY -->
-        <div class="step">
+        <div class="show-step">
           <h2 class="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight mb-6">
             How would you like to participate?
           </h2>
@@ -751,7 +1085,7 @@
         </div>
 
         <!-- STEP 2: PERSONAL INFORMATION -->
-        <div class="step hidden">
+        <div class="show-step hidden">
           <h2 class="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight mb-6">
             Personal Information
           </h2>
@@ -879,8 +1213,7 @@
             </div>
 
             <div class="space-y-1.5">
-              <label class="block text-sm font-medium text-gray-700">Will you require accommodation? (If outside
-                Lagos)</label>
+              <label class="block text-sm font-medium text-gray-700">Will you require accommodation? (If outside Lagos)</label>
               <div class="relative">
                 <select id="accommodation"
                   class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-[#f3a03c] focus:border-[#f3a03c] cursor-pointer transition-shadow text-sm pr-10">
@@ -900,7 +1233,7 @@
         </div>
 
         <!-- STEP 3: STORY/EXPERIENCE (Share Story) -->
-        <div class="step hidden step-3-story">
+        <div class="show-step hidden show-step-3-story">
           <h2 class="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight mb-2">
             Story/Experience
           </h2>
@@ -957,163 +1290,8 @@
           </form>
         </div>
 
-        <!-- STEP 3: VIRTUAL PARTICIPATION (Connect Virtually) -->
-        <div class="step hidden step-3-virtual">
-          <h2 class="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight mb-6">
-            Virtual Participation
-          </h2>
-
-          <form class="space-y-5">
-
-            <div class="space-y-1.5">
-              <label class="block text-sm font-medium text-gray-700">
-                Do you have something you'd like us to address on the show?
-              </label>
-              <div class="relative w-full">
-                <select id="addressOnShow"
-                  class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-[#f3a03c] focus:border-[#f3a03c] cursor-pointer transition-shadow text-sm pr-10">
-                  <option value="" disabled selected hidden>Select an option</option>
-                  <option value="yes">Yes, I have a specific topic/question</option>
-                  <option value="no">No, just joining to listen</option>
-                </select>
-                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
-                  <svg class="h-4 w-4 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
-                    <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-
-            <div class="space-y-1.5">
-              <label class="block text-sm font-medium text-gray-700">
-                Share details below:
-              </label>
-              <textarea id="virtualDetails" rows="5" placeholder="Enter here"
-                class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#f3a03c] focus:border-[#f3a03c] transition-shadow text-sm resize-none min-h-[160px]"></textarea>
-            </div>
-
-          </form>
-        </div>
-
-        <!-- STEP 3: SPONSORSHIP/PARTNERSHIP (Sponsor/Partner) -->
-        <div class="step hidden step-3-sponsor">
-          <h2 class="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight mb-6">
-            Sponsorship/Partnership
-          </h2>
-
-          <form class="space-y-6">
-
-            <div class="space-y-1.5">
-              <label class="block text-sm font-medium text-gray-700">
-                Are you interested in sponsoring or partnering?
-              </label>
-              <div class="relative w-full">
-                <select id="sponsorInterest"
-                  class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-[#f3a03c] focus:border-[#f3a03c] cursor-pointer transition-shadow text-sm pr-10">
-                  <option value="" disabled selected hidden>Select an option</option>
-                  <option value="yes">Yes</option>
-                  <option value="no">No</option>
-                </select>
-                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
-                  <svg class="h-4 w-4 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
-                    <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-
-            <div class="space-y-4">
-              <p class="text-sm font-semibold text-[#f3a03c]">If Yes, please provide:</p>
-
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
-
-                <div class="space-y-1.5">
-                  <label class="block text-sm font-medium text-gray-700">
-                    Organization / Brand Name:
-                  </label>
-                  <input type="text" id="organizationName" placeholder="Enter here"
-                    class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#f3a03c] focus:border-[#f3a03c] transition-shadow text-sm" />
-                </div>
-
-                <div class="space-y-1.5">
-                  <label class="block text-sm font-medium text-gray-700">
-                    Sponsorship type:
-                  </label>
-                  <div class="relative">
-                    <select id="sponsorshipType"
-                      class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-[#f3a03c] focus:border-[#f3a03c] cursor-pointer transition-shadow text-sm pr-10">
-                      <option value="" disabled selected hidden>Select an option</option>
-                      <option value="financial">Financial Sponsor</option>
-                      <option value="media">Media Partner</option>
-                      <option value="product-service">Product / Service Partner</option>
-                    </select>
-                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
-                      <svg class="h-4 w-4 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
-                        <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-          </form>
-        </div>
-
-        <!-- STEP 3: VOLUNTEER (Volunteer With Team) -->
-        <div class="step hidden step-3-volunteer">
-          <h2 class="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight mb-6">
-            Volunteer Information
-          </h2>
-
-          <form class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
-
-            <div class="space-y-1.5">
-              <label class="block text-sm font-medium text-gray-700">
-                Would you like to volunteer?
-              </label>
-              <div class="relative">
-                <select id="volunteerInterest"
-                  class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-[#f3a03c] focus:border-[#f3a03c] cursor-pointer transition-shadow text-sm pr-10">
-                  <option value="" disabled selected hidden>Select an option</option>
-                  <option value="yes">Yes, definitely</option>
-                  <option value="no">No, thank you</option>
-                </select>
-                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
-                  <svg class="h-4 w-4 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
-                    <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-
-            <div class="space-y-1.5">
-              <label class="block text-sm font-medium text-gray-700">
-                Preferred Role:
-              </label>
-              <div class="relative">
-                <select id="volunteerRole"
-                  class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-[#f3a03c] focus:border-[#f3a03c] cursor-pointer transition-shadow text-sm pr-10">
-                  <option value="" disabled selected hidden>Select an option</option>
-                  <option value="ushering">Ushering / Protocol</option>
-                  <option value="media-production">Media & Production</option>
-                  <option value="technical">Technical Support</option>
-                  <option value="logistics">Logistics</option>
-                </select>
-                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
-                  <svg class="h-4 w-4 stroke-current stroke-2 fill-none" viewBox="0 0 24 24">
-                    <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-
-          </form>
-        </div>
-
         <!-- STEP 4: CONSENT & SIGNATURE -->
-        <div class="step hidden">
+        <div class="show-step hidden">
           <h2 class="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight mb-6">
             Consent & Signature
           </h2>
@@ -1155,12 +1333,12 @@
 
       <!-- FOOTER BUTTONS -->
       <div class="flex flex-col sm:flex-row gap-4 sm:justify-between items-center pt-6 border-t border-gray-100">
-        <button id="prevStep"
+        <button id="showPrevStep"
           class="w-full sm:w-auto px-8 py-3 border border-[#f3a03c] text-[#f3a03c] font-medium rounded-full hover:bg-orange-50 transition-colors focus:outline-none focus:ring-2 focus:ring-[#f3a03c] focus:ring-offset-2">
           Previous
         </button>
 
-        <button id="nextStep"
+        <button id="showNextStep"
           class="w-full sm:w-auto px-12 py-3 bg-[#f3a03c] hover:bg-[#e08f2b] text-white font-medium rounded-full shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-[#f3a03c] focus:ring-offset-2 disabled:opacity-40 disabled:cursor-not-allowed"
           disabled>
           Next
@@ -1224,8 +1402,85 @@
   <script src="./assets/script.js"></script>
   <script src="./assets/countries.js"></script>
 
+  <!-- ========== MODAL HANDLERS ========== -->
+  <script>
+    // Open Partnership Modal (Partner with Us)
+    function openPartnershipModal() {
+      const modal = document.getElementById('partnershipModal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+    }
 
- 
+    // Open Show Modal (Join The Show)
+    function openShowModal() {
+      const modal = document.getElementById('showModal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    // Initialize event listeners
+    document.addEventListener('DOMContentLoaded', function() {
+      // Close Partnership Modal
+      const closePartnershipBtn = document.getElementById('closePartnershipModal');
+      const partnershipModal = document.getElementById('partnershipModal');
+
+      if (closePartnershipBtn) {
+        closePartnershipBtn.addEventListener('click', function() {
+          if (partnershipModal) {
+            partnershipModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+          }
+        });
+      }
+
+      // Close Partnership Modal on background click
+      if (partnershipModal) {
+        partnershipModal.addEventListener('click', function(e) {
+          if (e.target === this) {
+            this.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+          }
+        });
+      }
+
+      // Close Show Modal
+      const closeShowBtn = document.getElementById('closeShowModal');
+      const showModal = document.getElementById('showModal');
+
+      if (closeShowBtn) {
+        closeShowBtn.addEventListener('click', function() {
+          if (showModal) {
+            showModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+          }
+        });
+      }
+
+      // Close Show Modal on background click
+      if (showModal) {
+        showModal.addEventListener('click', function(e) {
+          if (e.target === this) {
+            this.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+          }
+        });
+      }
+
+      // Mobile Menu handlers
+      const openMenu = document.getElementById('openMenu');
+      const closeMenu = document.getElementById('closeMenu');
+      const mobileMenu = document.getElementById('mobileMenu');
+
+      if (openMenu && closeMenu && mobileMenu) {
+        openMenu.addEventListener('click', () => mobileMenu.classList.remove('hidden'));
+        closeMenu.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+      }
+    });
+  </script>
 
 </body>
 
