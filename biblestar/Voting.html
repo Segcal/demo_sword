@@ -118,10 +118,16 @@
             justify-content: center;
             padding: 1rem;
             overflow-y: auto;
+            overscroll-behavior: contain;
         }
 
         .modal.active {
             display: flex;
+        }
+
+        body.modal-open {
+            overflow: hidden;
+            height: 100vh;
         }
 
         .modal-content {
@@ -268,28 +274,28 @@
 
     <!-- ================= MOBILE MENU ================= -->
     <div id="mobileMenu"
-        class="hidden fixed inset-0 bg-black/20 backdrop-blur-xl z-50 flex items-center justify-center">
-        <div class="bg-[#1b1b1b] w-72 rounded-xl p-6 relative">
-            <button id="closeMenu" class="absolute top-4 right-4">✕</button>
+        class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 md:hidden">
+        <div class="bg-[#1b1b1b] w-full max-w-xs h-screen flex flex-col p-6 relative">
+            <button id="closeMenu" class="absolute top-6 right-6 text-2xl text-white hover:text-orange-500 transition">✕</button>
 
             <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766409594/sword_TV_logo_y9mnja.png"
-                width="150" class="rounded-full mx-auto mb-6" />
+                width="120" class="rounded-full mx-auto mb-8 mt-4" />
 
-            <div class="flex flex-col space-y-4 text-center">
-                <a href="../index.html">Home</a>
-                <a href="../Programmes.html">Programmes</a>
-                <a href="../Partnership.html" class="font-semibold">Partnership</a>
-                <a href="../blog.html">Blog</a>
-                <a href="../contact-us.html">Contact us</a>
+            <nav class="flex flex-col space-y-4 text-white text-center flex-1">
+                <a href="../index.html" class="py-3 hover:text-orange-500 transition">Home</a>
+                <a href="../Programmes.html" class="py-3 hover:text-orange-500 transition">Programmes</a>
+                <a href="../Partnership.html" class="py-3 font-semibold hover:text-orange-500 transition">Partnership</a>
+                <a href="../blog.html" class="py-3 hover:text-orange-500 transition">Blog</a>
+                <a href="../contact-us.html" class="py-3 hover:text-orange-500 transition">Contact us</a>
+            </nav>
 
-                <a href="./pin-purches.html" class="text-xl bg-orange-400 text-black px-5 py-2 rounded-full font-semibold mt-4">
-                    Get PIN
-                </a>
-            </div>
+            <a href="./pin-purches.html" class="w-full bg-orange-500 hover:bg-orange-600 text-black px-5 py-3 rounded-full font-semibold text-center transition">
+                Get PIN
+            </a>
         </div>
     </div>
 
-    <section class="bg-img-hero relative min-h-[60vh] md:min-h-[70vh] lg:min-h-screen flex items-center">
+    <section class="bg-img-hero relative min-h-[60vh] md:min-h-[70vh] lg:min-h-screen flex items-center  overflow-x-hidden">
         <!-- Dark overlay for readability -->
         <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-transparent"></div>
 
@@ -312,7 +318,7 @@
     </section>
     <!--   -->
 
-    <section class="p-6 md:p-12 bi">
+    <section class="p-6 md:p-12 bi overflow-x-hidden">
         <div class="max-w-7xl mx-auto relative z-10">
             <h1 class="text-4xl md:text-5xl font-bold text-white text-center mb-12">Housemates</h1>
 
@@ -927,13 +933,14 @@ function generateCards() {
 
         function openModal(modalId) {
             document.getElementById(modalId).classList.add('active');
-            document.body.style.overflow = 'hidden';
+            document.body.classList.add('modal-open');
         }
 
         function closeAllModals() {
             document.querySelectorAll('.modal').forEach(modal => {
                 modal.classList.remove('active');
             });
+            document.body.classList.remove('modal-open');
             document.body.style.overflow = 'auto';
         }
 
@@ -951,13 +958,31 @@ function generateCards() {
             });
         });
 
+        // Close mobile menu when clicking the background overlay
+        document.getElementById('mobileMenu').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.add('hidden');
+                document.body.classList.remove('modal-open');
+            }
+        });
+
         // Mobile menu toggle
         document.getElementById('openMenu').addEventListener('click', function() {
             document.getElementById('mobileMenu').classList.toggle('hidden');
+            document.body.classList.toggle('modal-open');
         });
 
         document.getElementById('closeMenu').addEventListener('click', function() {
             document.getElementById('mobileMenu').classList.add('hidden');
+            document.body.classList.remove('modal-open');
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.getElementById('mobileMenu').classList.add('hidden');
+                document.body.classList.remove('modal-open');
+            });
         });
 
         // Initialize
