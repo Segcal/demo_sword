@@ -42,6 +42,22 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
   }
+
+  .gallery-carousel-item {
+    @apply absolute inset-0 transition-all duration-1000 ease-in-out;
+  }
+
+  .gallery-carousel-item.active {
+    @apply opacity-100 scale-100;
+  }
+
+  .gallery-carousel-item.prev {
+    @apply opacity-0 scale-95;
+  }
+
+  .gallery-carousel-item.next {
+    @apply opacity-0 scale-95;
+  }
 }
 
   .scrollbar-hide::-webkit-scrollbar {
@@ -56,6 +72,21 @@
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
+        }
+
+        .coming-soon-badge {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: rgba(0, 0, 0, 0.8);
+          backdrop-filter: blur(10px);
+          padding: 1.5rem;
+          border-radius: 1rem;
+          border: 2px solid #f0a242;
+          z-index: 10;
+          text-align: center;
+          pointer-events: auto;
         }
     </style>
 </head>
@@ -183,103 +214,433 @@
   </section>
 
 
-  <!-- Programs Section -->
-  <section class="bg-section-overlay">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-20 ">
-      <h2 class="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 text-amber-400">Our Programs</h2>
 
-      <!-- Category Tabs -->
-      <div class="mb-8 sm:mb-12 overflow-x-auto scrollbar-hide">
-        <div class="flex gap-3 min-w-max pb-4 px-2" id="categoryTabs">
-          <button
-            class="tab-btn px-4 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition-all whitespace-nowrap bg-amber-600 text-white shadow-lg shadow-amber-600/50"
-            data-category="upcoming">
-            Upcoming Programs
-          </button>
-          <button
-            class="tab-btn px-4 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition-all whitespace-nowrap bg-gray-800 text-gray-300 hover:bg-gray-700"
-            data-category="weekly">
-            Weekly Shows
-          </button>
-          <button
-            class="tab-btn px-4 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition-all whitespace-nowrap bg-gray-800 text-gray-300 hover:bg-gray-700"
-            data-category="game">
-            Game Shows
-          </button>
-          <button
-            class="tab-btn px-4 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition-all whitespace-nowrap bg-gray-800 text-gray-300 hover:bg-gray-700"
-            data-category="talk">
-            Talk Shows
-          </button>
-          <button
-            class="tab-btn px-4 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition-all whitespace-nowrap bg-gray-800 text-gray-300 hover:bg-gray-700"
-            data-category="RealityShows">
-            Reality Shows
-          </button>
-          <button
-            class="tab-btn px-4 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition-all whitespace-nowrap bg-gray-800 text-gray-300 hover:bg-gray-700"
-            data-category="documentaries">
-            Documentaries
-          </button>
-          <button
-            class="tab-btn px-4 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition-all whitespace-nowrap bg-gray-800 text-gray-300 hover:bg-gray-700"
-            data-category="music">
-            Music Events
-          </button>
+
+
+  <!-- Programs Section -->
+  <section class="bg-section-overlay py-16 sm:py-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 sm:mb-16 text-amber-400">All Programs</h2>
+
+      <!-- Filter and Category Controls -->
+      <div class="mb-12 space-y-6">
+        <!-- Filter Dropdown -->
+        <div class="flex justify-center">
+          <div class="relative inline-block">
+            <button id="filterBtn" class="flex items-center gap-2 px-6 py-3 bg-gray-800 hover:bg-gray-700 text-white rounded-full border border-gray-700 transition-all">
+              <span>Filter:</span>
+              <span id="filterValue" class="font-semibold">All</span>
+              <svg class="w-4 h-4 transition-transform" id="filterArrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+              </svg>
+            </button>
+
+            <!-- Filter Dropdown Menu -->
+            <div id="filterMenu" class="hidden absolute top-full mt-2 left-0 bg-gray-800 rounded-lg border border-gray-700 shadow-lg z-30 min-w-[200px]">
+              <button class="filter-option w-full text-left px-6 py-3 hover:bg-gray-700 text-white" data-filter="all">All Programs</button>
+              <button class="filter-option w-full text-left px-6 py-3 hover:bg-gray-700 text-white" data-filter="upcoming">Upcoming</button>
+              <button class="filter-option w-full text-left px-6 py-3 hover:bg-gray-700 text-white" data-filter="available">Available</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category Tabs -->
+        <div class="overflow-x-auto scrollbar-hide">
+          <div class="flex gap-2 min-w-max pb-4 px-2 justify-center" id="programTabs">
+            <button class="program-tab-btn px-4 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition-all whitespace-nowrap bg-amber-600 text-white shadow-lg shadow-amber-600/50" data-category="all">
+              All
+            </button>
+            <button class="program-tab-btn px-4 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition-all whitespace-nowrap bg-gray-800 text-gray-300 hover:bg-gray-700" data-category="reality">
+              Reality Shows
+            </button>
+            <button class="program-tab-btn px-4 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition-all whitespace-nowrap bg-gray-800 text-gray-300 hover:bg-gray-700" data-category="game">
+              Game Shows
+            </button>
+            <button class="program-tab-btn px-4 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition-all whitespace-nowrap bg-gray-800 text-gray-300 hover:bg-gray-700" data-category="talk">
+              Talk Shows
+            </button>
+            <button class="program-tab-btn px-4 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition-all whitespace-nowrap bg-gray-800 text-gray-300 hover:bg-gray-700" data-category="documentary">
+              Documentaries
+            </button>
+            <button class="program-tab-btn px-4 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition-all whitespace-nowrap bg-gray-800 text-gray-300 hover:bg-gray-700" data-category="special">
+              Special Events
+            </button>
+          </div>
         </div>
       </div>
 
       <!-- Program Cards -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 bg-section-overlay" id="programCards">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" id="programCards">
         <!-- Cards will be inserted here by JavaScript -->
-      </div>
-
-      <!-- Pagination Dots -->
-      <div class="flex justify-center gap-2 mt-8 sm:mt-12">
-        <button class="w-3 h-3 rounded-full bg-amber-600 transition-all" style="width: 2rem;"></button>
-        <button class="w-3 h-3 rounded-full bg-gray-600 hover:bg-gray-500 transition-all"></button>
-        <button class="w-3 h-3 rounded-full bg-gray-600 hover:bg-gray-500 transition-all"></button>
       </div>
     </div>
   </section>
 
 
-  <!-- Gallery Section -->
-   <section class="bg-section-overlay">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-20">
-    <h2 class="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 text-amber-400">Our Gallery</h2>
+    <!-- ======== GALLERY SECTION ======== -->
+  <section class="bg-section-overlay py-16 sm:py-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <h2 class="text-3xl sm:text-4xl md:text-6xl font-bold text-center mb-12 sm:mb-16 text-amber-400">Our Gallery</h2>
 
-    <div class="relative">
-      <!-- Gallery Image -->
-      <div class="relative h-64 sm:h-80 md:h-96 rounded-2xl sm:rounded-3xl overflow-hidden">
-        <img id="galleryImage" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=500&fit=crop"
-          alt="Gallery" class="w-full h-full object-cover" />
-        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent"></div>
-      </div>
+      <!-- Gallery Carousel -->
+      <div class="relative">
+        <!-- Main Image Display -->
+        <div class="relative h-72 sm:h-96 md:h-[500px] rounded-3xl overflow-hidden group bg-gray-900 shadow-2xl shadow-black/50">
+          <img id="galleryMainImage" src="" alt="Gallery" class="w-full h-full object-cover transition-all duration-500" />
+          
+          <!-- Gradient Overlay -->
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent z-10 pointer-events-none"></div>
 
-      <!-- Navigation Arrows -->
-      <button id="prevGallery"
-        class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 bg-black/50 backdrop-blur-sm rounded-full hover:bg-amber-600 transition-all">
-        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-        </svg>
-      </button>
-      <button id="nextGallery"
-        class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 bg-black/50 backdrop-blur-sm rounded-full hover:bg-amber-600 transition-all">
-        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-        </svg>
-      </button>
+          <!-- Navigation Buttons -->
+          <button id="prevGalleryImage"
+            class="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 p-3 sm:p-5 bg-black/60 hover:bg-amber-600 backdrop-blur-sm rounded-full transition-all duration-300 shadow-lg hover:shadow-amber-600/50 hover:scale-110">
+            <svg class="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </button>
 
-      <!-- Gallery Dots -->
-      <div class="flex justify-center gap-2 mt-6" id="galleryDots">
-        <!-- Dots will be inserted here by JavaScript -->
+          <button id="nextGalleryImage"
+            class="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 p-3 sm:p-5 bg-black/60 hover:bg-amber-600 backdrop-blur-sm rounded-full transition-all duration-300 shadow-lg hover:shadow-amber-600/50 hover:scale-110">
+            <svg class="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Gallery Navigation Controls -->
+        <div class="flex justify-center items-center gap-4 mt-8 sm:mt-10">
+          <!-- Dots -->
+          <div class="flex justify-center gap-3" id="galleryDots">
+            <!-- Dots will be inserted here by JS -->
+          </div>
+        </div>
       </div>
     </div>
-  </div> 
-   </section>
- 
+  </section>
 
+
+  <!-- PARTNER MODAL -->
+  <div id="partnerModal" class="fixed inset-0 z-[999] hidden
+         flex items-center justify-center
+         bg-black/60 backdrop-blur-lg
+         px-4 py-6 overflow-y-auto">
+
+    <!-- MODAL CARD -->
+    <div class="bg-white w-full max-w-3xl
+           rounded-2xl p-6 sm:p-8
+           shadow-2xl relative
+           my-auto">
+
+      <!-- CLOSE BUTTON -->
+      <button id="closePartnerModal" class="absolute top-4 right-4
+             text-gray-400 hover:text-black
+             text-xl">
+        ✕
+      </button>
+
+      <!-- STEP INDICATOR -->
+      <p class="text-xs text-gray-500 mb-2">
+        Section <span id="stepNumber">1</span> of 6
+      </p>
+
+      <!-- PROGRESS BAR -->
+      <div class="w-full h-2 bg-gray-200 rounded-full mb-8">
+        <div id="progressBar" class="h-2 bg-orange-400 rounded-full
+               transition-all duration-300" style="width:16.66%">
+        </div>
+      </div>
+
+      <!-- STEPS CONTAINER -->
+      <div class="space-y-6 max-h-[60vh] overflow-y-auto pr-1">
+
+        <!-- STEP 1 -->
+         <div class="step">
+          <h2 class="text-orange-500 text-xl font-semibold mb-2">
+            Select Programme
+          </h2>
+
+          <p class="text-sm text-gray-600 mb-5">
+            Which of the below programme do you want to support?
+          </p>
+
+          <!-- PROGRAMME OPTIONS -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="programmeOptions">
+            <!-- Options will be populated by JavaScript -->
+          </div>
+        </div>
+         <!--  -->
+       
+
+        <!-- PLACEHOLDER STEPS -->
+        <!-- STEP 2 -->
+        
+ <div class="step hidden">
+          <h2 class="text-orange-500 text-xl font-semibold mb-2">
+            Select Category
+          </h2>
+
+          <p class="text-sm text-gray-600 mb-4">
+            Which of the below categories do you want to donate for?
+          </p>
+
+          <!-- OPTION -->
+          <label class="block border border-orange-300 rounded-xl
+                 p-4 sm:p-5 mb-3
+                 flex gap-3 items-start cursor-pointer">
+            <input type="radio" name="category" class="mt-1">
+            <div>
+              <span class="font-medium text-gray-900">Major Weight</span><br>
+              <span class="text-sm text-gray-600">
+                ₦50,000,000 and above
+              </span>
+            </div>
+          </label>
+
+          <!-- OPTION -->
+          <label class="block border border-orange-300 rounded-xl
+                 p-4 sm:p-5 mb-3
+                 flex gap-3 items-start cursor-pointer">
+            <input type="radio" name="category" class="mt-1">
+            <div>
+              <span class="font-medium text-gray-900">Medium Weight</span><br>
+              <span class="text-sm text-gray-600">
+                ₦20,000,000 to ₦50,000,000
+              </span>
+            </div>
+          </label>
+
+          <!-- OPTION -->
+          <label class="block border border-orange-300 rounded-xl
+                 p-4 sm:p-5
+                 flex gap-3 items-start cursor-pointer">
+            <input type="radio" name="category" class="mt-1">
+            <div>
+              <span class="font-medium text-gray-900">Light Weight</span><br>
+              <span class="text-sm text-gray-600">
+                ₦20,000,000 and below
+              </span>
+            </div>
+          </label>
+        </div>
+        <!-- STEP 3 -->
+
+        <div class="step hidden" id="step3">
+          <h2 class="text-orange-500 text-xl font-semibold mb-2">
+            Fill form
+          </h2>
+
+          <p class="text-sm text-gray-800 mb-6">
+            Kindly fill the below form to proceed with your partnership.
+          </p>
+
+          <div class="space-y-5">
+
+            <div>
+              <label class="block text-gray-700 text-sm font-medium mb-1">Full name</label>
+              <input id="fullName" type="text" placeholder="Enter your full name"
+                class="w-full rounded border border-gray-400 px-4 py-3 text-gray-900" />
+            </div>
+
+            <div>
+              <label class="block text-gray-700 text-sm font-medium mb-1">Email Address</label>
+              <input id="email" type="email" placeholder="Enter your email address"
+                class="w-full rounded border border-gray-400 px-4 py-3 text-gray-900" />
+            </div>
+
+            <div>
+              <label class="block text-gray-700 text-sm font-medium mb-1">Phone Number</label>
+              <input id="phone" type="tel" placeholder="Enter your phone number"
+                class="w-full rounded border border-gray-400 px-4 py-3 text-gray-900" />
+            </div>
+
+            <div>
+              <label class="block text-gray-700 text-sm font-medium mb-1">
+                Organization/Company (Optional)
+              </label>
+              <input id="organization" type="text" placeholder="Your organization name"
+                class="w-full rounded border border-gray-400 px-4 py-3 text-gray-900" />
+            </div>
+
+          </div>
+        </div>
+
+        <!-- step 4 -->
+        <div class="step hidden">
+          <h2 class="text-orange-500 text-xl font-semibold mb-2">
+            Partnership Details
+          </h2>
+
+          <p class="text-sm text-gray-600 mb-5">
+            How would you like to support this programme?
+          </p>
+
+          <!-- PROGRAMME OPTIONS -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+            <!-- OPTION -->
+            <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition">
+              <input type="radio" name="supportType" value="financial" class="mt-1">
+              <span class="font-medium text-sm text-gray-900">
+                Financial Support
+              </span>
+            </label>
+
+            <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition">
+              <input type="radio" name="supportType" value="sponsorship" class="mt-1">
+              <span class="font-medium text-sm text-gray-900">
+                Sponsorship
+              </span>
+            </label>
+
+            <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition">
+              <input type="radio" name="supportType" value="media" class="mt-1">
+              <span class="font-medium text-sm text-gray-900">
+                Media Partnership
+              </span>
+            </label>
+
+            <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition">
+              <input type="radio" name="supportType" value="other" class="mt-1">
+              <span class="font-medium text-sm text-gray-900">
+                Other
+              </span>
+            </label>
+
+          </div>
+        </div>
+        <!-- STEP 5 -->
+        <div class="step hidden">
+          <h2 class="text-orange-500 text-xl font-semibold mb-6">
+            Review Your Details
+          </h2>
+
+          <!-- Summary Card -->
+          <div class="bg-orange-50 rounded-2xl p-5 sm:p-6 mb-6 shadow-sm">
+            <h3 class="font-medium text-gray-900 mb-4">
+              Partnership Summary
+            </h3>
+
+            <div class="space-y-3 text-sm">
+              <div class="flex justify-between">
+                <span class="text-gray-600">Programme:</span>
+                <span id="summaryProgramme" class="font-medium text-gray-900">-</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-600">Name:</span>
+                <span id="summaryName" class="font-medium text-gray-900">-</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-600">Email:</span>
+                <span id="summaryEmail" class="font-medium text-gray-900">-</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-600">Support Type:</span>
+                <span id="summarySupportType" class="font-medium text-gray-900">-</span>
+              </div>
+            </div>
+          </div>
+
+          <p class="text-sm text-gray-600 mb-6">
+            Please review your details above. Click submit to send your partnership inquiry.
+          </p>
+        </div>
+
+        <!-- STEP 6 - SUCCESS -->
+        <div class="step hidden text-center">
+          <div class="mb-6">
+            <div class="inline-block p-4 bg-green-100 rounded-full mb-4">
+              <svg class="w-12 h-12 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+          </div>
+          <h2 class="text-orange-500 text-2xl font-semibold mb-4">
+            Thank You!
+          </h2>
+          <p class="text-gray-600 mb-6">
+            Your partnership inquiry has been submitted successfully. We will contact you shortly at the email provided to discuss the partnership details.
+          </p>
+          <p class="text-sm text-gray-500">
+            Reference: <span id="referenceNumber" class="font-mono font-semibold text-gray-900">-</span>
+          </p>
+        </div>
+
+      </div>
+
+      <!-- FOOTER BUTTONS -->
+      <div class="flex flex-col sm:flex-row
+             gap-4 sm:justify-between
+             items-center mt-10" id="modalFooter">
+
+        <button id="prevStep" class="w-full sm:w-auto
+               border border-orange-400
+               text-orange-500
+               px-6 py-3 rounded-full">
+          Previous
+        </button>
+
+        <button id="nextStep" class="w-full sm:w-auto
+               bg-orange-400 text-white
+               px-8 py-3 rounded-full
+               disabled:opacity-40" disabled>
+          Next
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+  <div id="comingSoonModal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-[999] flex items-center justify-center p-4 overflow-hidden">
+    <div class="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 sm:p-12 max-w-md w-full border border-amber-600/30 shadow-2xl shadow-amber-600/20">
+      <!-- Close Button -->
+      <button id="closeComingSoon"
+        class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-gray-700 hover:bg-amber-600 transition-colors z-10">
+        ✕
+      </button>
+
+      <!-- Icon -->
+      <div class="text-center mb-6">
+        <div class="inline-block p-4 bg-amber-600/20 border border-amber-600/50 rounded-full mb-4">
+          <svg class="w-12 h-12 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <h3 id="comingSoonTitle" class="text-2xl sm:text-3xl font-bold text-center mb-4 text-white"></h3>
+      
+      <p class="text-center text-gray-300 mb-6 leading-relaxed">
+        This exciting program is coming soon! We're working hard to bring you an unforgettable experience.
+      </p>
+
+      <p id="comingSoonDesc" class="text-center text-gray-400 text-sm mb-8"></p>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col gap-3">
+        <button
+          class="px-6 py-3 bg-amber-600 hover:bg-amber-500 text-white rounded-full font-semibold transition-colors text-center">
+          Notify Me
+        </button>
+        <button id="closeComingSoon2"
+          class="px-6 py-3 bg-gray-700 hover:bg-gray-600 text-white rounded-full font-semibold transition-colors text-center">
+          Close
+        </button>
+      </div>
+
+      <!-- Decorative Elements -->
+      <div class="absolute top-0 left-0 w-32 h-32 bg-amber-600/5 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl pointer-events-none"></div>
+      <div class="absolute bottom-0 right-0 w-32 h-32 bg-cyan-600/5 rounded-full translate-x-1/2 translate-y-1/2 blur-3xl pointer-events-none"></div>
+    </div>
+  </div>
 
 
   <!-- footer container -->
@@ -419,17 +780,6 @@
     </div>
   </section>
 
-
-
-
-
-
-
-
-
-
-
-
   <script>
 
     const mobileMenu = document.getElementById("mobileMenu");
@@ -444,223 +794,360 @@
         .classList.toggle("backdrop-blur-2xl", window.scrollY > 10);
     });
 
-    const programs = {
-      upcoming: [
+    // Gallery Images by Category
+    const galleryImages = {
+      all: [
         {
           id: 1,
-          title: 'State Alive Reality Show',
-          description: 'Experience the thrill of competitive reality television with engaging challenges and heartwarming stories.',
-          image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&h=250&fit=crop'
+          image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=500&fit=crop',
+          category: 'events'
         },
         {
           id: 2,
-          title: 'State Got A Mega Festival',
-          description: 'Join us for the biggest cultural celebration featuring music, dance, and incredible performances.',
-          image: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=400&h=250&fit=crop'
+          image: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&h=500&fit=crop',
+          category: 'events'
         },
         {
           id: 3,
-          title: 'State Champion',
-          description: 'Witness extraordinary talent compete for glory in this thrilling championship series.',
-          image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=400&h=250&fit=crop'
-        }
-      ],
-      weekly: [
+          image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=500&fit=crop',
+          category: 'performances'
+        },
         {
           id: 4,
-          title: 'Monday Night Live',
-          description: 'Start your week with entertainment, laughter, and inspiring conversations every Monday evening.',
-          image: 'https://images.unsplash.com/photo-1478147427282-58a87a120781?w=400&h=250&fit=crop'
+          image: 'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=800&h=500&fit=crop',
+          category: 'performances'
         },
         {
           id: 5,
-          title: 'Weekend Vibes',
-          description: 'Unwind with music, comedy, and special guests in this weekend entertainment extravaganza.',
-          image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&h=250&fit=crop'
+          image: 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=800&h=500&fit=crop',
+          category: 'behind-the-scenes'
         },
         {
           id: 6,
-          title: 'Thursday Spotlight',
-          description: 'Discover new talent and enjoy captivating performances every Thursday night.',
-          image: 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=400&h=250&fit=crop'
-        }
-      ],
-      game: [
+          image: 'https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=800&h=500&fit=crop',
+          category: 'audience'
+        },
         {
           id: 7,
-          title: 'Quiz Masters',
-          description: 'Test your knowledge in this fast-paced quiz competition with amazing prizes.',
-          image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400&h=250&fit=crop'
+          image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800&h=500&fit=crop',
+          category: 'performances'
         },
         {
           id: 8,
-          title: 'Family Feud Challenge',
-          description: 'Families compete in hilarious challenges and trivia battles for ultimate bragging rights.',
-          image: 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=400&h=250&fit=crop'
+          image: 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&h=500&fit=crop',
+          category: 'audience'
         },
         {
           id: 9,
-          title: 'The Ultimate Challenge',
-          description: 'Physical and mental challenges push contestants to their limits in this exciting game show.',
-          image: 'https://images.unsplash.com/photo-1519834785169-98be25ec3f84?w=400&h=250&fit=crop'
-        }
-      ],
-      talk: [
+          image: 'https://images.unsplash.com/photo-1519834785169-98be25ec3f84?w=800&h=500&fit=crop',
+          category: 'events'
+        },
         {
           id: 10,
-          title: 'Heart to Heart',
-          description: 'Intimate conversations with inspiring personalities sharing their life stories.',
-          image: 'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=400&h=250&fit=crop'
+          image: 'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=800&h=500&fit=crop',
+          category: 'behind-the-scenes'
         },
         {
           id: 11,
-          title: 'The Morning Show',
-          description: 'Start your day with news, interviews, and uplifting discussions.',
-          image: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=400&h=250&fit=crop'
+          image: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=800&h=500&fit=crop',
+          category: 'performances'
         },
         {
           id: 12,
-          title: 'Late Night Talks',
-          description: 'Evening conversations about current affairs, culture, and entertainment.',
-          image: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400&h=250&fit=crop'
+          image: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&h=500&fit=crop',
+          category: 'audience'
         }
       ],
-      RealityShows: [
-        {
-          id: 13,
-          title: 'Future Leaders Scholarship',
-          description: 'Empowering the next generation through educational opportunities and mentorship.',
-          image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=250&fit=crop'
-        },
-        {
-          id: 14,
-          title: 'Arts Excellence Program',
-          description: 'Supporting talented artists to pursue their creative dreams.',
-          image: 'https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=400&h=250&fit=crop'
-        },
-        {
-          id: 15,
-          title: 'STEM Innovators Grant',
-          description: 'Funding breakthrough projects in science, technology, engineering, and mathematics.',
-          image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=400&h=250&fit=crop'
-        }
-      ],
-      documentaries: [
-        {
-          id: 16,
-          title: 'Stories of Change',
-          description: 'Documenting inspiring journeys of transformation and resilience.',
-          image: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=400&h=250&fit=crop'
-        },
-        {
-          id: 17,
-          title: 'Hidden Heroes',
-          description: 'Uncovering the untold stories of everyday champions in our communities.',
-          image: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400&h=250&fit=crop'
-        },
-        {
-          id: 18,
-          title: 'Cultural Roots',
-          description: 'Exploring traditions, heritage, and the rich tapestry of diverse cultures.',
-          image: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?w=400&h=250&fit=crop'
-        }
-      ],
-      music: [
-        {
-          id: 19,
-          title: 'Summer Music Festival',
-          description: 'Three days of non-stop music featuring international and local artists.',
-          image: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=400&h=250&fit=crop'
-        },
-        {
-          id: 20,
-          title: 'Gospel Night',
-          description: 'An evening of uplifting gospel music and worship celebration.',
-          image: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=400&h=250&fit=crop'
-        },
-        {
-          id: 21,
-          title: 'Jazz & Blues Evening',
-          description: 'Smooth jazz and soulful blues performances in an intimate setting.',
-          image: 'https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=400&h=250&fit=crop'
-        }
-      ]
+      events: [],
+      performances: [],
+      'behind-the-scenes': [],
+      audience: []
     };
 
-    // Gallery images
-    const galleryImages = [
-      'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=500&fit=crop',
-      'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&h=500&fit=crop',
-      'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=500&fit=crop',
-      'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=800&h=500&fit=crop',
-      'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=800&h=500&fit=crop'
-    ];
+    // Populate category-specific images
+    galleryImages.events = galleryImages.all.filter(img => img.category === 'events');
+    galleryImages.performances = galleryImages.all.filter(img => img.category === 'performances');
+    galleryImages['behind-the-scenes'] = galleryImages.all.filter(img => img.category === 'behind-the-scenes');
+    galleryImages.audience = galleryImages.all.filter(img => img.category === 'audience');
 
     let currentGalleryIndex = 0;
-    let currentCategory = 'upcoming';
+    let currentGalleryCategory = 'all';
+    let currentProgramFilter = 'all';
+    let currentProgramCategory = 'all';
 
-    // Render program cards
-    function renderPrograms(category) {
-      const container = document.getElementById('programCards');
-      const categoryPrograms = programs[category] || programs.upcoming;
+    // Render Gallery
+    function renderGallery() {
+      const images = galleryImages[currentGalleryCategory];
+      
+      // Set main image
+      if (images.length > 0) {
+        document.getElementById('galleryMainImage').src = images[currentGalleryIndex].image;
+      }
 
-      container.innerHTML = categoryPrograms.map(program => `
-                <div class="group bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700/50 hover:border-amber-600/50 transition-all duration-300 hover:shadow-xl hover:shadow-amber-600/20 hover:-translate-y-2">
-                    <div class="relative h-48 overflow-hidden">
-                        <img
-                            src="${program.image}"
-                            alt="${program.title}"
-                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                        />
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-60"></div>
-                    </div>
-                    
-                    <div class="p-4 sm:p-6">
-                        <h3 class="text-lg sm:text-xl font-bold mb-3 text-white">${program.title}</h3>
-                        <p class="text-gray-400 mb-4 sm:mb-6 line-clamp-2 text-sm sm:text-base">${program.description}</p>
-                        
-                        <button class="w-full px-4 sm:px-6 py-2 sm:py-3 bg-amber-600 hover:bg-amber-500 text-white rounded-full font-medium transition-all flex items-center justify-center gap-2 group-hover:gap-3 text-sm sm:text-base">
-                            Explore
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-    }
-
-    // Render gallery dots
-    function renderGalleryDots() {
-      const container = document.getElementById('galleryDots');
-      container.innerHTML = galleryImages.map((_, index) => `
-                <button 
-                    class="gallery-dot w-3 h-3 rounded-full transition-all ${index === currentGalleryIndex ? 'bg-amber-600' : 'bg-gray-600 hover:bg-gray-500'}"
-                    style="${index === currentGalleryIndex ? 'width: 2rem;' : ''}"
-                    data-index="${index}"
-                ></button>
-            `).join('');
+      // Render dots
+      const dotsContainer = document.getElementById('galleryDots');
+      dotsContainer.innerHTML = images.map((_, index) => `
+        <button class="gallery-dot w-3 h-3 rounded-full transition-all cursor-pointer ${index === currentGalleryIndex ? 'bg-amber-600' : 'bg-gray-500 hover:bg-gray-400'}"
+          style="${index === currentGalleryIndex ? 'width: 1.5rem;' : ''}"
+          data-index="${index}"></button>
+      `).join('');
 
       // Add click handlers to dots
       document.querySelectorAll('.gallery-dot').forEach(dot => {
         dot.addEventListener('click', (e) => {
           currentGalleryIndex = parseInt(e.currentTarget.dataset.index);
-          updateGallery();
+          renderGallery();
         });
       });
     }
 
-    // Update gallery
-    function updateGallery() {
-      document.getElementById('galleryImage').src = galleryImages[currentGalleryIndex];
-      renderGalleryDots();
+    // Gallery Navigation
+    document.getElementById('prevGalleryImage').addEventListener('click', () => {
+      const images = galleryImages[currentGalleryCategory];
+      currentGalleryIndex = (currentGalleryIndex - 1 + images.length) % images.length;
+      renderGallery();
+    });
+
+    document.getElementById('nextGalleryImage').addEventListener('click', () => {
+      const images = galleryImages[currentGalleryCategory];
+      currentGalleryIndex = (currentGalleryIndex + 1) % images.length;
+      renderGallery();
+    });
+
+    // Programs Data
+    const programs = [
+      // 6 Available Programs
+      {
+        id: 1,
+        title: 'Bible Stars Reality Show',
+        description: 'A premium, award-winning program designed to reveal spiritual realities in the natural sphere while delivering excitement, inspiration, and family-friendly entertainment. ',
+        image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1767998926/bible_start_reality_show_banner_copy_1_v4jiok.png',
+        available: true,
+        category: 'reality'
+      },
+      {
+        id: 2,
+        title: 'Ilorin Youth Mega Festival',
+        description: 'A Festival that unites performers, creators, innovators, and cultural champions from across Nigeria in music, competitions, dance, exhibitions, drama, and inspiring showcases.',
+        image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1767998911/YOUTH_FESTIVAL_BANNER_copy_1_h7jnxy.png',
+        available: true,
+        category: 'special'
+      },
+      {
+        id: 3,
+        title: 'Bible Championship',
+        description: 'The Bible Championship is a high-impact, team-based Bible game show designed to test knowledge, understanding, speed, and accuracy in God’s Word. It is a competitive yet faith-centered platform where teams face off in intense Bible-based challenges.',
+        image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1781826902/bible_championship_season_2_banner_copy_2_da1lg1_bknztq.png',
+        available: true,
+        category: 'game'
+      },
+      {
+        id: 4,
+        title: 'The National Bible Cup',
+       description: 'The National Bible Cup is Nigeria’s premier state-based Bible competition, designed to celebrate knowledge of the Word of God while fostering teamwork, healthy competition, and national pride. Teams from all 36 states plus the Federal Capital Territory (Abuja) compete to be declared the Bible State of the year. Participants will be recognized at both the team level and individual level, with prizes, certificates, and official acknowledgment.',
+        image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1781175288/National_bible_cup_banner.jpg_hqfg5u.jpg',
+        available: true,
+        category: 'game'
+      },
+      {
+        id: 5,
+        title: 'The Church and You Talk Show',
+         description: 'The Church and You is a premium podcast-style talk show with an audience, offering a safe, balanced, and interactive platform for Christians to discuss church experiences globally.',
+        image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1771427704/ChatGPT_Image_Jan_11_2026_05_59_14_PM_1_1_efa3dd.png',
+        available: true,
+        category: 'talk'
+      },
+      {
+        id: 6,
+        title: 'Marriage Realities',
+        description: 'The Marriage Realities Show is a premium, audience-based talk show that explores all aspects of marriage and family life. It provides a safe platform for participants to express their experiences, share stories, and seek guidance.',
+        image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1774876269/MRS_SET_2_C_1_qcvopy.png',
+        available: true,
+        category: 'talk'
+      },
+
+      // Coming Soon Programs
+      {
+        id: 7,
+        title: 'Quiz Masters',
+        description: 'Test your knowledge in this fast-paced quiz competition with amazing prizes.',
+        image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400&h=250&fit=crop',
+        available: false,
+        category: 'game'
+      },
+      {
+        id: 8,
+        title: 'Family Feud Challenge',
+        description: 'Families compete in hilarious challenges and trivia battles for ultimate bragging rights.',
+        image: 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=400&h=250&fit=crop',
+        available: false,
+        category: 'game'
+      },
+      {
+        id: 9,
+        title: 'The Ultimate Challenge',
+        description: 'Physical and mental challenges push contestants to their limits in this exciting game show.',
+        image: 'https://images.unsplash.com/photo-1519834785169-98be25ec3f84?w=400&h=250&fit=crop',
+        available: false,
+        category: 'special'
+      },
+      {
+        id: 10,
+        title: 'Heart to Heart',
+        description: 'Intimate conversations with inspiring personalities sharing their life stories.',
+        image: 'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=400&h=250&fit=crop',
+        available: false,
+        category: 'talk'
+      },
+      {
+        id: 11,
+        title: 'The Morning Show',
+        description: 'Start your day with news, interviews, and uplifting discussions.',
+        image: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=400&h=250&fit=crop',
+        available: false,
+        category: 'talk'
+      },
+      {
+        id: 12,
+        title: 'Late Night Talks',
+        description: 'Evening conversations about current affairs, culture, and entertainment.',
+        image: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400&h=500&fit=crop',
+        available: false,
+        category: 'documentary'
+      }
+    ];
+
+    // Render all program cards
+    function renderPrograms() {
+      const container = document.getElementById('programCards');
+      
+      let filtered = programs;
+
+      // Filter by availability
+      if (currentProgramFilter === 'available') {
+        filtered = programs.filter(p => p.available);
+      } else if (currentProgramFilter === 'upcoming') {
+        filtered = programs.filter(p => !p.available);
+      }
+
+      // Filter by category
+      if (currentProgramCategory !== 'all') {
+        filtered = filtered.filter(p => p.category === currentProgramCategory);
+      }
+
+      container.innerHTML = filtered.map(program => {
+        if (program.available) {
+          return `
+            <div class="group bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700/50 hover:border-amber-600/50 transition-all duration-300 hover:shadow-xl hover:shadow-amber-600/20 hover:-translate-y-2 cursor-pointer">
+              <div class="relative h-48 overflow-hidden">
+                <img src="${program.image}" alt="${program.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+                <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-60"></div>
+              </div>
+              
+              <div class="p-4 sm:p-6">
+                <h3 class="text-lg sm:text-xl font-bold mb-3 text-white">${program.title}</h3>
+                <p class="text-gray-400 mb-4 sm:mb-6 line-clamp-2 text-sm sm:text-base">${program.description}</p>
+                
+                <button class="w-full px-4 sm:px-6 py-2 sm:py-3 bg-amber-600 hover:bg-amber-500 text-white rounded-full font-medium transition-all flex items-center justify-center gap-2 group-hover:gap-3 text-sm sm:text-base" onclick="openPartnerModal('${program.title}')">
+                  Partner Now
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          `;
+        } else {
+          return `
+            <div class="group bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700/50 hover:border-amber-600/50 transition-all duration-300 hover:shadow-xl hover:shadow-amber-600/20 hover:-translate-y-2 cursor-pointer relative"
+              onclick="showComingSoon('${program.title}', '${program.description}')">
+              <div class="relative h-48 overflow-hidden">
+                <img src="${program.image}" alt="${program.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 opacity-40" />
+                <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-60"></div>
+                
+                <!-- Coming Soon Badge -->
+                <div class="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+                  <div class="text-center">
+                    <div class="inline-block p-3 bg-amber-600/20 border border-amber-600/50 rounded-full mb-2">
+                      <svg class="w-8 h-8 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                      </svg>
+                    </div>
+                    <p class="text-amber-400 font-bold text-sm">Coming Soon</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="p-4 sm:p-6">
+                <h3 class="text-lg sm:text-xl font-bold mb-3 text-white opacity-70">${program.title}</h3>
+                <p class="text-gray-400 mb-4 sm:mb-6 line-clamp-2 text-sm sm:text-base opacity-70">${program.description}</p>
+                
+                <button class="w-full px-4 sm:px-6 py-2 sm:py-3 bg-gray-700 hover:bg-gray-600 text-white rounded-full font-medium transition-all flex items-center justify-center gap-2 text-sm sm:text-base">
+                  Notify Me
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          `;
+        }
+      }).join('');
     }
 
-    // Tab navigation
-    document.querySelectorAll('.tab-btn').forEach(btn => {
+    // Show Coming Soon Modal
+    function showComingSoon(title, description) {
+      document.getElementById('comingSoonTitle').textContent = title;
+      document.getElementById('comingSoonDesc').textContent = description;
+      document.getElementById('comingSoonModal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Close Coming Soon Modal
+    function closeComingSoon() {
+      document.getElementById('comingSoonModal').classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+
+    document.getElementById('closeComingSoon').addEventListener('click', closeComingSoon);
+    document.getElementById('closeComingSoon2').addEventListener('click', closeComingSoon);
+
+    // Close modal on background click
+    document.getElementById('comingSoonModal').addEventListener('click', (e) => {
+      if (e.target.id === 'comingSoonModal') closeComingSoon();
+    });
+
+    // Filter Dropdown Toggle
+    const filterBtn = document.getElementById('filterBtn');
+    const filterMenu = document.getElementById('filterMenu');
+
+    filterBtn.addEventListener('click', () => {
+      filterMenu.classList.toggle('hidden');
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!filterBtn.contains(e.target) && !filterMenu.contains(e.target)) {
+        filterMenu.classList.add('hidden');
+      }
+    });
+
+    // Filter Options
+    document.querySelectorAll('.filter-option').forEach(option => {
+      option.addEventListener('click', (e) => {
+        currentProgramFilter = e.target.dataset.filter;
+        const filterValue = e.target.textContent.split('\n')[0].trim();
+        document.getElementById('filterValue').textContent = filterValue.replace('All Programs', 'All').replace('Upcoming', 'Upcoming').replace('Available', 'Available');
+        filterMenu.classList.add('hidden');
+        renderPrograms();
+      });
+    });
+
+    // Program Tab Navigation
+    document.querySelectorAll('.program-tab-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         // Remove active class from all buttons
-        document.querySelectorAll('.tab-btn').forEach(b => {
+        document.querySelectorAll('.program-tab-btn').forEach(b => {
           b.classList.remove('bg-amber-600', 'text-white', 'shadow-lg', 'shadow-amber-600/50');
           b.classList.add('bg-gray-800', 'text-gray-300');
         });
@@ -669,53 +1156,245 @@
         e.target.classList.remove('bg-gray-800', 'text-gray-300');
         e.target.classList.add('bg-amber-600', 'text-white', 'shadow-lg', 'shadow-amber-600/50');
 
-        // Update current category and render programs
-        currentCategory = e.target.dataset.category;
-        renderPrograms(currentCategory);
+        // Update category and render
+        currentProgramCategory = e.target.dataset.category;
+        renderPrograms();
       });
     });
 
-    // Gallery navigation
-    document.getElementById('prevGallery').addEventListener('click', () => {
-      currentGalleryIndex = (currentGalleryIndex - 1 + galleryImages.length) % galleryImages.length;
-      updateGallery();
-    });
-
-    document.getElementById('nextGallery').addEventListener('click', () => {
-      currentGalleryIndex = (currentGalleryIndex + 1) % galleryImages.length;
-      updateGallery();
-    });
-
     // Initialize
-    renderPrograms(currentCategory);
-    renderGalleryDots();
+    renderGallery();
+    renderPrograms();
 
     // Touch swipe for gallery (mobile)
     let touchStartX = 0;
     let touchEndX = 0;
 
-    const galleryContainer = document.querySelector('.relative.h-64');
-    galleryContainer.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    });
+    const galleryContainer = document.querySelector('section:has(#galleryMainImage)');
+    if (galleryContainer) {
+      galleryContainer.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      });
 
-    galleryContainer.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    });
+      galleryContainer.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleGallerySwipe();
+      });
+    }
 
-    function handleSwipe() {
+    function handleGallerySwipe() {
+      const images = galleryImages[currentGalleryCategory];
       if (touchEndX < touchStartX - 50) {
         // Swipe left
-        currentGalleryIndex = (currentGalleryIndex + 1) % galleryImages.length;
-        updateGallery();
+        currentGalleryIndex = (currentGalleryIndex + 1) % images.length;
+        renderGallery();
       }
       if (touchEndX > touchStartX + 50) {
         // Swipe right
-        currentGalleryIndex = (currentGalleryIndex - 1 + galleryImages.length) % galleryImages.length;
-        updateGallery();
+        currentGalleryIndex = (currentGalleryIndex - 1 + images.length) % images.length;
+        renderGallery();
       }
     }
+
+    // ========== PARTNER MODAL FUNCTIONALITY ==========
+    let currentStep = 1;
+    let selectedProgramme = '';
+    let formData = {
+      programme: '',
+      category: '',
+      fullName: '',
+      email: '',
+      phone: '',
+      organization: '',
+      supportType: ''
+    };
+
+    // Open Partner Modal
+    function openPartnerModal(programmeName) {
+      selectedProgramme = programmeName;
+      formData.programme = programmeName;
+      currentStep = 1;
+      document.getElementById('partnerModal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      renderProgrammeOptions();
+      updateModalUI();
+    }
+
+    // Close Partner Modal
+    function closePartnerModal() {
+      document.getElementById('partnerModal').classList.add('hidden');
+      document.body.style.overflow = 'auto';
+      currentStep = 1;
+      formData = {
+        programme: '',
+        category: '',
+        fullName: '',
+        email: '',
+        phone: '',
+        organization: '',
+        supportType: ''
+      };
+    }
+
+    // Render Programme Options
+    function renderProgrammeOptions() {
+      const container = document.getElementById('programmeOptions');
+      container.innerHTML = programs.filter(p => p.available).map(program => `
+        <label class="border border-orange-300 rounded-xl p-4
+              flex gap-3 items-start cursor-pointer
+              hover:bg-orange-50 transition">
+          <input type="radio" name="programme" value="${program.title}" class="mt-1">
+          <span class="font-medium text-sm text-gray-900">
+            ${program.title}
+          </span>
+        </label>
+      `).join('');
+    }
+
+    // Update Modal UI
+    function updateModalUI() {
+      const steps = document.querySelectorAll('.step');
+      steps.forEach((step, index) => {
+        if (index + 1 === currentStep) {
+          step.classList.remove('hidden');
+        } else {
+          step.classList.add('hidden');
+        }
+      });
+
+      document.getElementById('stepNumber').textContent = currentStep;
+      const progressPercent = (currentStep / 6) * 100;
+      document.getElementById('progressBar').style.width = progressPercent + '%';
+
+      // Update button states
+      const nextBtn = document.getElementById('nextStep');
+      const prevBtn = document.getElementById('prevStep');
+      
+      if (currentStep === 1) {
+        prevBtn.style.display = 'none';
+      } else {
+        prevBtn.style.display = 'block';
+      }
+
+      if (currentStep === 6) {
+        nextBtn.textContent = 'Close';
+        nextBtn.disabled = false;
+      } else {
+        nextBtn.textContent = 'Next';
+      }
+
+      validateStep();
+    }
+
+    // Validate Step
+    function validateStep() {
+      const nextBtn = document.getElementById('nextStep');
+      let isValid = false;
+
+      if (currentStep === 1) {
+        const selectedProg = document.querySelector('input[name="programme"]:checked');
+        isValid = selectedProg !== null;
+      } else if (currentStep === 2) {
+        const selectedCat = document.querySelector('input[name="category"]:checked');
+        isValid = selectedCat !== null;
+      } else if (currentStep === 3) {
+        const fullName = document.getElementById('fullName').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        isValid = fullName && email && phone;
+      } else if (currentStep === 4) {
+        const selectedType = document.querySelector('input[name="supportType"]:checked');
+        isValid = selectedType !== null;
+      } else if (currentStep === 5) {
+        isValid = true; // Review step is always valid
+      }
+
+      nextBtn.disabled = !isValid;
+    }
+
+    // Next Step
+    document.getElementById('nextStep').addEventListener('click', () => {
+      if (currentStep === 6) {
+        closePartnerModal();
+        return;
+      }
+
+      // Save data from current step
+      if (currentStep === 1) {
+        const selected = document.querySelector('input[name="programme"]:checked');
+        if (selected) formData.programme = selected.value;
+      } else if (currentStep === 2) {
+        const selected = document.querySelector('input[name="category"]:checked');
+        if (selected) formData.category = selected.nextElementSibling.querySelector('span').textContent;
+      } else if (currentStep === 3) {
+        formData.fullName = document.getElementById('fullName').value;
+        formData.email = document.getElementById('email').value;
+        formData.phone = document.getElementById('phone').value;
+        formData.organization = document.getElementById('organization').value;
+      } else if (currentStep === 4) {
+        const selected = document.querySelector('input[name="supportType"]:checked');
+        if (selected) formData.supportType = selected.value;
+      } else if (currentStep === 5) {
+        // Submit form
+        submitPartnershipForm();
+        currentStep++;
+        updateModalUI();
+        return;
+      }
+
+      currentStep++;
+      updateModalUI();
+
+      // Update summary on step 5
+      if (currentStep === 5) {
+        document.getElementById('summaryProgramme').textContent = formData.programme;
+        document.getElementById('summaryName').textContent = formData.fullName;
+        document.getElementById('summaryEmail').textContent = formData.email;
+        document.getElementById('summarySupportType').textContent = formData.supportType;
+      }
+    });
+
+    // Previous Step
+    document.getElementById('prevStep').addEventListener('click', () => {
+      if (currentStep > 1) {
+        currentStep--;
+        updateModalUI();
+      }
+    });
+
+    // Close button
+    document.getElementById('closePartnerModal').addEventListener('click', closePartnerModal);
+
+    // Add change listeners to form fields
+    document.addEventListener('change', (e) => {
+      if (e.target.name === 'programme' || e.target.name === 'category' || 
+          e.target.name === 'supportType') {
+        validateStep();
+      }
+    });
+
+    document.addEventListener('input', (e) => {
+      if (e.target.id === 'fullName' || e.target.id === 'email' || e.target.id === 'phone') {
+        validateStep();
+      }
+    });
+
+    // Submit Partnership Form
+    function submitPartnershipForm() {
+      // Generate reference number
+      const refNum = 'SOWRO-' + Date.now();
+      document.getElementById('referenceNumber').textContent = refNum;
+
+      // Here you would send the data to your backend
+      console.log('Partnership Form Submitted:', formData);
+
+      // You can send data to your backend using fetch:
+      // fetch('/api/partnership', { 
+      //   method: 'POST', 
+      //   body: JSON.stringify(formData) 
+      // });
+    }
+
   </script>
 
 </body>
