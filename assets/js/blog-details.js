@@ -3,9 +3,9 @@ const articles = {
       'programs-1': {
         tag: 'Programs', tagClass: 'bg-orange-500/20 text-orange-400',
         title: 'Bible Stars Reality Show: A Vision Unfolding',
-        author: 'Samuel Jude', avatar: 'https://i.pravatar.cc/40?img=12', date: 'Apr 21, 2026',
-        heroImg: 'https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=900&q=80',
-        featureImg: 'https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?w=1200&q=80',
+        author: 'Esther jegede', avatar: 'https://i.pravatar.cc/40?img=12', date: 'July 17, 2026',
+        heroImg: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1781691038/photo_2026-06-17_11-08-26_rm1ss5.jpg',
+        featureImg: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1767998926/bible_start_reality_show_banner_copy_1_v4jiok.png',
         intro: [
           "The audition for the Bible Stars Reality Show—Season 1 is powered and rooted in values like faith, talent, creativity, and purpose.",
           "This groundbreaking initiative brings together individuals who embody biblical principles while showcasing their unique talents and transformative stories."
@@ -52,9 +52,9 @@ const articles = {
       'faith-1': {
         tag: 'Faith', tagClass: 'bg-orange-500/20 text-orange-400',
         title: 'Marriage Realities Talk Show: A Platform for Real Conversations',
-        author: 'Samuel Jude', avatar: 'https://i.pravatar.cc/40?img=8', date: 'Apr 21, 2026',
-        heroImg: 'https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=900&q=80',
-        featureImg: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80',
+        author: 'Esther Jegede', avatar: 'https://i.pravatar.cc/40?img=8', date: 'July 17, 2026',
+        heroImg: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1781825266/photo_2026-06-19_00-26-47_ktehda.jpg',
+        featureImg: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1781825266/photo_2026-06-19_00-26-47_ktehda.jpg',
         intro: [
           "Marriage Reality is a bold initiative aimed at creating a safe and exciting space for conversations around marriages. It is designed for everyone—from engaged couples navigating pre-marital questions to long-married couples rediscovering intimacy.",
           "This show breaks the silence around what marriage actually looks like, celebrating both the beautiful and the messy."
@@ -100,9 +100,9 @@ const articles = {
       'lifestyle-1': {
         tag: 'Lifestyle', tagClass: 'bg-orange-500/20 text-orange-400',
         title: 'Bible Championship Season 1: A Remarkable Success',
-        author: 'Samuel Jude', avatar: 'https://i.pravatar.cc/40?img=5', date: 'Apr 21, 2026',
-        heroImg: 'https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=900&q=80',
-        featureImg: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=1200&q=80',
+        author: 'Esther Jegede', avatar: 'https://i.pravatar.cc/40?img=5', date: 'Jul 17, 2026',
+        heroImg: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1781691039/photo_2026-06-17_11-07-51_bhtvpf.jpg',
+        featureImg: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1781826902/bible_championship_season_2_banner_copy_2_da1lg1_bknztq.png',
         intro: [
           "The maiden edition of the Bible Championship was a tremendous success, attracting Bible experts from across regions and beyond, including participants from over 30 countries.",
           "What began as an ambitious vision to create the world's premier Bible knowledge competition has exceeded every expectation, setting a new standard for faith-centered excellence."
