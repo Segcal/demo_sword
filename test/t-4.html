@@ -1,79 +1,2673 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quiz Submitted - IYMF</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-black text-white min-h-screen font-sans flex flex-col justify-center items-center relative p-4 select-none">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-  <div class="absolute top-6 left-6 right-6 flex justify-between items-center z-10">
-    <button class="flex items-center text-gray-400 hover:text-white transition duration-200 text-sm font-medium">
-      <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-      </svg>
-      Back to Home
-    </button>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-    <button class="flex items-center bg-[#25140b] border border-[#402313] hover:bg-[#341d10] text-gray-300 hover:text-white px-4 py-2 rounded-full transition duration-200 text-sm font-medium">
-      <svg class="w-4 h-4 mr-2 text-[#ca6b24]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-      </svg>
-      View Rankings
-    </button>
-  </div>
+  <link rel="stylesheet" href="./assets/styles/styles.css">
 
-  <div class="w-full max-w-md bg-[#130b06] border border-[#23150c] rounded-3xl p-8 md:p-10 text-center shadow-2xl flex flex-col items-center relative mt-12 md:mt-0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
     
-    <button class="absolute top-6 right-6 text-gray-500 hover:text-gray-300 transition duration-150">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
-      </svg>
+  <title>SOWRO TV - Partnership</title>
+  <style type="text/tailwindcss">
+    @theme {
+        --color-clifford: #da373d;
+        --bg-tran: #FFFFFF1A;
+        --color-primary: #f0a242;
+      }
+
+      @layer utilities {
+  /* GLASS EFFECT */
+  .glass-container {
+    @apply bg-white/10 backdrop-blur-xl ;
+  }
+
+  .bg-section-overlay {
+    background-image:
+      linear-gradient(
+        to bottom right,
+        rgba(15, 15, 15, 0.85),
+        rgba(15, 15, 15, 0.6),
+        rgba(240, 162, 66, 0.25)
+      ),
+      url('https://res.cloudinary.com/dtrqikle5/image/upload/v1765613750/2150061827_2_eyywi3.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+}
+
+    </style>
+</head>
+
+<body class="bg-[#0f0f0f] text-white">
+  
+
+  <!-- ======== NAVBAR ======== -->
+     <header class="fixed top-0 left-0 w-full z-50 ">
+        <div class="relative w-full
+           bg-[#1b1b1b]/60
+           backdrop-blur-xl
+           border-b border-white/10
+           shadow-[0_8px_30px_rgba(0,0,0,0.35)] flex items-center justify-between py-4 max-w-full mx-auto px-6 md:px-[18rem]">
+
+            <!-- Logo -->
+            <a href="./index.html" class="flex items-center gap-2">
+                <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766409594/sword_TV_logo_y9mnja.png"
+                    width="150" class="rounded-full" />
+
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex items-center gap-8  text-white">
+                <a href="./index.html" class=" text-base">Home</a>
+
+                <!-- Programs Dropdown -->
+                <div class="relative group">
+                    <a href="./Programs.html" class="flex items-center gap-1 text-base hover:text-orange-400">
+                        Programs
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </a>
+
+                    <!-- Dropdown -->
+            <div class="absolute left-0 mt-4 w-[620px] glass rounded-2xl p-6 
+         opacity-0 invisible group-hover:opacity-100 group-hover:visible 
+         transition-all duration-300">
+
+                        <div class="grid grid-cols-3 gap-6 text-sm">
+
+                            <!-- ITEM -->
+                            <a href="./biblestar/index.html"
+                                class="flex items-center gap-3 p-2 rounded-lg hover:bg-white/10 transition">
+                                <div
+                                    class="w-12 h-12 flex items-center justify-center rounded-lg overflow-hidden shrink-0">
+                                    <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1767998926/bible_start_reality_show_banner_copy_1_v4jiok.png"
+                                        alt="" class="w-full h-full object-cover">
+                                </div>
+                                <span class="leading-tight">Bible Stars Reality Show</span>
+                            </a>
+
+                            <!-- ITEM -->
+                            <a href="./iymf/index.html"
+                                class="flex items-center gap-3 p-2 rounded-lg hover:bg-white/10 transition">
+                                <div
+                                    class="w-12 h-12 flex items-center justify-center rounded-lg overflow-hidden shrink-0">
+                                    <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1767998911/YOUTH_FESTIVAL_BANNER_copy_1_h7jnxy.png"
+                                        alt="" class="w-full h-full object-cover">
+                                </div>
+                                <span class="leading-tight">Ilorin Youth Mega Festival</span>
+                            </a>
+
+                            <!-- ITEM -->
+                            <a href="./bible-championship/index.html" class="flex items-center gap-3 p-2">
+                                <div
+                                    class="w-12 h-12 flex items-center justify-center rounded-lg overflow-hidden shrink-0">
+                                    <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1767998899/bible_championship_season_2_banner_copy_2_da1lg1.png"
+                                        alt="" class="w-full h-full object-cover">
+                                </div>
+                                <span class="leading-tight">Bible Championship Season 2</span>
+                            </a>
+
+                            <!-- ITEM -->
+                                                     <a href="./marriage-reality-show/index.html" class="flex items-center gap-3 p-2">
+                                <div
+                                    class="w-12 h-12 flex items-center justify-center rounded-lg bg-orange-500 shrink-0">
+                                     <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1781825266/photo_2026-06-19_00-26-47_ktehda.jpg"
+                                        alt="" class="w-full h-full object-cover">
+                                </div>
+                                <span class="leading-tight">Mariage Reality Show</span>
+                            </a>
+
+                            <!-- ITEM -->
+                            <a href="./national-cup/index.html" class="flex items-center gap-3 p-2">
+                                  <div
+                                    class="w-12 h-12 flex items-center justify-center rounded-lg overflow-hidden shrink-0">
+                                    <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1781175288/National_bible_cup_banner.jpg_hqfg5u.jpg"
+                                        alt="" class="w-full h-full object-cover">
+                                </div>
+                                <span class="leading-tight">The National Bible Cup</span>
+                            </a>
+                            <!-- ITEM -->
+                            <a href="./the-church-and-you/index.html" class="flex items-center gap-3 p-2">
+                                <div
+                                    class="w-12 h-12 flex items-center justify-center rounded-lg overflow-hidden shrink-0">
+                                    <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1767998884/church_and_you_banner_copy_kflaxp.png"
+                                        alt="" class="w-full h-full object-cover">
+                                </div>
+                                <span class="leading-tight">The Church & You Talk Show</span>
+                            </a>
+
+                        </div>
+                    </div>
+
+                </div>
+                <a href="./Partnership.html" class="hover:text-orange-400 text-base text-orange-400">Partnership</a>
+                <a href="./About.html" class="hover:text-orange-400 text-base">About Us</a>
+                <a href="./blog.html" class="hover:text-orange-400 text-base">Blog</a>
+                <a href="./contact-us.html" class="hover:text-orange-400 text-base">Contact us</a>
+            </nav>
+
+            <!-- CTA -->
+            <a href="#"
+                class="open-partner-modal hidden md:inline-block bg-orange-500 hover:bg-orange-600 transition px-5 py-2 rounded-full text-sm">
+                Partner with Us
+            </a>
+
+            <!-- Mobile Toggle -->
+            <button id="openMenu" class="md:hidden">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+    </header>
+
+
+
+  <!-- ======== MOBILE MENU ======== -->
+ <div id="mobileMenu"
+  class="hidden fixed inset-0 bg-black/20 backdrop-blur-xl z-50 flex items-center justify-center text-white">
+
+  <!-- MENU CARD -->
+  <div class="bg-[#1b1b1b]/80 backdrop-blur-md border border-white/10 w-72 rounded-xl p-6 relative shadow-2xl">
+
+    <!-- Close Button -->
+    <button id="closeMenu" class="absolute top-4 right-4 text-xl hover:text-orange-400 transition">
+      ✕
     </button>
 
-    <div class="w-16 h-16 bg-[#3d2212] border-2 border-[#cc6a1d] rounded-full flex items-center justify-center mb-6">
-      <svg class="w-8 h-8 text-[#ff8324]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
-      </svg>
+    <!-- Logo -->
+    <h2 class="text-orange-400 font-semibold text-xl mb-6 flex justify-center">
+      <img
+        src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766409594/sword_TV_logo_y9mnja.png"
+        width="150"
+        class="rounded-full" />
+    </h2>
+
+    <!-- Navigation -->
+    <nav class="flex flex-col space-y-4 text-center">
+
+      <a href="./index.html" class="hover:text-orange-400 transition">Home</a>
+
+      <!-- Programs Dropdown -->
+      <button id="mobilePrograms"
+        class="flex justify-center items-center gap-2 text-orange-400 font-semibold">
+        Programs
+        <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+
+      <!-- Programs List -->
+      <div id="mobileProgramsList" class="hidden flex flex-col gap-3 text-sm text-gray-300">
+
+        <a href="./biblestar/index.html" class="hover:text-orange-400">
+          Bible Stars Reality Show
+        </a>
+
+        <a href="./iymf/index.html" class="hover:text-orange-400">
+          Ilorin Youth Mega Festival
+        </a>
+
+        <a href="#" class="hover:text-orange-400">
+          Bible Championship Season 2
+        </a>
+
+       
+
+        <a href="#" class="hover:text-orange-400">
+          The National Bible Cup
+        </a>
+
+        <a href="#" class="hover:text-orange-400">
+          The Church & You Talk Show
+        </a>
+
+      </div>
+
+      <a href="./Partnership.html" class="hover:text-orange-400 transition">Partnership</a>
+      <a href="./About.html" class="hover:text-orange-400 transition">About Us</a>
+      <a href="./blog.html" class="hover:text-orange-400 transition">Blog</a>
+      <a href="./contact-us.html" class="hover:text-orange-400 transition">Contact us</a>
+
+      <!-- Partner Button -->
+      <button
+        class="open-partner-modal bg-orange-400 text-black px-5 py-2 rounded-full font-semibold mt-4 hover:bg-orange-500 transition">
+        Partner with Us
+      </button>
+
+    </nav>
+
+  </div>
+</div>
+
+  <!-- ======== HERO SECTION ======== -->
+<section class="pt-32 pb-20 bg-section-overlay glass-container">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 px-6 items-center">
+
+    <div class="flex flex-col justify-center text-white">
+      <div class="border border-[#fb832d] text-[#fb832d] text-xs font-semibold tracking-wider px-3 py-1 rounded-full w-fit mb-6 flex items-center gap-1 uppercase">
+        <span>☆</span> A Global Forum for Kingdom Financing
+      </div>
+
+      <h1 class="text-4xl md:text-5xl font-bold leading-tight">
+        Friends Of The Bible <br />
+        <span class="text-[#fb832d]">International</span>
+      </h1>
+
+      <p class="mt-6 text-gray-400 text-sm md:text-base leading-relaxed">
+        A covenant platform for Kingdom financiers committed to advancing the Gospel through SWORD Television.
+      </p>
+
+      <ul class="mt-6 space-y-2 text-sm text-gray-300">
+        <li class="flex items-center gap-2">
+          <span class="text-[#fb832d]">•</span> A place where blessing becomes impact.
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="text-[#fb832d]">•</span> A place where vision is financed.
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="text-[#fb832d]">•</span> A place where lives are transformed.
+        </li>
+      </ul>
+
+      <div class="mt-8 flex flex-wrap gap-4">
+        <button class="open-sponsor-modal bg-[#fb832d] hover:bg-orange-600 text-white font-medium px-6 py-3 rounded-xl flex items-center gap-2 transition duration-300 shadow-lg shadow-orange-500/20">
+          Join Today <span class="text-lg">→</span>
+        </button>
+
+        <button class="open-prayer-modal border border-[#fb832d] text-[#fb832d] hover:bg-[#fb832d]/10 font-medium px-6 py-3 rounded-xl transition duration-300">
+          Book Prayer Appointment
+        </button>
+      </div>
     </div>
 
-    <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-white mb-4">
-      Quiz Submitted!
-    </h1>
-    <p class="text-gray-400 text-sm leading-relaxed mb-8 max-w-[280px] mx-auto">
-      Your answers have been submitted and have been evaluated.
+    <div class="flex justify-center md:justify-end">
+      <img
+        src="https://res.cloudinary.com/dtrqikle5/image/upload/v1764711260/ChatGPT_Image_Nov_16_2025_05_28_07_PM_2_oyi2bc.png"
+        class="rounded-xl border border-gray-800 shadow-2xl w-full max-w-lg object-cover" 
+        alt="Friends Of The Bible International Live Event Forum"
+      />
+    </div>
+
+  </div>
+</section>
+
+  <!-- ======== WHY PARTNER WITH US ======== -->
+ <section class="py-20 bg-[#2d1b0d] flex justify-center items-center px-4">
+  <div class="max-w-5xl w-full bg-[#462912]/60 border border-[#fb832d]/20 rounded-3xl p-8 md:p-12 shadow-2xl backdrop-blur-md">
+    
+    <h2 class="text-3xl md:text-5xl font-bold text-[#fb832d] text-center leading-tight max-w-3xl mx-auto mb-10">
+      Secure Your Sword TV Lifetime Recognition Award
+    </h2>
+
+    <div class="grid md:grid-cols-2 gap-8 items-start">
+      
+      <div class="space-y-6 text-gray-300">
+        <p class="text-sm md:text-base leading-relaxed">
+          Become one of the <span class="text-[#fb832d] font-semibold">100 Kingdom Partners</span> raising support for <span class="font-bold text-white">THE BIG SHOW — Bible Stars Reality Show</span>. A Kingdom reality platform designed to discover, develop, and promote talents within the Body of Christ.
+        </p>
+
+        <div class="bg-[#fb832d] text-white text-xs md:text-sm font-semibold px-4 py-2 rounded-full w-fit shadow-md shadow-orange-500/10">
+          ₦450M — ₦600M Kingdom Project
+        </div>
+
+        <div class="grid grid-cols-3 gap-3">
+          <div class="bg-[#1f1208] border border-gray-800 rounded-xl p-3 text-center">
+            <span class="block text-2xl font-bold text-[#fb832d]">1</span>
+            <span class="text-[10px] text-gray-400 tracking-wider uppercase">House</span>
+          </div>
+          <div class="bg-[#1f1208] border border-gray-800 rounded-xl p-3 text-center">
+            <span class="block text-2xl font-bold text-[#fb832d]">12</span>
+            <span class="text-[10px] text-gray-400 tracking-wider uppercase">Housemates</span>
+          </div>
+          <div class="bg-[#1f1208] border border-gray-800 rounded-xl p-3 text-center">
+            <span class="block text-2xl font-bold text-[#fb832d]">60</span>
+            <span class="text-[10px] text-gray-400 tracking-wider uppercase">Days</span>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <div class="border border-gray-700/50 rounded-lg px-4 py-2.5 flex items-center gap-3 text-sm text-gray-400 bg-black/10">
+            <span class="text-[#fb832d] text-xs border border-[#fb832d]/40 rounded px-1 py-0.5">✓</span> One Winner
+          </div>
+          <div class="border border-gray-700/50 rounded-lg px-4 py-2.5 flex items-center gap-3 text-sm text-gray-400 bg-black/10">
+            <span class="text-[#fb832d] text-xs border border-[#fb832d]/40 rounded px-1 py-0.5">✓</span> No Eviction
+          </div>
+          <div class="border border-gray-700/50 rounded-lg px-4 py-2.5 flex items-center gap-3 text-sm text-gray-400 bg-black/10">
+            <span class="text-[#fb832d] text-xs border border-[#fb832d]/40 rounded px-1 py-0.5">✓</span> No Nudity
+          </div>
+          <div class="border border-gray-700/50 rounded-lg px-4 py-2.5 flex items-center gap-3 text-sm text-gray-400 bg-black/10">
+            <span class="text-[#fb832d] text-xs border border-[#fb832d]/40 rounded px-1 py-0.5">✓</span> No Violence
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-6">
+        <div class="bg-[#1a0f07] border border-gray-800 rounded-2xl p-6 shadow-inner">
+          <div class="flex items-center gap-2 text-white font-medium text-sm mb-3">
+            <span class="text-[#fb832d]">🏆</span> Limited Partnership Slots
+          </div>
+          <p class="text-xs md:text-sm text-gray-400 leading-relaxed mb-5">
+            Only 100 Kingdom Partners will receive a lifetime recognition award from SWORD Television. Secure your slot before they are taken.
+          </p>
+          <a href="./donate.html"
+           class="w-full bg-[#fb832d] hover:bg-orange-600 text-white font-medium text-sm py-3 rounded-xl flex items-center justify-center gap-2 transition duration-300 shadow-lg shadow-orange-500/20">
+            Donate / Partner Now <span>→</span>
+          </a>
+        </div>
+
+        <div class="overflow-hidden rounded-2xl border border-gray-800 shadow-xl">
+          <img 
+            src="https://res.cloudinary.com/dtrqikle5/image/upload/v1764887498/Frame_1618873003_kv1nlm.png" 
+            class="w-full h-56 object-cover object-center transform hover:scale-105 transition duration-500" 
+            alt="Jesus worship production illustration" 
+          />
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+ <section class="py-20 bg-[#160f0a] flex justify-center items-center px-4">
+  <div class="max-w-5xl w-full text-center">
+    
+    <h2 class="text-4xl md:text-5xl font-bold text-[#fb832d] tracking-wide mb-4">
+      Secure Prayer Point
+    </h2>
+    <p class="text-gray-300 max-w-2xl mx-auto text-sm md:text-base mb-12 font-light">
+      Request a personal prayer session with <span class="font-semibold text-white">God's servant</span> for matters close to your heart.
     </p>
 
-    <div class="w-full bg-[#1b1008] border border-[#26170d] rounded-2xl p-5 mb-8 space-y-4 text-left">
+    <div class="grid md:grid-cols-2 gap-8 items-stretch max-w-4xl mx-auto text-left">
       
-      <div class="flex justify-between items-center">
-        <div class="flex items-center text-gray-400 text-sm">
-          <svg class="w-4 h-4 mr-2 text-[#ca6b24]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-          </svg>
-          Time Taken:
+      <div class="flex flex-col justify-between space-y-4">
+        <div class="border border-gray-800/60 bg-[#25170d]/30 rounded-xl p-5 space-y-3 backdrop-blur-sm">
+          <div class="border border-gray-700/40 rounded-lg px-4 py-3 flex items-center gap-3 text-sm text-gray-300 bg-black/10">
+            <span class="text-[#fb832d] text-xs border border-[#fb832d]/40 rounded px-1">✓</span> Divine protection
+          </div>
+          <div class="border border-gray-700/40 rounded-lg px-4 py-3 flex items-center gap-3 text-sm text-gray-300 bg-black/10">
+            <span class="text-[#fb832d] text-xs border border-[#fb832d]/40 rounded px-1">✓</span> Family issues
+          </div>
+          <div class="border border-gray-700/40 rounded-lg px-4 py-3 flex items-center gap-3 text-sm text-gray-300 bg-black/10">
+            <span class="text-[#fb832d] text-xs border border-[#fb832d]/40 rounded px-1">✓</span> Healing
+          </div>
+          <div class="border border-gray-700/40 rounded-lg px-4 py-3 flex items-center gap-3 text-sm text-gray-300 bg-black/10">
+            <span class="text-[#fb832d] text-xs border border-[#fb832d]/40 rounded px-1">✓</span> Open doors
+          </div>
+          <div class="border border-gray-700/40 rounded-lg px-4 py-3 flex items-center gap-3 text-sm text-gray-300 bg-black/10">
+            <span class="text-[#fb832d] text-xs border border-[#fb832d]/40 rounded px-1">✓</span> Personal upliftment
+          </div>
         </div>
-        <span class="text-sm font-semibold text-white">314 seconds</span>
+
+        <div class="w-full bg-black/30 border border-gray-800/80 rounded-lg py-3 px-4 text-xs md:text-sm text-gray-400 flex items-center justify-center gap-2">
+          <span class="text-[#fb832d]">🕒</span> Available: <span class="text-white font-medium">Mondays & Tuesdays</span> · Morning — 2PM
+        </div>
       </div>
 
-      <div class="flex justify-between items-center">
-        <div class="flex items-center text-gray-400 text-sm">
-          <svg class="w-4 h-4 mr-2 text-[#ca6b24]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
-          </svg>
-          Status:
+      <div class="flex flex-col justify-between space-y-4">
+        <div class="overflow-hidden rounded-xl border border-gray-800/80 bg-black/40 flex-grow flex items-center justify-center">
+          <img 
+            src="./assets/images/img-prayer.png" 
+            class="w-full h-full object-cover grayscale opacity-90 min-h-[240px]" 
+            alt="Person in deep prayer" 
+          />
         </div>
-        <span class="text-sm font-bold text-[#ca6b24]">3rd</span>
+
+        <button class="open-prayer-modal w-full bg-[#fb832d] hover:bg-orange-600 text-white font-medium text-sm py-3.5 rounded-xl flex items-center justify-center gap-2 transition duration-300 shadow-lg shadow-orange-500/10">
+          <span>♡</span> Book Prayer Appointment
+        </button>
       </div>
 
     </div>
+  </div>
+</section>
 
-    <button class="w-full py-3 bg-[#5c2e14] border border-[#85421c] text-white text-sm font-medium rounded-full hover:bg-[#6e3718] active:scale-[0.99] transition-all duration-200">
-      View Leaderboard
-    </button>
+
+<section class="py-20 bg-[#1a100a] text-white px-4">
+  <div class="max-w-6xl mx-auto">
+    
+    <h1 class="text-4xl md:text-6xl font-bold text-[#fb832d] text-center leading-tight mb-4">
+      Friends Of The Bible Online <br class="hidden md:block"/> Gathering
+    </h1>
+    
+    <div class="grid md:grid-cols-2 gap-8 items-start max-w-5xl mx-auto mt-12 mb-16">
+      
+      <div class="space-y-6">
+        <p class="text-gray-400 text-sm md:text-base leading-relaxed font-light">
+          A live online Kingdom encounter bringing the body of Christ together across borders.
+        </p>
+        
+        <div class="space-y-2.5">
+          <div class="border border-gray-800/60 bg-[#25170d]/20 rounded-lg px-4 py-2.5 flex items-center gap-3 text-xs md:text-sm text-gray-300">
+            <span class="text-[#fb832d] border border-[#fb832d]/40 rounded px-1 text-[10px]">✓</span> Word impartation
+          </div>
+          <div class="border border-gray-800/60 bg-[#25170d]/20 rounded-lg px-4 py-2.5 flex items-center gap-3 text-xs md:text-sm text-gray-300">
+            <span class="text-[#fb832d] border border-[#fb832d]/40 rounded px-1 text-[10px]">✓</span> Spiritual growth teaching
+          </div>
+          <div class="border border-gray-800/60 bg-[#25170d]/20 rounded-lg px-4 py-2.5 flex items-center gap-3 text-xs md:text-sm text-gray-300">
+            <span class="text-[#fb832d] border border-[#fb832d]/40 rounded px-1 text-[10px]">✓</span> Bible-based guidance
+          </div>
+          <div class="border border-gray-800/60 bg-[#25170d]/20 rounded-lg px-4 py-2.5 flex items-center gap-3 text-xs md:text-sm text-gray-300">
+            <span class="text-[#fb832d] border border-[#fb832d]/40 rounded px-1 text-[10px]">✓</span> Q&A session
+          </div>
+          <div class="border border-gray-800/60 bg-[#25170d]/20 rounded-lg px-4 py-2.5 flex items-center gap-3 text-xs md:text-sm text-gray-300">
+            <span class="text-[#fb832d] border border-[#fb832d]/40 rounded px-1 text-[10px]">✓</span> Prophetic prayer moments
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        <div class="bg-[#1e130c] border border-gray-800 rounded-xl p-5">
+          <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider mb-2 text-gray-200">
+            <span>📹</span> Join the Gathering
+          </div>
+          <p class="text-xs text-gray-400 mb-4 font-light">
+            Click to join and view schedule details. Connect with Kingdom financiers and believers worldwide.
+          </p>
+          <button class="w-full bg-[#fb832d] hover:bg-orange-600 text-white font-medium text-xs py-3 rounded-lg flex items-center justify-center gap-2 transition duration-300">
+            <span>📹</span> Join Live Gathering
+          </button>
+        </div>
+
+        <div class="bg-[#1e130c]/40 border border-gray-800/80 rounded-xl p-5 text-xs text-gray-400 space-y-1">
+          <div class="flex items-center gap-2 font-semibold uppercase tracking-wider text-gray-300 mb-2">
+            <span>📅</span> Next Schedule Details
+          </div>
+          <div>Date: <span class="text-white font-medium">Aug 10, 2026</span></div>
+          <div>Venue: <span class="text-white font-medium">-</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-[#130b06] border border-gray-900 rounded-2xl p-6 md:p-8 shadow-2xl">
+      <h3 class="text-2xl md:text-3xl font-bold text-center mb-8">Previous Highlights</h3>
+      
+      <div class="overflow-hidden">
+        <div id="video-track" class="grid grid-cols-1 md:grid-cols-3 gap-6 transition-all duration-300">
+          </div>
+      </div>
+
+      <div class="flex items-center justify-center gap-4 mt-8 bg-[#24170e]/40 border border-gray-800/60 rounded-xl p-2 w-fit mx-auto">
+        <button onclick="prevSlide()" class="bg-gray-800/80 hover:bg-gray-700 p-2 rounded-lg text-sm transition">‹</button>
+        <div class="flex gap-1.5" id="slider-indicators">
+          </div>
+        <button onclick="nextSlide()" class="bg-[#fb832d] hover:bg-orange-600 p-2 rounded-lg text-sm transition">›</button>
+      </div>
+    </div>
 
   </div>
+</section>
+
+
+<div class="w-full bg-[#160f0a] text-white">
+
+  <section class="py-20 px-4 flex justify-center items-center">
+    <div class="max-w-5xl w-full bg-[#462912]/30 border border-gray-800/80 rounded-3xl p-8 md:p-12 shadow-2xl backdrop-blur-md">
+      
+      <h2 class="text-4xl md:text-5xl font-bold text-[#fb832d] text-center tracking-wide mb-10">
+        Ask Your Questions
+      </h2>
+
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        
+        <div class="space-y-6">
+          <p class="text-gray-400 text-sm md:text-base leading-relaxed font-light">
+            Questions about purpose, spiritual growth, destiny, or life direction? Submit your question and receive <span class="font-semibold text-white">biblical guidance</span> rooted in the Word of God.
+          </p>
+
+          <div class="border border-gray-800/40 bg-[#1e130c]/40 rounded-xl p-5 space-y-3">
+            <div class="flex items-center gap-3 text-xs md:text-sm text-gray-300">
+              <span class="text-[#fb832d] border border-[#fb832d]/40 rounded px-1 text-[10px]">✓</span> Questions on purpose & calling
+            </div>
+            <div class="flex items-center gap-3 text-xs md:text-sm text-gray-300">
+              <span class="text-[#fb832d] border border-[#fb832d]/40 rounded px-1 text-[10px]">✓</span> Spiritual growth direction
+            </div>
+            <div class="flex items-center gap-3 text-xs md:text-sm text-gray-300">
+              <span class="text-[#fb832d] border border-[#fb832d]/40 rounded px-1 text-[10px]">✓</span> Destiny alignment
+            </div>
+            <div class="flex items-center gap-3 text-xs md:text-sm text-gray-300">
+              <span class="text-[#fb832d] border border-[#fb832d]/40 rounded px-1 text-[10px]">✓</span> Life decisions & biblical counsel
+            </div>
+          </div>
+
+          <button class="bg-[#fb832d] hover:bg-orange-600 text-white font-medium text-xs md:text-sm px-5 py-3 rounded-xl flex items-center gap-2 transition duration-300 shadow-lg shadow-orange-500/20">
+            <span>❓</span> Submit Your Question
+          </button>
+        </div>
+
+        <div class="overflow-hidden rounded-2xl border border-gray-800/60 shadow-xl">
+          <img 
+            src="./assets/images/img-bible-reading.png" 
+            class="w-full h-auto object-cover opacity-90 min-h-[250px]" 
+            alt="Person turning pages of an open Holy Bible" 
+          />
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="w-full relative py-20 px-4 bg-gradient-to-b from-[#24150a] to-[#130b05] border-t border-gray-900 text-center">
+    <div class="max-w-4xl mx-auto space-y-6">
+      
+      <h4 class="text-xs md:text-sm font-bold uppercase tracking-widest text-[#fb832d]">
+        Kingdom Partnership
+      </h4>
+      
+      <h3 class="text-4xl md:text-6xl font-extrabold text-white tracking-tight leading-tight">
+        Ready to Make an Eternal Impact?
+      </h3>
+      
+      <p class="text-gray-400 text-sm md:text-base max-w-2xl mx-auto font-light leading-relaxed">
+        Join the Friends of the Bible International today and be part of a covenant community advancing the Kingdom through media.
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-4 pt-4">
+        <button class="open-sponsor-modal bg-[#fb832d] hover:bg-orange-600 text-white font-semibold text-xs md:text-sm px-6 py-3.5 rounded-xl transition duration-300 shadow-md">
+          Become a Sponsor / Investor <span class="ml-1">→</span>
+        </button>
+        <button class="open-prayer-modal border border-gray-700 hover:border-[#fb832d] hover:bg-[#fb832d]/10 text-gray-300 hover:text-white font-medium text-xs md:text-sm px-6 py-3.5 rounded-xl transition duration-300">
+          Book Prayer Session
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+
+
+<section class="py-20 bg-[#160f0a] text-white w-full overflow-hidden">
+  <div class="w-full text-center">
+    
+    <h2 class="text-4xl md:text-5xl font-bold text-[#fb832d] tracking-wide mb-14">
+      Our Gallery
+    </h2>
+
+    <div class="relative flex items-center justify-center min-h-[340px] sm:min-h-[400px] md:min-h-[520px] w-full px-4 md:px-0">
+      
+      <div id="slide-0" class="gallery-slide absolute w-[60%] sm:w-[45%] md:w-[35%] lg:w-[28%] aspect-[16/10] rounded-2xl overflow-hidden shadow-2xl transition-all duration-700 ease-in-out transform -translate-x-[45%] sm:-translate-x-[55%] md:-translate-x-[65%] lg:-translate-x-[75%] scale-75 opacity-25 blur-[2px] z-10 pointer-events-none">
+        <img src="https://picsum.photos/id/101/1000/625" class="w-full h-full object-cover" alt="Gallery Left Frame">
+        <div class="absolute inset-0 bg-black/60"></div>
+      </div>
+
+      <div id="slide-1" class="gallery-slide absolute w-[65%] sm:w-[60%] md:w-[45%] lg:w-[36%] aspect-[16/10] rounded-2xl overflow-hidden shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] border border-gray-800 transition-all duration-700 ease-in-out transform scale-100 opacity-100 z-30">
+        <img src="https://picsum.photos/id/102/1000/625" class="w-full h-full object-cover" alt="Gallery Active Frame">
+      </div>
+
+      <div id="slide-2" class="gallery-slide absolute w-[60%] sm:w-[54%] md:w-[35%] lg:w-[28%] aspect-[16/10] rounded-2xl overflow-hidden shadow-2xl transition-all duration-700 ease-in-out transform translate-x-[45%] sm:translate-x-[55%] md:translate-x-[65%] lg:translate-x-[75%] scale-75 opacity-25 blur-[2px] z-10 pointer-events-none">
+        <img src="https://picsum.photos/id/103/1000/625" class="w-full h-full object-cover" alt="Gallery Right Frame">
+        <div class="absolute inset-0 bg-black/60"></div>
+      </div>
+      
+    </div>
+
+    <div class="flex items-center justify-center gap-4 mt-16 bg-[#24170e]/50 border border-gray-800/80 rounded-xl p-2 w-fit mx-auto backdrop-blur-md shadow-lg">
+      <button onclick="changeSlide(-1)" class="bg-gray-800/50 hover:bg-gray-700/80 text-gray-300 w-9 h-9 rounded-lg flex items-center justify-center text-base transition duration-200">
+        ‹
+      </button>
+      
+      <div class="flex gap-1.5 px-2" id="gallery-indicators">
+        </div>
+      
+      <button onclick="changeSlide(1)" class="bg-[#fb832d] hover:bg-orange-600 text-white w-9 h-9 rounded-lg flex items-center justify-center text-base transition duration-200">
+        ›
+      </button>
+    </div>
+
+  </div>
+</section>
+
+
+  <section class="w-full py-16  bg-section-overlay glass-container">
+    <div class="max-w-7xl mx-auto px-4">
+
+      <!-- Header -->
+      <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold text-amber-500 mb-3">FAQs</h1>
+        <p class="text-gray-300 text-lg">Frequently Asked Questions</p>
+      </div>
+
+      <!-- FLEX WRAPPER -->
+      <div class="flex flex-col md:flex-row gap-10">
+
+        <!-- LEFT: FAQ LIST -->
+        <div class="flex-1 space-y-4">
+
+          <!-- FAQ 1 -->
+          <div class="faq-item border border-amber-600 rounded-lg overflow-hidden  bg-opacity-50">
+            <button
+              class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-white/10 backdrop-blur-md hover:bg-opacity-30 transition-colors">
+              <span class="text-white font-medium pr-4">Who can become a Friend of the Bible International?</span>
+              <span class="faq-icon text-amber-500 text-2xl flex-shrink-0">⊖</span>
+            </button>
+            <div class="faq-content px-6 pb-4">
+              <p class="text-gray-300 text-sm">Any individual, organization or church that wants to support Bible-based
+                initiatives and make a global impact.</p>
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="faq-item border border-amber-600 rounded-lg overflow-hidden  bg-opacity-50">
+            <button
+              class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-white/10 backdrop-blur-md hover:bg-opacity-30 transition-colors">
+              <span class="text-white font-medium pr-4">Can I choose which program to support?</span>
+              <span class="faq-icon text-amber-500 text-2xl flex-shrink-0">⊖</span>
+            </button>
+            <div class="faq-content px-6 pb-4">
+              <p class="text-gray-300 text-sm">Yes. You can select the specific program you want your donation to fund,
+                and your partnership will be reflected on the program's page.</p>
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="faq-item border border-amber-600 rounded-lg overflow-hidden  bg-opacity-50">
+            <button
+              class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-white/10 backdrop-blur-md hover:bg-opacity-30 transition-colors">
+              <span class="text-white font-medium pr-4">What are the donation categories?</span>
+              <span class="faq-icon text-amber-500 text-2xl flex-shrink-0">⊖</span>
+            </button>
+            <div class="faq-content px-6 pb-4">
+              <ul class="text-gray-300 text-sm space-y-1">
+                <li>• Major Weight: ₦50,000,000 and above</li>
+                <li>• Medium Weight: ₦20,000,000 to ₦50,000,000</li>
+                <li>• Light Weight: ₦10,000,000 and below</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="faq-item border border-amber-600 rounded-lg overflow-hidden  bg-opacity-50">
+            <button
+              class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-white/10 backdrop-blur-md hover:bg-opacity-30 transition-colors">
+              <span class="text-white font-medium pr-4">Can I attend or participate in events as a donor?</span>
+              <span class="faq-icon text-amber-500 text-2xl flex-shrink-0">⊖</span>
+            </button>
+            <div class="faq-content px-6 pb-4">
+              <p class="text-gray-300 text-sm">As a Friend of the Bible International, enjoy VIP access and can appear
+                in special guests in select segments of major events like reality shows.</p>
+            </div>
+          </div>
+
+          <!-- FAQ 5 -->
+          <div class="faq-item border border-amber-600 rounded-lg overflow-hidden  bg-opacity-50">
+            <button
+              class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-white/10 backdrop-blur-md hover:bg-opacity-30 transition-colors">
+              <span class="text-white font-medium pr-4">How will my contribution be used?</span>
+              <span class="faq-icon text-amber-500 text-2xl flex-shrink-0">⊖</span>
+            </button>
+            <div class="faq-content px-6 pb-4">
+              <p class="text-gray-300 text-sm">Your donation supports program production, event execution, discipleship,
+                training, advocacy, and other faith-based activities under Sword Television.</p>
+            </div>
+          </div>
+
+          <!-- FAQ 6 -->
+          <div class="faq-item border border-amber-600 rounded-lg overflow-hidden  bg-opacity-50">
+            <button
+              class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-white/10 backdrop-blur-md hover:bg-opacity-30 transition-colors">
+              <span class="text-white font-medium pr-4">How do I make my donation?</span>
+              <span class="faq-icon text-amber-500 text-2xl flex-shrink-0">⊖</span>
+            </button>
+            <div class="faq-content px-6 pb-4">
+              <p class="text-gray-300 text-sm">After selecting your donation category and program, provide your details
+                and complete payment. You'll receive a confirmation email with your partnership details.</p>
+            </div>
+          </div>
+
+          <!-- FAQ 7 -->
+          <div class="faq-item border border-amber-600 rounded-lg overflow-hidden  bg-opacity-50">
+            <button
+              class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-white/10 backdrop-blur-md hover:bg-opacity-30 transition-colors">
+              <span class="text-white font-medium pr-4">Is my donation recognized publicly?</span>
+              <span class="faq-icon text-amber-500 text-2xl flex-shrink-0">⊖</span>
+            </button>
+            <div class="faq-content px-6 pb-4">
+              <p class="text-gray-300 text-sm">Yes. Your contribution will be displayed on the program page you support.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 8 -->
+          <div class="faq-item border border-amber-600 rounded-lg overflow-hidden  bg-opacity-50">
+            <button
+              class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-white/10 backdrop-blur-md hover:bg-opacity-30 transition-colors">
+              <span class="text-white font-medium pr-4">Will my donation give me access to VIP experiences?</span>
+              <span class="faq-icon text-amber-500 text-2xl flex-shrink-0">⊖</span>
+            </button>
+            <div class="faq-content px-6 pb-4">
+              <p class="text-gray-300 text-sm">Absolutely. Donors may appear as special guests in key segments, reality
+                shows, and events.</p>
+            </div>
+          </div>
+
+          <!-- FAQ 9 -->
+          <div class="faq-item border border-amber-600 rounded-lg overflow-hidden  bg-opacity-50">
+            <button
+              class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-white/10 backdrop-blur-md hover:bg-opacity-30 transition-colors">
+              <span class="text-white font-medium pr-4">Can I support multiple programs?</span>
+              <span class="faq-icon text-amber-500 text-2xl flex-shrink-0">⊖</span>
+            </button>
+            <div class="faq-content px-6 pb-4">
+              <p class="text-gray-300 text-sm">Yes. You can donate to multiple programs, and each donation will be
+                displayed accordingly.</p>
+            </div>
+          </div>
+
+          <!-- FAQ 10 -->
+          <div class="faq-item border border-amber-600 rounded-lg overflow-hidden  bg-opacity-50">
+            <button
+              class="faq-button w-full px-6 py-4 text-left flex justify-between items-center hover:bg-white/10 backdrop-blur-md hover:bg-opacity-30 transition-colors">
+              <span class="text-white font-medium pr-4">How do I track the impact of my donation?</span>
+              <span class="faq-icon text-amber-500 text-2xl flex-shrink-0">⊖</span>
+            </button>
+            <div class="faq-content px-6 pb-4">
+              <p class="text-gray-300 text-sm">We send updates, reports, and highlights showing the impact of your
+                contribution.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="md:w-1/3 w-full">
+          <div class=" bg-opacity-50 border border-amber-600 rounded-lg p-8 text-center">
+            <h2 class="text-white text-xl font-semibold mb-3">Still have questions?</h2>
+            <p class="text-gray-300 text-sm mb-6">Can't find the answer you are looking for? Kindly check our complete
+              list of FAQs.</p>
+            <button
+              class="bg-amber-500 hover:bg-amber-600 text-gray-900 font-semibold px-8 py-3 rounded-full transition-colors">
+              View Complete FAQs
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section class="w-full py-16 ">
+    <div class=" flex flex-col items-center justify-center p-4">
+      <!-- Newsletter Card -->
+      <div class="bg-white rounded-3xl shadow-2xl max-w-4xl w-full p-12 mb-8">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <!-- Left Column -->
+          <div>
+            <h2 class="text-4xl font-bold text-gray-900 mb-4">Stay Connected!</h2>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              Receive updates on upcoming events, new programmes, auditions, competitions, and ministry opportunities.
+            </p>
+          </div>
+
+          <!-- Right Column -->
+          <div>
+            <p class="text-sm text-gray-900 mb-4">
+              Subscribe and be the first to know — and never miss a moment of impact.
+            </p>
+            <div class="flex gap-2 flex-col md:flex-row">
+              <input type="email" placeholder="Enter your email address"
+                class="flex-1 px-4 py-3 rounded-full bg-gray-100 text-black text-sm focus:outline-none focus:ring-2 focus:ring-orange-400">
+              <button
+                class="px-8 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-full font-medium text-sm transition-colors duration-300">
+                Subscribe
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+       <footer class="w-full max-w-6xl">
+                <div class="grid md:grid-cols-2 gap-12 mb-8">
+                    <!-- Left Section -->
+                    <div>
+                        <a href="./index.html" class="text-orange-500 text-xl font-bold mb-6">
+                            <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766409594/sword_TV_logo_y9mnja.png"
+                                width="150" class="rounded-full" />
+                        </a>
+                        <div class="space-y-3 text-gray-400 text-sm pl-3 mt-3">
+                            <div class="flex items-center gap-2">
+                                <i class="far fa-envelope"></i>
+                                <span>info@swordtelevision.com</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-phone"></i>
+                                <span>+2348087863562 | +2347048811294 | +2349060672683</span>
+                            </div>
+                             <div class="flex items-center gap-2">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Suite 8, Dabic Shopping Plaza, behind M & M Super Market, Yoruba road, Ilorin, Kwara State</span>
+                            </div>
+                        </div>
+
+                        <!-- Social Icons -->
+                      <div class="flex gap-4 mt-6">
+                            <a href="https://www.facebook.com/share/1Efwj5eVHv/"
+                                class="w-8 h-8  rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                                <i class="fa-brands fa-facebook text-lg text-gray-850 text-gray-50"></i>
+                            </a>
+                            <a href="https://youtube.com/@swordtelevision?si=XdX_F6ml9Qu-FOx4"
+                                class="w-8 h-8  rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                                <i class="fa-brands fa-youtube text-lg text-gray-8050 text-gray-50"></i>
+                            </a>
+                            <a href="#"
+                                class="w-8 h-8  rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                                <i class="fa-brands fa-linkedin-in text-lg text-gray-50"></i>
+                            </a>
+                            <a href="#"
+                                class="w-8 h-8  rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                                <i class="fa-brands fa-x-twitter text-lg text-gray-50"></i>
+                            </a>
+                            <a href="https://vm.tiktok.com/ZS9LCerWnUXDt-VgyAC/"
+                                class="w-8 h-8  rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                                <i class="fa-brands fa-tiktok text-lg text-gray-80050 text-gray-50"></i>
+                            </a>
+                            <a href="https://www.instagram.com/sword.television?igsh=aXp5cG9icjE3dGgw"
+                                class="w-8 h-8  rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                                <i class="fa-brands fa-instagram text-lg text-gray-50"></i>
+                            </a>
+                            <a href="https://wa.me/qr/VHYVPTX753TAE1"
+                                class="w-8 h-8  rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
+                                <i class="fa-brands fa-whatsapp text-lg text-gray-50"></i>
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <!-- Right Section - Navigation -->
+                    <div class="grid grid-cols-2 gap-8">
+                        <div>
+                            <ul class="space-y-3 text-gray-300 text-sm">
+                                <li>
+                                    <a href="#" class="hover:text-orange-500 transition-colors duration-300">Home</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="hover:text-orange-500 transition-colors duration-300">About
+                                        Us</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="hover:text-orange-500 transition-colors duration-300">Events</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="hover:text-orange-500 transition-colors duration-300">Gallery</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul class="space-y-3 text-gray-300 text-sm">
+                                <li>
+                                    <a href="#" class="hover:text-orange-500 transition-colors duration-300">Contact
+                                        Us</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="hover:text-orange-500 transition-colors duration-300">Partner
+                                        With Us</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="hover:text-orange-500 transition-colors duration-300">Donate</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="hover:text-orange-500 transition-colors duration-300">Blog</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Copyright -->
+                <div class="border-t border-gray-800 pt-6 text-center text-gray-500 text-sm">
+                    <p>Sword Television © 2025 | All rights reserved.</p>
+                </div>
+            </footer>
+    </div>
+  </section>
+
+
+
+
+
+  <!-- PARTNER MODAL -->
+  <div id="partnerModal" class="fixed inset-0 z-[999] hidden
+         flex items-center justify-center
+         bg-black/60 backdrop-blur-lg
+         px-4 py-6 overflow-y-auto">
+
+    <!-- MODAL CARD -->
+    <div class="bg-white w-full max-w-3xl
+           rounded-2xl p-6 sm:p-8
+           shadow-2xl relative
+           my-auto">
+
+      <!-- CLOSE BUTTON -->
+      <button id="closePartnerModal" class="absolute top-4 right-4
+             text-gray-400 hover:text-black
+             text-xl">
+        ✕
+      </button>
+
+      <!-- RETURN BUTTON -->
+      <button id="returnPartnerBtn" type="button" class="text-orange-500 text-xs sm:text-sm
+             border border-orange-400
+             px-4 py-1.5 rounded-full mb-6">
+        Return to Partnership Page
+      </button>
+
+      <!-- STEP INDICATOR -->
+      <p class="text-xs text-gray-500 mb-2">
+        Section <span id="stepNumber">1</span> of 6
+      </p>
+
+      <!-- PROGRESS BAR -->
+      <div class="w-full h-2 bg-gray-200 rounded-full mb-8">
+        <div id="progressBar" class="h-2 bg-orange-400 rounded-full
+               transition-all duration-300" style="width:16.66%">
+        </div>
+      </div>
+
+      <!-- STEPS CONTAINER -->
+      <div class="space-y-6 max-h-[60vh] overflow-y-auto pr-1">
+
+        <!-- STEP 1 -->
+         <div class="step">
+          <h2 class="text-orange-500 text-xl font-semibold mb-2">
+            Select Programme
+          </h2>
+
+          <p class="text-sm text-gray-600 mb-5">
+            Which of the below programme do you want to support?
+          </p>
+
+          <!-- PROGRAMME OPTIONS -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+            <!-- OPTION -->
+            <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition">
+              <input type="radio" name="programme" class="mt-1">
+              <span class="font-medium text-sm text-gray-900">
+                Bible Stars Reality Show
+              </span>
+            </label>
+
+            <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition">
+              <input type="radio" name="programme" class="mt-1">
+              <span class="font-medium text-sm text-gray-900">
+                Ilorin Youth Mega Festival
+              </span>
+            </label>
+
+            <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition">
+              <input type="radio" name="programme" class="mt-1">
+              <span class="font-medium text-sm text-gray-900">
+                Bible Championship Season 2
+              </span>
+            </label>
+
+            <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition">
+              <input type="radio" name="programme" class="mt-1">
+              <span class="font-medium text-sm text-gray-900">
+                The Noah's Ark Show
+              </span>
+            </label>
+
+            <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition">
+              <input type="radio" name="programme" class="mt-1">
+              <span class="font-medium text-sm text-gray-900">
+                The National Bible Cup
+              </span>
+            </label>
+
+            <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition">
+              <input type="radio" name="programme" class="mt-1">
+              <span class="font-medium text-sm text-gray-900">
+                The Church & You Talk Show
+              </span>
+            </label>
+
+            <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition sm:col-span-2">
+              <input type="radio" name="programme" class="mt-1">
+              <span class="font-medium text-sm text-gray-900">
+                Marriage Realities Show
+              </span>
+            </label>
+
+          </div>
+        </div>
+         <!--  -->
+       
+
+        <!-- PLACEHOLDER STEPS -->
+        <!-- STEP 2 -->
+        
+ <div class="step hidden">
+          <h2 class="text-orange-500 text-xl font-semibold mb-2">
+            Select Category
+          </h2>
+
+          <p class="text-sm text-gray-600 mb-4">
+            Which of the below categories do you want to donate for?
+          </p>
+
+          <!-- OPTION -->
+          <label class="block border border-orange-300 rounded-xl
+                 p-4 sm:p-5 mb-3
+                 flex gap-3 items-start cursor-pointer">
+            <input type="radio" name="category" class="mt-1">
+            <div>
+              <span class="font-medium text-gray-900">Major Weight</span><br>
+              <span class="text-sm text-gray-600">
+                ₦50,000,000 and above
+              </span>
+            </div>
+          </label>
+
+          <!-- OPTION -->
+          <label class="block border border-orange-300 rounded-xl
+                 p-4 sm:p-5 mb-3
+                 flex gap-3 items-start cursor-pointer">
+            <input type="radio" name="category" class="mt-1">
+            <div>
+              <span class="font-medium text-gray-900">Medium Weight</span><br>
+              <span class="text-sm text-gray-600">
+                ₦20,000,000 to ₦50,000,000
+              </span>
+            </div>
+          </label>
+
+          <!-- OPTION -->
+          <label class="block border border-orange-300 rounded-xl
+                 p-4 sm:p-5
+                 flex gap-3 items-start cursor-pointer">
+            <input type="radio" name="category" class="mt-1">
+            <div>
+              <span class="font-medium text-gray-900">Light Weight</span><br>
+              <span class="text-sm text-gray-600">
+                ₦20,000,000 and below
+              </span>
+            </div>
+          </label>
+        </div>
+        <!-- STEP 3 -->
+
+        <div class="step hidden" id="step3">
+          <h2 class="text-orange-500 text-xl font-semibold mb-2">
+            Fill form
+          </h2>
+
+          <p class="text-sm text-gray-800 mb-6">
+            Kindly fill the below form to proceed with your donation.
+          </p>
+
+          <div class="space-y-5">
+
+            <div>
+              <label class="block text-gray-700 text-sm font-medium mb-1">Full name</label>
+              <input id="fullName" type="text" placeholder="Enter your full name"
+                class="w-full rounded border border-gray-400 px-4 py-3 text-gray-900" />
+            </div>
+
+            <div>
+              <label class="block text-gray-700 text-sm font-medium mb-1">Email Address</label>
+              <input id="email" type="email" placeholder="Enter your email address"
+                class="w-full rounded border border-gray-400 px-4 py-3 text-gray-900" />
+            </div>
+
+            <div>
+              <label class="block text-gray-700 text-sm font-medium mb-1">Phone Number</label>
+              <input id="phone" type="tel" placeholder="Enter your phone number"
+                class="w-full rounded border border-gray-400 px-4 py-3 text-gray-900" />
+            </div>
+
+            <div>
+              <label class="block text-gray-700 text-sm font-medium mb-1">
+                How much do you wish to donate?
+              </label>
+              <input id="amount" type="number" placeholder="0"
+                class="w-full rounded border border-gray-400 px-4 py-3 text-gray-900" />
+            </div>
+
+          </div>
+        </div>
+
+        <!-- step 4 -->
+        <div class="step hidden">
+          <h2 class="text-orange-500 text-xl font-semibold mb-2">
+            Payment Method
+          </h2>
+
+          <p class="text-sm text-gray-600 mb-5">
+            Which payment method would you prefer to use?
+          </p>
+
+          <!-- PROGRAMME OPTIONS -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+            <!-- OPTION -->
+            <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition">
+              <input type="radio" name="paymentMethod" value="Online Payment" class="mt-1">
+              <span class="font-medium text-sm text-gray-900">
+                Online Payment
+              </span>
+            </label>
+
+            <label class="border border-orange-300 rounded-xl p-4
+                  flex gap-3 items-start cursor-pointer
+                  hover:bg-orange-50 transition">
+              <input type="radio" name="paymentMethod" value="Offline Payment" class="mt-1">
+              <span class="font-medium text-sm text-gray-900">
+                Offline Payment
+              </span>
+            </label>
+
+
+
+          </div>
+        </div>
+        <!-- STEP 5 -->
+        <div class="step hidden">
+          <h2 class="text-orange-500 text-xl font-semibold mb-6">
+            Complete Your Offline Payment
+          </h2>
+
+          <!-- Amount Card -->
+          <div class="bg-orange-50 rounded-2xl p-5 sm:p-6 mb-6 shadow-sm">
+            <h3 class="font-medium text-gray-900 mb-2">
+              Amount You Want To Donate
+            </h3>
+
+            <p class="text-sm text-gray-600 mb-1">
+              Transferable amount
+            </p>
+
+            <p class="text-xl font-semibold text-gray-900">
+              ₦50,000,000
+            </p>
+          </div>
+
+          <!-- Account Details Card -->
+          <div class="bg-orange-50 rounded-2xl p-5 sm:p-6 shadow-sm">
+            <h3 class="font-medium text-gray-900 mb-4">
+              Account Details
+            </h3>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+              <!-- Bank -->
+              <div>
+                <p class="text-sm text-gray-600 mb-1">Bank:</p>
+                <div class="flex items-center gap-2">
+                  <span class="font-medium text-gray-900">First Bank</span>
+                  <button class="text-gray-500 hover:text-gray-800">
+                    📋
+                  </button>
+                </div>
+              </div>
+
+              <!-- Account Number -->
+              <div>
+                <p class="text-sm text-gray-600 mb-1">Account Number:</p>
+                <div class="flex items-center gap-2">
+                  <span class="font-medium text-gray-900">2096184982</span>
+                  <button class="text-gray-500 hover:text-gray-800">
+                    📋
+                  </button>
+                </div>
+              </div>
+
+              <!-- Account Name -->
+              <div>
+                <p class="text-sm text-gray-600 mb-1">Account Name:</p>
+                <div class="flex items-center gap-2">
+                  <span class="font-medium text-gray-900">
+                    Sword Television Ltd
+                  </span>
+                  <button class="text-gray-500 hover:text-gray-800">
+                    📋
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- ACTION BUTTONS -->
+          <div class="flex flex-col sm:flex-row justify-between mt-10">
+
+            <button id="paymentConfirmed" class="w-full sm:w-auto bg-orange-500 text-white
+             px-6 py-3 rounded-full font-medium">
+              I Have Made Payment
+            </button>
+
+            <button class="w-full sm:w-auto border border-orange-400
+             text-orange-500 px-6 py-3 rounded-full font-medium">
+              Join Friends of the Bible Forum
+            </button>
+
+          </div>
+        </div>
+
+        <div class="step hidden">
+          <h2 class="text-orange-500 text-xl font-semibold mb-6">
+            Which Of Our Forum Are You Interested In?
+          </h2>
+
+          <div class="space-y-4">
+
+            <label class="block border border-orange-300 rounded-xl
+           p-4 sm:p-5
+           cursor-pointer
+           transition
+           hover:bg-orange-50
+           has-[:checked]:border-orange-500
+           has-[:checked]:bg-orange-100">
+
+              <div class="flex items-center gap-3">
+                <input type="radio" name="forum" class="accent-orange-500">
+                <span class="font-medium text-gray-900">
+                  Friends of the Bible International Meetings
+                </span>
+              </div>
+            </label>
+
+            <label class="block border border-orange-300 rounded-xl
+           p-4 sm:p-5
+           cursor-pointer
+           transition
+           hover:bg-orange-50
+           has-[:checked]:border-orange-500
+           has-[:checked]:bg-orange-100">
+
+              <div class="flex items-center gap-3">
+                <input type="radio" name="forum" class="accent-orange-500">
+                <span class="font-medium text-gray-900">
+                  Consultation Session
+                </span>
+              </div>
+            </label>
+
+            <label class="block border border-orange-300 rounded-xl
+           p-4 sm:p-5
+           cursor-pointer
+           transition
+           hover:bg-orange-50
+           has-[:checked]:border-orange-500
+           has-[:checked]:bg-orange-100">
+
+              <div class="flex items-center gap-3">
+                <input type="radio" name="forum" class="accent-orange-500">
+                <span class="font-medium text-gray-900">
+                  Prayer Session
+                </span>
+              </div>
+            </label>
+
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+      <!-- FOOTER BUTTONS -->
+      <div class="flex flex-col sm:flex-row
+             gap-4 sm:justify-between
+             items-center mt-10">
+
+        <button id="prevStep" class="w-full sm:w-auto
+               border border-orange-400
+               text-orange-500
+               px-6 py-3 rounded-full">
+          Previous
+        </button>
+
+        <button id="nextStep" class="w-full sm:w-auto
+               bg-orange-400 text-white
+               px-8 py-3 rounded-full
+               disabled:opacity-40" disabled>
+          Next
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PARTNER SUCCESS MODAL -->
+  <div id="partnerSuccessModal" class="fixed inset-0 z-[1000] hidden items-center justify-center bg-black/60 backdrop-blur-lg px-4 py-6">
+    <div class="bg-white w-full max-w-md rounded-2xl p-8 text-center shadow-2xl relative">
+      <button type="button" id="closePartnerSuccessModal" class="absolute top-4 right-4 text-gray-400 hover:text-black text-xl">✕</button>
+
+      <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-orange-100 text-orange-500">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+
+      <h3 class="text-lg font-semibold text-gray-900 mb-2">Thank You for Partnering With Us</h3>
+      <p class="text-sm text-gray-600 leading-relaxed mb-6">
+        Your partnership request for <span id="partnerSuccessProgram" class="font-medium text-gray-900">this programme</span> has been received. Our team will follow up with confirmation details.
+      </p>
+
+      <button type="button" id="closePartnerSuccessBtn"
+        class="w-full max-w-[200px] mx-auto block rounded-full bg-orange-500 hover:bg-orange-600 text-white font-medium text-sm py-3 transition-colors">
+        Close
+      </button>
+    </div>
+  </div>
+
+  <!-- PRAYER APPOINTMENT MODAL -->
+  <div id="prayerModal" class="fixed inset-0 z-[999] hidden items-center justify-center bg-black/80 p-4">
+    <div class="relative w-full max-w-md rounded-2xl border border-amber-500/30 bg-[#121212] p-6 shadow-2xl text-white max-h-[90vh] overflow-y-auto">
+
+      <button type="button" id="closePrayerModal" class="absolute right-4 top-4 text-zinc-400 hover:text-white transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <div class="flex items-start gap-3 mb-6">
+        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-amber-500/10 text-amber-500">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+          </svg>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold text-white">Prayer Appointment</h3>
+          <p class="text-xs text-zinc-400">Available: Mondays & Tuesdays | Morning — 2PM</p>
+        </div>
+      </div>
+
+      <form id="prayerForm" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-zinc-300 mb-1">
+            Full Name <span class="text-orange-500">*</span>
+          </label>
+          <input
+            type="text"
+            required
+            placeholder="Your name"
+            class="w-full rounded-lg bg-[#1e1e1e] border border-zinc-800 px-3.5 py-2.5 text-sm text-white placeholder-zinc-500 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500 transition"
+          />
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-zinc-300 mb-1">
+            Phone <span class="text-orange-500">*</span>
+          </label>
+          <input
+            type="tel"
+            required
+            placeholder="+234..."
+            class="w-full rounded-lg bg-[#1e1e1e] border border-zinc-800 px-3.5 py-2.5 text-sm text-white placeholder-zinc-500 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500 transition"
+          />
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-zinc-300 mb-1">Email</label>
+          <input
+            type="email"
+            placeholder="you@example.com"
+            class="w-full rounded-lg bg-[#1e1e1e] border border-zinc-800 px-3.5 py-2.5 text-sm text-white placeholder-zinc-500 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500 transition"
+          />
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-zinc-300 mb-1">
+            Prayer Point <span class="text-orange-500">*</span>
+          </label>
+          <textarea
+            rows="3"
+            required
+            placeholder="Share what you'd like prayer for..."
+            class="w-full rounded-lg bg-[#1e1e1e] border border-zinc-800 px-3.5 py-2.5 text-sm text-white placeholder-zinc-500 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500 transition resize-none"
+          ></textarea>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-zinc-300 mb-1">
+            Preferred Date <span class="text-orange-500">*</span>
+          </label>
+          <input
+            type="date"
+            required
+            class="w-full rounded-lg bg-[#1e1e1e] border border-zinc-800 px-3.5 py-2.5 text-sm text-zinc-400 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500 transition"
+          />
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-zinc-300 mb-1">
+            Preferred Time <span class="text-orange-500">*</span>
+          </label>
+          <input
+            type="time"
+            required
+            class="w-full rounded-lg bg-[#1e1e1e] border border-zinc-800 px-3.5 py-2.5 text-sm text-zinc-400 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500 transition"
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="w-full rounded-lg bg-gradient-to-r from-orange-500 to-amber-500 py-3 text-sm font-semibold text-white shadow-lg shadow-orange-500/20 hover:from-orange-600 hover:to-amber-600 focus:outline-none focus:ring-2 focus:ring-orange-500/50 active:scale-[0.99] transition-all mt-2"
+        >
+          Submit Prayer Request
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- PRAYER SUCCESS MODAL -->
+  <div id="prayerSuccessModal" class="fixed inset-0 z-[1000] hidden items-center justify-center bg-black/80 p-4">
+    <div class="relative w-full max-w-md rounded-2xl border border-amber-500/30 bg-[#121212] p-8 text-center shadow-2xl text-white">
+
+      <button type="button" id="closePrayerSuccessModal" class="absolute right-4 top-4 text-zinc-400 hover:text-white transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-amber-500/10 text-amber-500 border border-amber-500/20">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+
+      <h3 class="text-lg font-semibold text-white mb-2">Prayer Request Received</h3>
+      <p class="text-xs text-zinc-400 leading-relaxed mb-6 max-w-xs mx-auto">
+        Your prayer appointment request has been submitted. You will be contacted to confirm your session.
+      </p>
+
+      <button
+        type="button"
+        id="closePrayerSuccessBtn"
+        class="w-full max-w-xs mx-auto block rounded-lg bg-gradient-to-r from-orange-500 to-amber-500 py-2.5 text-sm font-semibold text-white shadow-lg shadow-orange-500/20 hover:from-orange-600 hover:to-amber-600 active:scale-[0.99] transition-all"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+
+
+  <!-- SPONSOR / INVESTOR MODAL -->
+  <div id="sponsorModal" class="fixed inset-0 z-[999] hidden items-center justify-center bg-black/80 p-4">
+    <div class="relative w-full max-w-xl rounded-2xl border border-amber-500/20 bg-[#121110] p-5 sm:p-6 md:p-8 shadow-2xl text-white my-auto max-h-[92vh] flex flex-col">
+
+      <button type="button" id="closeSponsorModal" class="absolute right-4 top-4 sm:right-5 sm:top-5 text-zinc-400 hover:text-white transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <div class="mb-5 shrink-0 pr-8">
+        <h2 id="sponsorModalTitle" class="text-lg md:text-xl font-semibold text-white">
+          Sponsorship / Investor Interest Form
+        </h2>
+        <p class="text-xs text-zinc-400 mt-1">
+          Complete the steps below to express your interest
+        </p>
+      </div>
+
+      <!-- STEP INDICATOR -->
+      <div class="flex items-center justify-between text-xs mb-6 shrink-0" id="sponsorStepIndicator">
+        <div class="flex items-center gap-2" data-indicator="1">
+          <span class="indicator-circle flex h-6 w-6 items-center justify-center rounded-full border border-amber-500 bg-amber-500/10 text-amber-500 font-semibold text-xs transition-all">1</span>
+          <span class="indicator-label font-medium text-amber-500">Interest</span>
+        </div>
+
+        <div class="indicator-line h-[1px] flex-1 bg-zinc-800 mx-2 sm:mx-3 transition-all"></div>
+
+        <div class="flex items-center gap-2 text-zinc-500" data-indicator="2">
+          <span class="indicator-circle flex h-6 w-6 items-center justify-center rounded-full border border-zinc-700 bg-zinc-900 font-medium text-xs transition-all">2</span>
+          <span class="indicator-label hidden sm:inline">Program</span>
+        </div>
+
+        <div class="indicator-line h-[1px] flex-1 bg-zinc-800 mx-2 sm:mx-3 transition-all"></div>
+
+        <div class="flex items-center gap-2 text-zinc-500" data-indicator="3">
+          <span class="indicator-circle flex h-6 w-6 items-center justify-center rounded-full border border-zinc-700 bg-zinc-900 font-medium text-xs transition-all">3</span>
+          <span class="indicator-label hidden sm:inline">Category</span>
+        </div>
+
+        <div class="indicator-line h-[1px] flex-1 bg-zinc-800 mx-2 sm:mx-3 transition-all"></div>
+
+        <div class="flex items-center gap-2 text-zinc-500" data-indicator="4">
+          <span class="indicator-circle flex h-6 w-6 items-center justify-center rounded-full border border-zinc-700 bg-zinc-900 font-medium text-xs transition-all">4</span>
+          <span class="indicator-label hidden sm:inline">Details</span>
+        </div>
+      </div>
+
+      <!-- STEP CONTENT -->
+      <div class="overflow-y-auto pr-1 mb-6 flex-1 custom-scrollbar" id="sponsorStepsContainer">
+
+        <!-- STEP 1: INTEREST -->
+        <div class="sponsor-step" data-step="1">
+          <label class="block text-xs font-normal text-zinc-300 mb-3">
+            I am interested as a:
+          </label>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="sponsor-interest-option cursor-pointer rounded-xl border border-zinc-700/80 bg-[#1a1918] p-5 transition-all hover:border-amber-500/50" data-value="Sponsor">
+              <h3 class="text-sm font-semibold text-white mb-1">Sponsor</h3>
+              <p class="text-[11px] text-zinc-400 leading-snug">Brand Visibility & Advertising Returns</p>
+            </div>
+
+            <div class="sponsor-interest-option cursor-pointer rounded-xl border border-zinc-700/80 bg-[#1a1918]/60 p-5 transition-all hover:border-amber-500/50 hover:bg-[#1a1918]" data-value="Investor">
+              <h3 class="text-sm font-semibold text-white mb-1">Investor</h3>
+              <p class="text-[11px] text-zinc-400 leading-snug">Equity / Profit Participation</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 2: PROGRAM -->
+        <div class="sponsor-step hidden" data-step="2">
+          <label id="sponsorProgramLabel" class="block text-xs font-normal text-zinc-300 mb-3">
+            Which program do you want to sponsor?
+          </label>
+
+          <div class="space-y-2.5">
+            <div class="sponsor-program-option flex items-center justify-between rounded-xl border border-zinc-800 bg-[#1a1918]/80 p-3.5 md:p-4 text-xs hover:border-amber-500/40 hover:bg-[#1a1918] cursor-pointer transition-all" data-value="Bible Stars Reality Show">
+              <span class="font-medium text-zinc-200">Bible Stars Reality Show</span>
+              <span class="font-semibold text-amber-500 shrink-0 ml-2">₦450M — ₦600M</span>
+            </div>
+
+            <div class="sponsor-program-option flex items-center justify-between rounded-xl border border-zinc-800 bg-[#1a1918]/80 p-3.5 md:p-4 text-xs hover:border-amber-500/40 hover:bg-[#1a1918] cursor-pointer transition-all" data-value="Ilorin Youth Mega Festival">
+              <span class="font-medium text-zinc-200">Ilorin Youth Mega Festival</span>
+              <span class="font-semibold text-amber-500 shrink-0 ml-2">₦50M — ₦70M</span>
+            </div>
+
+            <div class="sponsor-program-option flex items-center justify-between rounded-xl border border-zinc-800 bg-[#1a1918]/80 p-3.5 md:p-4 text-xs hover:border-amber-500/40 hover:bg-[#1a1918] cursor-pointer transition-all" data-value="Bible Championship Season 2">
+              <span class="font-medium text-zinc-200">Bible Championship Season 2</span>
+              <span class="font-semibold text-amber-500 shrink-0 ml-2">₦30M — ₦50M</span>
+            </div>
+
+            <div class="sponsor-program-option flex items-center justify-between rounded-xl border border-zinc-800 bg-[#1a1918]/80 p-3.5 md:p-4 text-xs hover:border-amber-500/40 hover:bg-[#1a1918] cursor-pointer transition-all" data-value="National Bible Cup">
+              <span class="font-medium text-zinc-200">National Bible Cup</span>
+              <span class="font-semibold text-amber-500 shrink-0 ml-2">₦75M — ₦100M</span>
+            </div>
+
+            <div class="sponsor-program-option flex items-center justify-between rounded-xl border border-zinc-800 bg-[#1a1918]/80 p-3.5 md:p-4 text-xs hover:border-amber-500/40 hover:bg-[#1a1918] cursor-pointer transition-all" data-value="The Church & You Talk Show">
+              <span class="font-medium text-zinc-200">The Church & You Talk Show</span>
+              <span class="font-semibold text-amber-500 shrink-0 ml-2">₦25M — ₦40M</span>
+            </div>
+
+            <div class="sponsor-program-option flex items-center justify-between rounded-xl border border-zinc-800 bg-[#1a1918]/80 p-3.5 md:p-4 text-xs hover:border-amber-500/40 hover:bg-[#1a1918] cursor-pointer transition-all" data-value="Marriage Realities Show">
+              <span class="font-medium text-zinc-200">Marriage Realities Show</span>
+              <span class="font-semibold text-amber-500 shrink-0 ml-2">₦25M — ₦40M</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 3: CATEGORY -->
+        <div class="sponsor-step hidden" data-step="3">
+          <label id="sponsorCategoryLabel" class="block text-xs font-normal text-zinc-300 mb-3">
+            Select Sponsorship Category
+          </label>
+
+          <!-- SPONSOR CATEGORY SET -->
+          <div class="sponsor-category-set space-y-3" data-interest="Sponsor">
+
+            <div class="sponsor-category-option rounded-xl border border-zinc-800 bg-[#1a1918]/60 p-4 transition-all hover:border-zinc-700 hover:bg-[#1a1918] cursor-pointer" data-value="Diamond Sponsor">
+              <div class="flex items-center gap-3">
+                <div class="category-dot flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 border-zinc-600 bg-transparent transition-all">
+                  <div class="category-dot-inner h-2.5 w-2.5 rounded-full bg-amber-500 hidden"></div>
+                </div>
+                <div>
+                  <h4 class="text-sm font-semibold text-white leading-none">Diamond Sponsor</h4>
+                  <span class="text-[11px] text-zinc-400">Anchor Sponsor</span>
+                </div>
+              </div>
+
+              <div class="category-details hidden mt-4 pt-4 border-t border-zinc-800/80 space-y-4">
+                <div class="grid grid-cols-2 gap-3">
+                  <div class="rounded-lg bg-[#121110] p-2.5 border border-zinc-800/60">
+                    <span class="block text-[10px] text-zinc-500">Contribution</span>
+                    <span class="text-xs font-bold text-zinc-200">55% of total project budget</span>
+                  </div>
+                  <div class="rounded-lg bg-[#121110] p-2.5 border border-zinc-800/60">
+                    <span class="block text-[10px] text-zinc-500">Ad Value</span>
+                    <span class="text-xs font-bold text-zinc-200">55% of total advertising value</span>
+                  </div>
+                </div>
+
+                <div>
+                  <span class="block text-[10px] uppercase font-bold tracking-wider text-zinc-400 mb-2">Benefits</span>
+                  <ul class="space-y-1.5 text-xs text-zinc-300">
+                    <li class="flex items-start gap-2">
+                      <svg class="w-3.5 h-3.5 text-amber-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                      <span>Exclusive lead branding across all platforms</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg class="w-3.5 h-3.5 text-amber-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                      <span>Primary sponsor positioning on all media output</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg class="w-3.5 h-3.5 text-amber-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                      <span>Maximum visibility and naming rights priority</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg class="w-3.5 h-3.5 text-amber-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                      <span>VIP access and executive event presence</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="sponsor-category-option rounded-xl border border-zinc-800 bg-[#1a1918]/60 p-4 transition-all hover:border-zinc-700 hover:bg-[#1a1918] cursor-pointer" data-value="Gold Sponsor">
+              <div class="flex items-center gap-3">
+                <div class="category-dot flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 border-zinc-600 bg-transparent transition-all">
+                  <div class="category-dot-inner h-2.5 w-2.5 rounded-full bg-amber-500 hidden"></div>
+                </div>
+                <div>
+                  <h4 class="text-sm font-semibold text-zinc-200">Gold Sponsor</h4>
+                </div>
+              </div>
+
+              <div class="category-details hidden mt-4 pt-4 border-t border-zinc-800/80 space-y-4">
+                <div class="grid grid-cols-2 gap-3">
+                  <div class="rounded-lg bg-[#121110] p-2.5 border border-zinc-800/60">
+                    <span class="block text-[10px] text-zinc-500">Contribution</span>
+                    <span class="text-xs font-bold text-zinc-200">25% of total project budget</span>
+                  </div>
+                  <div class="rounded-lg bg-[#121110] p-2.5 border border-zinc-800/60">
+                    <span class="block text-[10px] text-zinc-500">Ad Value</span>
+                    <span class="text-xs font-bold text-zinc-200">25% of total advertising value</span>
+                  </div>
+                </div>
+
+                <div>
+                  <span class="block text-[10px] uppercase font-bold tracking-wider text-zinc-400 mb-2">Benefits</span>
+                  <ul class="space-y-1.5 text-xs text-zinc-300">
+                    <li class="flex items-start gap-2">
+                      <svg class="w-3.5 h-3.5 text-amber-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                      <span>Strong secondary brand positioning</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg class="w-3.5 h-3.5 text-amber-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                      <span>High visibility across TV and digital platforms</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg class="w-3.5 h-3.5 text-amber-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                      <span>Featured mentions and integrations</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg class="w-3.5 h-3.5 text-amber-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                      <span>VIP event access</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="sponsor-category-option rounded-xl border border-zinc-800 bg-[#1a1918]/60 p-4 transition-all hover:border-zinc-700 hover:bg-[#1a1918] cursor-pointer" data-value="Silver Sponsor">
+              <div class="flex items-center gap-3">
+                <div class="category-dot flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 border-zinc-600 bg-transparent transition-all">
+                  <div class="category-dot-inner h-2.5 w-2.5 rounded-full bg-amber-500 hidden"></div>
+                </div>
+                <div>
+                  <h4 class="text-sm font-semibold text-zinc-200">Silver Sponsor</h4>
+                </div>
+              </div>
+
+              <div class="category-details hidden mt-4 pt-4 border-t border-zinc-800/80 space-y-4">
+                <div class="grid grid-cols-2 gap-3">
+                  <div class="rounded-lg bg-[#121110] p-2.5 border border-zinc-800/60">
+                    <span class="block text-[10px] text-zinc-500">Contribution</span>
+                    <span class="text-xs font-bold text-zinc-200">12% of total project budget</span>
+                  </div>
+                  <div class="rounded-lg bg-[#121110] p-2.5 border border-zinc-800/60">
+                    <span class="block text-[10px] text-zinc-500">Ad Value</span>
+                    <span class="text-xs font-bold text-zinc-200">12% of total advertising value</span>
+                  </div>
+                </div>
+
+                <div>
+                  <span class="block text-[10px] uppercase font-bold tracking-wider text-zinc-400 mb-2">Benefits</span>
+                  <ul class="space-y-1.5 text-xs text-zinc-300">
+                    <li class="flex items-start gap-2">
+                      <svg class="w-3.5 h-3.5 text-amber-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                      <span>Consistent brand exposure across key platforms</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg class="w-3.5 h-3.5 text-amber-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                      <span>Logo placement on program materials</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg class="w-3.5 h-3.5 text-amber-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                      <span>On-screen mentions</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg class="w-3.5 h-3.5 text-amber-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                      <span>Event access</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="sponsor-category-option rounded-xl border border-zinc-800 bg-[#1a1918]/60 p-4 transition-all hover:border-zinc-700 hover:bg-[#1a1918] cursor-pointer" data-value="Bronze Sponsor">
+              <div class="flex items-center gap-3">
+                <div class="category-dot flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 border-zinc-600 bg-transparent transition-all">
+                  <div class="category-dot-inner h-2.5 w-2.5 rounded-full bg-amber-500 hidden"></div>
+                </div>
+                <div>
+                  <h4 class="text-sm font-semibold text-zinc-200">Bronze Sponsor</h4>
+                </div>
+              </div>
+
+              <div class="category-details hidden mt-4 pt-4 border-t border-zinc-800/80 space-y-4">
+                <div class="grid grid-cols-2 gap-3">
+                  <div class="rounded-lg bg-[#121110] p-2.5 border border-zinc-800/60">
+                    <span class="block text-[10px] text-zinc-500">Contribution</span>
+                    <span class="text-xs font-bold text-zinc-200">8% of total project budget</span>
+                  </div>
+                  <div class="rounded-lg bg-[#121110] p-2.5 border border-zinc-800/60">
+                    <span class="block text-[10px] text-zinc-500">Ad Value</span>
+                    <span class="text-xs font-bold text-zinc-200">8% of total advertising value</span>
+                  </div>
+                </div>
+
+                <div>
+                  <span class="block text-[10px] uppercase font-bold tracking-wider text-zinc-400 mb-2">Benefits</span>
+                  <ul class="space-y-1.5 text-xs text-zinc-300">
+                    <li class="flex items-start gap-2">
+                      <svg class="w-3.5 h-3.5 text-amber-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                      <span>Entry-level brand visibility</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg class="w-3.5 h-3.5 text-amber-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                      <span>Logo placement across selected platforms</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg class="w-3.5 h-3.5 text-amber-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                      <span>Limited mentions</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg class="w-3.5 h-3.5 text-amber-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                      <span>Event access</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- INVESTOR TIER SET -->
+          <div class="sponsor-category-set hidden space-y-3" data-interest="Investor">
+
+            <div class="sponsor-category-option rounded-xl border border-zinc-800 bg-[#1a1918]/60 p-4 transition-all hover:border-zinc-700 hover:bg-[#1a1918] cursor-pointer" data-value="Lead Investor">
+              <div class="flex items-center gap-3">
+                <div class="category-dot flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 border-zinc-600 bg-transparent transition-all">
+                  <div class="category-dot-inner h-2.5 w-2.5 rounded-full bg-amber-500 hidden"></div>
+                </div>
+                <div>
+                  <h4 class="text-sm font-semibold text-white leading-none">Lead Investor</h4>
+                </div>
+              </div>
+
+              <div class="category-details hidden mt-4 pt-4 border-t border-zinc-800/80 space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div class="rounded-lg bg-[#121110] p-2.5 border border-zinc-800/60">
+                    <span class="block text-[10px] uppercase font-semibold text-zinc-500 mb-0.5">Participation Share</span>
+                    <p class="text-xs text-zinc-300 leading-snug">Major equity stake based on agreed valuation of selected program</p>
+                  </div>
+                  <div class="rounded-lg bg-[#121110] p-2.5 border border-zinc-800/60">
+                    <span class="block text-[10px] uppercase font-semibold text-zinc-500 mb-0.5">Role</span>
+                    <p class="text-xs text-zinc-300 leading-snug">Strategic financial partner with oversight participation</p>
+                  </div>
+                </div>
+
+                <div>
+                  <span class="block text-[10px] uppercase font-bold tracking-wider text-zinc-400 mb-2">Returns</span>
+                  <ul class="space-y-1.5 text-xs text-zinc-300">
+                    <li class="flex items-start gap-2">
+                      <svg class="w-3.5 h-3.5 text-amber-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                      <span>Profit participation from total project revenue</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg class="w-3.5 h-3.5 text-amber-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                      <span>Revenue streams: advertising sales, licensing, syndication, partnerships, and event monetization</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="sponsor-category-option rounded-xl border border-zinc-800 bg-[#1a1918]/60 p-4 transition-all hover:border-zinc-700 hover:bg-[#1a1918] cursor-pointer" data-value="Co-Investor">
+              <div class="flex items-center gap-3">
+                <div class="category-dot flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 border-zinc-600 bg-transparent transition-all">
+                  <div class="category-dot-inner h-2.5 w-2.5 rounded-full bg-amber-500 hidden"></div>
+                </div>
+                <div>
+                  <h4 class="text-sm font-semibold text-zinc-200">Co-Investor</h4>
+                </div>
+              </div>
+
+              <div class="category-details hidden mt-4 pt-4 border-t border-zinc-800/80 space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div class="rounded-lg bg-[#121110] p-2.5 border border-zinc-800/60">
+                    <span class="block text-[10px] uppercase font-semibold text-zinc-500 mb-0.5">Participation Share</span>
+                    <p class="text-xs text-zinc-300 leading-snug">Shared equity participation based on investment size</p>
+                  </div>
+                  <div class="rounded-lg bg-[#121110] p-2.5 border border-zinc-800/60">
+                    <span class="block text-[10px] uppercase font-semibold text-zinc-500 mb-0.5">Role</span>
+                    <p class="text-xs text-zinc-300 leading-snug">Supporting financial partner in project execution</p>
+                  </div>
+                </div>
+
+                <div>
+                  <span class="block text-[10px] uppercase font-bold tracking-wider text-zinc-400 mb-2">Returns</span>
+                  <ul class="space-y-1.5 text-xs text-zinc-300">
+                    <li class="flex items-start gap-2">
+                      <svg class="w-3.5 h-3.5 text-amber-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                      <span>Proportional profit share from total project revenue</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                      <svg class="w-3.5 h-3.5 text-amber-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                      <span>Access to revenue performance reports</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- STEP 4: DETAILS -->
+        <div class="sponsor-step hidden" data-step="4">
+          <label class="block text-xs font-normal text-zinc-300 mb-4">
+            Contact & Meeting Details
+          </label>
+
+          <div class="space-y-3.5">
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <div>
+                <label class="block text-[11px] font-semibold uppercase tracking-wider text-zinc-300 mb-1">
+                  Full Name <span class="text-orange-500">*</span>
+                </label>
+                <input id="sponsorFullName" type="text" required placeholder="Enter full name"
+                  class="w-full rounded-xl bg-[#1c1b1a] border border-zinc-800 px-3.5 py-2.5 text-xs text-white placeholder-zinc-600 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition" />
+              </div>
+
+              <div>
+                <label class="block text-[11px] font-semibold uppercase tracking-wider text-zinc-300 mb-1">
+                  Email Address <span class="text-orange-500">*</span>
+                </label>
+                <input id="sponsorEmail" type="email" required placeholder="Enter email address"
+                  class="w-full rounded-xl bg-[#1c1b1a] border border-zinc-800 px-3.5 py-2.5 text-xs text-white placeholder-zinc-600 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <div>
+                <label class="block text-[11px] font-semibold uppercase tracking-wider text-zinc-300 mb-1">
+                  Phone Number <span class="text-orange-500">*</span>
+                </label>
+                <input id="sponsorPhone" type="tel" required placeholder="Enter phone number"
+                  class="w-full rounded-xl bg-[#1c1b1a] border border-zinc-800 px-3.5 py-2.5 text-xs text-white placeholder-zinc-600 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition" />
+              </div>
+
+              <div>
+                <label class="block text-[11px] font-semibold uppercase tracking-wider text-zinc-300 mb-1">
+                  Location <span class="text-orange-500">*</span>
+                </label>
+                <input id="sponsorLocation" type="text" required placeholder="City, Country"
+                  class="w-full rounded-xl bg-[#1c1b1a] border border-zinc-800 px-3.5 py-2.5 text-xs text-white placeholder-zinc-600 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition" />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-semibold uppercase tracking-wider text-zinc-300 mb-1">
+                Occupation / Organisation
+              </label>
+              <input id="sponsorOrg" type="text" placeholder="Enter organisation or occupation"
+                class="w-full rounded-xl bg-[#1c1b1a] border border-zinc-800 px-3.5 py-2.5 text-xs text-white placeholder-zinc-600 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition" />
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-semibold uppercase tracking-wider text-zinc-300 mb-1">
+                Preferred Meeting Date <span class="text-orange-500">*</span>
+              </label>
+              <input id="sponsorDate" type="date" required
+                class="w-full rounded-xl bg-[#1c1b1a] border border-zinc-800 px-3.5 py-2.5 text-xs text-zinc-400 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition" />
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-semibold uppercase tracking-wider text-zinc-300 mb-1">
+                Preferred Meeting Time <span class="text-orange-500">*</span>
+              </label>
+              <input id="sponsorTime" type="time" required
+                class="w-full rounded-xl bg-[#1c1b1a] border border-zinc-800 px-3.5 py-2.5 text-xs text-zinc-400 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition" />
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-semibold uppercase tracking-wider text-zinc-300 mb-1">
+                Preferred Meeting Mode (Optional)
+              </label>
+              <select id="sponsorMode" class="w-full rounded-xl bg-[#1c1b1a] border border-zinc-800 px-3.5 py-2.5 text-xs text-zinc-400 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition appearance-none">
+                <option value="" selected>Select meeting mode (e.g. Virtual, In-person)</option>
+                <option value="virtual">Virtual (Zoom / Google Meet)</option>
+                <option value="in-person">In-Person</option>
+                <option value="phone">Phone Call</option>
+              </select>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- FOOTER BUTTONS -->
+      <div class="flex items-center gap-3 shrink-0 pt-2 border-t border-zinc-800/40">
+        <button type="button" id="sponsorBackBtn"
+          class="hidden items-center justify-center gap-1.5 rounded-xl border border-amber-500/30 bg-[#191715] px-5 py-3 text-xs font-semibold text-amber-500 hover:bg-amber-500/10 active:scale-[0.98] transition-all">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          <span>Back</span>
+        </button>
+
+        <button type="button" id="sponsorNextBtn" disabled
+          class="flex-1 flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-orange-500 via-amber-500 to-amber-600 py-3 text-xs font-semibold text-white shadow-lg shadow-orange-500/20 hover:brightness-110 active:scale-[0.98] transition-all disabled:opacity-40 disabled:pointer-events-none">
+          <span id="sponsorNextBtnLabel">Continue</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SPONSOR SUCCESS MODAL -->
+  <div id="sponsorSuccessModal" class="fixed inset-0 z-[1000] hidden items-center justify-center bg-black/80 p-4">
+    <div class="relative w-full max-w-lg rounded-2xl border border-amber-500/20 bg-[#121110] p-8 text-center shadow-2xl text-white my-auto">
+
+      <button type="button" id="closeSponsorSuccessModal" class="absolute right-5 top-5 text-zinc-400 hover:text-white transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-b from-amber-500/20 to-orange-500/10 border border-amber-500/40 text-orange-500 shadow-inner">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+
+      <h3 id="sponsorSuccessTitle" class="text-xl md:text-2xl font-bold text-white mb-3 tracking-tight">
+        Sponsorship Interest Received
+      </h3>
+
+      <p class="text-xs md:text-sm text-zinc-400 leading-relaxed mb-8 max-w-md mx-auto">
+        Thank you for your interest in <span id="sponsorSuccessProgram" class="font-medium text-zinc-200">this program</span>. Our team will reach out to schedule your <span id="sponsorSuccessDiscussionType">sponsorship discussion</span>.
+      </p>
+
+      <button type="button" id="closeSponsorSuccessBtn"
+        class="w-full max-w-[160px] mx-auto block rounded-xl bg-gradient-to-r from-orange-500 via-amber-500 to-amber-600 py-3 text-xs font-semibold text-white shadow-lg shadow-orange-500/30 hover:brightness-110 active:scale-[0.98] transition-all">
+        Done
+      </button>
+
+    </div>
+  </div>
+
+  <script src="./assets/js/script.js">
+
+  </script>
+
+  <script>
+    // ===== PRAYER APPOINTMENT MODAL LOGIC =====
+    const prayerModal = document.getElementById('prayerModal');
+    const prayerSuccessModal = document.getElementById('prayerSuccessModal');
+    const prayerForm = document.getElementById('prayerForm');
+    const openPrayerBtns = document.querySelectorAll('.open-prayer-modal');
+    const closePrayerBtns = [
+      document.getElementById('closePrayerModal'),
+    ];
+
+    function openPrayerModal() {
+      prayerModal.classList.remove('hidden');
+      prayerModal.classList.add('flex');
+      document.body.classList.add('overflow-hidden');
+    }
+
+    function closePrayerModal() {
+      prayerModal.classList.add('hidden');
+      prayerModal.classList.remove('flex');
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    function openPrayerSuccessModal() {
+      prayerSuccessModal.classList.remove('hidden');
+      prayerSuccessModal.classList.add('flex');
+    }
+
+    function closePrayerSuccessModal() {
+      prayerSuccessModal.classList.add('hidden');
+      prayerSuccessModal.classList.remove('flex');
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    openPrayerBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openPrayerModal();
+      });
+    });
+
+    closePrayerBtns.forEach(btn => {
+      if (btn) btn.addEventListener('click', closePrayerModal);
+    });
+
+    // click outside card closes modal
+    prayerModal.addEventListener('click', (e) => {
+      if (e.target === prayerModal) closePrayerModal();
+    });
+    prayerSuccessModal.addEventListener('click', (e) => {
+      if (e.target === prayerSuccessModal) closePrayerSuccessModal();
+    });
+
+    document.getElementById('closePrayerSuccessModal').addEventListener('click', closePrayerSuccessModal);
+    document.getElementById('closePrayerSuccessBtn').addEventListener('click', closePrayerSuccessModal);
+
+    prayerForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      // TODO: wire up to backend / email service as needed
+      closePrayerModal();
+      prayerForm.reset();
+      openPrayerSuccessModal();
+    });
+
+    // Escape key closes whichever modal is open
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (!prayerSuccessModal.classList.contains('hidden')) closePrayerSuccessModal();
+        else if (!prayerModal.classList.contains('hidden')) closePrayerModal();
+        else if (!sponsorSuccessModal.classList.contains('hidden')) closeSponsorSuccessModal();
+        else if (!sponsorModal.classList.contains('hidden')) closeSponsorModal();
+        else if (!partnerSuccessModal.classList.contains('hidden')) closePartnerSuccessModal();
+        else if (!partnerModal.classList.contains('hidden')) closePartnerModal();
+      }
+    });
+
+    // ===== SPONSOR / INVESTOR MODAL LOGIC =====
+    const sponsorModal = document.getElementById('sponsorModal');
+    const sponsorSuccessModal = document.getElementById('sponsorSuccessModal');
+    const sponsorStepsContainer = document.getElementById('sponsorStepsContainer');
+    const sponsorSteps = Array.from(sponsorStepsContainer.querySelectorAll('.sponsor-step'));
+    const sponsorIndicators = Array.from(document.querySelectorAll('#sponsorStepIndicator > [data-indicator]'));
+    const sponsorIndicatorLines = Array.from(document.querySelectorAll('#sponsorStepIndicator .indicator-line'));
+    const sponsorBackBtn = document.getElementById('sponsorBackBtn');
+    const sponsorNextBtn = document.getElementById('sponsorNextBtn');
+    const sponsorNextBtnLabel = document.getElementById('sponsorNextBtnLabel');
+    const openSponsorBtns = document.querySelectorAll('.open-sponsor-modal');
+
+    const sponsorState = {
+      step: 1,
+      totalSteps: 4,
+      interest: null,
+      program: null,
+      category: null
+    };
+
+    function openSponsorModal() {
+      resetSponsorFlow();
+      sponsorModal.classList.remove('hidden');
+      sponsorModal.classList.add('flex');
+      document.body.classList.add('overflow-hidden');
+    }
+
+    function closeSponsorModal() {
+      sponsorModal.classList.add('hidden');
+      sponsorModal.classList.remove('flex');
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    function openSponsorSuccessModal() {
+      sponsorSuccessModal.classList.remove('hidden');
+      sponsorSuccessModal.classList.add('flex');
+      document.body.classList.add('overflow-hidden');
+    }
+
+    function closeSponsorSuccessModal() {
+      sponsorSuccessModal.classList.add('hidden');
+      sponsorSuccessModal.classList.remove('flex');
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    function resetSponsorFlow() {
+      sponsorState.step = 1;
+      sponsorState.interest = null;
+      sponsorState.program = null;
+      sponsorState.category = null;
+
+      document.querySelectorAll('.sponsor-interest-option').forEach(el => {
+        el.classList.remove('border-amber-500', 'bg-[#1a1918]');
+        el.classList.add('border-zinc-700/80');
+      });
+      document.querySelectorAll('.sponsor-program-option').forEach(el => {
+        el.classList.remove('border-amber-500/60', 'bg-[#1a1918]');
+        el.classList.add('border-zinc-800');
+      });
+      document.querySelectorAll('.sponsor-category-option').forEach(el => {
+        el.classList.remove('border-amber-500/50');
+        el.classList.add('border-zinc-800');
+        el.querySelector('.category-dot').classList.remove('border-amber-500');
+        el.querySelector('.category-dot').classList.add('border-zinc-600');
+        el.querySelector('.category-dot-inner').classList.add('hidden');
+        const details = el.querySelector('.category-details');
+        if (details) details.classList.add('hidden');
+      });
+
+      ['sponsorFullName', 'sponsorEmail', 'sponsorPhone', 'sponsorLocation', 'sponsorOrg', 'sponsorDate', 'sponsorTime'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = '';
+      });
+      document.getElementById('sponsorMode').selectedIndex = 0;
+
+      updateSponsorInterestUI();
+      renderSponsorStep();
+    }
+
+    function renderSponsorStep() {
+      sponsorSteps.forEach(stepEl => {
+        stepEl.classList.toggle('hidden', Number(stepEl.dataset.step) !== sponsorState.step);
+      });
+
+      sponsorIndicators.forEach(ind => {
+        const num = Number(ind.dataset.indicator);
+        const circle = ind.querySelector('.indicator-circle');
+        const label = ind.querySelector('.indicator-label');
+        if (num < sponsorState.step) {
+          circle.className = 'indicator-circle flex h-6 w-6 items-center justify-center rounded-full bg-amber-500 text-black font-bold text-xs transition-all';
+          circle.innerHTML = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>';
+          label.className = 'indicator-label font-medium text-amber-500 hidden sm:inline';
+          ind.classList.remove('text-zinc-500');
+        } else if (num === sponsorState.step) {
+          circle.className = 'indicator-circle flex h-6 w-6 items-center justify-center rounded-full border border-amber-500 bg-amber-500/10 text-amber-500 font-semibold text-xs transition-all';
+          circle.textContent = num;
+          label.className = num === 1 ? 'indicator-label font-medium text-amber-500' : 'indicator-label font-medium text-amber-500 hidden sm:inline';
+          ind.classList.remove('text-zinc-500');
+        } else {
+          circle.className = 'indicator-circle flex h-6 w-6 items-center justify-center rounded-full border border-zinc-700 bg-zinc-900 font-medium text-xs transition-all';
+          circle.textContent = num;
+          label.className = 'indicator-label hidden sm:inline';
+          ind.classList.add('text-zinc-500');
+        }
+      });
+
+      sponsorIndicatorLines.forEach((line, idx) => {
+        line.className = idx + 1 < sponsorState.step
+          ? 'indicator-line h-[1px] flex-1 bg-amber-500/50 mx-2 sm:mx-3 transition-all'
+          : 'indicator-line h-[1px] flex-1 bg-zinc-800 mx-2 sm:mx-3 transition-all';
+      });
+
+      sponsorBackBtn.classList.toggle('hidden', sponsorState.step === 1);
+      sponsorBackBtn.classList.toggle('flex', sponsorState.step !== 1);
+      sponsorNextBtnLabel.textContent = sponsorState.step === 4
+        ? (sponsorState.interest === 'Investor' ? 'Schedule My Investment Discussion' : 'Schedule My Sponsorship Discussion')
+        : 'Continue';
+      updateSponsorNextEnabled();
+    }
+
+    function updateSponsorNextEnabled() {
+      let enabled = false;
+      if (sponsorState.step === 1) enabled = !!sponsorState.interest;
+      else if (sponsorState.step === 2) enabled = !!sponsorState.program;
+      else if (sponsorState.step === 3) enabled = !!sponsorState.category;
+      else if (sponsorState.step === 4) enabled = isSponsorDetailsStepValid();
+      sponsorNextBtn.disabled = !enabled;
+    }
+
+    function isSponsorDetailsStepValid() {
+      const requiredIds = ['sponsorFullName', 'sponsorEmail', 'sponsorPhone', 'sponsorLocation', 'sponsorDate', 'sponsorTime'];
+      return requiredIds.every(id => document.getElementById(id).value.trim() !== '');
+    }
+
+    function updateSponsorInterestUI() {
+      const isInvestor = sponsorState.interest === 'Investor';
+
+      document.getElementById('sponsorModalTitle').textContent = sponsorState.interest
+        ? (isInvestor ? 'Investor Interest Form' : 'Sponsorship Interest Form')
+        : 'Sponsorship / Investor Interest Form';
+
+      document.getElementById('sponsorProgramLabel').textContent = isInvestor
+        ? 'Which program do you want to invest in?'
+        : 'Which program do you want to sponsor?';
+
+      document.getElementById('sponsorCategoryLabel').textContent = isInvestor
+        ? 'Select Investment Tier'
+        : 'Select Sponsorship Category';
+
+      document.querySelectorAll('.sponsor-category-set').forEach(setEl => {
+        setEl.classList.toggle('hidden', setEl.dataset.interest !== sponsorState.interest);
+      });
+    }
+
+    document.querySelectorAll('.sponsor-interest-option').forEach(el => {
+      el.addEventListener('click', () => {
+        document.querySelectorAll('.sponsor-interest-option').forEach(o => {
+          o.classList.remove('border-amber-500', 'bg-[#1a1918]');
+          o.classList.add('border-zinc-700/80');
+        });
+        el.classList.remove('border-zinc-700/80');
+        el.classList.add('border-amber-500', 'bg-[#1a1918]');
+
+        const changed = sponsorState.interest !== el.dataset.value;
+        sponsorState.interest = el.dataset.value;
+
+        if (changed) {
+          // category options differ between Sponsor and Investor — clear any prior pick
+          sponsorState.category = null;
+          document.querySelectorAll('.sponsor-category-option').forEach(o => {
+            o.classList.remove('border-amber-500/50');
+            o.classList.add('border-zinc-800');
+            o.querySelector('.category-dot').classList.remove('border-amber-500');
+            o.querySelector('.category-dot').classList.add('border-zinc-600');
+            o.querySelector('.category-dot-inner').classList.add('hidden');
+            const details = o.querySelector('.category-details');
+            if (details) details.classList.add('hidden');
+          });
+        }
+
+        updateSponsorInterestUI();
+        updateSponsorNextEnabled();
+      });
+    });
+
+    document.querySelectorAll('.sponsor-program-option').forEach(el => {
+      el.addEventListener('click', () => {
+        document.querySelectorAll('.sponsor-program-option').forEach(o => {
+          o.classList.remove('border-amber-500/60', 'bg-[#1a1918]');
+          o.classList.add('border-zinc-800');
+        });
+        el.classList.remove('border-zinc-800');
+        el.classList.add('border-amber-500/60', 'bg-[#1a1918]');
+        sponsorState.program = el.dataset.value;
+        updateSponsorNextEnabled();
+      });
+    });
+
+    document.querySelectorAll('.sponsor-category-option').forEach(el => {
+      el.addEventListener('click', () => {
+        document.querySelectorAll('.sponsor-category-option').forEach(o => {
+          o.classList.remove('border-amber-500/50');
+          o.classList.add('border-zinc-800');
+          o.querySelector('.category-dot').classList.remove('border-amber-500');
+          o.querySelector('.category-dot').classList.add('border-zinc-600');
+          o.querySelector('.category-dot-inner').classList.add('hidden');
+          const details = o.querySelector('.category-details');
+          if (details) details.classList.add('hidden');
+        });
+
+        el.classList.remove('border-zinc-800');
+        el.classList.add('border-amber-500/50');
+        el.querySelector('.category-dot').classList.remove('border-zinc-600');
+        el.querySelector('.category-dot').classList.add('border-amber-500');
+        el.querySelector('.category-dot-inner').classList.remove('hidden');
+        const details = el.querySelector('.category-details');
+        if (details) details.classList.remove('hidden');
+
+        sponsorState.category = el.dataset.value;
+        updateSponsorNextEnabled();
+      });
+    });
+
+    ['sponsorFullName', 'sponsorEmail', 'sponsorPhone', 'sponsorLocation', 'sponsorDate', 'sponsorTime'].forEach(id => {
+      document.getElementById(id).addEventListener('input', updateSponsorNextEnabled);
+    });
+
+    sponsorBackBtn.addEventListener('click', () => {
+      if (sponsorState.step > 1) {
+        sponsorState.step -= 1;
+        renderSponsorStep();
+      }
+    });
+
+    sponsorNextBtn.addEventListener('click', () => {
+      if (sponsorNextBtn.disabled) return;
+      if (sponsorState.step < sponsorState.totalSteps) {
+        sponsorState.step += 1;
+        renderSponsorStep();
+      } else {
+        // final submit
+        const isInvestor = sponsorState.interest === 'Investor';
+        document.getElementById('sponsorSuccessTitle').textContent = isInvestor
+          ? 'Investment Interest Received'
+          : 'Sponsorship Interest Received';
+        document.getElementById('sponsorSuccessProgram').textContent = sponsorState.program || 'this program';
+        document.getElementById('sponsorSuccessDiscussionType').textContent = isInvestor
+          ? 'investment consultation'
+          : 'sponsorship discussion';
+        closeSponsorModal();
+        openSponsorSuccessModal();
+      }
+    });
+
+    openSponsorBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openSponsorModal();
+      });
+    });
+
+    document.getElementById('closeSponsorModal').addEventListener('click', closeSponsorModal);
+    sponsorModal.addEventListener('click', (e) => {
+      if (e.target === sponsorModal) closeSponsorModal();
+    });
+
+    document.getElementById('closeSponsorSuccessModal').addEventListener('click', closeSponsorSuccessModal);
+    document.getElementById('closeSponsorSuccessBtn').addEventListener('click', closeSponsorSuccessModal);
+    sponsorSuccessModal.addEventListener('click', (e) => {
+      if (e.target === sponsorSuccessModal) closeSponsorSuccessModal();
+    });
+
+    // ===== PARTNER WITH US (DONATION) MODAL LOGIC =====
+    const partnerModal = document.getElementById('partnerModal');
+    const partnerSuccessModal = document.getElementById('partnerSuccessModal');
+    const partnerStepEls = Array.from(partnerModal.querySelectorAll('.step'));
+    const partnerTotalSteps = partnerStepEls.length; // 6
+    const stepNumberEl = document.getElementById('stepNumber');
+    const progressBarEl = document.getElementById('progressBar');
+    const prevStepBtn = document.getElementById('prevStep');
+    const nextStepBtn = document.getElementById('nextStep');
+    const openPartnerBtns = document.querySelectorAll('.open-partner-modal');
+
+    let partnerCurrentStep = 0; // zero-indexed
+
+    function openPartnerModal() {
+      resetPartnerFlow();
+      partnerModal.classList.remove('hidden');
+      partnerModal.classList.add('flex');
+      document.body.classList.add('overflow-hidden');
+    }
+
+    function closePartnerModal() {
+      partnerModal.classList.add('hidden');
+      partnerModal.classList.remove('flex');
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    function openPartnerSuccessModal() {
+      partnerSuccessModal.classList.remove('hidden');
+      partnerSuccessModal.classList.add('flex');
+      document.body.classList.add('overflow-hidden');
+    }
+
+    function closePartnerSuccessModal() {
+      partnerSuccessModal.classList.add('hidden');
+      partnerSuccessModal.classList.remove('flex');
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    function resetPartnerFlow() {
+      partnerCurrentStep = 0;
+      partnerModal.querySelectorAll('input[type="radio"]').forEach(r => { r.checked = false; });
+      ['fullName', 'email', 'phone', 'amount'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = '';
+      });
+      renderPartnerStep();
+    }
+
+    function isPartnerStepValid(index) {
+      const stepEl = partnerStepEls[index];
+      const radios = stepEl.querySelectorAll('input[type="radio"]');
+      if (radios.length > 0) {
+        return Array.from(radios).some(r => r.checked);
+      }
+      if (stepEl.id === 'step3') {
+        return ['fullName', 'email', 'phone', 'amount'].every(id => {
+          const el = document.getElementById(id);
+          return el && el.value.trim() !== '';
+        });
+      }
+      return true; // steps with no required inputs (e.g. offline payment instructions)
+    }
+
+    function renderPartnerStep() {
+      partnerStepEls.forEach((stepEl, idx) => {
+        stepEl.classList.toggle('hidden', idx !== partnerCurrentStep);
+      });
+
+      stepNumberEl.textContent = partnerCurrentStep + 1;
+      progressBarEl.style.width = (((partnerCurrentStep + 1) / partnerTotalSteps) * 100) + '%';
+
+      prevStepBtn.classList.toggle('invisible', partnerCurrentStep === 0);
+
+      nextStepBtn.textContent = partnerCurrentStep === partnerTotalSteps - 1 ? 'Submit' : 'Next';
+      nextStepBtn.disabled = !isPartnerStepValid(partnerCurrentStep);
+    }
+
+    partnerModal.addEventListener('input', () => {
+      nextStepBtn.disabled = !isPartnerStepValid(partnerCurrentStep);
+    });
+    partnerModal.addEventListener('change', () => {
+      nextStepBtn.disabled = !isPartnerStepValid(partnerCurrentStep);
+    });
+
+    prevStepBtn.addEventListener('click', () => {
+      if (partnerCurrentStep > 0) {
+        partnerCurrentStep -= 1;
+        renderPartnerStep();
+      }
+    });
+
+    nextStepBtn.addEventListener('click', () => {
+      if (nextStepBtn.disabled) return;
+      if (partnerCurrentStep < partnerTotalSteps - 1) {
+        partnerCurrentStep += 1;
+        renderPartnerStep();
+      } else {
+        // final submit
+        const programmeEl = partnerModal.querySelector('input[name="programme"]:checked');
+        const programmeName = programmeEl
+          ? programmeEl.closest('label').querySelector('span').textContent.trim()
+          : 'this programme';
+        document.getElementById('partnerSuccessProgram').textContent = programmeName;
+        closePartnerModal();
+        openPartnerSuccessModal();
+      }
+    });
+
+    // "I Have Made Payment" jumps straight to the final (forum) step
+    const paymentConfirmedBtn = document.getElementById('paymentConfirmed');
+    if (paymentConfirmedBtn) {
+      paymentConfirmedBtn.addEventListener('click', () => {
+        partnerCurrentStep = partnerTotalSteps - 1;
+        renderPartnerStep();
+      });
+    }
+
+    openPartnerBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openPartnerModal();
+      });
+    });
+
+    document.getElementById('closePartnerModal').addEventListener('click', closePartnerModal);
+    document.getElementById('returnPartnerBtn').addEventListener('click', closePartnerModal);
+    partnerModal.addEventListener('click', (e) => {
+      if (e.target === partnerModal) closePartnerModal();
+    });
+
+    document.getElementById('closePartnerSuccessModal').addEventListener('click', closePartnerSuccessModal);
+    document.getElementById('closePartnerSuccessBtn').addEventListener('click', closePartnerSuccessModal);
+    partnerSuccessModal.addEventListener('click', (e) => {
+      if (e.target === partnerSuccessModal) closePartnerSuccessModal();
+    });
+
+// Dynamic images pool
+  const galleryImages = [
+    "https://picsum.photos/id/101/1000/625",
+    "https://picsum.photos/id/102/1000/625",
+    "https://picsum.photos/id/103/1000/625",
+    "https://picsum.photos/id/104/1000/625",
+    "https://picsum.photos/id/180/1000/625"
+  ];
+
+  let centerIndex = 1; 
+
+  function updateGallery() {
+    const total = galleryImages.length;
+    
+    const leftIndex = (centerIndex - 1 + total) % total;
+    const rightIndex = (centerIndex + 1) % total;
+
+    document.querySelector('#slide-0 img').src = galleryImages[leftIndex];
+    document.querySelector('#slide-1 img').src = galleryImages[centerIndex];
+    document.querySelector('#slide-2 img').src = galleryImages[rightIndex];
+
+    renderIndicators(total);
+  }
+
+  function renderIndicators(total) {
+    const indicatorsContainer = document.getElementById('gallery-indicators');
+    indicatorsContainer.innerHTML = '';
+
+    for (let i = 0; i < total; i++) {
+      const isActive = i === centerIndex;
+      indicatorsContainer.innerHTML += `
+        <div class="h-1 w-7 rounded transition-all duration-300 ${isActive ? 'bg-[#fb832d]' : 'bg-gray-700'}"></div>
+      `;
+    }
+  }
+
+  function changeSlide(direction) {
+    const total = galleryImages.length;
+    centerIndex = (centerIndex + direction + total) % total;
+    updateGallery();
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    updateGallery();
+  });
+
+
+
+
+  // JSON array template where you can upload and edit your media content
+  const videoData = [
+    {
+      id: 1,
+      title: "Friends of the Bible — Meeting Highlight #11",
+      date: "Aug 3, 2026",
+      videoUrl: "#", 
+      thumbnail: "" 
+    },
+    {
+      id: 2,
+      title: "Friends of the Bible — Meeting Highlight #11",
+      date: "Aug 3, 2026",
+      videoUrl: "#",
+      thumbnail: ""
+    },
+    {
+      id: 3,
+      title: "Friends of the Bible — Meeting Highlight #11",
+      date: "Aug 3, 2026",
+      videoUrl: "#",
+      thumbnail: ""
+    }
+  ];
+
+  let currentIndex = 0;
+
+  function renderVideos() {
+    const track = document.getElementById('video-track');
+    track.innerHTML = '';
+
+    videoData.forEach(video => {
+      track.innerHTML += `
+        <div class="bg-black/30 border border-gray-900 rounded-xl overflow-hidden shadow-lg group">
+          <div class="aspect-video bg-black relative flex items-center justify-center cursor-pointer overflow-hidden">
+            <div class="w-14 h-14 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm group-hover:scale-110 transition duration-300">
+              <span class="text-white text-xl ml-1">▶</span>
+            </div>
+          </div>
+          <div class="p-4 flex items-start gap-3">
+            <div class="bg-amber-900/40 p-2 rounded-lg text-[#fb832d] text-xs">📹</div>
+            <div>
+              <h4 class="text-xs md:text-sm font-medium text-gray-200 line-clamp-1">${video.title}</h4>
+              <p class="text-[11px] text-gray-500 mt-1">${video.date}</p>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+    
+    renderIndicators();
+  }
+
+  function renderIndicators() {
+    const indicators = document.getElementById('slider-indicators');
+    indicators.innerHTML = '';
+    const totalPages = Math.ceil(videoData.length / 3) || 1;
+    
+    for(let i = 0; i < totalPages; i++) {
+      indicators.innerHTML += `
+        <div class="h-1 w-6 rounded transition duration-300 ${i === currentIndex ? 'bg-[#fb832d]' : 'bg-gray-700'}"></div>
+      `;
+    }
+  }
+
+  function nextSlide() {
+    const maxPages = Math.ceil(videoData.length / 3);
+    if (currentIndex < maxPages - 1) {
+      currentIndex++;
+    } else {
+      currentIndex = 0; // loop back
+    }
+    // Implement simple slider scrolling transformation if scaling out beyond 3 items
+  }
+
+  function prevSlide() {
+    if (currentIndex > 0) {
+      currentIndex--;
+    } else {
+      currentIndex = Math.ceil(videoData.length / 3) - 1;
+    }
+  }
+
+  // Initialize view state on content ready runtime 
+  document.addEventListener('DOMContentLoaded', renderVideos);
+</script>
+
 
 </body>
+
 </html>
