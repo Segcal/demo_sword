@@ -1,609 +1,275 @@
-<div class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4">
-  <div class="relative w-full max-w-xl rounded-2xl border border-amber-500/20 bg-[#121110] p-6 md:p-8 shadow-2xl text-white">
-    
-    <button type="button" class="absolute right-5 top-5 text-zinc-400 hover:text-white transition-colors">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-      </svg>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HFGS Audition - Game</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-black text-white min-h-screen flex flex-col justify-between p-4 sm:p-8 font-sans select-none">
+
+  <!-- Header -->
+  <header class="w-full max-w-5xl mx-auto flex items-center justify-between">
+    <a href="#" class="inline-flex items-center text-gray-300 hover:text-white transition-colors text-sm font-medium gap-2">
+      <i data-lucide="arrow-left" class="w-4 h-4"></i>
+      <span>Back to Home</span>
+    </a>
+
+    <button class="inline-flex items-center gap-2 bg-[#1A120B] border border-[#3D2514] text-[#E08535] hover:bg-[#25190F] hover:text-[#F59E0B] px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all">
+      <i data-lucide="shield" class="w-4 h-4 text-[#E08535]"></i>
+      <span>View Leaderboard</span>
     </button>
+  </header>
 
-    <div class="mb-6">
-      <h2 class="text-lg md:text-xl font-semibold text-white">
-        Sponsorship / Investor Interest Form
-      </h2>
-      <p class="text-xs text-zinc-400 mt-1">
-        Complete the steps below to express your interest
-      </p>
-    </div>
-
-    <div class="flex items-center justify-between text-xs mb-8">
-      <div class="flex items-center gap-2">
-        <span class="flex h-6 w-6 items-center justify-center rounded-full bg-amber-500 text-black font-semibold text-xs">
-          1
-        </span>
-        <span class="font-medium text-amber-500">Interest</span>
+  <!-- Main Game Layout -->
+  <main class="flex-1 flex flex-col items-center justify-center py-6 w-full max-w-4xl mx-auto">
+    
+    <!-- Status Badges: Timer & Score -->
+    <div class="flex items-center justify-center gap-4 mb-6 w-full">
+      <!-- Timer -->
+      <div class="bg-[#411C06] border border-[#692E09] text-white px-6 py-2.5 rounded-full flex items-center gap-3 shadow-lg">
+        <i data-lucide="clock" class="w-5 h-5 text-[#F59E0B]"></i>
+        <span id="timer" class="text-xl font-bold tracking-wider">05:00</span>
       </div>
 
-      <div class="h-[1px] flex-1 bg-zinc-800 mx-3"></div>
-
-      <div class="flex items-center gap-2 text-zinc-500">
-        <span class="flex h-6 w-6 items-center justify-center rounded-full border border-zinc-700 bg-zinc-900 font-medium text-xs">
-          2
-        </span>
-        <span>Program</span>
-      </div>
-
-      <div class="h-[1px] flex-1 bg-zinc-800 mx-3"></div>
-
-      <div class="flex items-center gap-2 text-zinc-500">
-        <span class="flex h-6 w-6 items-center justify-center rounded-full border border-zinc-700 bg-zinc-900 font-medium text-xs">
-          3
-        </span>
-        <span>Category</span>
-      </div>
-
-      <div class="h-[1px] flex-1 bg-zinc-800 mx-3"></div>
-
-      <div class="flex items-center gap-2 text-zinc-500">
-        <span class="flex h-6 w-6 items-center justify-center rounded-full border border-zinc-700 bg-zinc-900 font-medium text-xs">
-          4
-        </span>
-        <span>Details</span>
+      <!-- Score -->
+      <div class="bg-[#120B06] border border-[#D97706]/40 text-white px-6 py-2.5 rounded-full flex items-center gap-2 shadow-lg">
+        <i data-lucide="database" class="w-5 h-5 text-[#F59E0B]"></i>
+        <span class="text-xl font-bold"><span id="score">0</span><span class="text-gray-400 font-normal text-sm"> / 10 points</span></span>
       </div>
     </div>
 
-    <div class="space-y-4 mb-8">
-      <label class="block text-xs font-normal text-zinc-300">
-        I am interested as a:
-      </label>
+    <!-- Question Info Card -->
+    <div class="w-full bg-[#120B06] border border-[#2A1D13] rounded-2xl px-6 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-4">
+      <h2 id="questionNum" class="text-lg sm:text-xl font-bold text-white">Question 1</h2>
+      <p class="text-xs sm:text-sm text-gray-400">Arrange the fragments into a correct sentence</p>
+    </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <!-- Playground Card -->
+    <div class="w-full bg-[#120B06] border border-[#2A1D13] rounded-3xl p-5 sm:p-8 flex flex-col justify-between min-h-[380px] shadow-2xl relative">
+      
+      <div>
+        <!-- Section: Your Arrangement -->
+        <div class="mb-6">
+          <p class="text-[11px] sm:text-xs font-semibold text-gray-400 tracking-wider uppercase mb-3">
+            YOUR ARRANGEMENT — <span class="text-gray-500 font-normal">TAP A TILE TO REMOVE IT</span>
+          </p>
+
+          <!-- Dropzone Container -->
+          <div id="arrangedZone" class="w-full min-h-[72px] bg-[#18100A] border border-dashed border-[#3D2919] rounded-2xl p-3 flex flex-wrap items-center gap-2 transition-all">
+            <!-- Dynamically populated or showing placeholder -->
+            <span id="placeholderText" class="text-xs sm:text-sm text-gray-600 px-2">Tap fragments below to arrange them here...</span>
+          </div>
+        </div>
+
+        <!-- Section: Available Fragments -->
+        <div>
+          <p class="text-[11px] sm:text-xs font-semibold text-gray-400 tracking-wider uppercase mb-3">
+            AVAILABLE FRAGMENTS — <span class="text-gray-500 font-normal">TAP TO PLACE</span>
+          </p>
+
+          <!-- Available Tiles Container -->
+          <div id="availableZone" class="flex flex-wrap items-center gap-3 min-h-[48px]">
+            <!-- Dynamically populated fragments -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Footer -->
+      <div class="flex justify-end mt-8">
+        <button 
+          id="nextBtn"
+          disabled
+          onclick="submitAnswer()"
+          class="bg-[#2D170B] text-gray-500 font-medium py-3.5 px-8 rounded-2xl transition-all duration-200 text-sm sm:text-base cursor-not-allowed border border-[#3D2110]"
+        >
+          Next Question
+        </button>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="w-full max-w-5xl mx-auto opacity-0 pointer-events-none">
+    <span class="text-xs">Footer</span>
+  </footer>
+
+  <!-- Game Logic JavaScript -->
+  <script>
+    // --- QUESTIONS DATA BANK (JSON) ---
+    const questionsData = [
+      {
+        id: 1,
+        originalOrder: [
+          "A peaceful mother",
+          "prays for the well-being",
+          "of the children",
+          "without ceasing"
+        ]
+      },
+      {
+        id: 2,
+        originalOrder: [
+          "children who are taught",
+          "good values at home",
+          "carry those lessons",
+          "throughout their lives"
+        ]
+      },
+      {
+        id: 3,
+        originalOrder: [
+          "Strong families build",
+          "resilient communities through",
+          "love and mutual respect",
+          "every single day"
+        ]
+      }
+    ];
+
+    // --- GAME STATE ---
+    let currentQuestionIdx = 0;
+    let score = 0;
+    let availableFragments = [];
+    let arrangedFragments = [];
+    let timeRemaining = 300; // 5 minutes (300 seconds)
+    let timerInterval = null;
+
+    // --- INITIALIZATION ---
+    window.onload = () => {
+      lucide.createIcons();
+      startTimer();
+      loadQuestion(currentQuestionIdx);
+    };
+
+    // --- TIMER LOGIC ---
+    function startTimer() {
+      const timerEl = document.getElementById('timer');
+      timerInterval = setInterval(() => {
+        timeRemaining--;
         
-        <div class="relative cursor-pointer rounded-xl border border-zinc-700/80 bg-[#1a1918] p-5 transition-all hover:border-amber-500/50">
-          <h3 class="text-sm font-semibold text-white mb-1">
-            Sponsor
-          </h3>
-          <p class="text-[11px] text-zinc-400 leading-snug">
-            Brand Visibility & Advertising Returns
-          </p>
-        </div>
+        const minutes = Math.floor(timeRemaining / 60);
+        const seconds = timeRemaining % 60;
+        timerEl.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 
-        <div class="relative cursor-pointer rounded-xl border border-zinc-800 bg-[#1a1918]/60 p-5 transition-all hover:border-amber-500/50 hover:bg-[#1a1918]">
-          <h3 class="text-sm font-semibold text-white mb-1">
-            Investor
-          </h3>
-          <p class="text-[11px] text-zinc-400 leading-snug">
-            Equity / Profit Participation
-          </p>
-        </div>
+        if (timeRemaining <= 0) {
+          clearInterval(timerInterval);
+          alert(`Time is up! Final Score: ${score}/10`);
+          // Handle flow end / redirection
+        }
+      }, 1000);
+    }
 
-      </div>
-    </div>
+    // --- GAME LOGIC & RENDERING ---
+    function loadQuestion(index) {
+      if (index >= questionsData.length) {
+        clearInterval(timerInterval);
+        alert(`Congratulations! Quiz finished. Score: ${score}/10`);
+        return;
+      }
 
-    <button 
-      type="button" 
-      class="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-orange-500 via-amber-500 to-amber-600 py-3.5 text-sm font-medium text-white shadow-lg shadow-orange-500/20 hover:brightness-110 active:scale-[0.99] transition-all"
-    >
-      <span>Continue</span>
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-      </svg>
-    </button>
-
-  </div>
-</div>
-
-
-<!--  -->
-
-<div class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4">
-  <div class="relative w-full max-w-xl rounded-2xl border border-amber-500/20 bg-[#121110] p-6 md:p-8 shadow-2xl text-white my-auto max-h-[90vh] flex flex-col">
-    
-    <button type="button" class="absolute right-5 top-5 text-zinc-400 hover:text-white transition-colors">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-      </svg>
-    </button>
-
-    <div class="mb-5 shrink-0">
-      <h2 class="text-lg md:text-xl font-semibold text-white">
-        Sponsorship Interest Form
-      </h2>
-      <p class="text-xs text-zinc-400 mt-1">
-        Complete the steps below to express your interest
-      </p>
-    </div>
-
-    <div class="flex items-center justify-between text-xs mb-6 shrink-0">
-      <div class="flex items-center gap-2">
-        <span class="flex h-6 w-6 items-center justify-center rounded-full bg-amber-500 text-black font-bold text-xs">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-          </svg>
-        </span>
-        <span class="font-medium text-amber-500 hidden sm:inline">Interest</span>
-      </div>
-
-      <div class="h-[1px] flex-1 bg-amber-500/50 mx-2 sm:mx-3"></div>
-
-      <div class="flex items-center gap-2">
-        <span class="flex h-6 w-6 items-center justify-center rounded-full border border-amber-500 bg-amber-500/10 text-amber-500 font-semibold text-xs">
-          2
-        </span>
-        <span class="font-medium text-amber-500">Program</span>
-      </div>
-
-      <div class="h-[1px] flex-1 bg-zinc-800 mx-2 sm:mx-3"></div>
-
-      <div class="flex items-center gap-2 text-zinc-500">
-        <span class="flex h-6 w-6 items-center justify-center rounded-full border border-zinc-700 bg-zinc-900 font-medium text-xs">
-          3
-        </span>
-        <span class="hidden sm:inline">Category</span>
-      </div>
-
-      <div class="h-[1px] flex-1 bg-zinc-800 mx-2 sm:mx-3"></div>
-
-      <div class="flex items-center gap-2 text-zinc-500">
-        <span class="flex h-6 w-6 items-center justify-center rounded-full border border-zinc-700 bg-zinc-900 font-medium text-xs">
-          4
-        </span>
-        <span class="hidden sm:inline">Details</span>
-      </div>
-    </div>
-
-    <label class="block text-xs font-normal text-zinc-300 mb-3 shrink-0">
-      Which program do you want to sponsor?
-    </label>
-
-    <div class="space-y-2.5 overflow-y-auto pr-1 mb-6 flex-1 custom-scrollbar">
+      document.getElementById('questionNum').textContent = `Question ${index + 1}`;
       
-      <div class="flex items-center justify-between rounded-xl border border-zinc-800 bg-[#1a1918]/80 p-3.5 md:p-4 text-xs hover:border-amber-500/40 hover:bg-[#1a1918] cursor-pointer transition-all">
-        <span class="font-medium text-zinc-200">Bible Stars Reality Show</span>
-        <span class="font-semibold text-amber-500 shrink-0 ml-2">₦450M — ₦600M</span>
-      </div>
+      const currentQ = questionsData[index];
+      // Create shuffled copy for options
+      availableFragments = [...currentQ.originalOrder].sort(() => Math.random() - 0.5);
+      arrangedFragments = [];
 
-      <div class="flex items-center justify-between rounded-xl border border-zinc-800 bg-[#1a1918]/80 p-3.5 md:p-4 text-xs hover:border-amber-500/40 hover:bg-[#1a1918] cursor-pointer transition-all">
-        <span class="font-medium text-zinc-200">Lorry Youth Mega Festival</span>
-        <span class="font-semibold text-amber-500 shrink-0 ml-2">₦50M — ₦70M</span>
-      </div>
+      renderTiles();
+    }
 
-      <div class="flex items-center justify-between rounded-xl border border-zinc-800 bg-[#1a1918]/80 p-3.5 md:p-4 text-xs hover:border-amber-500/40 hover:bg-[#1a1918] cursor-pointer transition-all">
-        <span class="font-medium text-zinc-200">Bible Championship Season 2</span>
-        <span class="font-semibold text-amber-500 shrink-0 ml-2">₦30M — ₦50M</span>
-      </div>
+    function renderTiles() {
+      const availableZone = document.getElementById('availableZone');
+      const arrangedZone = document.getElementById('arrangedZone');
+      const placeholderText = document.getElementById('placeholderText');
+      const nextBtn = document.getElementById('nextBtn');
 
-      <div class="flex items-center justify-between rounded-xl border border-zinc-800 bg-[#1a1918]/80 p-3.5 md:p-4 text-xs hover:border-amber-500/40 hover:bg-[#1a1918] cursor-pointer transition-all">
-        <span class="font-medium text-zinc-200">National Bible Quiz</span>
-        <span class="font-semibold text-amber-500 shrink-0 ml-2">₦75M — ₦100M</span>
-      </div>
+      // Clear contents
+      availableZone.innerHTML = '';
+      arrangedZone.innerHTML = '';
 
-      <div class="flex items-center justify-between rounded-xl border border-zinc-800 bg-[#1a1918]/80 p-3.5 md:p-4 text-xs hover:border-amber-500/40 hover:bg-[#1a1918] cursor-pointer transition-all">
-        <span class="font-medium text-zinc-200">Church & Youth Talk Show</span>
-        <span class="font-semibold text-amber-500 shrink-0 ml-2">₦25M — ₦40M</span>
-      </div>
+      // Render Arranged Area
+      if (arrangedFragments.length === 0) {
+        arrangedZone.appendChild(placeholderText);
+        placeholderText.style.display = 'block';
+      } else {
+        placeholderText.style.display = 'none';
+        arrangedFragments.forEach((text, idx) => {
+          const tile = document.createElement('button');
+          tile.className = "bg-[#2A170B] border border-[#F59E0B]/50 hover:border-[#F59E0B] text-[#F3EBE6] px-3.5 py-2.5 rounded-xl text-xs sm:text-sm flex items-center gap-2 transition-all active:scale-95 shadow-md";
+          tile.innerHTML = `
+            <span class="text-[#F59E0B] font-medium">${idx + 1}.</span>
+            <span>${text}</span>
+            <i data-lucide="x" class="w-3.5 h-3.5 text-gray-400 hover:text-white"></i>
+          `;
+          tile.onclick = () => removeFragment(idx);
+          arrangedZone.appendChild(tile);
+        });
+      }
 
-      <div class="flex items-center justify-between rounded-xl border border-zinc-800 bg-[#1a1918]/80 p-3.5 md:p-4 text-xs hover:border-amber-500/40 hover:bg-[#1a1918] cursor-pointer transition-all">
-        <span class="font-medium text-zinc-200">Bible Crown</span>
-        <span class="font-semibold text-amber-500 shrink-0 ml-2">₦15M — ₦20M</span>
-      </div>
+      // Render Available Area
+      if (availableFragments.length === 0) {
+        availableZone.innerHTML = `<span class="text-xs sm:text-sm text-gray-500 italic">All fragments placed. Submit when ready.</span>`;
+      } else {
+        availableFragments.forEach((text, idx) => {
+          const tile = document.createElement('button');
+          tile.className = "bg-[#1A120B] border border-[#2D2016] hover:border-[#D97706]/60 text-gray-200 hover:text-white px-4 py-2.5 rounded-xl text-xs sm:text-sm transition-all active:scale-95 shadow-sm";
+          tile.textContent = text;
+          tile.onclick = () => selectFragment(idx);
+          availableZone.appendChild(tile);
+        });
+      }
 
-      <div class="flex items-center justify-between rounded-xl border border-zinc-800 bg-[#1a1918]/80 p-3.5 md:p-4 text-xs hover:border-amber-500/40 hover:bg-[#1a1918] cursor-pointer transition-all">
-        <span class="font-medium text-zinc-200">Married Reality Show</span>
-        <span class="font-semibold text-amber-500 shrink-0 ml-2">₦25M — ₦40M</span>
-      </div>
+      // Refresh Icons inside newly injected HTML
+      lucide.createIcons();
 
-    </div>
+      // Enable/Disable "Next Question" Button
+      if (availableFragments.length === 0 && arrangedFragments.length > 0) {
+        nextBtn.disabled = false;
+        nextBtn.className = "bg-[#52250A] hover:bg-[#682E0B] text-[#F3EBE6] font-medium py-3.5 px-8 rounded-2xl transition-all duration-200 text-sm sm:text-base cursor-pointer shadow-lg hover:shadow-[#52250A]/20 active:scale-[0.99] border border-[#7C3A10]";
+      } else {
+        nextBtn.disabled = true;
+        nextBtn.className = "bg-[#2D170B] text-gray-500 font-medium py-3.5 px-8 rounded-2xl transition-all duration-200 text-sm sm:text-base cursor-not-allowed border border-[#3D2110]";
+      }
+    }
 
-    <div class="flex items-center gap-3 shrink-0 pt-2 border-t border-zinc-800/40">
-      <button 
-        type="button" 
-        class="flex items-center justify-center gap-1.5 rounded-xl border border-amber-500/30 bg-[#191715] px-5 py-3 text-xs font-semibold text-amber-500 hover:bg-amber-500/10 active:scale-[0.98] transition-all"
-      >
-        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-        </svg>
-        <span>Back</span>
-      </button>
+    function selectFragment(idx) {
+      const fragment = availableFragments.splice(idx, 1)[0];
+      arrangedFragments.push(fragment);
+      renderTiles();
+    }
 
-      <button 
-        type="button" 
-        class="flex-1 flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-orange-500 via-amber-500 to-amber-600 py-3 text-xs font-semibold text-white shadow-lg shadow-orange-500/20 hover:brightness-110 active:scale-[0.98] transition-all"
-      >
-        <span>Continue</span>
-        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-        </svg>
-      </button>
-    </div>
+    function removeFragment(idx) {
+      const fragment = arrangedFragments.splice(idx, 1)[0];
+      availableFragments.push(fragment);
+      renderTiles();
+    }
 
-  </div>
-</div>
+    function submitAnswer() {
+      const currentQ = questionsData[currentQuestionIdx];
+      const isCorrect = JSON.stringify(arrangedFragments) === JSON.stringify(currentQ.originalOrder);
 
-<!--  -->
+      if (isCorrect) {
+        score++;
+        document.getElementById('score').textContent = score;
+      }
 
-<div class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4">
-  <div class="relative w-full max-w-xl rounded-2xl border border-amber-500/20 bg-[#121110] p-6 md:p-8 shadow-2xl text-white my-auto max-h-[92vh] flex flex-col">
-    
-    <button type="button" class="absolute right-5 top-5 text-zinc-400 hover:text-white transition-colors">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-      </svg>
-    </button>
-
-    <div class="mb-5 shrink-0">
-      <h2 class="text-lg md:text-xl font-semibold text-white">
-        Sponsorship Interest Form
-      </h2>
-      <p class="text-xs text-zinc-400 mt-1">
-        Complete the steps below to express your interest
-      </p>
-    </div>
-
-    <div class="flex items-center justify-between text-xs mb-6 shrink-0">
-      <div class="flex items-center gap-2">
-        <span class="flex h-6 w-6 items-center justify-center rounded-full bg-amber-500 text-black font-bold text-xs">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-          </svg>
-        </span>
-        <span class="font-medium text-amber-500 hidden sm:inline">Interest</span>
-      </div>
-
-      <div class="h-[1px] flex-1 bg-amber-500/50 mx-2 sm:mx-3"></div>
-
-      <div class="flex items-center gap-2">
-        <span class="flex h-6 w-6 items-center justify-center rounded-full bg-amber-500 text-black font-bold text-xs">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-          </svg>
-        </span>
-        <span class="font-medium text-amber-500 hidden sm:inline">Program</span>
-      </div>
-
-      <div class="h-[1px] flex-1 bg-amber-500/50 mx-2 sm:mx-3"></div>
-
-      <div class="flex items-center gap-2">
-        <span class="flex h-6 w-6 items-center justify-center rounded-full border border-amber-500 bg-amber-500/10 text-amber-500 font-semibold text-xs">
-          3
-        </span>
-        <span class="font-medium text-amber-500">Category</span>
-      </div>
-
-      <div class="h-[1px] flex-1 bg-zinc-800 mx-2 sm:mx-3"></div>
-
-      <div class="flex items-center gap-2 text-zinc-500">
-        <span class="flex h-6 w-6 items-center justify-center rounded-full border border-zinc-700 bg-zinc-900 font-medium text-xs">
-          4
-        </span>
-        <span class="hidden sm:inline">Details</span>
-      </div>
-    </div>
-
-    <label class="block text-xs font-normal text-zinc-300 mb-3 shrink-0">
-      Select Sponsorship Category
-    </label>
-
-    <div class="space-y-3 overflow-y-auto pr-1 mb-6 flex-1 custom-scrollbar">
-
-      <div class="rounded-xl border border-amber-500/50 bg-[#1a1918] p-4 transition-all">
-        <div class="flex items-center gap-3 cursor-pointer">
-          <div class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 border-amber-500 bg-transparent">
-            <div class="h-2.5 w-2.5 rounded-full bg-amber-500"></div>
-          </div>
-          <div>
-            <h4 class="text-sm font-semibold text-white leading-none">Diamond Sponsor</h4>
-            <span class="text-[11px] text-zinc-400">Anchor Sponsor</span>
-          </div>
-        </div>
-
-        <div class="mt-4 pt-4 border-t border-zinc-800/80 space-y-4">
-          <div class="grid grid-cols-2 gap-3">
-            <div class="rounded-lg bg-[#121110] p-2.5 border border-zinc-800/60">
-              <span class="block text-[10px] text-zinc-500">Contribution</span>
-              <span class="text-xs font-bold text-zinc-200">55% of total project budget</span>
-            </div>
-            <div class="rounded-lg bg-[#121110] p-2.5 border border-zinc-800/60">
-              <span class="block text-[10px] text-zinc-500">Ad Value</span>
-              <span class="text-xs font-bold text-zinc-200">55% of total advertising value</span>
-            </div>
-          </div>
-
-          <div>
-            <span class="block text-[10px] uppercase font-bold tracking-wider text-zinc-400 mb-2">Benefits</span>
-            <ul class="space-y-1.5 text-xs text-zinc-300">
-              <li class="flex items-start gap-2">
-                <svg class="w-3.5 h-3.5 text-amber-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                <span>Exclusive lead branding across all platforms</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <svg class="w-3.5 h-3.5 text-amber-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                <span>Primary sponsor positioning on all media output</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <svg class="w-3.5 h-3.5 text-amber-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                <span>Maximum visibility and naming rights priority</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <svg class="w-3.5 h-3.5 text-amber-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                <span>VIP access and executive event presence</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="rounded-xl border border-zinc-800 bg-[#1a1918]/60 p-4 transition-all hover:border-zinc-700 hover:bg-[#1a1918] cursor-pointer">
-        <div class="flex items-center gap-3">
-          <div class="h-5 w-5 shrink-0 rounded-full border border-zinc-600 bg-transparent"></div>
-          <div>
-            <h4 class="text-sm font-semibold text-zinc-200">Gold Sponsor</h4>
-          </div>
-        </div>
-      </div>
-
-      <div class="rounded-xl border border-zinc-800 bg-[#1a1918]/60 p-4 transition-all hover:border-zinc-700 hover:bg-[#1a1918] cursor-pointer">
-        <div class="flex items-center gap-3">
-          <div class="h-5 w-5 shrink-0 rounded-full border border-zinc-600 bg-transparent"></div>
-          <div>
-            <h4 class="text-sm font-semibold text-zinc-200">Silver Sponsor</h4>
-          </div>
-        </div>
-      </div>
-
-      <div class="rounded-xl border border-zinc-800 bg-[#1a1918]/60 p-4 transition-all hover:border-zinc-700 hover:bg-[#1a1918] cursor-pointer">
-        <div class="flex items-center gap-3">
-          <div class="h-5 w-5 shrink-0 rounded-full border border-zinc-600 bg-transparent"></div>
-          <div>
-            <h4 class="text-sm font-semibold text-zinc-200">Bronze Sponsor</h4>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="flex items-center gap-3 shrink-0 pt-2 border-t border-zinc-800/40">
-      <button 
-        type="button" 
-        class="flex items-center justify-center gap-1.5 rounded-xl border border-amber-500/30 bg-[#191715] px-5 py-3 text-xs font-semibold text-amber-500 hover:bg-amber-500/10 active:scale-[0.98] transition-all"
-      >
-        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-        </svg>
-        <span>Back</span>
-      </button>
-
-      <button 
-        type="button" 
-        class="flex-1 flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-orange-500 via-amber-500 to-amber-600 py-3 text-xs font-semibold text-white shadow-lg shadow-orange-500/20 hover:brightness-110 active:scale-[0.98] transition-all"
-      >
-        <span>Continue</span>
-        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-        </svg>
-      </button>
-    </div>
-
-  </div>
-</div>
-
-<!--  -->
-
-<div class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4">
-  <div class="relative w-full max-w-xl rounded-2xl border border-amber-500/20 bg-[#121110] p-6 md:p-8 shadow-2xl text-white my-auto max-h-[92vh] flex flex-col">
-    
-    <button type="button" class="absolute right-5 top-5 text-zinc-400 hover:text-white transition-colors">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-      </svg>
-    </button>
-
-    <div class="mb-5 shrink-0">
-      <h2 class="text-lg md:text-xl font-semibold text-white">
-        Sponsorship Interest Form
-      </h2>
-      <p class="text-xs text-zinc-400 mt-1">
-        Complete the steps below to express your interest
-      </p>
-    </div>
-
-    <div class="flex items-center justify-between text-xs mb-6 shrink-0">
-      <div class="flex items-center gap-2">
-        <span class="flex h-6 w-6 items-center justify-center rounded-full bg-amber-500 text-black font-bold text-xs">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-          </svg>
-        </span>
-        <span class="font-medium text-amber-500 hidden sm:inline">Interest</span>
-      </div>
-
-      <div class="h-[1px] flex-1 bg-amber-500/50 mx-2 sm:mx-3"></div>
-
-      <div class="flex items-center gap-2">
-        <span class="flex h-6 w-6 items-center justify-center rounded-full bg-amber-500 text-black font-bold text-xs">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-          </svg>
-        </span>
-        <span class="font-medium text-amber-500 hidden sm:inline">Program</span>
-      </div>
-
-      <div class="h-[1px] flex-1 bg-amber-500/50 mx-2 sm:mx-3"></div>
-
-      <div class="flex items-center gap-2">
-        <span class="flex h-6 w-6 items-center justify-center rounded-full bg-amber-500 text-black font-bold text-xs">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-          </svg>
-        </span>
-        <span class="font-medium text-amber-500 hidden sm:inline">Category</span>
-      </div>
-
-      <div class="h-[1px] flex-1 bg-amber-500/50 mx-2 sm:mx-3"></div>
-
-      <div class="flex items-center gap-2">
-        <span class="flex h-6 w-6 items-center justify-center rounded-full border border-amber-500 bg-amber-500/10 text-amber-500 font-semibold text-xs">
-          4
-        </span>
-        <span class="font-medium text-amber-500">Details</span>
-      </div>
-    </div>
-
-    <label class="block text-xs font-normal text-zinc-300 mb-4 shrink-0">
-      Contact & Meeting Details
-    </label>
-
-    <div class="overflow-y-auto pr-1 mb-6 flex-1 space-y-3.5 custom-scrollbar">
-      
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-        <div>
-          <label class="block text-[11px] font-semibold uppercase tracking-wider text-zinc-300 mb-1">
-            Full Name <span class="text-orange-500">*</span>
-          </label>
-          <input 
-            type="text" 
-            placeholder="Enter full name" 
-            class="w-full rounded-xl bg-[#1c1b1a] border border-zinc-800 px-3.5 py-2.5 text-xs text-white placeholder-zinc-600 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition"
-          />
-        </div>
-
-        <div>
-          <label class="block text-[11px] font-semibold uppercase tracking-wider text-zinc-300 mb-1">
-            Email Address <span class="text-orange-500">*</span>
-          </label>
-          <input 
-            type="email" 
-            placeholder="Enter email address" 
-            class="w-full rounded-xl bg-[#1c1b1a] border border-zinc-800 px-3.5 py-2.5 text-xs text-white placeholder-zinc-600 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition"
-          />
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-        <div>
-          <label class="block text-[11px] font-semibold uppercase tracking-wider text-zinc-300 mb-1">
-            Phone Number <span class="text-orange-500">*</span>
-          </label>
-          <input 
-            type="tel" 
-            placeholder="Enter phone number" 
-            class="w-full rounded-xl bg-[#1c1b1a] border border-zinc-800 px-3.5 py-2.5 text-xs text-white placeholder-zinc-600 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition"
-          />
-        </div>
-
-        <div>
-          <label class="block text-[11px] font-semibold uppercase tracking-wider text-zinc-300 mb-1">
-            Location <span class="text-orange-500">*</span>
-          </label>
-          <input 
-            type="text" 
-            placeholder="City, Country" 
-            class="w-full rounded-xl bg-[#1c1b1a] border border-zinc-800 px-3.5 py-2.5 text-xs text-white placeholder-zinc-600 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition"
-          />
-        </div>
-      </div>
-
-      <div>
-        <label class="block text-[11px] font-semibold uppercase tracking-wider text-zinc-300 mb-1">
-          Occupation / Organisation
-        </label>
-        <input 
-          type="text" 
-          placeholder="Enter organisation or occupation" 
-          class="w-full rounded-xl bg-[#1c1b1a] border border-zinc-800 px-3.5 py-2.5 text-xs text-white placeholder-zinc-600 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition"
-        />
-      </div>
-
-      <div>
-        <label class="block text-[11px] font-semibold uppercase tracking-wider text-zinc-300 mb-1">
-          Preferred Meeting Date <span class="text-orange-500">*</span>
-        </label>
-        <input 
-          type="date" 
-          class="w-full rounded-xl bg-[#1c1b1a] border border-zinc-800 px-3.5 py-2.5 text-xs text-zinc-400 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition"
-        />
-      </div>
-
-      <div>
-        <label class="block text-[11px] font-semibold uppercase tracking-wider text-zinc-300 mb-1">
-          Preferred Meeting Time <span class="text-orange-500">*</span>
-        </label>
-        <input 
-          type="time" 
-          class="w-full rounded-xl bg-[#1c1b1a] border border-zinc-800 px-3.5 py-2.5 text-xs text-zinc-400 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition"
-        />
-      </div>
-
-      <div>
-        <label class="block text-[11px] font-semibold uppercase tracking-wider text-zinc-300 mb-1">
-          Preferred Meeting Mode (Optional)
-        </label>
-        <select class="w-full rounded-xl bg-[#1c1b1a] border border-zinc-800 px-3.5 py-2.5 text-xs text-zinc-400 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition appearance-none">
-          <option value="" disabled selected>Select meeting mode (e.g. Virtual, In-person)</option>
-          <option value="virtual">Virtual (Zoom / Google Meet)</option>
-          <option value="in-person">In-Person</option>
-          <option value="phone">Phone Call</option>
-        </select>
-      </div>
-
-    </div>
-
-    <div class="flex items-center gap-3 shrink-0 pt-2 border-t border-zinc-800/40">
-      <button 
-        type="button" 
-        class="flex items-center justify-center gap-1.5 rounded-xl border border-amber-500/30 bg-[#191715] px-5 py-3 text-xs font-semibold text-amber-500 hover:bg-amber-500/10 active:scale-[0.98] transition-all"
-      >
-        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-        </svg>
-        <span>Back</span>
-      </button>
-
-      <button 
-        type="submit" 
-        class="flex-1 flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-orange-500 via-amber-500 to-amber-600 py-3 text-xs font-semibold text-white shadow-lg shadow-orange-500/20 hover:brightness-110 active:scale-[0.98] transition-all"
-      >
-        <span>Schedule My Sponsorship Discussion</span>
-        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-        </svg>
-      </button>
-    </div>
-
-  </div>
-</div>
-
-<!--  -->
-
-<div class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4">
-  <div class="relative w-full max-w-lg rounded-2xl border border-amber-500/20 bg-[#121110] p-8 text-center shadow-2xl text-white my-auto">
-    
-    <button type="button" class="absolute right-5 top-5 text-zinc-400 hover:text-white transition-colors">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-      </svg>
-    </button>
-
-    <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-b from-amber-500/20 to-orange-500/10 border border-amber-500/40 text-orange-500 shadow-inner">
-      <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
-      </svg>
-    </div>
-
-    <h3 class="text-xl md:text-2xl font-bold text-white mb-3 tracking-tight">
-      Sponsorship Interest Received
-    </h3>
-
-    <p class="text-xs md:text-sm text-zinc-400 leading-relaxed mb-8 max-w-md mx-auto">
-      Thank you for your interest in <span class="font-medium text-zinc-200">Lorry Youth Mega Festival</span>. Our team will reach out to schedule your sponsorship discussion.
-    </p>
-
-    <button 
-      type="button" 
-      class="w-full max-w-[160px] mx-auto block rounded-xl bg-gradient-to-r from-orange-500 via-amber-500 to-amber-600 py-3 text-xs font-semibold text-white shadow-lg shadow-orange-500/30 hover:brightness-110 active:scale-[0.98] transition-all"
-    >
-      Done
-    </button>
-
-  </div>
-</div>
+      currentQuestionIdx++;
+      loadQuestion(currentQuestionIdx);
+    }
+  </script>
+</body>
+</html>

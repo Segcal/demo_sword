@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Online Audition</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .shake {
+            animation: shakeAnim 0.4s ease;
+        }
+
+        @keyframes shakeAnim {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            20% {
+                transform: translateX(-8px);
+            }
+
+            40% {
+                transform: translateX(8px);
+            }
+
+            60% {
+                transform: translateX(-6px);
+            }
+
+            80% {
+                transform: translateX(6px);
+            }
+        }
+
+        .flash-correct {
+            animation: flashGreen 0.5s ease;
+        }
+
+        @keyframes flashGreen {
+            0% {
+                background-color: rgba(34, 197, 94, 0.25);
+            }
+
+            100% {
+                background-color: transparent;
+            }
+        }
+
+        .flash-wrong {
+            animation: flashRed 0.5s ease;
+        }
+
+        @keyframes flashRed {
+            0% {
+                background-color: rgba(239, 68, 68, 0.25);
+            }
+
+            100% {
+                background-color: transparent;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-black text-white min-h-screen flex flex-col justify-between p-4 sm:p-8 font-sans select-none">
+
+    <!-- TOP NAVIGATION HEADER -->
+    <header class="w-full max-w-5xl mx-auto flex items-center justify-between">
+        <a href="#" onclick="resetToStep(1)"
+            class="inline-flex items-center text-gray-300 hover:text-white transition-colors text-sm font-medium gap-2">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+            <span>Back to Home</span>
+        </a>
+
+        <!-- Leaderboard Toggle Button (Hidden on Screen 1) -->
+        <button id="leaderboardNavBtn" onclick="toggleLeaderboardView()"
+            class="hidden inline-flex items-center gap-2 bg-[#1A120B] border border-[#3D2514] text-[#E08535] hover:bg-[#25190F] hover:text-[#F59E0B] px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all">
+            <i data-lucide="shield" class="w-4 h-4 text-[#E08535]"></i>
+            <span id="leaderboardBtnText">View Leaderboard</span>
+        </button>
+    </header>
+
+    <!-- DYNAMIC SCREEN CONTAINER -->
+    <main class="flex-1 flex flex-col items-center justify-center py-6 w-full max-w-5xl mx-auto">
+
+        <!-- STEP 1: AUDITION PIN ENTER SCREEN -->
+        <div id="step-1"
+            class="w-full max-w-[480px] bg-[#120B06] border border-[#2A1D13] rounded-3xl p-8 sm:p-10 flex flex-col items-center text-center shadow-2xl my-auto">
+            <div
+                class="w-20 h-20 rounded-full overflow-hidden border-2 border-[#D97706]/20 mb-6 flex items-center justify-center bg-[#1A120B] shadow-inner">
+                <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1786658239/f7ef6f0c33c18c9e0510a26e904a8e699b8fc3f0_nknamg.png"
+                    alt="The Happy Family Game Show Logo" class="w-full h-full object-cover" />
+            </div>
+            <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-white mb-2 leading-tight">
+                Welcome to the<br />
+                <span class="text-[#F59E0B]">HFGS audition platform.</span>
+            </h1>
+            <p class="text-gray-400 text-xs sm:text-sm font-normal mb-8">
+                1 minute • Reach 10 points to stand a chance for selection.
+            </p>
+            <form onsubmit="handlePinSubmit(event)" class="w-full flex flex-col gap-4" novalidate>
+                <input type="text" id="auditionPin" placeholder="Enter your Audition PIN" required minlength="4"
+                    autocomplete="off"
+                    class="w-full bg-[#1A130D] border border-[#2D2118] text-white placeholder-gray-500 rounded-xl px-4 py-3.5 text-sm sm:text-base focus:outline-none focus:border-[#F59E0B] focus:ring-1 focus:ring-[#F59E0B] transition-all text-center tracking-wide" />
+                <p id="pinError" class="hidden text-xs sm:text-sm text-red-400 font-medium -mt-1"></p>
+                <button type="submit"
+                    class="w-full bg-[#52250A] hover:bg-[#682E0B] text-[#F3EBE6] font-medium py-3.5 px-6 rounded-xl transition-all duration-200 text-sm sm:text-base shadow-lg hover:shadow-[#52250A]/20 active:scale-[0.99]">
+                    Access Platform
+                </button>
+            </form>
+            <div class="mt-8">
+                <a href="./obtain-pin.html"
+                    class="text-[#F59E0B] hover:text-[#FBBF24] text-xs sm:text-sm font-medium underline underline-offset-4 decoration-[#F59E0B]/50">
+                    Get Audition PIN — from ₦3,000
+                </a>
+            </div>
+        </div>
+
+        <!-- STEP 2: WELCOME & RULES SCREEN -->
+        <div id="step-2"
+            class="hidden w-full max-w-[520px] bg-[#120B06] border border-[#2A1D13] rounded-3xl p-6 sm:p-10 flex flex-col items-center text-center shadow-2xl my-auto">
+            <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-6">
+                Welcome, The Johnsons!
+            </h1>
+            <div
+                class="w-full bg-[#18110A] border border-[#3D2919] rounded-xl p-3.5 flex items-center justify-start gap-3 mb-6 text-left">
+                <i data-lucide="alert-circle" class="w-5 h-5 text-[#F59E0B] shrink-0"></i>
+                <span class="text-xs sm:text-sm font-medium text-[#F59E0B]/90">0 of 5 attempts used</span>
+            </div>
+            <div class="w-full bg-[#17100A] border border-[#2D1F14] rounded-2xl p-5 sm:p-6 mb-8 text-left">
+                <h2 class="text-[#F59E0B] font-semibold text-sm sm:text-base mb-4">Audition Rules</h2>
+                <ul class="space-y-3.5 text-xs sm:text-sm text-gray-300">
+                    <li class="flex items-start gap-3"><i data-lucide="check-circle-2"
+                            class="w-4 h-4 text-[#F59E0B] shrink-0 mt-0.5"></i><span>You will see scrambled sentence
+                            fragments. Tap them in the correct order to form a complete sentence.</span></li>
+                    <li class="flex items-start gap-3"><i data-lucide="check-circle-2"
+                            class="w-4 h-4 text-[#F59E0B] shrink-0 mt-0.5"></i><span>Each correct arrangement = 1 point.
+                            Incorrect = 0 points.</span></li>
+                    <li class="flex items-start gap-3"><i data-lucide="check-circle-2"
+                            class="w-4 h-4 text-[#F59E0B] shrink-0 mt-0.5"></i><span>10 questions in total. The audition
+                            ends automatically the moment you reach 10 points.</span></li>
+                    <li class="flex items-start gap-3"><i data-lucide="check-circle-2"
+                            class="w-4 h-4 text-[#F59E0B] shrink-0 mt-0.5"></i><span>Timer: 1 minute. If time expires
+                            before 10 points, your partial score is recorded.</span></li>
+                    <li class="flex items-start gap-3"><i data-lucide="check-circle-2"
+                            class="w-4 h-4 text-[#F59E0B] shrink-0 mt-0.5"></i><span>No backtracking: once you submit a
+                            question you cannot return to it.</span></li>
+                    <li class="flex items-start gap-3"><i data-lucide="check-circle-2"
+                            class="w-4 h-4 text-[#F59E0B] shrink-0 mt-0.5"></i><span>Top 5 fastest 10-point families
+                            become TV contestants. All others qualify for Home Prizes.</span></li>
+                </ul>
+            </div>
+            <button onclick="startAuditionGame()"
+                class="w-full max-w-[320px] bg-[#52250A] hover:bg-[#682E0B] text-[#F3EBE6] font-medium py-3.5 px-6 rounded-xl transition-all duration-200 text-sm sm:text-base shadow-lg">
+                Start Audition
+            </button>
+        </div>
+
+        <!-- STEP 3: GAME INTERFACE -->
+        <div id="step-3" class="hidden w-full max-w-4xl flex flex-col items-center">
+            <div class="flex items-center justify-center gap-4 mb-6 w-full">
+                <div id="timerPill"
+                    class="bg-[#411C06] border border-[#692E09] text-white px-6 py-2.5 rounded-full flex items-center gap-3 shadow-lg transition-colors">
+                    <i data-lucide="clock" class="w-5 h-5 text-[#F59E0B]"></i>
+                    <span id="timer" class="text-xl font-bold tracking-wider">01:00</span>
+                </div>
+                <div
+                    class="bg-[#120B06] border border-[#D97706]/40 text-white px-6 py-2.5 rounded-full flex items-center gap-2 shadow-lg">
+                    <i data-lucide="database" class="w-5 h-5 text-[#F59E0B]"></i>
+                    <span class="text-xl font-bold"><span id="score">0</span><span
+                            class="text-gray-400 font-normal text-sm"> / 10 points</span></span>
+                </div>
+            </div>
+            <div
+                class="w-full bg-[#120B06] border border-[#2A1D13] rounded-2xl px-6 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-4">
+                <h2 id="questionNum" class="text-lg sm:text-xl font-bold text-white">Question 1 of 10</h2>
+                <p class="text-xs sm:text-sm text-gray-400">Arrange the fragments into a correct sentence</p>
+            </div>
+            <div id="gameCard"
+                class="w-full bg-[#120B06] border border-[#2A1D13] rounded-3xl p-5 sm:p-8 flex flex-col justify-between min-h-[380px] shadow-2xl transition-colors">
+                <div>
+                    <div class="mb-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <p class="text-[11px] sm:text-xs font-semibold text-gray-400 tracking-wider uppercase">YOUR
+                                ARRANGEMENT — <span class="text-gray-500 font-normal">TAP A TILE TO REMOVE IT</span></p>
+                            <span id="feedbackBadge"
+                                class="hidden text-[11px] sm:text-xs font-bold px-3 py-1 rounded-full"></span>
+                        </div>
+                        <div id="arrangedZone"
+                            class="w-full min-h-[72px] bg-[#18100A] border border-dashed border-[#3D2919] rounded-2xl p-3 flex flex-wrap items-center gap-2 transition-all">
+                            <span id="placeholderText" class="text-xs sm:text-sm text-gray-600 px-2">Tap fragments below
+                                to arrange them here...</span>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-[11px] sm:text-xs font-semibold text-gray-400 tracking-wider uppercase mb-3">
+                            AVAILABLE FRAGMENTS — <span class="text-gray-500 font-normal">TAP TO PLACE</span></p>
+                        <div id="availableZone" class="flex flex-wrap items-center gap-3 min-h-[48px]"></div>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between mt-8">
+                    <button id="clearBtn" onclick="clearArrangement()"
+                        class="text-xs sm:text-sm text-gray-400 hover:text-white font-medium transition-colors underline underline-offset-4 decoration-gray-600">
+                        Clear &amp; restart fragment
+                    </button>
+                    <button id="nextBtn" disabled onclick="submitAnswer()"
+                        class="bg-[#2D170B] text-gray-500 font-medium py-3.5 px-8 rounded-2xl transition-all duration-200 text-sm sm:text-base cursor-not-allowed border border-[#3D2110]">
+                        Next Question
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- STEP 4: AUDITION COMPLETED MODAL -->
+        <div id="step-4"
+            class="hidden w-full max-w-[480px] bg-[#120B06] border border-[#2A1D13] rounded-3xl p-6 sm:p-10 flex flex-col items-center text-center shadow-2xl relative my-auto">
+            <button onclick="goToLeaderboard()"
+                class="absolute top-6 right-6 text-gray-400 hover:text-white transition-colors p-1"><i data-lucide="x"
+                    class="w-5 h-5"></i></button>
+            <div
+                class="w-16 h-16 rounded-full bg-[#3D1D09] border border-[#7C3A10] flex items-center justify-center mb-6 shadow-inner">
+                <i data-lucide="check" class="w-8 h-8 text-[#F59E0B]"></i>
+            </div>
+            <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-white mb-2">Audition Completed!</h1>
+            <p class="text-gray-400 text-xs sm:text-sm font-normal mb-6 max-w-xs leading-relaxed">Your responses have
+                been submitted and your performance is below.</p>
+            <div
+                class="w-full bg-[#18100A] border border-[#2D1F14] rounded-2xl p-4 sm:p-5 mb-6 flex flex-col gap-3.5 text-xs sm:text-sm">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2.5 text-gray-300"><i data-lucide="clock"
+                            class="w-4 h-4 text-[#F59E0B]"></i><span>Completion Time</span></div><span id="finalTime"
+                        class="font-semibold text-white">0m 0s</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2.5 text-gray-300"><i data-lucide="shield"
+                            class="w-4 h-4 text-[#F59E0B]"></i><span>Score</span></div><span id="finalScore"
+                        class="font-semibold text-[#F59E0B]">0 / 10 points</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2.5 text-gray-300"><i data-lucide="check-circle-2"
+                            class="w-4 h-4 text-[#F59E0B] shrink-0 mt-0.5"></i><span>Position</span></div><span
+                        class="font-semibold text-white">9th</span>
+                </div>
+            </div>
+            <div class="w-full flex flex-col gap-3">
+                <button onclick="goToLeaderboard()"
+                    class="w-full bg-transparent border border-[#3D2514] hover:border-[#D97706]/60 text-white font-medium py-3.5 px-6 rounded-full transition-all duration-200 text-sm">View
+                    Leaderboard</button>
+                <button onclick="startAuditionGame()"
+                    class="w-full bg-[#52250A] hover:bg-[#682E0B] text-[#F3EBE6] border border-[#7C3A10]/50 font-medium py-3.5 px-6 rounded-full transition-all duration-200 text-sm shadow-lg">Play
+                    Again</button>
+            </div>
+        </div>
+
+        <!-- STEP 5: LIVE LEADERBOARD -->
+        <div id="step-5" class="hidden w-full max-w-5xl flex flex-col items-center">
+            <section
+                class="w-full bg-[#0F0804] border border-[#2A1D13] rounded-3xl p-8 sm:p-10 flex flex-col items-center text-center shadow-2xl mb-6">
+                <div class="w-12 h-12 rounded-full bg-[#3D1D09] flex items-center justify-center mb-4 shadow-inner"><i
+                        data-lucide="shield" class="w-5 h-5 text-[#F59E0B]"></i></div>
+                <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-2">Live Leaderboard</h1>
+                <p class="text-gray-400 text-xs sm:text-sm font-normal mb-6">Ranked by Score &rarr; Completion Time
+                    (fastest wins)</p>
+                <div
+                    class="inline-flex items-center gap-2 bg-[#2D170B] border border-[#52250A] rounded-full px-4 py-1.5">
+                    <div class="w-2 h-2 rounded-full bg-[#F59E0B] animate-pulse"></div><span
+                        class="text-[#F59E0B] text-[11px] sm:text-xs font-semibold tracking-wide uppercase">Live —
+                        updates in real time</span>
+                </div>
+            </section>
+
+            <section class="w-full bg-[#0F0804] border border-[#2A1D13] rounded-3xl overflow-hidden shadow-2xl mb-6">
+                <div class="w-full overflow-x-auto no-scrollbar">
+                    <div class="min-w-[700px]">
+                        <div
+                            class="flex items-center px-6 py-4 text-[10px] sm:text-xs text-gray-500 font-bold uppercase tracking-wider border-b border-[#2A1D13]">
+                            <div class="w-16">Rank</div>
+                            <div class="flex-1">Family Name</div>
+                            <div class="w-32">State</div>
+                            <div class="w-24">Score</div>
+                            <div class="w-24">Time</div>
+                        </div>
+
+                        <div class="flex items-center gap-4 px-6 py-4"><span
+                                class="text-[10px] text-[#F59E0B] font-semibold uppercase tracking-wider whitespace-nowrap">Currently
+                                in Live Show Zone</span>
+                            <div class="h-px bg-[#3D2514] flex-1"></div>
+                        </div>
+                        <div class="flex flex-col">
+                            <div
+                                class="flex items-center px-6 py-4 hover:bg-[#1A100A] transition-colors border-b border-[#2A1D13]/50">
+                                <div class="w-16">
+                                    <div
+                                        class="w-7 h-7 rounded-full bg-[#F59E0B] text-black font-bold text-xs flex items-center justify-center">
+                                        1</div>
+                                </div>
+                                <div class="flex-1 font-semibold text-white">The Johnsons</div>
+                                <div class="w-32 text-sm text-gray-300">Lagos</div>
+                                <div class="w-24 font-bold text-[#F59E0B]">10/10</div>
+                                <div class="w-24 text-sm text-gray-300">4m 12s</div>
+                            </div>
+                            <div
+                                class="flex items-center px-6 py-4 hover:bg-[#1A100A] transition-colors border-b border-[#2A1D13]/50">
+                                <div class="w-16">
+                                    <div
+                                        class="w-7 h-7 rounded-full bg-[#F59E0B] text-black font-bold text-xs flex items-center justify-center">
+                                        2</div>
+                                </div>
+                                <div class="flex-1 font-semibold text-white">The Adeoyes</div>
+                                <div class="w-32 text-sm text-gray-300">Oyo</div>
+                                <div class="w-24 font-bold text-[#F59E0B]">10/10</div>
+                                <div class="w-24 text-sm text-gray-300">4m 45s</div>
+                            </div>
+                            <div
+                                class="flex items-center px-6 py-4 hover:bg-[#1A100A] transition-colors border-b border-[#2A1D13]/50">
+                                <div class="w-16">
+                                    <div
+                                        class="w-7 h-7 rounded-full bg-[#F59E0B] text-black font-bold text-xs flex items-center justify-center">
+                                        3</div>
+                                </div>
+                                <div class="flex-1 font-semibold text-white">The Victors</div>
+                                <div class="w-32 text-sm text-gray-300">Abuja (FCT)</div>
+                                <div class="w-24 font-bold text-[#F59E0B]">10/10</div>
+                                <div class="w-24 text-sm text-gray-300">5m 09s</div>
+                            </div>
+                            <div
+                                class="flex items-center px-6 py-4 hover:bg-[#1A100A] transition-colors border-b border-[#2A1D13]/50">
+                                <div class="w-16">
+                                    <div
+                                        class="w-7 h-7 rounded-full bg-[#F59E0B] text-black font-bold text-xs flex items-center justify-center">
+                                        4</div>
+                                </div>
+                                <div class="flex-1 font-semibold text-white">The Nelsons</div>
+                                <div class="w-32 text-sm text-gray-300">Kwara</div>
+                                <div class="w-24 font-bold text-[#F59E0B]">10/10</div>
+                                <div class="w-24 text-sm text-gray-300">5m 41s</div>
+                            </div>
+                            <div class="flex items-center px-6 py-4 hover:bg-[#1A100A] transition-colors">
+                                <div class="w-16">
+                                    <div
+                                        class="w-7 h-7 rounded-full bg-[#F59E0B] text-black font-bold text-xs flex items-center justify-center">
+                                        5</div>
+                                </div>
+                                <div class="flex-1 font-semibold text-white">The Achievers</div>
+                                <div class="w-32 text-sm text-gray-300">Rivers</div>
+                                <div class="w-24 font-bold text-[#F59E0B]">10/10</div>
+                                <div class="w-24 text-sm text-gray-300">6m 18s</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4 px-6 py-4"><span
+                                class="text-[10px] text-[#7C481A] font-semibold uppercase tracking-wider whitespace-nowrap">Currently
+                                in Home Prize Zone</span>
+                            <div class="h-px bg-[#2A1D13] flex-1"></div>
+                        </div>
+                        <div class="flex flex-col">
+                            <div
+                                class="flex items-center px-6 py-4 hover:bg-[#1A100A] transition-colors border-b border-[#2A1D13]/50">
+                                <div class="w-16">
+                                    <div
+                                        class="w-7 h-7 rounded-full bg-[#2A1D13] text-gray-300 font-bold text-xs flex items-center justify-center">
+                                        6</div>
+                                </div>
+                                <div class="flex-1 font-semibold text-white">The Davids</div>
+                                <div class="w-32 text-sm text-gray-400">Ogun</div>
+                                <div class="w-24 font-bold text-[#F59E0B]">10/10</div>
+                                <div class="w-24 text-sm text-gray-400">7m 02s</div>
+                            </div>
+                            <div
+                                class="flex items-center px-6 py-4 hover:bg-[#1A100A] transition-colors border-b border-[#2A1D13]/50">
+                                <div class="w-16">
+                                    <div
+                                        class="w-7 h-7 rounded-full bg-[#2A1D13] text-gray-300 font-bold text-xs flex items-center justify-center">
+                                        7</div>
+                                </div>
+                                <div class="flex-1 font-semibold text-white">The Martins</div>
+                                <div class="w-32 text-sm text-gray-400">Kano</div>
+                                <div class="w-24 font-bold text-[#F59E0B]">10/10</div>
+                                <div class="w-24 text-sm text-gray-400">7m 55s</div>
+                            </div>
+                            <div class="flex items-center px-6 py-4 hover:bg-[#1A100A] transition-colors">
+                                <div class="w-16">
+                                    <div
+                                        class="w-7 h-7 rounded-full bg-[#2A1D13] text-gray-300 font-bold text-xs flex items-center justify-center">
+                                        8</div>
+                                </div>
+                                <div class="flex-1 font-semibold text-white">The Emmanuels</div>
+                                <div class="w-32 text-sm text-gray-400">Enugu</div>
+                                <div class="w-24 font-bold text-[#F59E0B]">10/10</div>
+                                <div class="w-24 text-sm text-gray-400">8m 30s</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4 px-6 py-4"><span
+                                class="text-[10px] text-[#7C481A] font-semibold uppercase tracking-wider whitespace-nowrap">Currently
+                                in Home Prize Zone</span>
+                            <div class="h-px bg-[#2A1D13] flex-1"></div>
+                        </div>
+                        <div class="flex flex-col pb-4">
+                            <div
+                                class="flex items-center px-6 py-4 hover:bg-[#1A100A] transition-colors border-b border-[#2A1D13]/50">
+                                <div class="w-16">
+                                    <div
+                                        class="w-7 h-7 rounded-full bg-[#2A1D13] text-gray-300 font-bold text-xs flex items-center justify-center">
+                                        9</div>
+                                </div>
+                                <div class="flex-1 font-semibold text-white">The Bakers</div>
+                                <div class="w-32 text-sm text-gray-400">Delta</div>
+                                <div class="w-24 font-bold text-[#F59E0B]">9/10</div>
+                                <div class="w-24 text-sm text-gray-400">10m 00s</div>
+                            </div>
+                            <div class="flex items-center px-6 py-4 hover:bg-[#1A100A] transition-colors">
+                                <div class="w-16">
+                                    <div
+                                        class="w-7 h-7 rounded-full bg-[#2A1D13] text-gray-300 font-bold text-xs flex items-center justify-center text-[10px]">
+                                        10</div>
+                                </div>
+                                <div class="flex-1 font-semibold text-white">The Okafor</div>
+                                <div class="w-32 text-sm text-gray-400">Anambra</div>
+                                <div class="w-24 font-bold text-[#F59E0B]">8/10</div>
+                                <div class="w-24 text-sm text-gray-400">10m 00s</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="w-full bg-[#0F0804] border border-[#2A1D13] rounded-2xl p-6 sm:p-8">
+                <h3 class="text-sm font-medium text-gray-400 mb-4">Ranking Criteria:</h3>
+                <ul class="space-y-3">
+                    <li class="flex items-start gap-3"><i data-lucide="check-circle-2"
+                            class="w-4 h-4 text-gray-500 shrink-0 mt-0.5"></i><span
+                            class="text-xs sm:text-sm text-gray-500">Score: families who reached 10 points rank above
+                            all others</span></li>
+                    <li class="flex items-start gap-3"><i data-lucide="check-circle-2"
+                            class="w-4 h-4 text-gray-500 shrink-0 mt-0.5"></i><span
+                            class="text-xs sm:text-sm text-gray-500">Completion Time: among tied 10-point families,
+                            fastest time wins</span></li>
+                    <li class="flex items-start gap-3"><i data-lucide="check-circle-2"
+                            class="w-4 h-4 text-gray-500 shrink-0 mt-0.5"></i><span
+                            class="text-xs sm:text-sm text-gray-500">Top 5 at the end of the audition become TV
+                            contestants. All other 10-point families qualify for Happy Family Home Prizes.</span></li>
+                    <li class="flex items-start gap-3"><i data-lucide="check-circle-2"
+                            class="w-4 h-4 text-gray-500 shrink-0 mt-0.5"></i><span
+                            class="text-xs sm:text-sm text-gray-500">Rankings are generated automatically. No human
+                            interference in the selection process</span></li>
+                </ul>
+            </footer>
+        </div>
+
+    </main>
+
+    <footer class="w-full max-w-5xl mx-auto opacity-0 pointer-events-none">
+        <span class="text-xs">Footer</span>
+    </footer>
+
+    <!-- SCRIPT LOGIC -->
+    <script>
+        // ============================================================
+        // QUESTION BANK — a pool of sentence-fragment questions.
+        // Every audition randomly draws 10 UNIQUE questions from this
+        // pool (shuffled), and each question's fragments are shuffled
+        // independently, so no two attempts look identical.
+        // Pool has 16 entries so there's always a healthy draw of 10+.
+        // ============================================================
+        const QUESTION_POOL = [
+            ["A peaceful mother", "prays for the well-being", "of the children", "without ceasing"],
+            ["Children who are taught", "good values at home", "carry those lessons", "throughout their lives"],
+            ["Strong families build", "resilient communities through", "love and mutual respect", "every single day"],
+            ["A father who listens", "earns the trust", "of his children", "far more than one who shouts"],
+            ["Every happy home", "is built one", "small kindness", "at a time"],
+            ["Forgiveness between spouses", "keeps a marriage", "strong and", "full of peace"],
+            ["When parents pray together", "their children learn", "the value of", "a faithful home"],
+            ["Discipline given in love", "shapes a child's character", "far better than", "discipline given in anger"],
+            ["A family that eats together", "often finds it easier", "to talk through", "its problems together"],
+            ["Gratitude shared at the table", "reminds every family member", "of how much", "they have to be thankful for"],
+            ["Patience is the quiet glue", "that holds a family together", "through every season", "of change"],
+            ["Grandparents pass down wisdom", "that no textbook", "can ever", "fully replace"],
+            ["A united couple", "faces every storm", "with far more strength", "than a divided one"],
+            ["Laughter shared at home", "is medicine that", "heals even the", "hardest of days"],
+            ["Teaching children to serve others", "builds character that", "will guide them", "for the rest of their lives"],
+            ["A home built on faith", "gives every family member", "a steady place", "to return to"]
+        ];
+
+        const TOTAL_QUESTIONS = 10;
+        const GAME_DURATION_SECONDS = 60; // 1 minute
+        const WIN_SCORE = 10;
+
+        // STATE MANAGEMENT
+        let currentStep = 1;
+        let previousStep = 1;
+        let currentQuestionIdx = 0;
+        let score = 0;
+        let sessionQuestions = [];      // the 10 questions drawn for this session
+        let availableFragments = [];
+        let arrangedFragments = [];
+        let timeRemaining = GAME_DURATION_SECONDS;
+        let timerInterval = null;
+        let gameActive = false;         // guards against actions after game ends
+        let answering = false;          // guards against double-submits mid-transition
+
+        window.onload = () => {
+            lucide.createIcons();
+        };
+
+        // ---------- utility: Fisher–Yates shuffle (does not mutate input) ----------
+        function shuffle(arr) {
+            const copy = [...arr];
+            for (let i = copy.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [copy[i], copy[j]] = [copy[j], copy[i]];
+            }
+            return copy;
+        }
+
+        // Build a fresh, randomized set of exactly TOTAL_QUESTIONS questions
+        function buildSessionQuestions() {
+            if (!Array.isArray(QUESTION_POOL) || QUESTION_POOL.length === 0) {
+                console.error('Question pool is empty — cannot start audition.');
+                return [];
+            }
+            const shuffledPool = shuffle(QUESTION_POOL);
+            const picked = [];
+            // Draw unique questions first
+            for (let i = 0; i < shuffledPool.length && picked.length < TOTAL_QUESTIONS; i++) {
+                picked.push(shuffledPool[i]);
+            }
+            // Safety net: if the pool is smaller than TOTAL_QUESTIONS, top up by
+            // re-shuffling and reusing entries so the game always has 10 rounds.
+            let fillerIdx = 0;
+            const backup = shuffle(QUESTION_POOL);
+            while (picked.length < TOTAL_QUESTIONS) {
+                picked.push(backup[fillerIdx % backup.length]);
+                fillerIdx++;
+            }
+            return picked.map(fragments => ({
+                originalOrder: [...fragments],
+                scrambled: shuffle(fragments)
+            }));
+        }
+
+        // SPA FLOW CONTROLLER
+        function showStep(stepNum) {
+            previousStep = currentStep;
+            currentStep = stepNum;
+
+            for (let i = 1; i <= 5; i++) {
+                const el = document.getElementById(`step-${i}`);
+                if (el) el.classList.add('hidden');
+            }
+            const target = document.getElementById(`step-${stepNum}`);
+            if (target) target.classList.remove('hidden');
+
+            // Control Nav Button Visibility & Text
+            const navBtn = document.getElementById('leaderboardNavBtn');
+            const btnText = document.getElementById('leaderboardBtnText');
+
+            if (stepNum === 1) {
+                navBtn.classList.add('hidden');
+            } else {
+                navBtn.classList.remove('hidden');
+                btnText.textContent = (stepNum === 5) ? 'Hide Leaderboard' : 'View Leaderboard';
+            }
+
+            lucide.createIcons();
+        }
+
+        function resetToStep(stepNum) {
+            stopGame();
+            hidePinError();
+            const pinInput = document.getElementById('auditionPin');
+            if (pinInput) pinInput.value = '';
+            showStep(stepNum);
+        }
+
+        function toggleLeaderboardView() {
+            if (currentStep === 5) {
+                showStep(previousStep === 5 ? 2 : previousStep);
+            } else {
+                showStep(5);
+            }
+        }
+
+        // ---------- PIN VALIDATION ----------
+        function showPinError(message) {
+            const errEl = document.getElementById('pinError');
+            const input = document.getElementById('auditionPin');
+            errEl.textContent = message;
+            errEl.classList.remove('hidden');
+            input.classList.add('border-red-500', 'focus:border-red-500', 'focus:ring-red-500');
+            input.classList.remove('focus:border-[#F59E0B]', 'focus:ring-[#F59E0B]');
+        }
+
+        function hidePinError() {
+            const errEl = document.getElementById('pinError');
+            const input = document.getElementById('auditionPin');
+            if (!errEl || !input) return;
+            errEl.classList.add('hidden');
+            errEl.textContent = '';
+            input.classList.remove('border-red-500', 'focus:border-red-500', 'focus:ring-red-500');
+            input.classList.add('focus:border-[#F59E0B]', 'focus:ring-[#F59E0B]');
+        }
+
+        function handlePinSubmit(e) {
+            e.preventDefault();
+            const input = document.getElementById('auditionPin');
+            const raw = (input.value || '').trim();
+
+            hidePinError();
+
+            if (raw.length === 0) {
+                showPinError('Please enter your Audition PIN to continue.');
+                input.focus();
+                return;
+            }
+            if (raw.length < 4) {
+                showPinError('That PIN looks too short. Please check and try again.');
+                input.focus();
+                return;
+            }
+            // Only allow letters/numbers/dashes in a PIN — guards against junk input
+            if (!/^[A-Za-z0-9-]+$/.test(raw)) {
+                showPinError('PIN can only contain letters, numbers, and dashes.');
+                input.focus();
+                return;
+            }
+
+            input.value = raw;
+            showStep(2);
+        }
+
+        // ---------- GAME ENGINE ----------
+        function startAuditionGame() {
+            sessionQuestions = buildSessionQuestions();
+
+            if (!sessionQuestions.length) {
+                alert('Something went wrong loading audition questions. Please refresh and try again.');
+                return;
+            }
+
+            score = 0;
+            currentQuestionIdx = 0;
+            timeRemaining = GAME_DURATION_SECONDS;
+            gameActive = true;
+            answering = false;
+
+            document.getElementById('score').textContent = score;
+            resetTimerPillStyle();
+
+            showStep(3);
+            startTimer();
+            loadQuestion(currentQuestionIdx);
+        }
+
+        function stopGame() {
+            gameActive = false;
+            clearInterval(timerInterval);
+            timerInterval = null;
+            cancelAutoAdvance();
+        }
+
+        function startTimer() {
+            clearInterval(timerInterval);
+            const timerEl = document.getElementById('timer');
+            updateTimerDisplay(timerEl);
+
+            timerInterval = setInterval(() => {
+                if (!gameActive) {
+                    clearInterval(timerInterval);
+                    return;
+                }
+                timeRemaining--;
+                if (timeRemaining < 0) timeRemaining = 0;
+                updateTimerDisplay(timerEl);
+
+                // Visual urgency cue in the final 10 seconds
+                if (timeRemaining <= 10 && timeRemaining > 0) {
+                    document.getElementById('timerPill').classList.add('border-red-500', 'text-red-400');
+                }
+
+                if (timeRemaining <= 0) {
+                    finishGame();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay(timerEl) {
+            const mins = Math.floor(timeRemaining / 60);
+            const secs = timeRemaining % 60;
+            timerEl.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        }
+
+        function resetTimerPillStyle() {
+            const pill = document.getElementById('timerPill');
+            pill.classList.remove('border-red-500', 'text-red-400');
+        }
+
+        function loadQuestion(index) {
+            if (!gameActive) return;
+
+            // Validation: stop the game safely if the score already hit the win
+            // condition or we've run out of questions/time.
+            if (score >= WIN_SCORE) {
+                finishGame();
+                return;
+            }
+            if (index >= sessionQuestions.length || index >= TOTAL_QUESTIONS) {
+                finishGame();
+                return;
+            }
+            if (timeRemaining <= 0) {
+                finishGame();
+                return;
+            }
+
+            answering = false;
+            document.getElementById('questionNum').textContent = `Question ${index + 1} of ${TOTAL_QUESTIONS}`;
+            const currentQ = sessionQuestions[index];
+
+            // Defensive check: skip a malformed question rather than crash
+            if (!currentQ || !Array.isArray(currentQ.originalOrder) || currentQ.originalOrder.length === 0) {
+                console.error('Malformed question at index', index, currentQ);
+                currentQuestionIdx++;
+                loadQuestion(currentQuestionIdx);
+                return;
+            }
+
+            availableFragments = shuffle(currentQ.originalOrder);
+            arrangedFragments = [];
+            clearFeedbackBadge();
+
+            renderTiles();
+        }
+
+        function renderTiles() {
+            const availableZone = document.getElementById('availableZone');
+            const arrangedZone = document.getElementById('arrangedZone');
+            const placeholderText = document.getElementById('placeholderText');
+            const nextBtn = document.getElementById('nextBtn');
+
+            availableZone.innerHTML = '';
+            arrangedZone.innerHTML = '';
+
+            if (arrangedFragments.length === 0) {
+                arrangedZone.appendChild(placeholderText);
+                placeholderText.style.display = 'block';
+            } else {
+                placeholderText.style.display = 'none';
+                arrangedFragments.forEach((text, idx) => {
+                    const tile = document.createElement('button');
+                    tile.type = 'button';
+                    tile.className = "bg-[#2A170B] border border-[#F59E0B]/50 hover:border-[#F59E0B] text-[#F3EBE6] px-3.5 py-2.5 rounded-xl text-xs sm:text-sm flex items-center gap-2 transition-all active:scale-95 shadow-md";
+                    tile.innerHTML = `
+            <span class="text-[#F59E0B] font-medium">${idx + 1}.</span>
+            <span>${escapeHtml(text)}</span>
+            <i data-lucide="x" class="w-3.5 h-3.5 text-gray-400 hover:text-white"></i>
+          `;
+                    tile.onclick = () => removeFragment(idx);
+                    arrangedZone.appendChild(tile);
+                });
+            }
+
+            if (availableFragments.length === 0) {
+                availableZone.innerHTML = `<span class="text-xs sm:text-sm text-gray-500 italic">All fragments placed. Submit when ready.</span>`;
+            } else {
+                availableFragments.forEach((text, idx) => {
+                    const tile = document.createElement('button');
+                    tile.type = 'button';
+                    tile.className = "bg-[#1A120B] border border-[#2D2016] hover:border-[#D97706]/60 text-gray-200 hover:text-white px-4 py-2.5 rounded-xl text-xs sm:text-sm transition-all active:scale-95 shadow-sm";
+                    tile.textContent = text;
+                    tile.onclick = () => selectFragment(idx);
+                    availableZone.appendChild(tile);
+                });
+            }
+
+            lucide.createIcons();
+
+            // Full validation gate: the arrangement is only "complete" once
+            // every fragment has been placed AND the game is still active.
+            const allPlaced = availableFragments.length === 0 && arrangedFragments.length > 0;
+            if (allPlaced && gameActive && !answering) {
+                nextBtn.disabled = false;
+                nextBtn.className = "bg-[#52250A] hover:bg-[#682E0B] text-[#F3EBE6] font-medium py-3.5 px-8 rounded-2xl transition-all duration-200 text-sm sm:text-base cursor-pointer shadow-lg border border-[#7C3A10]";
+
+                // Auto-advance: the moment the arrangement is complete, move the
+                // user on to the next question automatically — no extra click
+                // required. The button stays as a visible/manual fallback in case
+                // the auto-advance timer gets interrupted for any reason.
+                scheduleAutoAdvance();
+            } else {
+                nextBtn.disabled = true;
+                nextBtn.className = "bg-[#2D170B] text-gray-500 font-medium py-3.5 px-8 rounded-2xl transition-all duration-200 text-sm sm:text-base cursor-not-allowed border border-[#3D2110]";
+                cancelAutoAdvance();
+            }
+        }
+
+        // ---------- AUTO-ADVANCE ----------
+        let autoAdvanceTimeout = null;
+
+        function scheduleAutoAdvance() {
+            cancelAutoAdvance(); // never stack more than one pending auto-advance
+            autoAdvanceTimeout = setTimeout(() => {
+                autoAdvanceTimeout = null;
+                // Re-validate right before firing — state may have changed
+                // (timer ran out, user cleared the arrangement, etc.)
+                if (gameActive && !answering && availableFragments.length === 0 && arrangedFragments.length > 0) {
+                    submitAnswer();
+                }
+            }, 400); // short pause so the completed arrangement is visible first
+        }
+
+        function cancelAutoAdvance() {
+            if (autoAdvanceTimeout) {
+                clearTimeout(autoAdvanceTimeout);
+                autoAdvanceTimeout = null;
+            }
+        }
+
+        // Minimal HTML-escaping so question text can never break markup
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        function selectFragment(idx) {
+            if (!gameActive || answering) return;
+            if (idx < 0 || idx >= availableFragments.length) return; // bounds check
+            arrangedFragments.push(availableFragments.splice(idx, 1)[0]);
+            renderTiles();
+        }
+
+        function removeFragment(idx) {
+            if (!gameActive || answering) return;
+            if (idx < 0 || idx >= arrangedFragments.length) return; // bounds check
+            availableFragments.push(arrangedFragments.splice(idx, 1)[0]);
+            renderTiles();
+        }
+
+        function clearArrangement() {
+            if (!gameActive || answering) return;
+            availableFragments = [...availableFragments, ...arrangedFragments];
+            arrangedFragments = [];
+            renderTiles();
+        }
+
+        function clearFeedbackBadge() {
+            const badge = document.getElementById('feedbackBadge');
+            badge.classList.add('hidden');
+            badge.textContent = '';
+            badge.className = 'hidden text-[11px] sm:text-xs font-bold px-3 py-1 rounded-full';
+        }
+
+        function submitAnswer() {
+            // Full validation before scoring:
+            // 1. Game must still be active (timer hasn't run out mid-click)
+            // 2. Not already mid-submission (prevents double-submit / double-score)
+            // 3. Every fragment must be placed — no partial answers scored
+            // 4. The question being answered must actually exist
+            if (!gameActive || answering) return;
+            if (availableFragments.length !== 0 || arrangedFragments.length === 0) return;
+
+            const currentQ = sessionQuestions[currentQuestionIdx];
+            if (!currentQ) {
+                finishGame();
+                return;
+            }
+
+            answering = true;
+
+            const isCorrect =
+                arrangedFragments.length === currentQ.originalOrder.length &&
+                arrangedFragments.every((frag, i) => frag === currentQ.originalOrder[i]);
+
+            const card = document.getElementById('gameCard');
+            const badge = document.getElementById('feedbackBadge');
+
+            if (isCorrect) {
+                score = Math.min(score + 1, WIN_SCORE); // never exceed the win score
+                document.getElementById('score').textContent = score;
+                badge.textContent = 'Correct! +1 point';
+                badge.className = 'text-[11px] sm:text-xs font-bold px-3 py-1 rounded-full bg-green-500/15 text-green-400 border border-green-500/30';
+                card.classList.remove('flash-wrong');
+                void card.offsetWidth; // restart animation
+                card.classList.add('flash-correct');
+            } else {
+                badge.textContent = 'Incorrect — 0 points';
+                badge.className = 'text-[11px] sm:text-xs font-bold px-3 py-1 rounded-full bg-red-500/15 text-red-400 border border-red-500/30';
+                card.classList.remove('shake');
+                void card.offsetWidth; // restart animation
+                card.classList.add('shake');
+            }
+            badge.classList.remove('hidden');
+
+            currentQuestionIdx++;
+
+            // Brief pause so the family can see correct/incorrect feedback,
+            // then either auto-finish (win / out of questions) or load next.
+            setTimeout(() => {
+                if (!gameActive) return; // timer may have ended during the pause
+                if (score >= WIN_SCORE || currentQuestionIdx >= TOTAL_QUESTIONS) {
+                    finishGame();
+                } else {
+                    loadQuestion(currentQuestionIdx);
+                }
+            }, 650);
+        }
+
+        function finishGame() {
+            if (!gameActive) return; // prevent double-finish
+            stopGame();
+
+            const elapsedSeconds = GAME_DURATION_SECONDS - timeRemaining;
+            const mins = Math.floor(elapsedSeconds / 60);
+            const secs = elapsedSeconds % 60;
+
+            document.getElementById('finalTime').textContent = `${mins}m ${secs}s`;
+            document.getElementById('finalScore').textContent = `${score} / ${WIN_SCORE} points`;
+
+            showStep(4);
+        }
+
+        function goToLeaderboard() {
+            showStep(5);
+        }
+    </script>
+</body>
+
+</html>

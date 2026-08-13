@@ -1,494 +1,247 @@
-<div class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4">
-  <div class="relative w-full max-w-xl rounded-2xl border border-amber-500/20 bg-[#121110] p-6 md:p-8 shadow-2xl text-white my-auto max-h-[90vh] flex flex-col">
-    
-    <button type="button" class="absolute right-5 top-5 text-zinc-400 hover:text-white transition-colors">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-      </svg>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HFGS Audition - Live Leaderboard</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    /* Hide scrollbar for the table wrapper on mobile while allowing scroll */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-black text-white min-h-screen flex flex-col items-center p-4 sm:p-8 font-sans">
+
+  <!-- Top Navigation -->
+  <header class="w-full max-w-5xl flex items-center justify-between mb-8">
+    <a href="#" class="inline-flex items-center text-gray-300 hover:text-white transition-colors text-sm font-medium gap-2">
+      <i data-lucide="arrow-left" class="w-4 h-4"></i>
+      <span>Back to Home</span>
+    </a>
+
+    <!-- Hide Leaderboard Button -->
+    <button class="inline-flex items-center gap-2 bg-[#1A120B] border border-[#3D2514] text-[#E08535] hover:bg-[#25190F] hover:text-[#F59E0B] px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all">
+      <i data-lucide="shield" class="w-4 h-4 text-[#E08535]"></i>
+      <span>Hide Leaderboard</span>
     </button>
+  </header>
 
-    <div class="mb-5 shrink-0">
-      <h2 class="text-lg md:text-xl font-semibold text-white">
-        Investor Interest Form
-      </h2>
-      <p class="text-xs text-zinc-400 mt-1">
-        Complete the steps below to express your interest
-      </p>
-    </div>
-
-    <div class="flex items-center justify-between text-xs mb-6 shrink-0">
-      <div class="flex items-center gap-2">
-        <span class="flex h-6 w-6 items-center justify-center rounded-full bg-amber-500 text-black font-bold text-xs">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-          </svg>
-        </span>
-        <span class="font-medium text-amber-500 hidden sm:inline">Interest</span>
-      </div>
-
-      <div class="h-[1px] flex-1 bg-amber-500/50 mx-2 sm:mx-3"></div>
-
-      <div class="flex items-center gap-2">
-        <span class="flex h-6 w-6 items-center justify-center rounded-full border border-amber-500 bg-amber-500/10 text-amber-500 font-semibold text-xs">
-          2
-        </span>
-        <span class="font-medium text-amber-500">Program</span>
-      </div>
-
-      <div class="h-[1px] flex-1 bg-zinc-800 mx-2 sm:mx-3"></div>
-
-      <div class="flex items-center gap-2 text-zinc-500">
-        <span class="flex h-6 w-6 items-center justify-center rounded-full border border-zinc-700 bg-zinc-900 font-medium text-xs">
-          3
-        </span>
-        <span class="hidden sm:inline">Category</span>
-      </div>
-
-      <div class="h-[1px] flex-1 bg-zinc-800 mx-2 sm:mx-3"></div>
-
-      <div class="flex items-center gap-2 text-zinc-500">
-        <span class="flex h-6 w-6 items-center justify-center rounded-full border border-zinc-700 bg-zinc-900 font-medium text-xs">
-          4
-        </span>
-        <span class="hidden sm:inline">Details</span>
-      </div>
-    </div>
-
-    <label class="block text-xs font-normal text-zinc-300 mb-3 shrink-0">
-      Which program do you want to invest in?
-    </label>
-
-    <div class="space-y-2.5 overflow-y-auto pr-1 mb-6 flex-1 custom-scrollbar">
-      
-      <div class="flex items-center justify-between rounded-xl border border-zinc-800 bg-[#1a1918]/80 p-3.5 md:p-4 text-xs hover:border-amber-500/40 hover:bg-[#1a1918] cursor-pointer transition-all">
-        <span class="font-medium text-zinc-200">Bible Stars Reality Show</span>
-        <span class="font-semibold text-amber-500 shrink-0 ml-2">₦450M — ₦600M</span>
-      </div>
-
-      <div class="flex items-center justify-between rounded-xl border border-zinc-800 bg-[#1a1918]/80 p-3.5 md:p-4 text-xs hover:border-amber-500/40 hover:bg-[#1a1918] cursor-pointer transition-all">
-        <span class="font-medium text-zinc-200">Lorry Youth Mega Festival</span>
-        <span class="font-semibold text-amber-500 shrink-0 ml-2">₦50M — ₦70M</span>
-      </div>
-
-      <div class="flex items-center justify-between rounded-xl border border-zinc-800 bg-[#1a1918]/80 p-3.5 md:p-4 text-xs hover:border-amber-500/40 hover:bg-[#1a1918] cursor-pointer transition-all">
-        <span class="font-medium text-zinc-200">Bible Championship Season 2</span>
-        <span class="font-semibold text-amber-500 shrink-0 ml-2">₦30M — ₦50M</span>
-      </div>
-
-      <div class="flex items-center justify-between rounded-xl border border-zinc-800 bg-[#1a1918]/80 p-3.5 md:p-4 text-xs hover:border-amber-500/40 hover:bg-[#1a1918] cursor-pointer transition-all">
-        <span class="font-medium text-zinc-200">National Bible Quiz</span>
-        <span class="font-semibold text-amber-500 shrink-0 ml-2">₦75M — ₦100M</span>
-      </div>
-
-      <div class="flex items-center justify-between rounded-xl border border-zinc-800 bg-[#1a1918]/80 p-3.5 md:p-4 text-xs hover:border-amber-500/40 hover:bg-[#1a1918] cursor-pointer transition-all">
-        <span class="font-medium text-zinc-200">Church & Youth Talk Show</span>
-        <span class="font-semibold text-amber-500 shrink-0 ml-2">₦25M — ₦40M</span>
-      </div>
-
-      <div class="flex items-center justify-between rounded-xl border border-zinc-800 bg-[#1a1918]/80 p-3.5 md:p-4 text-xs hover:border-amber-500/40 hover:bg-[#1a1918] cursor-pointer transition-all">
-        <span class="font-medium text-zinc-200">Bible Crown</span>
-        <span class="font-semibold text-amber-500 shrink-0 ml-2">₦15M — ₦20M</span>
-      </div>
-
-      <div class="flex items-center justify-between rounded-xl border border-zinc-800 bg-[#1a1918]/80 p-3.5 md:p-4 text-xs hover:border-amber-500/40 hover:bg-[#1a1918] cursor-pointer transition-all">
-        <span class="font-medium text-zinc-200">Married Reality Show</span>
-        <span class="font-semibold text-amber-500 shrink-0 ml-2">₦25M — ₦40M</span>
-      </div>
-
-    </div>
-
-    <div class="flex items-center gap-3 shrink-0 pt-2 border-t border-zinc-800/40">
-      <button 
-        type="button" 
-        class="flex items-center justify-center gap-1.5 rounded-xl border border-amber-500/30 bg-[#191715] px-5 py-3 text-xs font-semibold text-amber-500 hover:bg-amber-500/10 active:scale-[0.98] transition-all"
-      >
-        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-        </svg>
-        <span>Back</span>
-      </button>
-
-      <button 
-        type="button" 
-        class="flex-1 flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-orange-500 via-amber-500 to-amber-600 py-3 text-xs font-semibold text-white shadow-lg shadow-orange-500/20 hover:brightness-110 active:scale-[0.98] transition-all"
-      >
-        <span>Continue</span>
-        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-        </svg>
-      </button>
-    </div>
-
-  </div>
-</div>
-
-
-<!--  -->
-
-<div class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4">
-  <div class="relative w-full max-w-xl rounded-2xl border border-amber-500/20 bg-[#121110] p-6 md:p-8 shadow-2xl text-white my-auto max-h-[92vh] flex flex-col">
+  <!-- Hero Section -->
+  <section class="w-full max-w-5xl bg-[#0F0804] border border-[#2A1D13] rounded-3xl p-8 sm:p-10 flex flex-col items-center text-center shadow-2xl mb-6">
     
-    <button type="button" class="absolute right-5 top-5 text-zinc-400 hover:text-white transition-colors">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-      </svg>
-    </button>
-
-    <div class="mb-5 shrink-0">
-      <h2 class="text-lg md:text-xl font-semibold text-white">
-        Investor Interest Form
-      </h2>
-      <p class="text-xs text-zinc-400 mt-1">
-        Complete the steps below to express your interest
-      </p>
+    <!-- Shield Icon Badge -->
+    <div class="w-12 h-12 rounded-full bg-[#3D1D09] flex items-center justify-center mb-4 shadow-inner">
+      <i data-lucide="shield" class="w-5 h-5 text-[#F59E0B]"></i>
     </div>
 
-    <div class="flex items-center justify-between text-xs mb-6 shrink-0">
-      <div class="flex items-center gap-2">
-        <span class="flex h-6 w-6 items-center justify-center rounded-full bg-amber-500 text-black font-bold text-xs">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-          </svg>
-        </span>
-        <span class="font-medium text-amber-500 hidden sm:inline">Interest</span>
-      </div>
-
-      <div class="h-[1px] flex-1 bg-amber-500/50 mx-2 sm:mx-3"></div>
-
-      <div class="flex items-center gap-2">
-        <span class="flex h-6 w-6 items-center justify-center rounded-full bg-amber-500 text-black font-bold text-xs">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-          </svg>
-        </span>
-        <span class="font-medium text-amber-500 hidden sm:inline">Program</span>
-      </div>
-
-      <div class="h-[1px] flex-1 bg-amber-500/50 mx-2 sm:mx-3"></div>
-
-      <div class="flex items-center gap-2">
-        <span class="flex h-6 w-6 items-center justify-center rounded-full border border-amber-500 bg-amber-500/10 text-amber-500 font-semibold text-xs">
-          3
-        </span>
-        <span class="font-medium text-amber-500">Category</span>
-      </div>
-
-      <div class="h-[1px] flex-1 bg-zinc-800 mx-2 sm:mx-3"></div>
-
-      <div class="flex items-center gap-2 text-zinc-500">
-        <span class="flex h-6 w-6 items-center justify-center rounded-full border border-zinc-700 bg-zinc-900 font-medium text-xs">
-          4
-        </span>
-        <span class="hidden sm:inline">Details</span>
-      </div>
-    </div>
-
-    <label class="block text-xs font-normal text-zinc-300 mb-3 shrink-0">
-      Select Investment Tier
-    </label>
-
-    <div class="space-y-3 overflow-y-auto pr-1 mb-6 flex-1 custom-scrollbar">
-
-      <div class="rounded-xl border border-amber-500/50 bg-[#1a1918] p-4 transition-all">
-        <div class="flex items-center gap-3 cursor-pointer">
-          <div class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 border-amber-500 bg-transparent">
-            <div class="h-2.5 w-2.5 rounded-full bg-amber-500"></div>
-          </div>
-          <div>
-            <h4 class="text-sm font-semibold text-white leading-none">Lead Investor</h4>
-          </div>
-        </div>
-
-        <div class="mt-4 pt-4 border-t border-zinc-800/80 space-y-4">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div class="rounded-lg bg-[#121110] p-2.5 border border-zinc-800/60">
-              <span class="block text-[10px] uppercase font-semibold text-zinc-500 mb-0.5">Participation Share</span>
-              <p class="text-xs text-zinc-300 leading-snug">
-                Major equity stake based on agreed valuation of selected program
-              </p>
-            </div>
-            <div class="rounded-lg bg-[#121110] p-2.5 border border-zinc-800/60">
-              <span class="block text-[10px] uppercase font-semibold text-zinc-500 mb-0.5">Role</span>
-              <p class="text-xs text-zinc-300 leading-snug">
-                Strategic financial partner with oversight participation
-              </p>
-            </div>
-          </div>
-
-          <div>
-            <span class="block text-[10px] uppercase font-bold tracking-wider text-zinc-400 mb-2">Returns</span>
-            <ul class="space-y-1.5 text-xs text-zinc-300">
-              <li class="flex items-start gap-2">
-                <svg class="w-3.5 h-3.5 text-amber-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-                </svg>
-                <span>Profit participation from total project revenue</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <svg class="w-3.5 h-3.5 text-amber-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-                </svg>
-                <span>Revenue streams: advertising sales, licensing, syndication, partnerships, and event monetization</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="rounded-xl border border-zinc-800 bg-[#1a1918]/60 p-4 transition-all hover:border-zinc-700 hover:bg-[#1a1918] cursor-pointer">
-        <div class="flex items-center gap-3">
-          <div class="h-5 w-5 shrink-0 rounded-full border border-zinc-600 bg-transparent"></div>
-          <div>
-            <h4 class="text-sm font-semibold text-zinc-200">Co-Investor</h4>
-          </div>
-        </div>
-
-        </div>
-
-    </div>
-
-    <div class="flex items-center gap-3 shrink-0 pt-2 border-t border-zinc-800/40">
-      <button 
-        type="button" 
-        class="flex items-center justify-center gap-1.5 rounded-xl border border-amber-500/30 bg-[#191715] px-5 py-3 text-xs font-semibold text-amber-500 hover:bg-amber-500/10 active:scale-[0.98] transition-all"
-      >
-        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-        </svg>
-        <span>Back</span>
-      </button>
-
-      <button 
-        type="button" 
-        class="flex-1 flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-orange-500 via-amber-500 to-amber-600 py-3 text-xs font-semibold text-white shadow-lg shadow-orange-500/20 hover:brightness-110 active:scale-[0.98] transition-all"
-      >
-        <span>Continue</span>
-        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-        </svg>
-      </button>
-    </div>
-
-  </div>
-</div>
-
-<!--  -->
-
-<div class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4">
-  <div class="relative w-full max-w-xl rounded-2xl border border-amber-500/20 bg-[#121110] p-6 md:p-8 shadow-2xl text-white my-auto max-h-[92vh] flex flex-col">
+    <!-- Title -->
+    <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-2">
+      Live Leaderboard
+    </h1>
     
-    <button type="button" class="absolute right-5 top-5 text-zinc-400 hover:text-white transition-colors">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-      </svg>
-    </button>
-
-    <div class="mb-5 shrink-0">
-      <h2 class="text-lg md:text-xl font-semibold text-white">
-        Investor Interest Form
-      </h2>
-      <p class="text-xs text-zinc-400 mt-1">
-        Complete the steps below to express your interest
-      </p>
-    </div>
-
-    <div class="flex items-center justify-between text-xs mb-6 shrink-0">
-      <div class="flex items-center gap-2">
-        <span class="flex h-6 w-6 items-center justify-center rounded-full bg-amber-500 text-black font-bold text-xs">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-          </svg>
-        </span>
-        <span class="font-medium text-amber-500 hidden sm:inline">Interest</span>
-      </div>
-
-      <div class="h-[1px] flex-1 bg-amber-500/50 mx-2 sm:mx-3"></div>
-
-      <div class="flex items-center gap-2">
-        <span class="flex h-6 w-6 items-center justify-center rounded-full bg-amber-500 text-black font-bold text-xs">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-          </svg>
-        </span>
-        <span class="font-medium text-amber-500 hidden sm:inline">Program</span>
-      </div>
-
-      <div class="h-[1px] flex-1 bg-amber-500/50 mx-2 sm:mx-3"></div>
-
-      <div class="flex items-center gap-2">
-        <span class="flex h-6 w-6 items-center justify-center rounded-full bg-amber-500 text-black font-bold text-xs">
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-          </svg>
-        </span>
-        <span class="font-medium text-amber-500 hidden sm:inline">Category</span>
-      </div>
-
-      <div class="h-[1px] flex-1 bg-amber-500/50 mx-2 sm:mx-3"></div>
-
-      <div class="flex items-center gap-2">
-        <span class="flex h-6 w-6 items-center justify-center rounded-full border border-amber-500 bg-amber-500/10 text-amber-500 font-semibold text-xs">
-          4
-        </span>
-        <span class="font-medium text-amber-500">Details</span>
-      </div>
-    </div>
-
-    <label class="block text-xs font-normal text-zinc-300 mb-4 shrink-0">
-      Contact & Meeting Details
-    </label>
-
-    <div class="overflow-y-auto pr-1 mb-6 flex-1 space-y-3.5 custom-scrollbar">
-      
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-        <div>
-          <label class="block text-[11px] font-semibold uppercase tracking-wider text-zinc-300 mb-1">
-            Full Name <span class="text-orange-500">*</span>
-          </label>
-          <input 
-            type="text" 
-            placeholder="Enter full name" 
-            class="w-full rounded-xl bg-[#1c1b1a] border border-zinc-800 px-3.5 py-2.5 text-xs text-white placeholder-zinc-600 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition"
-          />
-        </div>
-
-        <div>
-          <label class="block text-[11px] font-semibold uppercase tracking-wider text-zinc-300 mb-1">
-            Email Address <span class="text-orange-500">*</span>
-          </label>
-          <input 
-            type="email" 
-            placeholder="Enter email address" 
-            class="w-full rounded-xl bg-[#1c1b1a] border border-zinc-800 px-3.5 py-2.5 text-xs text-white placeholder-zinc-600 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition"
-          />
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-        <div>
-          <label class="block text-[11px] font-semibold uppercase tracking-wider text-zinc-300 mb-1">
-            Phone Number <span class="text-orange-500">*</span>
-          </label>
-          <input 
-            type="tel" 
-            placeholder="Enter phone number" 
-            class="w-full rounded-xl bg-[#1c1b1a] border border-zinc-800 px-3.5 py-2.5 text-xs text-white placeholder-zinc-600 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition"
-          />
-        </div>
-
-        <div>
-          <label class="block text-[11px] font-semibold uppercase tracking-wider text-zinc-300 mb-1">
-            Location <span class="text-orange-500">*</span>
-          </label>
-          <input 
-            type="text" 
-            placeholder="City, Country" 
-            class="w-full rounded-xl bg-[#1c1b1a] border border-zinc-800 px-3.5 py-2.5 text-xs text-white placeholder-zinc-600 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition"
-          />
-        </div>
-      </div>
-
-      <div>
-        <label class="block text-[11px] font-semibold uppercase tracking-wider text-zinc-300 mb-1">
-          Occupation / Organisation
-        </label>
-        <input 
-          type="text" 
-          placeholder="Enter organisation or occupation" 
-          class="w-full rounded-xl bg-[#1c1b1a] border border-zinc-800 px-3.5 py-2.5 text-xs text-white placeholder-zinc-600 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition"
-        />
-      </div>
-
-      <div>
-        <label class="block text-[11px] font-semibold uppercase tracking-wider text-zinc-300 mb-1">
-          Preferred Meeting Date <span class="text-orange-500">*</span>
-        </label>
-        <input 
-          type="date" 
-          class="w-full rounded-xl bg-[#1c1b1a] border border-zinc-800 px-3.5 py-2.5 text-xs text-zinc-400 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition"
-        />
-      </div>
-
-      <div>
-        <label class="block text-[11px] font-semibold uppercase tracking-wider text-zinc-300 mb-1">
-          Preferred Meeting Time <span class="text-orange-500">*</span>
-        </label>
-        <input 
-          type="time" 
-          class="w-full rounded-xl bg-[#1c1b1a] border border-zinc-800 px-3.5 py-2.5 text-xs text-zinc-400 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition"
-        />
-      </div>
-
-      <div>
-        <label class="block text-[11px] font-semibold uppercase tracking-wider text-zinc-300 mb-1">
-          Preferred Meeting Mode (Optional)
-        </label>
-        <select class="w-full rounded-xl bg-[#1c1b1a] border border-zinc-800 px-3.5 py-2.5 text-xs text-zinc-400 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 transition appearance-none">
-          <option value="" disabled selected>Select meeting mode (e.g. Virtual, In-person)</option>
-          <option value="virtual">Virtual (Zoom / Google Meet)</option>
-          <option value="in-person">In-Person</option>
-          <option value="phone">Phone Call</option>
-        </select>
-      </div>
-
-    </div>
-
-    <div class="flex items-center gap-3 shrink-0 pt-2 border-t border-zinc-800/40">
-      <button 
-        type="button" 
-        class="flex items-center justify-center gap-1.5 rounded-xl border border-amber-500/30 bg-[#191715] px-5 py-3 text-xs font-semibold text-amber-500 hover:bg-amber-500/10 active:scale-[0.98] transition-all"
-      >
-        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-        </svg>
-        <span>Back</span>
-      </button>
-
-      <button 
-        type="submit" 
-        class="flex-1 flex items-center justify-center gap-1.5 rounded-xl bg-gradient-to-r from-orange-500 via-amber-500 to-amber-600 py-3 text-xs font-semibold text-white shadow-lg shadow-orange-500/20 hover:brightness-110 active:scale-[0.98] transition-all"
-      >
-        <span>Schedule My Investment Discussion</span>
-        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-        </svg>
-      </button>
-    </div>
-
-  </div>
-</div>
-
-<!--  -->
-
-<div class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4">
-  <div class="relative w-full max-w-lg rounded-2xl border border-amber-500/20 bg-[#121110] p-8 text-center shadow-2xl text-white my-auto">
-    
-    <button type="button" class="absolute right-5 top-5 text-zinc-400 hover:text-white transition-colors">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-      </svg>
-    </button>
-
-    <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-b from-amber-500/20 to-orange-500/10 border border-amber-500/40 text-orange-500 shadow-inner">
-      <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
-      </svg>
-    </div>
-
-    <h3 class="text-xl md:text-2xl font-bold text-white mb-3 tracking-tight">
-      Investment Interest Received
-    </h3>
-
-    <p class="text-xs md:text-sm text-zinc-400 leading-relaxed mb-8 max-w-md mx-auto">
-      Thank you for your interest in <span class="font-medium text-zinc-200">Bible Crown</span>. Our team will reach out to schedule your investment consultation.
+    <p class="text-gray-400 text-xs sm:text-sm font-normal mb-6">
+      Ranked by Score &rarr; Completion Time (fastest wins)
     </p>
 
-    <button 
-      type="button" 
-      class="w-full max-w-[160px] mx-auto block rounded-xl bg-gradient-to-r from-orange-500 via-amber-500 to-amber-600 py-3 text-xs font-semibold text-white shadow-lg shadow-orange-500/30 hover:brightness-110 active:scale-[0.98] transition-all"
-    >
-      Done
-    </button>
+    <!-- Live Status Pill -->
+    <div class="inline-flex items-center gap-2 bg-[#2D170B] border border-[#52250A] rounded-full px-4 py-1.5">
+      <div class="w-2 h-2 rounded-full bg-[#F59E0B] animate-pulse"></div>
+      <span class="text-[#F59E0B] text-[11px] sm:text-xs font-semibold tracking-wide uppercase">Live — updates in real time</span>
+    </div>
+  </section>
 
-  </div>
-</div>
+  <!-- Leaderboard Table Container -->
+  <main class="w-full max-w-5xl bg-[#0F0804] border border-[#2A1D13] rounded-3xl overflow-hidden shadow-2xl mb-6">
+    <div class="w-full overflow-x-auto no-scrollbar">
+      <div class="min-w-[700px]">
+        
+        <!-- Table Header -->
+        <div class="flex items-center px-6 py-4 text-[10px] sm:text-xs text-gray-500 font-bold uppercase tracking-wider border-b border-[#2A1D13]">
+          <div class="w-16">Rank</div>
+          <div class="flex-1">Family Name</div>
+          <div class="w-32">State</div>
+          <div class="w-24">Score</div>
+          <div class="w-24">Time</div>
+        </div>
+
+        <!-- Zone: Live Show -->
+        <div class="flex items-center gap-4 px-6 py-4">
+          <span class="text-[10px] text-[#F59E0B] font-semibold uppercase tracking-wider whitespace-nowrap">Currently in Live Show Zone</span>
+          <div class="h-px bg-[#3D2514] flex-1"></div>
+        </div>
+
+        <!-- Rows: Top 5 -->
+        <div class="flex flex-col">
+          <!-- Rank 1 -->
+          <div class="flex items-center px-6 py-4 hover:bg-[#1A100A] transition-colors border-b border-[#2A1D13]/50">
+            <div class="w-16">
+              <div class="w-7 h-7 rounded-full bg-[#F59E0B] text-black font-bold text-xs flex items-center justify-center">1</div>
+            </div>
+            <div class="flex-1 font-semibold text-white">The Johnsons</div>
+            <div class="w-32 text-sm text-gray-300">Lagos</div>
+            <div class="w-24 font-bold text-[#F59E0B]">10/10</div>
+            <div class="w-24 text-sm text-gray-300">4m 12s</div>
+          </div>
+          <!-- Rank 2 -->
+          <div class="flex items-center px-6 py-4 hover:bg-[#1A100A] transition-colors border-b border-[#2A1D13]/50">
+            <div class="w-16">
+              <div class="w-7 h-7 rounded-full bg-[#F59E0B] text-black font-bold text-xs flex items-center justify-center">2</div>
+            </div>
+            <div class="flex-1 font-semibold text-white">The Adeoyes</div>
+            <div class="w-32 text-sm text-gray-300">Oyo</div>
+            <div class="w-24 font-bold text-[#F59E0B]">10/10</div>
+            <div class="w-24 text-sm text-gray-300">4m 45s</div>
+          </div>
+          <!-- Rank 3 -->
+          <div class="flex items-center px-6 py-4 hover:bg-[#1A100A] transition-colors border-b border-[#2A1D13]/50">
+            <div class="w-16">
+              <div class="w-7 h-7 rounded-full bg-[#F59E0B] text-black font-bold text-xs flex items-center justify-center">3</div>
+            </div>
+            <div class="flex-1 font-semibold text-white">The Victors</div>
+            <div class="w-32 text-sm text-gray-300">Abuja (FCT)</div>
+            <div class="w-24 font-bold text-[#F59E0B]">10/10</div>
+            <div class="w-24 text-sm text-gray-300">5m 09s</div>
+          </div>
+          <!-- Rank 4 -->
+          <div class="flex items-center px-6 py-4 hover:bg-[#1A100A] transition-colors border-b border-[#2A1D13]/50">
+            <div class="w-16">
+              <div class="w-7 h-7 rounded-full bg-[#F59E0B] text-black font-bold text-xs flex items-center justify-center">4</div>
+            </div>
+            <div class="flex-1 font-semibold text-white">The Nelsons</div>
+            <div class="w-32 text-sm text-gray-300">Kwara</div>
+            <div class="w-24 font-bold text-[#F59E0B]">10/10</div>
+            <div class="w-24 text-sm text-gray-300">5m 41s</div>
+          </div>
+          <!-- Rank 5 -->
+          <div class="flex items-center px-6 py-4 hover:bg-[#1A100A] transition-colors">
+            <div class="w-16">
+              <div class="w-7 h-7 rounded-full bg-[#F59E0B] text-black font-bold text-xs flex items-center justify-center">5</div>
+            </div>
+            <div class="flex-1 font-semibold text-white">The Achievers</div>
+            <div class="w-32 text-sm text-gray-300">Rivers</div>
+            <div class="w-24 font-bold text-[#F59E0B]">10/10</div>
+            <div class="w-24 text-sm text-gray-300">6m 18s</div>
+          </div>
+        </div>
+
+        <!-- Zone: Home Prize Zone (Tied max scores) -->
+        <div class="flex items-center gap-4 px-6 py-4">
+          <span class="text-[10px] text-[#7C481A] font-semibold uppercase tracking-wider whitespace-nowrap">Currently in Home Prize Zone</span>
+          <div class="h-px bg-[#2A1D13] flex-1"></div>
+        </div>
+
+        <!-- Rows: 6-8 -->
+        <div class="flex flex-col">
+          <!-- Rank 6 -->
+          <div class="flex items-center px-6 py-4 hover:bg-[#1A100A] transition-colors border-b border-[#2A1D13]/50">
+            <div class="w-16">
+              <div class="w-7 h-7 rounded-full bg-[#2A1D13] text-gray-300 font-bold text-xs flex items-center justify-center">6</div>
+            </div>
+            <div class="flex-1 font-semibold text-white">The Davids</div>
+            <div class="w-32 text-sm text-gray-400">Ogun</div>
+            <div class="w-24 font-bold text-[#F59E0B]">10/10</div>
+            <div class="w-24 text-sm text-gray-400">7m 02s</div>
+          </div>
+          <!-- Rank 7 -->
+          <div class="flex items-center px-6 py-4 hover:bg-[#1A100A] transition-colors border-b border-[#2A1D13]/50">
+            <div class="w-16">
+              <div class="w-7 h-7 rounded-full bg-[#2A1D13] text-gray-300 font-bold text-xs flex items-center justify-center">7</div>
+            </div>
+            <div class="flex-1 font-semibold text-white">The Martins</div>
+            <div class="w-32 text-sm text-gray-400">Kano</div>
+            <div class="w-24 font-bold text-[#F59E0B]">10/10</div>
+            <div class="w-24 text-sm text-gray-400">7m 55s</div>
+          </div>
+          <!-- Rank 8 -->
+          <div class="flex items-center px-6 py-4 hover:bg-[#1A100A] transition-colors">
+            <div class="w-16">
+              <div class="w-7 h-7 rounded-full bg-[#2A1D13] text-gray-300 font-bold text-xs flex items-center justify-center">8</div>
+            </div>
+            <div class="flex-1 font-semibold text-white">The Emmanuels</div>
+            <div class="w-32 text-sm text-gray-400">Enugu</div>
+            <div class="w-24 font-bold text-[#F59E0B]">10/10</div>
+            <div class="w-24 text-sm text-gray-400">8m 30s</div>
+          </div>
+        </div>
+
+        <!-- Zone: Home Prize Zone (Sub-10 scores) -->
+        <div class="flex items-center gap-4 px-6 py-4">
+          <span class="text-[10px] text-[#7C481A] font-semibold uppercase tracking-wider whitespace-nowrap">Currently in Home Prize Zone</span>
+          <div class="h-px bg-[#2A1D13] flex-1"></div>
+        </div>
+
+        <!-- Rows: 9-10 -->
+        <div class="flex flex-col pb-4">
+          <!-- Rank 9 -->
+          <div class="flex items-center px-6 py-4 hover:bg-[#1A100A] transition-colors border-b border-[#2A1D13]/50">
+            <div class="w-16">
+              <div class="w-7 h-7 rounded-full bg-[#2A1D13] text-gray-300 font-bold text-xs flex items-center justify-center">9</div>
+            </div>
+            <div class="flex-1 font-semibold text-white">The Bakers</div>
+            <div class="w-32 text-sm text-gray-400">Delta</div>
+            <div class="w-24 font-bold text-[#F59E0B]">9/10</div>
+            <div class="w-24 text-sm text-gray-400">10m 00s</div>
+          </div>
+          <!-- Rank 10 -->
+          <div class="flex items-center px-6 py-4 hover:bg-[#1A100A] transition-colors">
+            <div class="w-16">
+              <div class="w-7 h-7 rounded-full bg-[#2A1D13] text-gray-300 font-bold text-xs flex items-center justify-center text-[10px]">10</div>
+            </div>
+            <div class="flex-1 font-semibold text-white">The Okafor</div>
+            <div class="w-32 text-sm text-gray-400">Anambra</div>
+            <div class="w-24 font-bold text-[#F59E0B]">8/10</div>
+            <div class="w-24 text-sm text-gray-400">10m 00s</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Ranking Criteria Info Footer -->
+  <footer class="w-full max-w-5xl bg-[#0F0804] border border-[#2A1D13] rounded-2xl p-6 sm:p-8">
+    <h3 class="text-sm font-medium text-gray-400 mb-4">Ranking Criteria:</h3>
+    <ul class="space-y-3">
+      <li class="flex items-start gap-3">
+        <i data-lucide="check-circle-2" class="w-4 h-4 text-gray-500 shrink-0 mt-0.5"></i>
+        <span class="text-xs sm:text-sm text-gray-500">Score: families who reached 10 points rank above all others</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <i data-lucide="check-circle-2" class="w-4 h-4 text-gray-500 shrink-0 mt-0.5"></i>
+        <span class="text-xs sm:text-sm text-gray-500">Completion Time: among tied 10-point families, fastest time wins</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <i data-lucide="check-circle-2" class="w-4 h-4 text-gray-500 shrink-0 mt-0.5"></i>
+        <span class="text-xs sm:text-sm text-gray-500">Top 5 at the end of the audition become TV contestants. All other 10-point families qualify for Happy Family Home Prizes.</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <i data-lucide="check-circle-2" class="w-4 h-4 text-gray-500 shrink-0 mt-0.5"></i>
+        <span class="text-xs sm:text-sm text-gray-500">Rankings are generated automatically. No human interference in the selection process</span>
+      </li>
+    </ul>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+  </script>
+</body>
+</html>

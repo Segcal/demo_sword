@@ -10,18 +10,20 @@
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     .step-panel { display: none; }
     .step-panel.active { display: block; }
+    .mobile-menu { display: none; }
+    .mobile-menu.open { display: block; }
   </style>
 </head>
 <body class="bg-black min-h-screen font-sans antialiased">
 
   <!-- ================= MARQUEE ================= -->
-  <div id="marqueeBar" class="px-6 fixed top-0 w-full z-50 bg-black/60 backdrop-blur-xl h-14 flex items-center">
+  <div id="marqueeBar" class="px-4 sm:px-6 fixed top-0 w-full z-50 bg-black/60 backdrop-blur-xl h-12 sm:h-14 flex items-center">
     <marquee behavior="smooth" direction="left" class="w-full">
       <div class="flex items-center gap-8">
         <div class="flex items-center gap-3">
           <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1767317361/streamline_announcement-megaphone-solid_b59alx.png"
-            class="w-6 h-6" alt="" />
-          <p class="text-sm whitespace-nowrap text-white">
+            class="w-5 h-5 sm:w-6 sm:h-6" alt="" />
+          <p class="text-xs sm:text-sm whitespace-nowrap text-white">
             (i) A New Moment Begins: 100 Friends of the Bible needed. Your Partnership will transform lives across the Globe.
           </p>
         </div>
@@ -30,12 +32,12 @@
   </div>
 
   <!-- ================= NAVBAR ================= -->
-  <header id="mainHeader" class="fixed top-14 left-0 w-full z-40">
+  <header id="mainHeader" class="fixed top-12 sm:top-14 left-0 w-full z-40">
     <div class="relative w-full bg-[#1b1b1b]/60 backdrop-blur-xl border-b border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
-      <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
-        <a href="../index.html">
+      <div class="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4">
+        <a href="../index.html" class="shrink-0">
           <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766409594/sword_TV_logo_y9mnja.png"
-            width="150" class="rounded-full" alt="Sword TV" />
+            class="w-28 sm:w-[150px] rounded-full" alt="Sword TV" />
         </a>
         <nav class="hidden md:flex items-center space-x-8 text-white">
           <a href="../index.html">Home</a>
@@ -48,33 +50,48 @@
            class="hidden md:block border border-orange-500 text-orange-500 font-semibold px-6 py-2 rounded-full">
           Sponsorship
         </a>
-        <button id="openMenu" class="md:hidden text-3xl text-white" type="button" aria-label="Open menu">☰</button>
+        <button id="openMenu" class="md:hidden text-2xl sm:text-3xl text-white leading-none" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenuPanel">☰</button>
+      </div>
+
+      <!-- Mobile menu panel -->
+      <div id="mobileMenuPanel" class="mobile-menu md:hidden border-t border-white/10 bg-[#1b1b1b]/95 backdrop-blur-xl">
+        <nav class="flex flex-col px-4 py-3 text-white text-sm">
+          <a href="../index.html" class="py-2.5 border-b border-white/10">Home</a>
+          <a href="../Programs.html" class="py-2.5 border-b border-white/10 text-orange-400">Programmes</a>
+          <a href="../Partnership.html" class="py-2.5 border-b border-white/10 font-semibold">Partnership</a>
+          <a href="../blog.html" class="py-2.5 border-b border-white/10">Blog</a>
+          <a href="../contact-us.html" class="py-2.5">Contact us</a>
+          <a href="../Partnership.html"
+             class="mt-3 text-center border border-orange-500 text-orange-500 font-semibold px-6 py-2.5 rounded-full">
+            Sponsorship
+          </a>
+        </nav>
       </div>
     </div>
   </header>
 
-  <div class="h-[104px]"></div>
+  <div class="h-[88px] sm:h-[104px]"></div>
 
   <!-- ================= HERO ================= -->
-  <section class="relative min-h-[calc(100vh-104px)] flex items-center overflow-hidden border-b border-zinc-900">
+  <section class="relative min-h-[calc(100vh-88px)] sm:min-h-[calc(100vh-104px)] flex items-center overflow-hidden border-b border-zinc-900">
     <div class="absolute -top-24 -left-24 w-96 h-96 bg-amber-600/10 rounded-full blur-3xl pointer-events-none"></div>
     <div class="absolute bottom-0 right-0 w-[500px] h-[400px] bg-orange-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
-    <div class="max-w-5xl mx-auto px-6 sm:px-10 py-16 text-center relative z-10 w-full">
-      <div class="inline-flex items-center space-x-2 border border-amber-500/40 bg-amber-500/10 rounded-full px-4 py-1.5 text-xs sm:text-sm text-amber-200 mb-6">
-        <svg class="w-4 h-4 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-10 py-10 sm:py-16 text-center relative z-10 w-full">
+      <div class="inline-flex items-center space-x-2 border border-amber-500/40 bg-amber-500/10 rounded-full px-3 sm:px-4 py-1.5 text-[11px] sm:text-sm text-amber-200 mb-5 sm:mb-6">
+        <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
             d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
         </svg>
         <span id="heroStepText">Family Registration — Step 1 of 3</span>
       </div>
 
-      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight mb-4">
+      <h1 class="text-2xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight mb-4">
         Every Great Team <br class="hidden sm:inline" />
         <span class="text-amber-500">Starts With a Name.</span>
       </h1>
 
-      <p class="text-zinc-300 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+      <p class="text-zinc-300 text-sm sm:text-base max-w-xl mx-auto leading-relaxed px-2 sm:px-0">
         Tell us who you are. Your family's identity is how the nation will cheer you on —
         from the studio floor to the Home Play leaderboard.
       </p>
@@ -83,21 +100,28 @@
 
   <!-- ================= REGISTRATION CONTAINER ================= -->
   <div id="registrationOverlay"
-       class="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center p-4 z-[60] overflow-y-auto">
+       class="fixed inset-0 bg-black/75 backdrop-blur-md flex items-start sm:items-center justify-center px-3 sm:px-4 py-6 sm:py-8 z-[60] overflow-y-auto">
 
-    <div class="bg-white w-full max-w-2xl rounded-2xl shadow-2xl p-6 sm:p-8 my-8 relative text-gray-800">
+    <div class="w-full max-w-2xl mx-auto rounded-3xl shadow-2xl ring-1 ring-black/10 overflow-hidden bg-white text-gray-800 flex flex-col max-h-[calc(100vh-3rem)] sm:max-h-[88vh]">
 
-      <button id="returnBtn" type="button"
-        class="inline-flex items-center gap-1 text-xs font-semibold text-orange-500 border border-orange-200 bg-orange-50/50 hover:bg-orange-100 px-3 py-1.5 rounded-full transition-colors mb-6">
-        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-        </svg>
-        Return
-      </button>
+      <!-- Header band: keeps the card from reading as one giant white slab -->
+      <div class="shrink-0 flex items-center justify-between gap-3 bg-white/50 px-4 sm:px-6 md:px-8 py-3.5 sm:py-4">
+        <button id="returnBtn" type="button"
+          class="inline-flex items-center gap-1 text-[11px] sm:text-xs font-semibold text-orange-500 border border-orange-500 bg-white/10 hover:bg-white/15 px-3 py-1.5 rounded-full transition-colors shrink-0">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Return
+        </button>
+        <span id="headerStepLabel" class="text-[11px] sm:text-xs font-semibold text-amber-400 whitespace-nowrap">Step 1 of 3</span>
+      </div>
+
+      <!-- Scrollable body: only this part scrolls, so the card never eats the whole viewport -->
+      <div class="overflow-y-auto px-4 sm:px-6 md:px-8 py-5 sm:py-6">
 
       <!-- Progress -->
-      <div class="flex items-center gap-2 mb-8" aria-label="Registration progress">
+      <div class="flex items-center gap-2 mb-7 sm:mb-8" aria-label="Registration progress">
         <div id="progress1" class="h-1.5 flex-1 bg-orange-500 rounded-full transition-colors"></div>
         <div id="progress2" class="h-1.5 flex-1 bg-gray-200 rounded-full transition-colors"></div>
         <div id="progress3" class="h-1.5 flex-1 bg-gray-200 rounded-full transition-colors"></div>
@@ -109,7 +133,7 @@
       <!-- ================= STEP 1 ================= -->
       <section id="step1" class="step-panel active">
         <div class="mb-6">
-          <h2 class="text-2xl font-bold text-gray-900 tracking-tight">Family Identity</h2>
+          <h2 class="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">Family Identity</h2>
           <p class="text-xs text-gray-500 mt-1">
             Enter your family surname or preferred stage name, and provide the details of all family members.
           </p>
@@ -205,13 +229,13 @@
             </p>
           </div>
 
-          <div class="flex items-center justify-between pt-6 mt-6 border-t border-gray-100">
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-6 mt-6 border-t border-gray-100">
             <button type="button" id="saveStep1Btn"
-              class="px-5 py-2.5 border border-gray-300 hover:bg-gray-50 text-gray-600 text-xs font-semibold rounded-full transition-colors">
+              class="w-full sm:w-auto px-5 py-2.5 border border-gray-300 hover:bg-gray-50 text-gray-600 text-xs font-semibold rounded-full transition-colors order-2 sm:order-1">
               Save & Continue Later
             </button>
             <button type="submit"
-              class="px-8 py-2.5 bg-orange-500 hover:bg-orange-600 text-white text-xs font-semibold rounded-full shadow-md shadow-orange-500/20 transition-colors">
+              class="w-full sm:w-auto px-8 py-2.5 bg-orange-500 hover:bg-orange-600 text-white text-xs font-semibold rounded-full shadow-md shadow-orange-500/20 transition-colors order-1 sm:order-2">
               Next
             </button>
           </div>
@@ -221,7 +245,7 @@
       <!-- ================= STEP 2 ================= -->
       <section id="step2" class="step-panel">
         <div class="mb-6">
-          <h2 class="text-2xl font-bold text-gray-900 tracking-tight">Family Members</h2>
+          <h2 class="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">Family Members</h2>
           <p class="text-xs text-gray-500 mt-1 leading-relaxed">
             Register five members who will constitute the official family team. Members may include father, mother, son, daughter, cousin, or any household member.
           </p>
@@ -369,18 +393,18 @@
             </div>
           </div>
 
-          <div class="flex items-center justify-between pt-6 mt-6 border-t border-gray-100">
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-6 mt-6 border-t border-gray-100">
             <button type="button" id="backToStep1Btn"
-              class="px-5 py-2.5 border border-orange-400 hover:bg-orange-50 text-orange-500 text-xs font-semibold rounded-full transition-colors">
+              class="w-full sm:w-auto px-5 py-2.5 border border-orange-400 hover:bg-orange-50 text-orange-500 text-xs font-semibold rounded-full transition-colors order-3 sm:order-1">
               Previous
             </button>
-            <div class="flex items-center gap-3">
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 order-2">
               <button type="button" id="saveStep2Btn"
-                class="px-5 py-2.5 border border-gray-300 hover:bg-gray-50 text-gray-600 text-xs font-semibold rounded-full transition-colors">
+                class="w-full sm:w-auto px-5 py-2.5 border border-gray-300 hover:bg-gray-50 text-gray-600 text-xs font-semibold rounded-full transition-colors">
                 Save & Continue Later
               </button>
               <button type="submit"
-                class="px-8 py-2.5 bg-orange-500 hover:bg-orange-600 text-white text-xs font-semibold rounded-full shadow-md shadow-orange-500/20 transition-colors">
+                class="w-full sm:w-auto px-8 py-2.5 bg-orange-500 hover:bg-orange-600 text-white text-xs font-semibold rounded-full shadow-md shadow-orange-500/20 transition-colors">
                 Next
               </button>
             </div>
@@ -391,29 +415,29 @@
       <!-- ================= STEP 3 ================= -->
       <section id="step3" class="step-panel">
         <div class="mb-8">
-          <h2 class="text-2xl font-bold text-gray-900 tracking-tight">Complete Registration</h2>
+          <h2 class="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">Complete Registration</h2>
           <p class="text-xs text-gray-500 mt-1">Review your information and confirm that everything provided is accurate.</p>
         </div>
 
-        <div id="reviewBox" class="mb-6 rounded-2xl border border-gray-100 bg-gray-50 p-5 text-xs text-gray-700 space-y-3"></div>
+        <div id="reviewBox" class="mb-6 rounded-2xl border border-gray-100 bg-gray-50 p-4 sm:p-5 text-xs text-gray-700 space-y-3"></div>
 
         <form id="completeRegistrationForm" class="space-y-8" novalidate>
           <label for="certifyCheckbox"
-            class="flex items-start gap-3 bg-amber-50/60 border border-amber-200/80 p-5 rounded-2xl cursor-pointer hover:bg-amber-50 transition-colors">
+            class="flex items-start gap-3 bg-amber-50/60 border border-amber-200/80 p-4 sm:p-5 rounded-2xl cursor-pointer hover:bg-amber-50 transition-colors">
             <input type="checkbox" id="certifyCheckbox" required
-              class="mt-0.5 w-4 h-4 rounded border-amber-300 text-orange-500 focus:ring-orange-400 cursor-pointer accent-orange-500" />
+              class="mt-0.5 w-4 h-4 rounded border-amber-300 text-orange-500 focus:ring-orange-400 cursor-pointer accent-orange-500 shrink-0" />
             <span class="text-xs text-gray-700 leading-relaxed">
               "I certify that all information provided is true and accurate and that I agree to abide by the rules and regulations of The Happy Family Game Show."
             </span>
           </label>
 
-          <div class="flex items-center justify-between pt-4">
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-4">
             <button type="button" id="backToStep2Btn"
-              class="px-8 py-2.5 border border-orange-400 hover:bg-orange-50 text-orange-500 text-xs font-medium rounded-full transition-colors">
+              class="w-full sm:w-auto px-8 py-2.5 border border-orange-400 hover:bg-orange-50 text-orange-500 text-xs font-medium rounded-full transition-colors order-2 sm:order-1">
               Previous
             </button>
             <button type="submit" id="submitBtn"
-              class="px-8 py-2.5 bg-orange-500 hover:bg-orange-600 text-white text-xs font-semibold rounded-full shadow-md shadow-orange-500/20 transition-colors">
+              class="w-full sm:w-auto px-8 py-2.5 bg-orange-500 hover:bg-orange-600 text-white text-xs font-semibold rounded-full shadow-md shadow-orange-500/20 transition-colors order-1 sm:order-2">
               Complete Registration
             </button>
           </div>
@@ -428,15 +452,15 @@
               d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight">
+        <h2 class="text-xl sm:text-3xl font-bold text-gray-900 tracking-tight px-2">
           Your registration was successful!
         </h2>
-        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed max-w-md mx-auto mt-4">
+        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed max-w-md mx-auto mt-4 px-2">
           Your family registration is confirmed. Check your <span class="font-bold text-gray-900">mail</span> for confirmation.
           Next step: obtain your Audition PIN to start competing.
         </p>
 
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mt-8">
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mt-8 px-2">
           <button type="button" id="obtainLaterBtn"
             class="w-full sm:w-auto px-6 py-2.5 border border-orange-400 hover:bg-orange-50 text-orange-500 text-xs font-semibold rounded-full transition-colors">
             Obtain PIN Later
@@ -449,6 +473,9 @@
           </a>
         </div>
       </section>
+
+      </div>
+      <!-- /scrollable body -->
     </div>
   </div>
 
@@ -486,6 +513,7 @@
     ];
 
     const heroStepText = document.getElementById("heroStepText");
+    const headerStepLabel = document.getElementById("headerStepLabel");
     const errorBox = document.getElementById("errorBox");
     const successBox = document.getElementById("successBox");
     const successStep = document.getElementById("successStep");
@@ -666,6 +694,7 @@
       });
 
       heroStepText.textContent = `Family Registration — Step ${step} of 3`;
+      headerStepLabel.textContent = `Step ${step} of 3`;
       document.querySelector("#registrationOverlay > div")?.scrollTo({ top: 0, behavior: "smooth" });
 
       if (step === 3) buildReview();
@@ -723,13 +752,14 @@
 
       // Hide all registration steps and show the success state.
       Object.values(stepPanels).forEach(panel => panel.classList.remove("active"));
-      document.querySelector(".flex.items-center.gap-2.mb-8")?.classList.add("hidden");
+      document.querySelector(".flex.items-center.gap-2.mb-7, .flex.items-center.gap-2.mb-8")?.classList.add("hidden");
       document.getElementById("returnBtn").classList.add("hidden");
       errorBox.classList.add("hidden");
       successBox.classList.add("hidden");
       successStep.classList.remove("hidden");
 
       heroStepText.textContent = "Registration Complete";
+      headerStepLabel.textContent = "Complete";
     });
 
     // Previous buttons
@@ -760,6 +790,33 @@
 
     // Obtain PIN is explicitly a route, not a modal.
     document.getElementById("obtainPinBtn").href = PIN_ROUTE;
+
+    // ================= MOBILE MENU =================
+    const openMenuBtn = document.getElementById("openMenu");
+    const mobileMenuPanel = document.getElementById("mobileMenuPanel");
+
+    openMenuBtn.addEventListener("click", () => {
+      const isOpen = mobileMenuPanel.classList.toggle("open");
+      openMenuBtn.textContent = isOpen ? "✕" : "☰";
+      openMenuBtn.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    // Close mobile menu on link tap or resize back to desktop.
+    mobileMenuPanel.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        mobileMenuPanel.classList.remove("open");
+        openMenuBtn.textContent = "☰";
+        openMenuBtn.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth >= 768 && mobileMenuPanel.classList.contains("open")) {
+        mobileMenuPanel.classList.remove("open");
+        openMenuBtn.textContent = "☰";
+        openMenuBtn.setAttribute("aria-expanded", "false");
+      }
+    });
 
     // Restore saved data on page load.
     populateForms();
