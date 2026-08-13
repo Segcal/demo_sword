@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Family Registration — The Happy Family Game Show</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .step-panel { display: none; }
+    .step-panel.active { display: block; }
+  </style>
+</head>
+<body class="bg-black min-h-screen font-sans antialiased">
+
+  <!-- ================= MARQUEE ================= -->
+  <div id="marqueeBar" class="px-6 fixed top-0 w-full z-50 bg-black/60 backdrop-blur-xl h-14 flex items-center">
+    <marquee behavior="smooth" direction="left" class="w-full">
+      <div class="flex items-center gap-8">
+        <div class="flex items-center gap-3">
+          <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1767317361/streamline_announcement-megaphone-solid_b59alx.png"
+            class="w-6 h-6" alt="" />
+          <p class="text-sm whitespace-nowrap text-white">
+            (i) A New Moment Begins: 100 Friends of the Bible needed. Your Partnership will transform lives across the Globe.
+          </p>
+        </div>
+      </div>
+    </marquee>
+  </div>
+
+  <!-- ================= NAVBAR ================= -->
+  <header id="mainHeader" class="fixed top-14 left-0 w-full z-40">
+    <div class="relative w-full bg-[#1b1b1b]/60 backdrop-blur-xl border-b border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
+      <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+        <a href="../index.html">
+          <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766409594/sword_TV_logo_y9mnja.png"
+            width="150" class="rounded-full" alt="Sword TV" />
+        </a>
+        <nav class="hidden md:flex items-center space-x-8 text-white">
+          <a href="../index.html">Home</a>
+          <a href="../Programs.html" class="text-orange-400">Programmes</a>
+          <a href="../Partnership.html" class="font-semibold">Partnership</a>
+          <a href="../blog.html">Blog</a>
+          <a href="../contact-us.html">Contact us</a>
+        </nav>
+        <a href="../Partnership.html"
+           class="hidden md:block border border-orange-500 text-orange-500 font-semibold px-6 py-2 rounded-full">
+          Sponsorship
+        </a>
+        <button id="openMenu" class="md:hidden text-3xl text-white" type="button" aria-label="Open menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="h-[104px]"></div>
+
+  <!-- ================= HERO ================= -->
+  <section class="relative min-h-[calc(100vh-104px)] flex items-center overflow-hidden border-b border-zinc-900">
+    <div class="absolute -top-24 -left-24 w-96 h-96 bg-amber-600/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 right-0 w-[500px] h-[400px] bg-orange-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-5xl mx-auto px-6 sm:px-10 py-16 text-center relative z-10 w-full">
+      <div class="inline-flex items-center space-x-2 border border-amber-500/40 bg-amber-500/10 rounded-full px-4 py-1.5 text-xs sm:text-sm text-amber-200 mb-6">
+        <svg class="w-4 h-4 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+        </svg>
+        <span id="heroStepText">Family Registration — Step 1 of 3</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight mb-4">
+        Every Great Team <br class="hidden sm:inline" />
+        <span class="text-amber-500">Starts With a Name.</span>
+      </h1>
+
+      <p class="text-zinc-300 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+        Tell us who you are. Your family's identity is how the nation will cheer you on —
+        from the studio floor to the Home Play leaderboard.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= REGISTRATION CONTAINER ================= -->
+  <div id="registrationOverlay"
+       class="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center p-4 z-[60] overflow-y-auto">
+
+    <div class="bg-white w-full max-w-2xl rounded-2xl shadow-2xl p-6 sm:p-8 my-8 relative text-gray-800">
+
+      <button id="returnBtn" type="button"
+        class="inline-flex items-center gap-1 text-xs font-semibold text-orange-500 border border-orange-200 bg-orange-50/50 hover:bg-orange-100 px-3 py-1.5 rounded-full transition-colors mb-6">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Return
+      </button>
+
+      <!-- Progress -->
+      <div class="flex items-center gap-2 mb-8" aria-label="Registration progress">
+        <div id="progress1" class="h-1.5 flex-1 bg-orange-500 rounded-full transition-colors"></div>
+        <div id="progress2" class="h-1.5 flex-1 bg-gray-200 rounded-full transition-colors"></div>
+        <div id="progress3" class="h-1.5 flex-1 bg-gray-200 rounded-full transition-colors"></div>
+      </div>
+
+      <div id="errorBox" class="hidden mb-5 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-xs text-red-700"></div>
+      <div id="successBox" class="hidden mb-5 rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-xs text-green-700"></div>
+
+      <!-- ================= STEP 1 ================= -->
+      <section id="step1" class="step-panel active">
+        <div class="mb-6">
+          <h2 class="text-2xl font-bold text-gray-900 tracking-tight">Family Identity</h2>
+          <p class="text-xs text-gray-500 mt-1">
+            Enter your family surname or preferred stage name, and provide the details of all family members.
+          </p>
+        </div>
+
+        <form id="familyIdentityForm" class="space-y-4" novalidate>
+          <div>
+            <label for="familySlogan" class="block text-xs font-semibold text-gray-700 mb-1">
+              Family Slogan <span class="text-orange-500">*</span>
+            </label>
+            <input type="text" id="familySlogan" placeholder="e.g. The Johnsons / The Achievers"
+              class="form-input w-full px-4 py-2.5 text-xs text-gray-800 border border-amber-200/80 rounded-xl focus:ring-2 focus:ring-orange-400 focus:border-transparent outline-none placeholder:text-gray-400 transition" />
+            <p class="text-[11px] text-gray-400 mt-1">This is your team's competition name. Each team must have a unique name.</p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="familySurname" class="block text-xs font-semibold text-gray-700 mb-1">
+                Family Surname <span class="text-orange-500">*</span>
+              </label>
+              <input type="text" id="familySurname" placeholder="e.g. Johnson"
+                class="form-input w-full px-4 py-2.5 text-xs text-gray-800 border border-amber-200/80 rounded-xl focus:ring-2 focus:ring-orange-400 focus:border-transparent outline-none placeholder:text-gray-400 transition" />
+            </div>
+            <div>
+              <label for="religion" class="block text-xs font-semibold text-gray-700 mb-1">
+                Religion <span class="text-orange-500">*</span>
+              </label>
+              <input type="text" id="religion" placeholder="e.g. Christianity"
+                class="form-input w-full px-4 py-2.5 text-xs text-gray-800 border border-amber-200/80 rounded-xl focus:ring-2 focus:ring-orange-400 focus:border-transparent outline-none placeholder:text-gray-400 transition" />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="email" class="block text-xs font-semibold text-gray-700 mb-1">
+                Email Address <span class="text-orange-500">*</span>
+              </label>
+              <input type="email" id="email" placeholder="e.g. james@gmail.com"
+                class="form-input w-full px-4 py-2.5 text-xs text-gray-800 border border-amber-200/80 rounded-xl focus:ring-2 focus:ring-orange-400 focus:border-transparent outline-none placeholder:text-gray-400 transition" />
+            </div>
+            <div>
+              <label for="phone" class="block text-xs font-semibold text-gray-700 mb-1">
+                Phone Number <span class="text-orange-500">*</span>
+              </label>
+              <input type="tel" id="phone" placeholder="e.g. +234 800 000 0000"
+                class="form-input w-full px-4 py-2.5 text-xs text-gray-800 border border-amber-200/80 rounded-xl focus:ring-2 focus:ring-orange-400 focus:border-transparent outline-none placeholder:text-gray-400 transition" />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="nationality" class="block text-xs font-semibold text-gray-700 mb-1">
+                Nationality <span class="text-orange-500">*</span>
+              </label>
+              <input type="text" id="nationality" placeholder="e.g. Nigerian"
+                class="form-input w-full px-4 py-2.5 text-xs text-gray-800 border border-amber-200/80 rounded-xl focus:ring-2 focus:ring-orange-400 focus:border-transparent outline-none placeholder:text-gray-400 transition" />
+            </div>
+            <div>
+              <label for="stateOfOrigin" class="block text-xs font-semibold text-gray-700 mb-1">
+                State of Origin <span class="text-orange-500">*</span>
+              </label>
+              <input type="text" id="stateOfOrigin" placeholder="e.g. Lagos"
+                class="form-input w-full px-4 py-2.5 text-xs text-gray-800 border border-amber-200/80 rounded-xl focus:ring-2 focus:ring-orange-400 focus:border-transparent outline-none placeholder:text-gray-400 transition" />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="stateOfResidence" class="block text-xs font-semibold text-gray-700 mb-1">
+                State of Residence <span class="text-orange-500">*</span>
+              </label>
+              <input type="text" id="stateOfResidence" placeholder="e.g. Lagos"
+                class="form-input w-full px-4 py-2.5 text-xs text-gray-800 border border-amber-200/80 rounded-xl focus:ring-2 focus:ring-orange-400 focus:border-transparent outline-none placeholder:text-gray-400 transition" />
+            </div>
+            <div>
+              <label for="cityOfResidence" class="block text-xs font-semibold text-gray-700 mb-1">
+                City of Residence <span class="text-orange-500">*</span>
+              </label>
+              <input type="text" id="cityOfResidence" placeholder="e.g. Ikeja"
+                class="form-input w-full px-4 py-2.5 text-xs text-gray-800 border border-amber-200/80 rounded-xl focus:ring-2 focus:ring-orange-400 focus:border-transparent outline-none placeholder:text-gray-400 transition" />
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3 bg-amber-50/60 border border-amber-200/60 p-3.5 rounded-xl mt-6">
+            <div class="flex-shrink-0 text-amber-500 mt-0.5">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+              </svg>
+            </div>
+            <p class="text-[11px] text-gray-600 leading-relaxed">
+              A household may register multiple teams under different Family Registration Names (e.g. "The Achievers" and "The Achievers 2"). Just make sure each team holds an Audition PIN.
+            </p>
+          </div>
+
+          <div class="flex items-center justify-between pt-6 mt-6 border-t border-gray-100">
+            <button type="button" id="saveStep1Btn"
+              class="px-5 py-2.5 border border-gray-300 hover:bg-gray-50 text-gray-600 text-xs font-semibold rounded-full transition-colors">
+              Save & Continue Later
+            </button>
+            <button type="submit"
+              class="px-8 py-2.5 bg-orange-500 hover:bg-orange-600 text-white text-xs font-semibold rounded-full shadow-md shadow-orange-500/20 transition-colors">
+              Next
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- ================= STEP 2 ================= -->
+      <section id="step2" class="step-panel">
+        <div class="mb-6">
+          <h2 class="text-2xl font-bold text-gray-900 tracking-tight">Family Members</h2>
+          <p class="text-xs text-gray-500 mt-1 leading-relaxed">
+            Register five members who will constitute the official family team. Members may include father, mother, son, daughter, cousin, or any household member.
+          </p>
+        </div>
+
+        <form id="familyMembersForm" class="space-y-4" novalidate>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="member1Name" class="block text-xs font-semibold text-gray-700 mb-1">
+                Member 1 Full Name <span class="text-orange-500">*</span>
+              </label>
+              <input type="text" id="member1Name" placeholder="Full name"
+                class="form-input w-full px-4 py-2.5 text-xs text-gray-800 border border-amber-200/80 rounded-xl focus:ring-2 focus:ring-orange-400 focus:border-transparent outline-none placeholder:text-gray-300 transition" />
+            </div>
+            <div>
+              <label for="member1Rel" class="block text-xs font-semibold text-gray-700 mb-1">Relationship</label>
+              <select id="member1Rel"
+                class="w-full px-4 py-2.5 text-xs text-gray-800 border border-amber-200/80 rounded-xl focus:ring-2 focus:ring-orange-400 focus:border-transparent outline-none bg-white cursor-pointer transition">
+                <option value="">Select</option>
+                <option value="Father">Father</option>
+                <option value="Mother">Mother</option>
+                <option value="Brother">Brother</option>
+                <option value="Sister">Sister</option>
+                <option value="Uncle">Uncle</option>
+                <option value="Aunt">Aunt</option>
+                <option value="Cousin">Cousin</option>
+                <option value="Grandfather">Grandfather</option>
+                <option value="Grandmother">Grandmother</option>
+                <option value="Nephew">Nephew</option>
+                <option value="Niece">Niece</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="member2Name" class="block text-xs font-semibold text-gray-700 mb-1">
+                Member 2 Full Name <span class="text-orange-500">*</span>
+              </label>
+              <input type="text" id="member2Name" placeholder="Full name"
+                class="form-input w-full px-4 py-2.5 text-xs text-gray-800 border border-amber-200/80 rounded-xl focus:ring-2 focus:ring-orange-400 focus:border-transparent outline-none placeholder:text-gray-300 transition" />
+            </div>
+            <div>
+              <label for="member2Rel" class="block text-xs font-semibold text-gray-700 mb-1">Relationship</label>
+              <select id="member2Rel"
+                class="w-full px-4 py-2.5 text-xs text-gray-800 border border-amber-200/80 rounded-xl focus:ring-2 focus:ring-orange-400 focus:border-transparent outline-none bg-white cursor-pointer transition">
+                <option value="">Select</option>
+                <option value="Father">Father</option>
+                <option value="Mother">Mother</option>
+                <option value="Brother">Brother</option>
+                <option value="Sister">Sister</option>
+                <option value="Uncle">Uncle</option>
+                <option value="Aunt">Aunt</option>
+                <option value="Cousin">Cousin</option>
+                <option value="Grandfather">Grandfather</option>
+                <option value="Grandmother">Grandmother</option>
+                <option value="Nephew">Nephew</option>
+                <option value="Niece">Niece</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="member3Name" class="block text-xs font-semibold text-gray-700 mb-1">
+                Member 3 Full Name <span class="text-orange-500">*</span>
+              </label>
+              <input type="text" id="member3Name" placeholder="Full name"
+                class="form-input w-full px-4 py-2.5 text-xs text-gray-800 border border-amber-200/80 rounded-xl focus:ring-2 focus:ring-orange-400 focus:border-transparent outline-none placeholder:text-gray-300 transition" />
+            </div>
+            <div>
+              <label for="member3Rel" class="block text-xs font-semibold text-gray-700 mb-1">Relationship</label>
+              <select id="member3Rel"
+                class="w-full px-4 py-2.5 text-xs text-gray-800 border border-amber-200/80 rounded-xl focus:ring-2 focus:ring-orange-400 focus:border-transparent outline-none bg-white cursor-pointer transition">
+                <option value="">Select</option>
+                <option value="Father">Father</option>
+                <option value="Mother">Mother</option>
+                <option value="Brother">Brother</option>
+                <option value="Sister">Sister</option>
+                <option value="Uncle">Uncle</option>
+                <option value="Aunt">Aunt</option>
+                <option value="Cousin">Cousin</option>
+                <option value="Grandfather">Grandfather</option>
+                <option value="Grandmother">Grandmother</option>
+                <option value="Nephew">Nephew</option>
+                <option value="Niece">Niece</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="member4Name" class="block text-xs font-semibold text-gray-700 mb-1">
+                Member 4 Full Name <span class="text-orange-500">*</span>
+              </label>
+              <input type="text" id="member4Name" placeholder="Full name"
+                class="form-input w-full px-4 py-2.5 text-xs text-gray-800 border border-amber-200/80 rounded-xl focus:ring-2 focus:ring-orange-400 focus:border-transparent outline-none placeholder:text-gray-300 transition" />
+            </div>
+            <div>
+              <label for="member4Rel" class="block text-xs font-semibold text-gray-700 mb-1">Relationship</label>
+              <select id="member4Rel"
+                class="w-full px-4 py-2.5 text-xs text-gray-800 border border-amber-200/80 rounded-xl focus:ring-2 focus:ring-orange-400 focus:border-transparent outline-none bg-white cursor-pointer transition">
+                <option value="">Select</option>
+                <option value="Father">Father</option>
+                <option value="Mother">Mother</option>
+                <option value="Brother">Brother</option>
+                <option value="Sister">Sister</option>
+                <option value="Uncle">Uncle</option>
+                <option value="Aunt">Aunt</option>
+                <option value="Cousin">Cousin</option>
+                <option value="Grandfather">Grandfather</option>
+                <option value="Grandmother">Grandmother</option>
+                <option value="Nephew">Nephew</option>
+                <option value="Niece">Niece</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="member5Name" class="block text-xs font-semibold text-gray-700 mb-1">
+                Member 5 Full Name <span class="text-orange-500">*</span>
+              </label>
+              <input type="text" id="member5Name" placeholder="Full name"
+                class="form-input w-full px-4 py-2.5 text-xs text-gray-800 border border-amber-200/80 rounded-xl focus:ring-2 focus:ring-orange-400 focus:border-transparent outline-none placeholder:text-gray-300 transition" />
+            </div>
+            <div>
+              <label for="member5Rel" class="block text-xs font-semibold text-gray-700 mb-1">Relationship</label>
+              <select id="member5Rel"
+                class="w-full px-4 py-2.5 text-xs text-gray-800 border border-amber-200/80 rounded-xl focus:ring-2 focus:ring-orange-400 focus:border-transparent outline-none bg-white cursor-pointer transition">
+                <option value="">Select</option>
+                <option value="Father">Father</option>
+                <option value="Mother">Mother</option>
+                <option value="Brother">Brother</option>
+                <option value="Sister">Sister</option>
+                <option value="Uncle">Uncle</option>
+                <option value="Aunt">Aunt</option>
+                <option value="Cousin">Cousin</option>
+                <option value="Grandfather">Grandfather</option>
+                <option value="Grandmother">Grandmother</option>
+                <option value="Nephew">Nephew</option>
+                <option value="Niece">Niece</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-6 mt-6 border-t border-gray-100">
+            <button type="button" id="backToStep1Btn"
+              class="px-5 py-2.5 border border-orange-400 hover:bg-orange-50 text-orange-500 text-xs font-semibold rounded-full transition-colors">
+              Previous
+            </button>
+            <div class="flex items-center gap-3">
+              <button type="button" id="saveStep2Btn"
+                class="px-5 py-2.5 border border-gray-300 hover:bg-gray-50 text-gray-600 text-xs font-semibold rounded-full transition-colors">
+                Save & Continue Later
+              </button>
+              <button type="submit"
+                class="px-8 py-2.5 bg-orange-500 hover:bg-orange-600 text-white text-xs font-semibold rounded-full shadow-md shadow-orange-500/20 transition-colors">
+                Next
+              </button>
+            </div>
+          </div>
+        </form>
+      </section>
+
+      <!-- ================= STEP 3 ================= -->
+      <section id="step3" class="step-panel">
+        <div class="mb-8">
+          <h2 class="text-2xl font-bold text-gray-900 tracking-tight">Complete Registration</h2>
+          <p class="text-xs text-gray-500 mt-1">Review your information and confirm that everything provided is accurate.</p>
+        </div>
+
+        <div id="reviewBox" class="mb-6 rounded-2xl border border-gray-100 bg-gray-50 p-5 text-xs text-gray-700 space-y-3"></div>
+
+        <form id="completeRegistrationForm" class="space-y-8" novalidate>
+          <label for="certifyCheckbox"
+            class="flex items-start gap-3 bg-amber-50/60 border border-amber-200/80 p-5 rounded-2xl cursor-pointer hover:bg-amber-50 transition-colors">
+            <input type="checkbox" id="certifyCheckbox" required
+              class="mt-0.5 w-4 h-4 rounded border-amber-300 text-orange-500 focus:ring-orange-400 cursor-pointer accent-orange-500" />
+            <span class="text-xs text-gray-700 leading-relaxed">
+              "I certify that all information provided is true and accurate and that I agree to abide by the rules and regulations of The Happy Family Game Show."
+            </span>
+          </label>
+
+          <div class="flex items-center justify-between pt-4">
+            <button type="button" id="backToStep2Btn"
+              class="px-8 py-2.5 border border-orange-400 hover:bg-orange-50 text-orange-500 text-xs font-medium rounded-full transition-colors">
+              Previous
+            </button>
+            <button type="submit" id="submitBtn"
+              class="px-8 py-2.5 bg-orange-500 hover:bg-orange-600 text-white text-xs font-semibold rounded-full shadow-md shadow-orange-500/20 transition-colors">
+              Complete Registration
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- ================= SUCCESS ================= -->
+      <section id="successStep" class="hidden text-center py-8">
+        <div class="mx-auto mb-5 w-16 h-16 rounded-full bg-green-50 border border-green-200 flex items-center justify-center">
+          <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight">
+          Your registration was successful!
+        </h2>
+        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed max-w-md mx-auto mt-4">
+          Your family registration is confirmed. Check your <span class="font-bold text-gray-900">mail</span> for confirmation.
+          Next step: obtain your Audition PIN to start competing.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mt-8">
+          <button type="button" id="obtainLaterBtn"
+            class="w-full sm:w-auto px-6 py-2.5 border border-orange-400 hover:bg-orange-50 text-orange-500 text-xs font-semibold rounded-full transition-colors">
+            Obtain PIN Later
+          </button>
+
+          <!-- IMPORTANT: this is a route, not a modal -->
+          <a id="obtainPinBtn" href="/obtain-pin.html"
+            class="w-full sm:w-auto px-6 py-2.5 bg-orange-500 hover:bg-orange-600 text-white text-xs font-semibold rounded-full shadow-md shadow-orange-500/20 transition-colors text-center">
+            Obtain Audition PIN
+          </a>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    /*
+      ============================================================
+      REGISTRATION FLOW
+      - One HTML page controls all 3 steps.
+      - Next validates the current step before moving forward.
+      - Previous returns to the previous step without losing data.
+      - Save stores the current registration in localStorage.
+      - Complete Registration validates the agreement and shows success.
+      - Obtain Audition PIN is a normal route/link, NOT a modal.
+      ============================================================
+    */
+
+    const STORAGE_KEY = "happyFamilyRegistration";
+    const PIN_ROUTE = "./obtain-pin.html"; // Change this to your real route if needed.
+
+    const state = {
+      step: 1,
+      data: loadSavedData()
+    };
+
+    const stepPanels = {
+      1: document.getElementById("step1"),
+      2: document.getElementById("step2"),
+      3: document.getElementById("step3")
+    };
+
+    const progress = [
+      document.getElementById("progress1"),
+      document.getElementById("progress2"),
+      document.getElementById("progress3")
+    ];
+
+    const heroStepText = document.getElementById("heroStepText");
+    const errorBox = document.getElementById("errorBox");
+    const successBox = document.getElementById("successBox");
+    const successStep = document.getElementById("successStep");
+
+    function loadSavedData() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+      } catch {
+        return {};
+      }
+    }
+
+    function getValue(id) {
+      return document.getElementById(id)?.value.trim() || "";
+    }
+
+    function setValue(id, value) {
+      const el = document.getElementById(id);
+      if (el && value !== undefined && value !== null) el.value = value;
+    }
+
+    function collectStep1() {
+      state.data.familyIdentity = {
+        familySlogan: getValue("familySlogan"),
+        familySurname: getValue("familySurname"),
+        religion: getValue("religion"),
+        email: getValue("email"),
+        phone: getValue("phone"),
+        nationality: getValue("nationality"),
+        stateOfOrigin: getValue("stateOfOrigin"),
+        stateOfResidence: getValue("stateOfResidence"),
+        cityOfResidence: getValue("cityOfResidence")
+      };
+    }
+
+    function collectStep2() {
+      state.data.members = Array.from({ length: 5 }, (_, index) => {
+        const number = index + 1;
+        return {
+          name: getValue(`member${number}Name`),
+          relationship: document.getElementById(`member${number}Rel`)?.value || ""
+        };
+      });
+    }
+
+    function populateForms() {
+      const identity = state.data.familyIdentity || {};
+      Object.entries(identity).forEach(([key, value]) => setValue(key, value));
+
+      (state.data.members || []).forEach((member, index) => {
+        const number = index + 1;
+        setValue(`member${number}Name`, member.name);
+        setValue(`member${number}Rel`, member.relationship);
+      });
+    }
+
+    function saveProgress(showMessage = true) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        ...state.data,
+        savedAt: new Date().toISOString()
+      }));
+
+      if (showMessage) {
+        showSuccess("Your progress has been saved. You can return and continue later.");
+      }
+    }
+
+    function showError(message) {
+      successBox.classList.add("hidden");
+      errorBox.textContent = message;
+      errorBox.classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function showSuccess(message) {
+      errorBox.classList.add("hidden");
+      successBox.textContent = message;
+      successBox.classList.remove("hidden");
+      setTimeout(() => successBox.classList.add("hidden"), 3500);
+    }
+
+    function clearMessages() {
+      errorBox.classList.add("hidden");
+      successBox.classList.add("hidden");
+    }
+
+    function validateStep1() {
+      collectStep1();
+
+      const required = [
+        ["familySlogan", "Family Slogan"],
+        ["familySurname", "Family Surname"],
+        ["religion", "Religion"],
+        ["email", "Email Address"],
+        ["phone", "Phone Number"],
+        ["nationality", "Nationality"],
+        ["stateOfOrigin", "State of Origin"],
+        ["stateOfResidence", "State of Residence"],
+        ["cityOfResidence", "City of Residence"]
+      ];
+
+      for (const [id, label] of required) {
+        if (!getValue(id)) {
+          showError(`${label} is required.`);
+          document.getElementById(id)?.focus();
+          return false;
+        }
+      }
+
+      const email = getValue("email");
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showError("Please enter a valid email address.");
+        document.getElementById("email").focus();
+        return false;
+      }
+
+      return true;
+    }
+
+    function validateStep2() {
+      collectStep2();
+
+      const missing = state.data.members.findIndex(member => !member.name);
+      if (missing !== -1) {
+        const number = missing + 1;
+        showError(`Please enter the full name of Member ${number}.`);
+        document.getElementById(`member${number}Name`)?.focus();
+        return false;
+      }
+
+      return true;
+    }
+
+    function buildReview() {
+      const identity = state.data.familyIdentity || {};
+      const members = state.data.members || [];
+
+      document.getElementById("reviewBox").innerHTML = `
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div><span class="font-semibold">Team name:</span> ${escapeHtml(identity.familySlogan || "")}</div>
+          <div><span class="font-semibold">Surname:</span> ${escapeHtml(identity.familySurname || "")}</div>
+          <div><span class="font-semibold">Religion:</span> ${escapeHtml(identity.religion || "")}</div>
+          <div><span class="font-semibold">Email:</span> ${escapeHtml(identity.email || "")}</div>
+          <div><span class="font-semibold">Phone:</span> ${escapeHtml(identity.phone || "")}</div>
+          <div><span class="font-semibold">Nationality:</span> ${escapeHtml(identity.nationality || "")}</div>
+          <div><span class="font-semibold">State of origin:</span> ${escapeHtml(identity.stateOfOrigin || "")}</div>
+          <div><span class="font-semibold">Residence:</span> ${escapeHtml(identity.cityOfResidence || "")}, ${escapeHtml(identity.stateOfResidence || "")}</div>
+        </div>
+        <div class="pt-3 border-t border-gray-200">
+          <p class="font-semibold mb-2">Family members</p>
+          <ol class="list-decimal list-inside space-y-1">
+            ${members.map(member => `<li>${escapeHtml(member.name)}${member.relationship ? ` — ${escapeHtml(member.relationship)}` : ""}</li>`).join("")}
+          </ol>
+        </div>
+      `;
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function showStep(step) {
+      clearMessages();
+      state.step = step;
+
+      Object.entries(stepPanels).forEach(([number, panel]) => {
+        panel.classList.toggle("active", Number(number) === step);
+      });
+
+      progress.forEach((bar, index) => {
+        bar.classList.toggle("bg-orange-500", index < step);
+        bar.classList.toggle("bg-gray-200", index >= step);
+      });
+
+      heroStepText.textContent = `Family Registration — Step ${step} of 3`;
+      document.querySelector("#registrationOverlay > div")?.scrollTo({ top: 0, behavior: "smooth" });
+
+      if (step === 3) buildReview();
+    }
+
+    function goNext() {
+      if (state.step === 1) {
+        if (!validateStep1()) return;
+        saveProgress(false);
+        showStep(2);
+        return;
+      }
+
+      if (state.step === 2) {
+        if (!validateStep2()) return;
+        saveProgress(false);
+        showStep(3);
+      }
+    }
+
+    // Step 1 submit
+    document.getElementById("familyIdentityForm").addEventListener("submit", event => {
+      event.preventDefault();
+      goNext();
+    });
+
+    // Step 2 submit
+    document.getElementById("familyMembersForm").addEventListener("submit", event => {
+      event.preventDefault();
+      goNext();
+    });
+
+    // Step 3 submit
+    document.getElementById("completeRegistrationForm").addEventListener("submit", event => {
+      event.preventDefault();
+
+      collectStep1();
+      collectStep2();
+
+      const checkbox = document.getElementById("certifyCheckbox");
+
+      if (!checkbox.checked) {
+        showError("Please certify that the information provided is true and accurate before completing registration.");
+        checkbox.focus();
+        return;
+      }
+
+      const registration = {
+        ...state.data,
+        status: "completed",
+        completedAt: new Date().toISOString()
+      };
+
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(registration));
+
+      // Hide all registration steps and show the success state.
+      Object.values(stepPanels).forEach(panel => panel.classList.remove("active"));
+      document.querySelector(".flex.items-center.gap-2.mb-8")?.classList.add("hidden");
+      document.getElementById("returnBtn").classList.add("hidden");
+      errorBox.classList.add("hidden");
+      successBox.classList.add("hidden");
+      successStep.classList.remove("hidden");
+
+      heroStepText.textContent = "Registration Complete";
+    });
+
+    // Previous buttons
+    document.getElementById("backToStep1Btn").addEventListener("click", () => showStep(1));
+    document.getElementById("backToStep2Btn").addEventListener("click", () => showStep(2));
+
+    // Save buttons
+    document.getElementById("saveStep1Btn").addEventListener("click", () => {
+      collectStep1();
+      saveProgress();
+    });
+
+    document.getElementById("saveStep2Btn").addEventListener("click", () => {
+      collectStep2();
+      saveProgress();
+    });
+
+    // Return to the previous page instead of pretending to close a modal.
+    document.getElementById("returnBtn").addEventListener("click", () => {
+      if (history.length > 1) history.back();
+      else window.location.href = "../Programs.html";
+    });
+
+    // "Obtain PIN Later" simply leaves the registration flow.
+    document.getElementById("obtainLaterBtn").addEventListener("click", () => {
+      window.location.href = "./index.html";
+    });
+
+    // Obtain PIN is explicitly a route, not a modal.
+    document.getElementById("obtainPinBtn").href = PIN_ROUTE;
+
+    // Restore saved data on page load.
+    populateForms();
+
+    // If a completed registration is already saved, do not automatically
+    // skip the form; the user can still start/review a new registration.
+    showStep(1);
+  </script>
+</body>
+</html>

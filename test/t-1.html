@@ -1,1402 +1,238 @@
-<!doctype html>
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-  <link rel="stylesheet" href="./assets/styles/styles.css">
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <title>SOWRO TV - Program</title>
-  <style type="text/tailwindcss">
-    @theme {
-        --color-clifford: #da373d;
-        --bg-tran: #FFFFFF1A;
-        --color-primary: #f0a242;
-      }
-
-      @layer utilities {
-  /* GLASS EFFECT */
-  .glass-container {
-    @apply bg-white/10 backdrop-blur-xl ;
-  }
-
-  .bg-section-overlay {
-    background-image:
-      linear-gradient(
-        to bottom right,
-        rgba(15, 15, 15, 0.85),
-        rgba(15, 15, 15, 0.6),
-        rgba(240, 162, 66, 0.25)
-      ),
-      url('https://res.cloudinary.com/dtrqikle5/image/upload/v1766799314/6479557_26565_2_1_qjxypt.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-  }
-
-  .gallery-carousel-item {
-    @apply absolute inset-0 transition-all duration-1000 ease-in-out;
-  }
-
-  .gallery-carousel-item.active {
-    @apply opacity-100 scale-100;
-  }
-
-  .gallery-carousel-item.prev {
-    @apply opacity-0 scale-95;
-  }
-
-  .gallery-carousel-item.next {
-    @apply opacity-0 scale-95;
-  }
-}
-
-  .scrollbar-hide::-webkit-scrollbar {
-            display: none;
-        }
-        .scrollbar-hide {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        .line-clamp-2 {
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .coming-soon-badge {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          background: rgba(0, 0, 0, 0.8);
-          backdrop-filter: blur(10px);
-          padding: 1.5rem;
-          border-radius: 1rem;
-          border: 2px solid #f0a242;
-          z-index: 10;
-          text-align: center;
-          pointer-events: auto;
-        }
-    </style>
+  <title>Obtain Your Audition PIN - Pricing & Payment</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<body class="bg-black text-gray-800 min-h-screen flex items-center justify-center p-4">
 
-<body class="bg-[#0f0f0f] text-white">
-  <!-- ======== NAVBAR ======== -->
-  <header class="fixed top-0 left-0 w-full z-50">
-    <!-- Glass Layer -->
-    <div class="relative w-full
-           bg-[#1b1b1b]/60
-           backdrop-blur-xl
-           border-b border-white/10
-           shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
-
-      <!-- Top inner shine -->
-      <div class="pointer-events-none absolute inset-x-0 top-0 h-px
-             bg-gradient-to-r from-transparent via-white/40 to-transparent">
-      </div>
-
-      <!-- Left glossy curve -->
-      <div class="pointer-events-none absolute top-0 left-0 h-full w-48
-             bg-gradient-to-r from-white/10 to-transparent
-             blur-2xl rounded-r-full">
-      </div>
-
-      <!-- Content -->
-      <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
-
-        <!-- Logo -->
-        <a href="./index.html" class="text-orange-500 font-bold text-xl tracking-wide">
-          <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766409594/sword_TV_logo_y9mnja.png" width="150"
-            class="rounded-full" />
-        </a>
-
-        <!-- Desktop Menu -->
-        <nav class="hidden md:flex items-center space-x-8">
-          <a href="./index.html" class="text-white/80 hover:text-orange-400 transition ">Home</a>
-          <a href="#" class="text-orange-400 hover:text-orange-400 transition ">Programmes</a>
-          <a href="./Partnership.html" class="text-white/80 hover:text-orange-400 transition">Partnership</a>
-          <a href="./About.html" class="text-white/80 hover:text-orange-400 transition">About Us</a>
-          <a href="./blog.html" class="text-white/80 hover:text-orange-400 transition">Blog</a>
-          <a href="./contact-us.html" class="text-white/80 hover:text-orange-400 transition">Contact us</a>
-        </nav>
-
-        <!-- CTA Button -->
-        <button class="open-partner-modal hidden md:block
-               bg-orange-500/90 hover:bg-orange-500
-               text-black font-semibold
-               px-6 py-2 rounded-full
-               shadow-lg shadow-orange-500/30
-               transition">
-          Partner with Us
-        </button>
-
-        <!-- Mobile Menu -->
-        <button id="openMenu" class="md:hidden text-3xl text-white">
-          ☰
-        </button>
-
-      </div>
-    </div>
-  </header>
-
-
-
-  <!-- ======== MOBILE MENU ======== -->
-  <div id="mobileMenu" class="hidden fixed inset-0 bg-black/20 backdrop-blur-xl z-50 flex items-center justify-center">
-    <div class="bg-[#1b1b1b] w-72 rounded-xl p-6 relative">
-
-      <button id="closeMenu" class="absolute top-4 right-4 text-xl">✕</button>
-
-      <h2 class="text-orange-400 font-semibold text-xl mb-6">
-        <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766409594/sword_TV_logo_y9mnja.png" width="150"
-          class="rounded-full" />
-      </h2>
-
-      <div class="flex flex-col space-y-4 text-center">
-        <a href="./index.html">Home</a>
-        <a class="text-orange-400 font-semibold">Programs</a>
-        <a href="./Partnership.html">Partnership</a>
-        <a href="./About.html">About Us</a>
-        <a href="./blog.html">Blog</a>
-        <a href="./contact-us.html">Contact us</a>
-
-        <button class="open-partner-modal bg-orange-400 text-black px-5 py-2 rounded-full font-semibold mt-4">
-          Partner with Us
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- nav ends -->
-  <section class="bg-section-overlay">
-    <div class="relative min-h-screen flex items-center justify-center overflow-hidden ">
-
-      <!-- Content -->
-      <div class="relative z-10 max-w-4xl mx-auto px-6 text-center py-20">
-        <div class="inline-block mb-6 px-4 py-2 bg-amber-600/20 border border-amber-600/40 rounded-full">
-          <span class="text-amber-400 text-sm font-medium">Uplifting Programs, Inspiring Stories</span>
-        </div>
-
-        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-          Browse through all our programs; past, ongoing, and upcoming events.
-        </h1>
-
-        <p class="text-gray-300 text-base sm:text-lg md:text-xl mb-10 max-w-3xl mx-auto px-4">
-          From international Bible competitions to fan-inspired concerts, documentaries, game shows, talk shows, and
-          greater (stories that galvanize) so people who are not only inspired but motivated to transform their world.
-        </p>
-
-        <!-- Search Bar -->
-        <div class="max-w-2xl mx-auto px-4">
-          <div class="relative">
-            <input type="text" placeholder="Search" id="searchInput"
-              class="w-full px-6 py-4 pl-14 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all" />
-            <svg class="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" fill="none"
-              stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-            </svg>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-
-
-
-  <!-- Programs Section -->
-  <section class="bg-section-overlay py-16 sm:py-32">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6">
-      <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12 sm:mb-16 text-amber-400">All Programs</h2>
-
-      <!-- Filter and Category Controls -->
-      <div class="mb-12 space-y-6">
-        <!-- Filter Dropdown -->
-        <div class="flex justify-center">
-          <div class="relative inline-block">
-            <button id="filterBtn" class="flex items-center gap-2 px-6 py-3 bg-gray-800 hover:bg-gray-700 text-white rounded-full border border-gray-700 transition-all">
-              <span>Filter:</span>
-              <span id="filterValue" class="font-semibold">All</span>
-              <svg class="w-4 h-4 transition-transform" id="filterArrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-              </svg>
-            </button>
-
-            <!-- Filter Dropdown Menu -->
-            <div id="filterMenu" class="hidden absolute top-full mt-2 left-0 bg-gray-800 rounded-lg border border-gray-700 shadow-lg z-30 min-w-[200px]">
-              <button class="filter-option w-full text-left px-6 py-3 hover:bg-gray-700 text-white" data-filter="all">All Programs</button>
-              <button class="filter-option w-full text-left px-6 py-3 hover:bg-gray-700 text-white" data-filter="upcoming">Upcoming</button>
-              <button class="filter-option w-full text-left px-6 py-3 hover:bg-gray-700 text-white" data-filter="available">Available</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Category Tabs -->
-        <div class="overflow-x-auto scrollbar-hide">
-          <div class="flex gap-2 min-w-max pb-4 px-2 justify-center" id="programTabs">
-            <button class="program-tab-btn px-4 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition-all whitespace-nowrap bg-amber-600 text-white shadow-lg shadow-amber-600/50" data-category="all">
-              All
-            </button>
-            <button class="program-tab-btn px-4 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition-all whitespace-nowrap bg-gray-800 text-gray-300 hover:bg-gray-700" data-category="reality">
-              Reality Shows
-            </button>
-            <button class="program-tab-btn px-4 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition-all whitespace-nowrap bg-gray-800 text-gray-300 hover:bg-gray-700" data-category="game">
-              Game Shows
-            </button>
-            <button class="program-tab-btn px-4 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition-all whitespace-nowrap bg-gray-800 text-gray-300 hover:bg-gray-700" data-category="talk">
-              Talk Shows
-            </button>
-            <button class="program-tab-btn px-4 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition-all whitespace-nowrap bg-gray-800 text-gray-300 hover:bg-gray-700" data-category="documentary">
-              Documentaries
-            </button>
-            <button class="program-tab-btn px-4 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition-all whitespace-nowrap bg-gray-800 text-gray-300 hover:bg-gray-700" data-category="special">
-              Special Events
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Program Cards -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" id="programCards">
-        <!-- Cards will be inserted here by JavaScript -->
-      </div>
-    </div>
-  </section>
-
-
-    <!-- ======== GALLERY SECTION ======== -->
-  <section class="bg-section-overlay py-16 sm:py-32">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6">
-      <h2 class="text-3xl sm:text-4xl md:text-6xl font-bold text-center mb-12 sm:mb-16 text-amber-400">Our Gallery</h2>
-
-      <!-- Gallery Carousel -->
-      <div class="relative">
-        <!-- Main Image Display -->
-        <div class="relative h-72 sm:h-96 md:h-[500px] rounded-3xl overflow-hidden group bg-gray-900 shadow-2xl shadow-black/50">
-          <img id="galleryMainImage" src="" alt="Gallery" class="w-full h-full object-cover transition-all duration-500" />
-          
-          <!-- Gradient Overlay -->
-          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent z-10 pointer-events-none"></div>
-
-          <!-- Navigation Buttons -->
-          <button id="prevGalleryImage"
-            class="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 p-3 sm:p-5 bg-black/60 hover:bg-amber-600 backdrop-blur-sm rounded-full transition-all duration-300 shadow-lg hover:shadow-amber-600/50 hover:scale-110">
-            <svg class="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path>
-            </svg>
-          </button>
-
-          <button id="nextGalleryImage"
-            class="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 p-3 sm:p-5 bg-black/60 hover:bg-amber-600 backdrop-blur-sm rounded-full transition-all duration-300 shadow-lg hover:shadow-amber-600/50 hover:scale-110">
-            <svg class="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
-            </svg>
-          </button>
-        </div>
-
-        <!-- Gallery Navigation Controls -->
-        <div class="flex justify-center items-center gap-4 mt-8 sm:mt-10">
-          <!-- Dots -->
-          <div class="flex justify-center gap-3" id="galleryDots">
-            <!-- Dots will be inserted here by JS -->
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- PARTNER MODAL -->
-  <div id="partnerModal" class="fixed inset-0 z-[999] hidden
-         flex items-center justify-center
-         bg-black/60 backdrop-blur-lg
-         px-4 py-6 overflow-y-auto">
-
-    <!-- MODAL CARD -->
-    <div class="bg-white w-full max-w-3xl
-           rounded-2xl p-6 sm:p-8
-           shadow-2xl relative
-           my-auto">
-
-      <!-- CLOSE BUTTON -->
-      <button id="closePartnerModal" class="absolute top-4 right-4
-             text-gray-400 hover:text-black
-             text-xl">
-        ✕
+  <!-- Modal Container -->
+  <div class="bg-white w-full max-w-4xl rounded-3xl shadow-2xl p-6 sm:p-10 relative overflow-hidden my-6">
+    
+    <!-- Top Action Bar -->
+    <div class="flex items-center justify-between mb-8">
+      <!-- Return Button -->
+      <button 
+        type="button" 
+        class="inline-flex items-center gap-1.5 text-xs font-semibold text-orange-500 border border-orange-200 bg-orange-50/50 hover:bg-orange-100 px-4 py-1.5 rounded-full transition-colors">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Return
       </button>
 
-      <!-- STEP INDICATOR -->
-      <p class="text-xs text-gray-500 mb-2">
-        Section <span id="stepNumber">1</span> of 6
+      <!-- Already Have PIN Button -->
+      <button 
+        type="button" 
+        class="text-xs font-semibold text-orange-500 border border-orange-200 bg-orange-50/50 hover:bg-orange-100 px-5 py-2 rounded-full transition-colors">
+        Already have PIN? Start Audition
+      </button>
+    </div>
+
+    <!-- Header Section -->
+    <div class="text-center mb-8">
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-orange-400 tracking-tight">
+        Obtain Your Audition PIN
+      </h1>
+      <p class="text-xs sm:text-sm text-gray-500 font-medium mt-2">
+        ₦500 per attempt • Minimum ₦3,000
       </p>
+    </div>
 
-      <!-- PROGRESS BAR -->
-      <div class="w-full h-2 bg-gray-200 rounded-full mb-8">
-        <div id="progressBar" class="h-2 bg-orange-400 rounded-full
-               transition-all duration-300" style="width:16.66%">
-        </div>
+    <!-- Warning / Info Callout Banner -->
+    <div class="flex items-start gap-3 bg-amber-50/60 border border-amber-200/80 p-4 rounded-2xl mb-8">
+      <div class="text-amber-500 mt-0.5 flex-shrink-0">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+        </svg>
       </div>
+      <p class="text-xs text-amber-800/80 leading-relaxed">
+        Your PIN and all remaining attempts are valid only for the current edition. Unused attempts expire automatically when the edition closes.
+      </p>
+    </div>
 
-      <!-- STEPS CONTAINER -->
-      <div class="space-y-6 max-h-[60vh] overflow-y-auto pr-1">
-
-        <!-- STEP 1 -->
-         <div class="step">
-          <h2 class="text-orange-500 text-xl font-semibold mb-2">
-            Select Programme
-          </h2>
-
-          <p class="text-sm text-gray-600 mb-5">
-            Which of the below programme do you want to support?
-          </p>
-
-          <!-- PROGRAMME OPTIONS -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="programmeOptions">
-            <!-- Options will be populated by JavaScript -->
+    <!-- Pricing Package Options Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      
+      <!-- Card 1: Starter -->
+      <div 
+        onclick="selectPackage(this, 3000)"
+        class="package-card relative p-5 bg-gray-50/60 border border-gray-200 rounded-2xl cursor-pointer hover:border-orange-300 transition-all">
+        <div class="flex justify-between items-start">
+          <span class="text-[10px] font-bold tracking-wider uppercase text-gray-500">STARTER</span>
+          <div class="check-icon hidden text-orange-500 bg-orange-100 p-0.5 rounded-full">
+            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
           </div>
         </div>
-         <!--  -->
-       
+        <div class="text-2xl font-bold text-gray-900 mt-2">₦3,000</div>
+        <p class="text-xs text-gray-500 mt-2">3 audition attempts</p>
+        <p class="text-[11px] text-gray-400 mt-1">₦1000 per attempt</p>
+      </div>
 
-        <!-- PLACEHOLDER STEPS -->
-        <!-- STEP 2 -->
+      <!-- Card 2: Standard (Selected state by default) -->
+      <div 
+        onclick="selectPackage(this, 5000)"
+        class="package-card active-card relative p-5 bg-orange-50/70 border-2 border-orange-400 rounded-2xl cursor-pointer transition-all">
+        <div class="flex justify-between items-start">
+          <span class="text-[10px] font-bold tracking-wider uppercase text-orange-500">STANDARD</span>
+          <div class="check-icon text-white bg-orange-500 rounded-full p-0.5">
+            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          </div>
+        </div>
+        <div class="text-2xl font-bold text-gray-900 mt-2">₦5,000</div>
+        <p class="text-xs text-gray-600 mt-2">5 audition attempts</p>
+        <p class="text-[11px] text-gray-400 mt-1">₦1000 per attempt</p>
+      </div>
+
+      <!-- Card 3: Pro -->
+      <div 
+        onclick="selectPackage(this, 10000)"
+        class="package-card relative p-5 bg-gray-50/60 border border-gray-200 rounded-2xl cursor-pointer hover:border-orange-300 transition-all">
+        <div class="flex justify-between items-start">
+          <span class="text-[10px] font-bold tracking-wider uppercase text-gray-500">PRO</span>
+          <div class="check-icon hidden text-orange-500 bg-orange-100 p-0.5 rounded-full">
+            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          </div>
+        </div>
+        <div class="text-2xl font-bold text-gray-900 mt-2">₦10,000</div>
+        <p class="text-xs text-gray-500 mt-2">10 audition attempts</p>
+        <p class="text-[11px] text-gray-400 mt-1">₦1000 per attempt</p>
+      </div>
+
+      <!-- Card 4: Premium -->
+      <div 
+        onclick="selectPackage(this, 25000)"
+        class="package-card relative p-5 bg-gray-50/60 border border-gray-200 rounded-2xl cursor-pointer hover:border-orange-300 transition-all">
+        <div class="flex justify-between items-start">
+          <span class="text-[10px] font-bold tracking-wider uppercase text-gray-500">PREMIUM</span>
+          <div class="check-icon hidden text-orange-500 bg-orange-100 p-0.5 rounded-full">
+            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+          </div>
+        </div>
+        <div class="text-2xl font-bold text-gray-900 mt-2">₦25,000</div>
+        <p class="text-xs text-gray-500 mt-2">25 audition attempts</p>
+        <p class="text-[11px] text-gray-400 mt-1">₦1000 per attempt</p>
+      </div>
+
+    </div>
+
+    <!-- Custom Amount Field -->
+    <div class="bg-amber-50/30 border border-amber-100 p-4 rounded-2xl mb-8">
+      <label for="customAmount" class="block text-xs font-semibold text-gray-700 mb-2">
+        Custom Amount (minimum ₦3,000)
+      </label>
+      <div class="relative flex items-center">
+        <span class="absolute left-4 text-xs font-bold text-gray-600">₦</span>
+        <input 
+          type="number" 
+          id="customAmount" 
+          placeholder="Enter amount" 
+          min="3000"
+          class="w-full pl-8 pr-4 py-3 bg-amber-50/50 text-xs text-gray-800 border border-amber-200/60 rounded-xl focus:ring-2 focus:ring-orange-400 focus:border-transparent outline-none placeholder:text-gray-400 transition"
+        />
+      </div>
+    </div>
+
+    <!-- Payment Method Options -->
+    <div class="space-y-3 mb-8">
+      <label class="block text-xs font-semibold text-gray-700">Payment Method</label>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         
- <div class="step hidden">
-          <h2 class="text-orange-500 text-xl font-semibold mb-2">
-            Select Category
-          </h2>
-
-          <p class="text-sm text-gray-600 mb-4">
-            Which of the below categories do you want to donate for?
-          </p>
-
-          <!-- OPTION -->
-          <label class="block border border-orange-300 rounded-xl
-                 p-4 sm:p-5 mb-3
-                 flex gap-3 items-start cursor-pointer">
-            <input type="radio" name="category" class="mt-1">
-            <div>
-              <span class="font-medium text-gray-900">Major Weight</span><br>
-              <span class="text-sm text-gray-600">
-                ₦50,000,000 and above
-              </span>
-            </div>
-          </label>
-
-          <!-- OPTION -->
-          <label class="block border border-orange-300 rounded-xl
-                 p-4 sm:p-5 mb-3
-                 flex gap-3 items-start cursor-pointer">
-            <input type="radio" name="category" class="mt-1">
-            <div>
-              <span class="font-medium text-gray-900">Medium Weight</span><br>
-              <span class="text-sm text-gray-600">
-                ₦20,000,000 to ₦50,000,000
-              </span>
-            </div>
-          </label>
-
-          <!-- OPTION -->
-          <label class="block border border-orange-300 rounded-xl
-                 p-4 sm:p-5
-                 flex gap-3 items-start cursor-pointer">
-            <input type="radio" name="category" class="mt-1">
-            <div>
-              <span class="font-medium text-gray-900">Light Weight</span><br>
-              <span class="text-sm text-gray-600">
-                ₦20,000,000 and below
-              </span>
-            </div>
-          </label>
-        </div>
-        <!-- STEP 3 -->
-
-        <div class="step hidden" id="step3">
-          <h2 class="text-orange-500 text-xl font-semibold mb-2">
-            Fill form
-          </h2>
-
-          <p class="text-sm text-gray-800 mb-6">
-            Kindly fill the below form to proceed with your partnership.
-          </p>
-
-          <div class="space-y-5">
-
-            <div>
-              <label class="block text-gray-700 text-sm font-medium mb-1">Full name</label>
-              <input id="fullName" type="text" placeholder="Enter your full name"
-                class="w-full rounded border border-gray-400 px-4 py-3 text-gray-900" />
-            </div>
-
-            <div>
-              <label class="block text-gray-700 text-sm font-medium mb-1">Email Address</label>
-              <input id="email" type="email" placeholder="Enter your email address"
-                class="w-full rounded border border-gray-400 px-4 py-3 text-gray-900" />
-            </div>
-
-            <div>
-              <label class="block text-gray-700 text-sm font-medium mb-1">Phone Number</label>
-              <input id="phone" type="tel" placeholder="Enter your phone number"
-                class="w-full rounded border border-gray-400 px-4 py-3 text-gray-900" />
-            </div>
-
-            <div>
-              <label class="block text-gray-700 text-sm font-medium mb-1">
-                Organization/Company (Optional)
-              </label>
-              <input id="organization" type="text" placeholder="Your organization name"
-                class="w-full rounded border border-gray-400 px-4 py-3 text-gray-900" />
-            </div>
-
-          </div>
-        </div>
-
-        <!-- step 4 -->
-        <div class="step hidden">
-          <h2 class="text-orange-500 text-xl font-semibold mb-2">
-            Partnership Details
-          </h2>
-
-          <p class="text-sm text-gray-600 mb-5">
-            How would you like to support this programme?
-          </p>
-
-          <!-- PROGRAMME OPTIONS -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-
-            <!-- OPTION -->
-            <label class="border border-orange-300 rounded-xl p-4
-                  flex gap-3 items-start cursor-pointer
-                  hover:bg-orange-50 transition">
-              <input type="radio" name="supportType" value="financial" class="mt-1">
-              <span class="font-medium text-sm text-gray-900">
-                Financial Support
-              </span>
-            </label>
-
-            <label class="border border-orange-300 rounded-xl p-4
-                  flex gap-3 items-start cursor-pointer
-                  hover:bg-orange-50 transition">
-              <input type="radio" name="supportType" value="sponsorship" class="mt-1">
-              <span class="font-medium text-sm text-gray-900">
-                Sponsorship
-              </span>
-            </label>
-
-            <label class="border border-orange-300 rounded-xl p-4
-                  flex gap-3 items-start cursor-pointer
-                  hover:bg-orange-50 transition">
-              <input type="radio" name="supportType" value="media" class="mt-1">
-              <span class="font-medium text-sm text-gray-900">
-                Media Partnership
-              </span>
-            </label>
-
-            <label class="border border-orange-300 rounded-xl p-4
-                  flex gap-3 items-start cursor-pointer
-                  hover:bg-orange-50 transition">
-              <input type="radio" name="supportType" value="other" class="mt-1">
-              <span class="font-medium text-sm text-gray-900">
-                Other
-              </span>
-            </label>
-
-          </div>
-        </div>
-        <!-- STEP 5 -->
-        <div class="step hidden">
-          <h2 class="text-orange-500 text-xl font-semibold mb-6">
-            Review Your Details
-          </h2>
-
-          <!-- Summary Card -->
-          <div class="bg-orange-50 rounded-2xl p-5 sm:p-6 mb-6 shadow-sm">
-            <h3 class="font-medium text-gray-900 mb-4">
-              Partnership Summary
-            </h3>
-
-            <div class="space-y-3 text-sm">
-              <div class="flex justify-between">
-                <span class="text-gray-600">Programme:</span>
-                <span id="summaryProgramme" class="font-medium text-gray-900">-</span>
-              </div>
-              <div class="flex justify-between">
-                <span class="text-gray-600">Name:</span>
-                <span id="summaryName" class="font-medium text-gray-900">-</span>
-              </div>
-              <div class="flex justify-between">
-                <span class="text-gray-600">Email:</span>
-                <span id="summaryEmail" class="font-medium text-gray-900">-</span>
-              </div>
-              <div class="flex justify-between">
-                <span class="text-gray-600">Support Type:</span>
-                <span id="summarySupportType" class="font-medium text-gray-900">-</span>
-              </div>
-            </div>
-          </div>
-
-          <p class="text-sm text-gray-600 mb-6">
-            Please review your details above. Click submit to send your partnership inquiry.
-          </p>
-        </div>
-
-        <!-- STEP 6 - SUCCESS -->
-        <div class="step hidden text-center">
-          <div class="mb-6">
-            <div class="inline-block p-4 bg-green-100 rounded-full mb-4">
-              <svg class="w-12 h-12 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-              </svg>
-            </div>
-          </div>
-          <h2 class="text-orange-500 text-2xl font-semibold mb-4">
-            Thank You!
-          </h2>
-          <p class="text-gray-600 mb-6">
-            Your partnership inquiry has been submitted successfully. We will contact you shortly at the email provided to discuss the partnership details.
-          </p>
-          <p class="text-sm text-gray-500">
-            Reference: <span id="referenceNumber" class="font-mono font-semibold text-gray-900">-</span>
-          </p>
-        </div>
-
-      </div>
-
-      <!-- FOOTER BUTTONS -->
-      <div class="flex flex-col sm:flex-row
-             gap-4 sm:justify-between
-             items-center mt-10" id="modalFooter">
-
-        <button id="prevStep" class="w-full sm:w-auto
-               border border-orange-400
-               text-orange-500
-               px-6 py-3 rounded-full">
-          Previous
+        <!-- Offline Payment (Selected) -->
+        <button 
+          type="button" 
+          id="offlinePaymentBtn"
+          onclick="togglePaymentMethod('offline')"
+          class="payment-btn py-3.5 px-4 text-xs font-semibold text-orange-500 bg-orange-50/80 border-2 border-orange-300 rounded-2xl transition-all">
+          Offline Payment
         </button>
 
-        <button id="nextStep" class="w-full sm:w-auto
-               bg-orange-400 text-white
-               px-8 py-3 rounded-full
-               disabled:opacity-40" disabled>
-          Next
+        <!-- Online Payment -->
+        <button 
+          type="button" 
+          id="onlinePaymentBtn"
+          onclick="togglePaymentMethod('online')"
+          class="payment-btn py-3.5 px-4 text-xs font-semibold text-gray-600 bg-white border border-gray-200 hover:border-gray-300 rounded-2xl transition-all">
+          Online Payment
         </button>
 
       </div>
-
     </div>
-  </div>
-  <div id="comingSoonModal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-[999] flex items-center justify-center p-4 overflow-hidden">
-    <div class="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 sm:p-12 max-w-md w-full border border-amber-600/30 shadow-2xl shadow-amber-600/20">
-      <!-- Close Button -->
-      <button id="closeComingSoon"
-        class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-gray-700 hover:bg-amber-600 transition-colors z-10">
-        ✕
-      </button>
 
-      <!-- Icon -->
-      <div class="text-center mb-6">
-        <div class="inline-block p-4 bg-amber-600/20 border border-amber-600/50 rounded-full mb-4">
-          <svg class="w-12 h-12 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-          </svg>
-        </div>
-      </div>
+    <!-- Submit Action Button -->
+    <button 
+      type="button" 
+      id="proceedToPaymentBtn"
+      class="w-full py-4 bg-orange-400 hover:bg-orange-500 text-white font-semibold text-sm rounded-2xl shadow-lg shadow-orange-400/20 transition-colors">
+      Proceed to Payment
+    </button>
 
-      <!-- Content -->
-      <h3 id="comingSoonTitle" class="text-2xl sm:text-3xl font-bold text-center mb-4 text-white"></h3>
-      
-      <p class="text-center text-gray-300 mb-6 leading-relaxed">
-        This exciting program is coming soon! We're working hard to bring you an unforgettable experience.
-      </p>
-
-      <p id="comingSoonDesc" class="text-center text-gray-400 text-sm mb-8"></p>
-
-      <!-- Action Buttons -->
-      <div class="flex flex-col gap-3">
-        <button
-          class="px-6 py-3 bg-amber-600 hover:bg-amber-500 text-white rounded-full font-semibold transition-colors text-center">
-          Notify Me
-        </button>
-        <button id="closeComingSoon2"
-          class="px-6 py-3 bg-gray-700 hover:bg-gray-600 text-white rounded-full font-semibold transition-colors text-center">
-          Close
-        </button>
-      </div>
-
-      <!-- Decorative Elements -->
-      <div class="absolute top-0 left-0 w-32 h-32 bg-amber-600/5 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl pointer-events-none"></div>
-      <div class="absolute bottom-0 right-0 w-32 h-32 bg-cyan-600/5 rounded-full translate-x-1/2 translate-y-1/2 blur-3xl pointer-events-none"></div>
-    </div>
   </div>
 
-
-  <!-- footer container -->
-  <section class="w-full py-16 ">
-    <div class=" flex flex-col items-center justify-center p-4">
-      <!-- Newsletter Card -->
-      <div class="bg-white rounded-3xl shadow-2xl max-w-4xl w-full p-12 mb-8">
-        <div class="grid md:grid-cols-2 gap-8 items-center">
-          <!-- Left Column -->
-          <div>
-            <h2 class="text-4xl font-bold text-gray-900 mb-4">Stay Connected!</h2>
-            <p class="text-gray-600 text-sm leading-relaxed">
-              Receive updates on upcoming events, new programmes, auditions, competitions, and ministry opportunities.
-            </p>
-          </div>
-
-          <!-- Right Column -->
-          <div>
-            <p class="text-sm text-gray-900 mb-4">
-              Subscribe and be the first to know — and never miss a moment of impact.
-            </p>
-            <div class="flex gap-2 flex-col md:flex-row">
-              <input type="email" placeholder="Enter your email address"
-                class="flex-1 px-4 py-3 rounded-full bg-gray-100 text-black text-sm focus:outline-none focus:ring-2 focus:ring-orange-400">
-              <button
-                class="px-8 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-full font-medium text-sm transition-colors duration-300">
-                Subscribe
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Footer -->
-       <footer class="w-full max-w-6xl">
-                <div class="grid md:grid-cols-2 gap-12 mb-8">
-                    <!-- Left Section -->
-                    <div>
-                        <a href="./index.html" class="text-orange-500 text-xl font-bold mb-6">
-                            <img src="https://res.cloudinary.com/dtrqikle5/image/upload/v1766409594/sword_TV_logo_y9mnja.png"
-                                width="150" class="rounded-full" />
-                        </a>
-                        <div class="space-y-3 text-gray-400 text-sm pl-3 mt-3">
-                            <div class="flex items-center gap-2">
-                                <i class="far fa-envelope"></i>
-                                <span>info@swordtelevision.com</span>
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <i class="fas fa-phone"></i>
-                                <span>+2348087863562 | +2347048811294 | +2349060672683</span>
-                            </div>
-                             <div class="flex items-center gap-2">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Suite 8, Dabic Shopping Plaza, behind M & M Super Market, Yoruba road, Ilorin, Kwara State</span>
-                            </div>
-                        </div>
-
-                        <!-- Social Icons -->
-                      <div class="flex gap-4 mt-6">
-                            <a href="https://www.facebook.com/share/1Efwj5eVHv/"
-                                class="w-8 h-8  rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
-                                <i class="fa-brands fa-facebook text-lg text-gray-850 text-gray-50"></i>
-                            </a>
-                            <a href="https://youtube.com/@swordtelevision?si=XdX_F6ml9Qu-FOx4"
-                                class="w-8 h-8  rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
-                                <i class="fa-brands fa-youtube text-lg text-gray-8050 text-gray-50"></i>
-                            </a>
-                            <a href="#"
-                                class="w-8 h-8  rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
-                                <i class="fa-brands fa-linkedin-in text-lg text-gray-50"></i>
-                            </a>
-                            <a href="#"
-                                class="w-8 h-8  rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
-                                <i class="fa-brands fa-x-twitter text-lg text-gray-50"></i>
-                            </a>
-                            <a href="https://vm.tiktok.com/ZS9LCerWnUXDt-VgyAC/"
-                                class="w-8 h-8  rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
-                                <i class="fa-brands fa-tiktok text-lg text-gray-80050 text-gray-50"></i>
-                            </a>
-                            <a href="https://www.instagram.com/sword.television?igsh=aXp5cG9icjE3dGgw"
-                                class="w-8 h-8  rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
-                                <i class="fa-brands fa-instagram text-lg text-gray-50"></i>
-                            </a>
-                            <a href="https://wa.me/qr/VHYVPTX753TAE1"
-                                class="w-8 h-8  rounded flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300">
-                                <i class="fa-brands fa-whatsapp text-lg text-gray-50"></i>
-                            </a>
-
-                        </div>
-                    </div>
-
-                    <!-- Right Section - Navigation -->
-                    <div class="grid grid-cols-2 gap-8">
-                        <div>
-                            <ul class="space-y-3 text-gray-300 text-sm">
-                                <li>
-                                    <a href="#" class="hover:text-orange-500 transition-colors duration-300">Home</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="hover:text-orange-500 transition-colors duration-300">About
-                                        Us</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="hover:text-orange-500 transition-colors duration-300">Events</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="hover:text-orange-500 transition-colors duration-300">Gallery</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div>
-                            <ul class="space-y-3 text-gray-300 text-sm">
-                                <li>
-                                    <a href="#" class="hover:text-orange-500 transition-colors duration-300">Contact
-                                        Us</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="hover:text-orange-500 transition-colors duration-300">Partner
-                                        With Us</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="hover:text-orange-500 transition-colors duration-300">Donate</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="hover:text-orange-500 transition-colors duration-300">Blog</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Copyright -->
-                <div class="border-t border-gray-800 pt-6 text-center text-gray-500 text-sm">
-                    <p>Sword Television © 2025 | All rights reserved.</p>
-                </div>
-            </footer>
-    </div>
-  </section>
-
+  <!-- JavaScript Interactivity -->
   <script>
+    let selectedAmount = 5000;
+    let selectedMethod = 'offline';
 
-    const mobileMenu = document.getElementById("mobileMenu");
-    document.getElementById("openMenu").onclick = () =>
-      mobileMenu.classList.remove("hidden");
-    document.getElementById("closeMenu").onclick = () =>
-      mobileMenu.classList.add("hidden");
+    // Package Selection Logic
+    function selectPackage(cardElement, amount) {
+      document.querySelectorAll('.package-card').forEach(card => {
+        card.classList.remove('bg-orange-50/70', 'border-2', 'border-orange-400');
+        card.classList.add('bg-gray-50/60', 'border-gray-200');
+        
+        // Hide check icon
+        const checkIcon = card.querySelector('.check-icon');
+        if (checkIcon) checkIcon.classList.add('hidden');
+      });
 
-    window.addEventListener("scroll", () => {
-      document
-        .querySelector("header div")
-        .classList.toggle("backdrop-blur-2xl", window.scrollY > 10);
-    });
-
-    // Gallery Images by Category
-    const galleryImages = {
-      all: [
-        {
-          id: 1,
-          image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=500&fit=crop',
-          category: 'events'
-        },
-        {
-          id: 2,
-          image: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&h=500&fit=crop',
-          category: 'events'
-        },
-        {
-          id: 3,
-          image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=500&fit=crop',
-          category: 'performances'
-        },
-        {
-          id: 4,
-          image: 'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=800&h=500&fit=crop',
-          category: 'performances'
-        },
-        {
-          id: 5,
-          image: 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=800&h=500&fit=crop',
-          category: 'behind-the-scenes'
-        },
-        {
-          id: 6,
-          image: 'https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=800&h=500&fit=crop',
-          category: 'audience'
-        },
-        {
-          id: 7,
-          image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800&h=500&fit=crop',
-          category: 'performances'
-        },
-        {
-          id: 8,
-          image: 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&h=500&fit=crop',
-          category: 'audience'
-        },
-        {
-          id: 9,
-          image: 'https://images.unsplash.com/photo-1519834785169-98be25ec3f84?w=800&h=500&fit=crop',
-          category: 'events'
-        },
-        {
-          id: 10,
-          image: 'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=800&h=500&fit=crop',
-          category: 'behind-the-scenes'
-        },
-        {
-          id: 11,
-          image: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=800&h=500&fit=crop',
-          category: 'performances'
-        },
-        {
-          id: 12,
-          image: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&h=500&fit=crop',
-          category: 'audience'
-        }
-      ],
-      events: [],
-      performances: [],
-      'behind-the-scenes': [],
-      audience: []
-    };
-
-    // Populate category-specific images
-    galleryImages.events = galleryImages.all.filter(img => img.category === 'events');
-    galleryImages.performances = galleryImages.all.filter(img => img.category === 'performances');
-    galleryImages['behind-the-scenes'] = galleryImages.all.filter(img => img.category === 'behind-the-scenes');
-    galleryImages.audience = galleryImages.all.filter(img => img.category === 'audience');
-
-    let currentGalleryIndex = 0;
-    let currentGalleryCategory = 'all';
-    let currentProgramFilter = 'all';
-    let currentProgramCategory = 'all';
-
-    // Render Gallery
-    function renderGallery() {
-      const images = galleryImages[currentGalleryCategory];
+      // Highlight selected card
+      cardElement.classList.remove('bg-gray-50/60', 'border-gray-200');
+      cardElement.classList.add('bg-orange-50/70', 'border-2', 'border-orange-400');
       
-      // Set main image
-      if (images.length > 0) {
-        document.getElementById('galleryMainImage').src = images[currentGalleryIndex].image;
-      }
+      const checkIcon = cardElement.querySelector('.check-icon');
+      if (checkIcon) checkIcon.classList.remove('hidden');
 
-      // Render dots
-      const dotsContainer = document.getElementById('galleryDots');
-      dotsContainer.innerHTML = images.map((_, index) => `
-        <button class="gallery-dot w-3 h-3 rounded-full transition-all cursor-pointer ${index === currentGalleryIndex ? 'bg-amber-600' : 'bg-gray-500 hover:bg-gray-400'}"
-          style="${index === currentGalleryIndex ? 'width: 1.5rem;' : ''}"
-          data-index="${index}"></button>
-      `).join('');
-
-      // Add click handlers to dots
-      document.querySelectorAll('.gallery-dot').forEach(dot => {
-        dot.addEventListener('click', (e) => {
-          currentGalleryIndex = parseInt(e.currentTarget.dataset.index);
-          renderGallery();
-        });
-      });
+      selectedAmount = amount;
+      document.getElementById('customAmount').value = ''; // Reset custom amount
     }
 
-    // Gallery Navigation
-    document.getElementById('prevGalleryImage').addEventListener('click', () => {
-      const images = galleryImages[currentGalleryCategory];
-      currentGalleryIndex = (currentGalleryIndex - 1 + images.length) % images.length;
-      renderGallery();
-    });
+    // Payment Method Toggle
+    function togglePaymentMethod(method) {
+      selectedMethod = method;
+      const offlineBtn = document.getElementById('offlinePaymentBtn');
+      const onlineBtn = document.getElementById('onlinePaymentBtn');
 
-    document.getElementById('nextGalleryImage').addEventListener('click', () => {
-      const images = galleryImages[currentGalleryCategory];
-      currentGalleryIndex = (currentGalleryIndex + 1) % images.length;
-      renderGallery();
-    });
-
-    // Programs Data
-    const programs = [
-      // 6 Available Programs
-      {
-        id: 1,
-        title: 'Bible Stars Reality Show',
-        description: 'A premium, award-winning program designed to reveal spiritual realities in the natural sphere while delivering excitement, inspiration, and family-friendly entertainment. ',
-        image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1767998926/bible_start_reality_show_banner_copy_1_v4jiok.png',
-        available: true,
-        category: 'reality'
-      },
-      {
-        id: 2,
-        title: 'Ilorin Youth Mega Festival',
-        description: 'A Festival that unites performers, creators, innovators, and cultural champions from across Nigeria in music, competitions, dance, exhibitions, drama, and inspiring showcases.',
-        image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1767998911/YOUTH_FESTIVAL_BANNER_copy_1_h7jnxy.png',
-        available: true,
-        category: 'special'
-      },
-      {
-        id: 3,
-        title: 'Bible Championship',
-        description: 'The Bible Championship is a high-impact, team-based Bible game show designed to test knowledge, understanding, speed, and accuracy in God’s Word. It is a competitive yet faith-centered platform where teams face off in intense Bible-based challenges.',
-        image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1781826902/bible_championship_season_2_banner_copy_2_da1lg1_bknztq.png',
-        available: true,
-        category: 'game'
-      },
-      {
-        id: 4,
-        title: 'The National Bible Cup',
-       description: 'The National Bible Cup is Nigeria’s premier state-based Bible competition, designed to celebrate knowledge of the Word of God while fostering teamwork, healthy competition, and national pride. Teams from all 36 states plus the Federal Capital Territory (Abuja) compete to be declared the Bible State of the year. Participants will be recognized at both the team level and individual level, with prizes, certificates, and official acknowledgment.',
-        image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1781175288/National_bible_cup_banner.jpg_hqfg5u.jpg',
-        available: true,
-        category: 'game'
-      },
-      {
-        id: 5,
-        title: 'The Church and You Talk Show',
-         description: 'The Church and You is a premium podcast-style talk show with an audience, offering a safe, balanced, and interactive platform for Christians to discuss church experiences globally.',
-        image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1771427704/ChatGPT_Image_Jan_11_2026_05_59_14_PM_1_1_efa3dd.png',
-        available: true,
-        category: 'talk'
-      },
-      {
-        id: 6,
-        title: 'Marriage Realities',
-        description: 'The Marriage Realities Show is a premium, audience-based talk show that explores all aspects of marriage and family life. It provides a safe platform for participants to express their experiences, share stories, and seek guidance.',
-        image: 'https://res.cloudinary.com/dtrqikle5/image/upload/v1774876269/MRS_SET_2_C_1_qcvopy.png',
-        available: true,
-        category: 'talk'
-      },
-
-      // Coming Soon Programs
-      {
-        id: 7,
-        title: 'Quiz Masters',
-        description: 'Test your knowledge in this fast-paced quiz competition with amazing prizes.',
-        image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400&h=250&fit=crop',
-        available: false,
-        category: 'game'
-      },
-      {
-        id: 8,
-        title: 'Family Feud Challenge',
-        description: 'Families compete in hilarious challenges and trivia battles for ultimate bragging rights.',
-        image: 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=400&h=250&fit=crop',
-        available: false,
-        category: 'game'
-      },
-      {
-        id: 9,
-        title: 'The Ultimate Challenge',
-        description: 'Physical and mental challenges push contestants to their limits in this exciting game show.',
-        image: 'https://images.unsplash.com/photo-1519834785169-98be25ec3f84?w=400&h=250&fit=crop',
-        available: false,
-        category: 'special'
-      },
-      {
-        id: 10,
-        title: 'Heart to Heart',
-        description: 'Intimate conversations with inspiring personalities sharing their life stories.',
-        image: 'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=400&h=250&fit=crop',
-        available: false,
-        category: 'talk'
-      },
-      {
-        id: 11,
-        title: 'The Morning Show',
-        description: 'Start your day with news, interviews, and uplifting discussions.',
-        image: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=400&h=250&fit=crop',
-        available: false,
-        category: 'talk'
-      },
-      {
-        id: 12,
-        title: 'Late Night Talks',
-        description: 'Evening conversations about current affairs, culture, and entertainment.',
-        image: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400&h=500&fit=crop',
-        available: false,
-        category: 'documentary'
-      }
-    ];
-
-    // Render all program cards
-    function renderPrograms() {
-      const container = document.getElementById('programCards');
-      
-      let filtered = programs;
-
-      // Filter by availability
-      if (currentProgramFilter === 'available') {
-        filtered = programs.filter(p => p.available);
-      } else if (currentProgramFilter === 'upcoming') {
-        filtered = programs.filter(p => !p.available);
-      }
-
-      // Filter by category
-      if (currentProgramCategory !== 'all') {
-        filtered = filtered.filter(p => p.category === currentProgramCategory);
-      }
-
-      container.innerHTML = filtered.map(program => {
-        if (program.available) {
-          return `
-            <div class="group bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700/50 hover:border-amber-600/50 transition-all duration-300 hover:shadow-xl hover:shadow-amber-600/20 hover:-translate-y-2 cursor-pointer">
-              <div class="relative h-48 overflow-hidden">
-                <img src="${program.image}" alt="${program.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
-                <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-60"></div>
-              </div>
-              
-              <div class="p-4 sm:p-6">
-                <h3 class="text-lg sm:text-xl font-bold mb-3 text-white">${program.title}</h3>
-                <p class="text-gray-400 mb-4 sm:mb-6 line-clamp-2 text-sm sm:text-base">${program.description}</p>
-                
-                <button class="w-full px-4 sm:px-6 py-2 sm:py-3 bg-amber-600 hover:bg-amber-500 text-white rounded-full font-medium transition-all flex items-center justify-center gap-2 group-hover:gap-3 text-sm sm:text-base" onclick="openPartnerModal('${program.title}')">
-                  Partner Now
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                  </svg>
-                </button>
-              </div>
-            </div>
-          `;
-        } else {
-          return `
-            <div class="group bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700/50 hover:border-amber-600/50 transition-all duration-300 hover:shadow-xl hover:shadow-amber-600/20 hover:-translate-y-2 cursor-pointer relative"
-              onclick="showComingSoon('${program.title}', '${program.description}')">
-              <div class="relative h-48 overflow-hidden">
-                <img src="${program.image}" alt="${program.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300 opacity-40" />
-                <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-60"></div>
-                
-                <!-- Coming Soon Badge -->
-                <div class="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm">
-                  <div class="text-center">
-                    <div class="inline-block p-3 bg-amber-600/20 border border-amber-600/50 rounded-full mb-2">
-                      <svg class="w-8 h-8 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                      </svg>
-                    </div>
-                    <p class="text-amber-400 font-bold text-sm">Coming Soon</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="p-4 sm:p-6">
-                <h3 class="text-lg sm:text-xl font-bold mb-3 text-white opacity-70">${program.title}</h3>
-                <p class="text-gray-400 mb-4 sm:mb-6 line-clamp-2 text-sm sm:text-base opacity-70">${program.description}</p>
-                
-                <button class="w-full px-4 sm:px-6 py-2 sm:py-3 bg-gray-700 hover:bg-gray-600 text-white rounded-full font-medium transition-all flex items-center justify-center gap-2 text-sm sm:text-base">
-                  Notify Me
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                  </svg>
-                </button>
-              </div>
-            </div>
-          `;
-        }
-      }).join('');
-    }
-
-    // Show Coming Soon Modal
-    function showComingSoon(title, description) {
-      document.getElementById('comingSoonTitle').textContent = title;
-      document.getElementById('comingSoonDesc').textContent = description;
-      document.getElementById('comingSoonModal').classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
-    }
-
-    // Close Coming Soon Modal
-    function closeComingSoon() {
-      document.getElementById('comingSoonModal').classList.add('hidden');
-      document.body.style.overflow = 'auto';
-    }
-
-    document.getElementById('closeComingSoon').addEventListener('click', closeComingSoon);
-    document.getElementById('closeComingSoon2').addEventListener('click', closeComingSoon);
-
-    // Close modal on background click
-    document.getElementById('comingSoonModal').addEventListener('click', (e) => {
-      if (e.target.id === 'comingSoonModal') closeComingSoon();
-    });
-
-    // Filter Dropdown Toggle
-    const filterBtn = document.getElementById('filterBtn');
-    const filterMenu = document.getElementById('filterMenu');
-
-    filterBtn.addEventListener('click', () => {
-      filterMenu.classList.toggle('hidden');
-    });
-
-    // Close dropdown when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!filterBtn.contains(e.target) && !filterMenu.contains(e.target)) {
-        filterMenu.classList.add('hidden');
-      }
-    });
-
-    // Filter Options
-    document.querySelectorAll('.filter-option').forEach(option => {
-      option.addEventListener('click', (e) => {
-        currentProgramFilter = e.target.dataset.filter;
-        const filterValue = e.target.textContent.split('\n')[0].trim();
-        document.getElementById('filterValue').textContent = filterValue.replace('All Programs', 'All').replace('Upcoming', 'Upcoming').replace('Available', 'Available');
-        filterMenu.classList.add('hidden');
-        renderPrograms();
-      });
-    });
-
-    // Program Tab Navigation
-    document.querySelectorAll('.program-tab-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        // Remove active class from all buttons
-        document.querySelectorAll('.program-tab-btn').forEach(b => {
-          b.classList.remove('bg-amber-600', 'text-white', 'shadow-lg', 'shadow-amber-600/50');
-          b.classList.add('bg-gray-800', 'text-gray-300');
-        });
-
-        // Add active class to clicked button
-        e.target.classList.remove('bg-gray-800', 'text-gray-300');
-        e.target.classList.add('bg-amber-600', 'text-white', 'shadow-lg', 'shadow-amber-600/50');
-
-        // Update category and render
-        currentProgramCategory = e.target.dataset.category;
-        renderPrograms();
-      });
-    });
-
-    // Initialize
-    renderGallery();
-    renderPrograms();
-
-    // Touch swipe for gallery (mobile)
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    const galleryContainer = document.querySelector('section:has(#galleryMainImage)');
-    if (galleryContainer) {
-      galleryContainer.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-      });
-
-      galleryContainer.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleGallerySwipe();
-      });
-    }
-
-    function handleGallerySwipe() {
-      const images = galleryImages[currentGalleryCategory];
-      if (touchEndX < touchStartX - 50) {
-        // Swipe left
-        currentGalleryIndex = (currentGalleryIndex + 1) % images.length;
-        renderGallery();
-      }
-      if (touchEndX > touchStartX + 50) {
-        // Swipe right
-        currentGalleryIndex = (currentGalleryIndex - 1 + images.length) % images.length;
-        renderGallery();
-      }
-    }
-
-    // ========== PARTNER MODAL FUNCTIONALITY ==========
-    let currentStep = 1;
-    let selectedProgramme = '';
-    let formData = {
-      programme: '',
-      category: '',
-      fullName: '',
-      email: '',
-      phone: '',
-      organization: '',
-      supportType: ''
-    };
-
-    // Open Partner Modal
-    function openPartnerModal(programmeName) {
-      selectedProgramme = programmeName;
-      formData.programme = programmeName;
-      currentStep = 1;
-      document.getElementById('partnerModal').classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
-      renderProgrammeOptions();
-      updateModalUI();
-    }
-
-    // Close Partner Modal
-    function closePartnerModal() {
-      document.getElementById('partnerModal').classList.add('hidden');
-      document.body.style.overflow = 'auto';
-      currentStep = 1;
-      formData = {
-        programme: '',
-        category: '',
-        fullName: '',
-        email: '',
-        phone: '',
-        organization: '',
-        supportType: ''
-      };
-    }
-
-    // Render Programme Options
-    function renderProgrammeOptions() {
-      const container = document.getElementById('programmeOptions');
-      container.innerHTML = programs.filter(p => p.available).map(program => `
-        <label class="border border-orange-300 rounded-xl p-4
-              flex gap-3 items-start cursor-pointer
-              hover:bg-orange-50 transition">
-          <input type="radio" name="programme" value="${program.title}" class="mt-1">
-          <span class="font-medium text-sm text-gray-900">
-            ${program.title}
-          </span>
-        </label>
-      `).join('');
-    }
-
-    // Update Modal UI
-    function updateModalUI() {
-      const steps = document.querySelectorAll('.step');
-      steps.forEach((step, index) => {
-        if (index + 1 === currentStep) {
-          step.classList.remove('hidden');
-        } else {
-          step.classList.add('hidden');
-        }
-      });
-
-      document.getElementById('stepNumber').textContent = currentStep;
-      const progressPercent = (currentStep / 6) * 100;
-      document.getElementById('progressBar').style.width = progressPercent + '%';
-
-      // Update button states
-      const nextBtn = document.getElementById('nextStep');
-      const prevBtn = document.getElementById('prevStep');
-      
-      if (currentStep === 1) {
-        prevBtn.style.display = 'none';
+      if (method === 'offline') {
+        offlineBtn.className = 'payment-btn py-3.5 px-4 text-xs font-semibold text-orange-500 bg-orange-50/80 border-2 border-orange-300 rounded-2xl transition-all';
+        onlineBtn.className = 'payment-btn py-3.5 px-4 text-xs font-semibold text-gray-600 bg-white border border-gray-200 hover:border-gray-300 rounded-2xl transition-all';
       } else {
-        prevBtn.style.display = 'block';
+        onlineBtn.className = 'payment-btn py-3.5 px-4 text-xs font-semibold text-orange-500 bg-orange-50/80 border-2 border-orange-300 rounded-2xl transition-all';
+        offlineBtn.className = 'payment-btn py-3.5 px-4 text-xs font-semibold text-gray-600 bg-white border border-gray-200 hover:border-gray-300 rounded-2xl transition-all';
       }
-
-      if (currentStep === 6) {
-        nextBtn.textContent = 'Close';
-        nextBtn.disabled = false;
-      } else {
-        nextBtn.textContent = 'Next';
-      }
-
-      validateStep();
     }
 
-    // Validate Step
-    function validateStep() {
-      const nextBtn = document.getElementById('nextStep');
-      let isValid = false;
-
-      if (currentStep === 1) {
-        const selectedProg = document.querySelector('input[name="programme"]:checked');
-        isValid = selectedProg !== null;
-      } else if (currentStep === 2) {
-        const selectedCat = document.querySelector('input[name="category"]:checked');
-        isValid = selectedCat !== null;
-      } else if (currentStep === 3) {
-        const fullName = document.getElementById('fullName').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        isValid = fullName && email && phone;
-      } else if (currentStep === 4) {
-        const selectedType = document.querySelector('input[name="supportType"]:checked');
-        isValid = selectedType !== null;
-      } else if (currentStep === 5) {
-        isValid = true; // Review step is always valid
-      }
-
-      nextBtn.disabled = !isValid;
-    }
-
-    // Next Step
-    document.getElementById('nextStep').addEventListener('click', () => {
-      if (currentStep === 6) {
-        closePartnerModal();
-        return;
-      }
-
-      // Save data from current step
-      if (currentStep === 1) {
-        const selected = document.querySelector('input[name="programme"]:checked');
-        if (selected) formData.programme = selected.value;
-      } else if (currentStep === 2) {
-        const selected = document.querySelector('input[name="category"]:checked');
-        if (selected) formData.category = selected.nextElementSibling.querySelector('span').textContent;
-      } else if (currentStep === 3) {
-        formData.fullName = document.getElementById('fullName').value;
-        formData.email = document.getElementById('email').value;
-        formData.phone = document.getElementById('phone').value;
-        formData.organization = document.getElementById('organization').value;
-      } else if (currentStep === 4) {
-        const selected = document.querySelector('input[name="supportType"]:checked');
-        if (selected) formData.supportType = selected.value;
-      } else if (currentStep === 5) {
-        // Submit form
-        submitPartnershipForm();
-        currentStep++;
-        updateModalUI();
-        return;
-      }
-
-      currentStep++;
-      updateModalUI();
-
-      // Update summary on step 5
-      if (currentStep === 5) {
-        document.getElementById('summaryProgramme').textContent = formData.programme;
-        document.getElementById('summaryName').textContent = formData.fullName;
-        document.getElementById('summaryEmail').textContent = formData.email;
-        document.getElementById('summarySupportType').textContent = formData.supportType;
+    // Custom Amount Logic
+    document.getElementById('customAmount').addEventListener('input', function(e) {
+      if (e.target.value) {
+        // Deselect pre-set cards if custom amount is typed
+        document.querySelectorAll('.package-card').forEach(card => {
+          card.classList.remove('bg-orange-50/70', 'border-2', 'border-orange-400');
+          card.classList.add('bg-gray-50/60', 'border-gray-200');
+          const checkIcon = card.querySelector('.check-icon');
+          if (checkIcon) checkIcon.classList.add('hidden');
+        });
+        selectedAmount = e.target.value;
       }
     });
 
-    // Previous Step
-    document.getElementById('prevStep').addEventListener('click', () => {
-      if (currentStep > 1) {
-        currentStep--;
-        updateModalUI();
-      }
+    // Proceed Button
+    document.getElementById('proceedToPaymentBtn').addEventListener('click', function() {
+      console.log(`Proceeding to payment with Amount: ₦${selectedAmount}, Method: ${selectedMethod}`);
     });
-
-    // Close button
-    document.getElementById('closePartnerModal').addEventListener('click', closePartnerModal);
-
-    // Add change listeners to form fields
-    document.addEventListener('change', (e) => {
-      if (e.target.name === 'programme' || e.target.name === 'category' || 
-          e.target.name === 'supportType') {
-        validateStep();
-      }
-    });
-
-    document.addEventListener('input', (e) => {
-      if (e.target.id === 'fullName' || e.target.id === 'email' || e.target.id === 'phone') {
-        validateStep();
-      }
-    });
-
-    // Submit Partnership Form
-    function submitPartnershipForm() {
-      // Generate reference number
-      const refNum = 'SOWRO-' + Date.now();
-      document.getElementById('referenceNumber').textContent = refNum;
-
-      // Here you would send the data to your backend
-      console.log('Partnership Form Submitted:', formData);
-
-      // You can send data to your backend using fetch:
-      // fetch('/api/partnership', { 
-      //   method: 'POST', 
-      //   body: JSON.stringify(formData) 
-      // });
-    }
-
   </script>
 
 </body>
-
 </html>
